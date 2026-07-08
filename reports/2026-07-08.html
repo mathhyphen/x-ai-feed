@@ -6,31 +6,16 @@
 <title>X AI 热门动态 · 24h · 2026-07-08</title>
 <style>
 :root {
-  --ink: #1f2933;
-  --muted: #5f6b76;
-  --line: #d9e1e8;
-  --paper: #fbfcfd;
-  --panel: #ffffff;
-  --teal: #0f766e;
-  --teal-soft: #e5f4f1;
-  --amber: #b7791f;
-  --amber-soft: #fff5dd;
-  --rose: #b4233a;
-  --rose-soft: #fff0f2;
-  --blue: #1f5f99;
-  --blue-soft: #eef6ff;
+  --ink: #1f2933; --muted: #5f6b76; --line: #d9e1e8; --paper: #fbfcfd; --panel: #ffffff;
+  --teal: #0f766e; --teal-soft: #e5f4f1; --amber: #b7791f; --amber-soft: #fff5dd;
+  --rose: #b4233a; --rose-soft: #fff0f2; --blue: #1f5f99; --blue-soft: #eef6ff;
   --green: #2f7d32;
-  --shadow: 0 12px 28px rgba(31, 41, 51, 0.08);
-  --radius: 8px;
+  --shadow: 0 12px 28px rgba(31, 41, 51, 0.08); --radius: 8px;
 }
 * { box-sizing: border-box; }
-body {
-  margin: 0; padding: 0;
-  color: var(--ink);
-  background: var(--paper);
+body { margin: 0; padding: 0; color: var(--ink); background: var(--paper);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
-  line-height: 1.72;
-}
+  line-height: 1.72; }
 .page { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 30px 0 60px; }
 header { padding: 24px 0 20px; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, #ffffff 0%, #f7fafb 100%); }
 .eyebrow { display: inline-flex; gap: 8px; color: var(--teal); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
@@ -38,19 +23,12 @@ h1 { margin: 14px 0 12px; font-size: clamp(26px, 3.6vw, 40px); line-height: 1.18
 .subtitle { margin: 0 0 14px; color: var(--muted); font-size: 16px; }
 .subtitle strong { color: var(--ink); }
 .meta { display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px; }
-.pill { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: 4px 10px; white-space: nowrap; }
-.pill strong { margin-right: 4px; }
-h2 { margin: 36px 0 12px; font-size: 22px; }
-.section-meta { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
-.tweet {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--panel);
-  padding: 14px 16px;
-  margin: 10px 0;
-  box-shadow: 0 4px 12px rgba(31, 41, 51, 0.06);
-  position: relative;
-}
+.pill { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+.pill strong { font-weight: 600; }
+section { margin: 28px 0; }
+section h2 { font-size: 22px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+section > p { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+.tweet { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 14px 16px; margin: 10px 0; box-shadow: 0 4px 12px rgba(31, 41, 51, 0.06); }
 .tweet .head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-height: 32px; }
 .tweet .name { font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px; flex-shrink: 1; min-width: 0; }
 .tweet .uname { color: var(--muted); font-size: 13px; flex-shrink: 0; }
@@ -62,222 +40,434 @@ h2 { margin: 36px 0 12px; font-size: 22px; }
 .tweet .text-en { font-size: 13.5px; color: var(--muted); background: #fafbfc; padding: 10px 12px; border-radius: 6px; border: 1px dashed var(--line); margin-top: 6px; }
 .tweet .stats { display: flex; gap: 14px; margin-top: 10px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
 .tweet .stats span { display: inline-flex; align-items: center; gap: 4px; }
-.tweet .link-row { margin-top: 8px; }
-.tweet .orig-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 13px; color: var(--blue); text-decoration: none;
-  border: 1px solid var(--blue-soft);
-  background: var(--blue-soft);
-  padding: 3px 10px; border-radius: 999px;
-  font-weight: 500;
-}
-.tweet .orig-link:hover { background: #d8e9ff; }
-.tweet .cross-list { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
-.tweet .cat-tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; background: var(--teal-soft); color: var(--teal); font-weight: 600; }
 .tweet .media { margin-top: 8px; }
-.tweet .media img { max-width: 100%; border-radius: 6px; border: 1px solid var(--line); }
-.tweet .media video { max-width: 100%; }
-.tweet .ext-link { display: block; color: var(--blue); font-size: 13px; word-break: break-all; }
-
-/* New: badge row */
-
-.badge {
-  display: inline-flex; align-items: center; gap: 3px;
-  font-size: 11px; font-weight: 600;
-  padding: 2px 8px; border-radius: 999px;
-  border: 1px solid var(--line); background: #fafbfc; color: var(--muted);
-}
+.tweet .link-row { margin-top: 8px; }
+.tweet .orig-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--blue); text-decoration: none; border: 1px solid var(--blue-soft); background: var(--blue-soft); padding: 3px 10px; border-radius: 999px; font-weight: 500; }
+.tweet .orig-link:hover { background: #d8e9ff; }
+.badge { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); background: #fafbfc; color: var(--muted); }
 .badge.heat { background: var(--rose-soft); color: var(--rose); border-color: #fbd5db; }
 .badge.age { background: var(--teal-soft); color: var(--teal); border-color: #c8e8e2; }
-
-/* New: details (English original) */
-.en-details { margin-top: 4px; }
-.en-details summary {
-  font-size: 12px; color: var(--muted); cursor: pointer;
-  padding: 2px 0; user-select: none;
-  list-style: none;
-}
-.en-details summary::-webkit-details-marker { display: none; }
-.en-details summary::before { content: '🌐 '; }
-.en-details summary:hover { color: var(--blue); }
-
-/* New: quoted tweet */
-.quoted-tweet {
-  margin-top: 8px;
-  padding: 8px 12px;
-  background: #fafbfc;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  border-left: 3px solid var(--teal);
-}
-.quoted-tweet .q-head { display: flex; gap: 6px; align-items: baseline; margin-bottom: 4px; }
-.quoted-tweet .q-name { font-weight: 600; font-size: 13px; }
-.quoted-tweet .q-uname { color: var(--muted); font-size: 12px; }
-.quoted-tweet .q-text { font-size: 13px; color: var(--ink); white-space: pre-wrap; word-wrap: break-word; }
-
-.footer { margin-top: 50px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-.footer code { background: var(--ink); color: #f3f5f7; padding: 1px 6px; border-radius: 4px; font-size: 12px; }
-.footer h3 { color: var(--ink); font-size: 15px; margin: 0 0 8px; }
-.algorithm { background: #fafbfc; border: 1px solid var(--line); border-radius: 6px; padding: 14px 18px; margin-top: 10px; }
-.algorithm p { margin: 6px 0; }
-.algorithm code { background: #eef2f5; color: var(--ink); padding: 1px 5px; border-radius: 3px; font-size: 12.5px; }
-.toc { display: flex; gap: 8px; margin: 16px 0 0; flex-wrap: wrap; }
-.toc a { color: #314150; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font-size: 13px; text-decoration: none; }
-.toc a:hover { background: #fff; }
+details.en-details { margin-top: 6px; }
+details.en-details summary { cursor: pointer; font-size: 13px; color: var(--muted); user-select: none; padding: 2px 0; }
+details.en-details[open] summary { color: var(--ink); font-weight: 600; }
+footer { margin-top: 40px; padding: 20px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+footer h2 { font-size: 18px; margin-bottom: 12px; color: var(--ink); }
 </style>
 </head>
 <body>
 <div class="page">
+  <header>
+    <span class="eyebrow">🐦 X (Twitter) · AI 热门动态 · 24h</span>
+    <h1>X 上 24 小时内的 AI 热门动态</h1>
+    <p class="subtitle">大模型 / Agent / Vibe Coding / 世界模型 + AI 大佬动态 — <strong>2026-07-07 ~ 2026-07-08</strong> · <strong>按 热度×新鲜度 综合排序</strong></p>
+    <div class="meta">
+      <span class="pill"><strong>来源</strong> X / Twitter (via twitter-cli)</span>
+      <span class="pill"><strong>账号</strong> @math_hyphen</span>
+      <span class="pill"><strong>窗口</strong> 最近 24h</span>
+      <span class="pill"><strong>采集</strong> 2026-07-08 (北京时间)</span>
+      <span class="pill"><strong>总数</strong> 38 条</span>
+      <span class="pill"><strong>总 likes</strong> 69.5K</span>
+      <span class="pill"><strong>算法</strong> heat / (1 + ageHours/8)</span>
+    </div>
+  </header>
 
-<header>
-  <span class="eyebrow">🐦 X (Twitter) · AI 热门动态 · 24h</span>
-  <h1>X 上 24 小时内的 AI 热门动态</h1>
-  <p class="subtitle">大模型 / Agent / Vibe Coding / 世界模型 — 2026-07-07 ~ 2026-07-08 · <strong>按 热度×新鲜度 综合排序</strong></p>
-  <div class="meta">
-    <span class="pill"><strong>来源</strong> X / Twitter (via twitter-cli)</span>
-    <span class="pill"><strong>账号</strong> @math_hyphen</span>
-    <span class="pill"><strong>窗口</strong> 最近 24h</span>
-    <span class="pill"><strong>采集</strong> 2026-07-08 (北京时间)</span>
-    <span class="pill"><strong>总数</strong> 30 条</span>
-    <span class="pill"><strong>🔥 热度</strong> likes + 2·RT + replies + views/1000</span>
-    <span class="pill"><strong>⏱ 新鲜度</strong> 8h 半衰期 (1+age/8)</span>
+<section id="big">
+  <h2>⭐ AI 大佬动态</h2>
+  <p>来自 10 个头部账号 · 按热度×新鲜度排序 · 原创推文</p>
+  <div class="tweet" id="tweet-2074709023807664454">
+  <div class="head">
+    <span class="name">Sama</span>
+    <span class="uname">@sama</span>
+    <span class="verified">✓</span>
+    <span class="time">7/8 12:15</span>
+    <span class="badge heat" style="margin-left:8px">🔥 11757</span>
+    <span class="badge age" style="margin-left:4px">⏱ 8.8h</span>
   </div>
-  <div class="toc">
-    <a href="#llm">🧠 大模型 / LLM (8)</a>
-    <a href="#agent">🤖 AI Agent (8)</a>
-    <a href="#vibe">🎨 Vibe Coding (8)</a>
-    <a href="#world">🌍 世界模型 (6)</a>
-  </div>
-</header>
+  <div class="text text-zh">GPT-5.6 sol 周四上线！
 
-<main>
+祝玩得开心</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">GPT-5.6 sol launches thursday!
+
+happy building</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 1.4K</span>
+    <span>🔁 1.4K</span>
+    <span>❤️ 20.3K</span>
+    <span>🔖 913K</span>
+    <span>👁 913.7K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/sama/status/2074709023807664454" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2073791666553844074">
+  <div class="head">
+    <span class="name">Sama</span>
+    <span class="uname">@sama</span>
+    <span class="verified">✓</span>
+    <span class="time">7/5 23:30</span>
+    <span class="badge heat" style="margin-left:8px">🔥 1716</span>
+    <span class="badge age" style="margin-left:4px">⏱ 2.9d</span>
+  </div>
+  <div class="text text-zh">我家大宝第一次把两个词串到一起说了，我对这件事的震撼程度，差不多和看到 GPT-5.6 发现新数学一样。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">our older kid put two words together for the first time and i am approximately as amazed by this cognitive feat as i am by GPT-5.6 discovering new math</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 1.4K</span>
+    <span>🔁 353</span>
+    <span>❤️ 13.5K</span>
+    <span>🔖 1.8KK</span>
+    <span>👁 1.8M</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/sama/status/2073791666553844074" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2073635910512726444">
+  <div class="head">
+    <span class="name">Sama</span>
+    <span class="uname">@sama</span>
+    <span class="verified">✓</span>
+    <span class="time">7/5 13:11</span>
+    <span class="badge heat" style="margin-left:8px">🔥 966</span>
+    <span class="badge age" style="margin-left:4px">⏱ 3.3d</span>
+  </div>
+  <div class="text text-zh">我感谢创立美利坚这个想法的人，过去 250 年建设它的每一个人，以及接下来 250 年会继续把它扛下去的人。
+
+这是史上最了不起的社会实验。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">grateful to the people that created the idea of america, everyone who built it over the past 250 years, and the people who will carry it forward for the next 250.
+
+most impressive social experiment in history.</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 596</span>
+    <span>🔁 327</span>
+    <span>❤️ 9.1K</span>
+    <span>🔖 572K</span>
+    <span>👁 572.5K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/sama/status/2073635910512726444" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2071988145667928442">
+  <div class="head">
+    <span class="name">AndrewYNg</span>
+    <span class="uname">@AndrewYNg</span>
+    <span class="verified">✓</span>
+    <span class="time">7/1 00:04</span>
+    <span class="badge heat" style="margin-left:8px">🔥 491</span>
+    <span class="badge age" style="margin-left:4px">⏱ 7.9d</span>
+  </div>
+  <div class="text text-zh">「Loop engineering」成了当下最热的热词——起因是 Claude Code 的作者 Boris Cherny 和 OpenClaw 的作者 Peter Steinberger 在社媒上频频提起。Loop 现在已经是我们让 AI Agent 长时段迭代搭建软件的关键部分。在这封信里，我想分享我从 0 到 1 做产品时常用的 3 个核心 Loop（见下图）。它们不仅指导我如何写代码，更指引我决定该写什么代码。
+
+Agentic coding loop：给定一份产品 spec，再加上一组可选的 eval（也就是用来衡量表现的数据集），我们就可以让 AI Agent 自己写代码、测试，然后反复迭代，直到代码无 bug 并满足 spec。这种『闭环』思路从去年底开始爆火，是 coding agent 能长时间独立工作的决定性突破。举一个例子：上周末我在给我女儿做一个练打字的 App，coding agent 一口气能连续工作差不多一小时，期间多次开浏览器自己检查构建效果，再回话给我，中间完全不需要我插手。
+
+工程 loop 跑得很快，每隔几分钟 coding agent 就会构建并测试一个新版本。我经常听到开发者在聊怎么搭出更高效的 engineering loop。这个方向还非常活跃。
+
+Developer feedback loop：在这个 loop 里，开发者审视当前产品，引导 coding agent 改进它。去年，很多开发者（包括我）其实就是给 coding agent 当 QA——手动找 bug，再让 agent 修。但随着 coding agent 已经能自己测代码，这块人工时长大幅下降。我们因此可以去做更高层的产品决策，比如要上哪些核心功能、UI 哪里要优化等等。
+
+Developer feedback loop 的节奏是几十分钟到几小时——也就是开发者检视产品并给出反馈的频率。还是这个打字 App：我一会儿觉得视觉设计要改，一会儿又改了女儿解锁的猫咪装扮（她超爱猫），还调整了大人登录、引导孩子学习的用户流程。
+
+当开发者对自己想做的产品有清晰愿景时，把愿景翻译成 coding agent 能执行的 spec，本身就是很大的工作量。更难的是，当开发者看完第一版实现后，往往会更新（或更清晰地重写）spec，把方向调整到他真正想要的样子。如果你发现系统总是栽进同一类坑，给 Agent 搭一组专门的 eval 就特别值得。
+
+AI-native 团队越来越多地用 AI 协助塑造产品方向，比如自动汇总和分析用户行为数据、把书面和口头的客户反馈归总起来、或者直接做竞品分析。但在我参与的大多数产品里，人都比当下的 AI 系统有明显『上下文优势』——我们对用户和产品所处的环境比 AI 知道得多得多——所以人扮演关键角色。很多人把这种人的贡献叫『taste』（品味），但我更愿意把它理解成『context advantage』（上下文优势），因为这样我们能更清楚地知道如何让 AI 变得更好。这同时也是为什么这一步没办法自动化：只要人知道一些 AI 不知道的东西，就需要保留 human-in-the-loop，把这部分知识灌进去。
+
+External feedback loop：这一步覆盖的范围很广，包括找几个朋友试一下、开放给 alpha 测试者、或者通过 A/B 测试将代码推到生产。它们的节奏通常很慢，常常以小时计，甚至几天、几周。这些数据反过来影响 developer vision，developer vision 又驱动更细致的产品 spec，spec 再驱动 coding agent。
+
+随着 coding agent 让软件开发越来越快，越来越多的工程师开始兼任部分产品经理角色。对这些正在转型的人来说，最难的是如何塑造产品愿景，以及在『搭桥（vision 到 spec）』和『拿用户反馈迭代 vision』之间找平衡。两件事都得做！
+
+关于具体怎么做，后续我还会再写；但现在我觉得很鼓舞的是，工程师正在扮演一个更大的角色（就像产品经理和设计师今天要做更多工程工作一样）。
+
+（原文：The Batch）</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">“Loop engineering” is a hot buzzphrase after mentions of it by Boris Cherny (Claude Code’s creator) and Peter Steinberger (OpenClaw's creator) went viral on social media. Loops are now a key part of how we get AI agents to iterate at length to build software. In this letter, I’d like to share my 3 key loops, shown in the image below, for building 0-to-1 products. These loops guide not just how I build software, but also how I decide what software to build.
+
+Agentic coding loop: Given a product specification and optionally a set of evals (that is, a dataset against which to measure performance), we can have an AI agent write code, test its work, and keep iterating until the code is bug-free and meets its specification. This idea of closing the loop took off around the end of last year, and it has been a game changer in enabling coding agents to work longer productively without human intervention. For example, over the weekend, I was building an app for my daughter to practice typing, and my coding agent could easily work for around an hour, using a web browser to check what it had built multiple times before getting back to me, without needing my intervention.
+
+The engineering loop executes quickly. Every few minutes, the coding agent might build and test a new version of the software. I hear frequently from developers who are finding new ways to engineer more effective engineering loops. This is an active area of invention!
+
+Developer feedback loop: In this loop, a developer examines the current product and steers the coding agent to improve it. Last year, a lot of developers (including me) were acting as the QA (quality assurance) function for our coding agents, manually finding bugs and then asking the agent to fix them. But with coding agents much more able to test their own code, the amount of time we need to spend on this function has decreased significantly. This allows us to make higher-level product decisions, such as what key features to offer, where the UI needs improvement, and so on.
+
+The developer-feedback loop operates over time intervals between tens of minutes and hours — that's how frequently a developer might review a product and give feedback. In the case of the typing app, I changed my mind a few times about the visual design, what cat costumes she can unlock as she learns (she loves cats), and the user flow for a grown-up to log in and steer the child's learning experience.
+
+When a developer has a clear vision for what to build, it is still a lot of work to translate that vision into a specification for a coding agent to implement. Further, after the developer has seen an implementation, they might update (or perhaps clarify) the spec to steer it toward what they want. If you find that the system repeatedly runs into certain problems, building a set of evals for the agent becomes useful.
+
+AI-native teams are increasingly using AI to help shape product direction, for example, automating the gathering and analysis of usage data, summarizing written and verbal customer feedback, or carrying out competitive analysis. However, for pretty much all the products I’m involved in, I see humans as having a significant context advantage over current AI systems — we know a lot more than the AI system about the users and the context the product has to operate in — and thus humans play a critical role. Many people describe this human contribution as “taste,” but I prefer to think of it as humans having a context advantage, since that gives us a clearer path to helping AI systems get better. This also speaks to why this step can’t be automated: So long as the human knows something the AI does not, human-in-the-loop is needed to to inject that knowledge into the system.
+
+External feedback loop: This includes a wide range of tactics like asking a few friends for feedback, launching to alpha testers, or putting the code into production with A/B testing. These tactics are usually slow, rarely taking less than hours and sometimes taking days or even weeks. This data informs the developer vision, which in turn continues to drive the detailed product spec, which in turn drives the coding agent.
+
+With coding agents speeding up software development, more engineers are starting to play a partial product management role. For many engineers who are growing into this role, the hardest part is shaping the product vision and striking a balance between building (bridging the gap between vision and spec) and getting user feedback to evolve the vision. It is important to do both!
+
+I will write more about how to do this in future posts, but for now, I find it encouraging that engineers are playing an expanded role (just as product managers and designers now do more engineering).
+
+[Original text: The Batch]</div>
+  </details>
+  
+  <div class="media"><a href="https://x.com/AndrewYNg/status/2071988145667928442" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto"><img src="https://pbs.twimg.com/media/HMEtxp3bsAARJdi.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block"></a><div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/AndrewYNg/status/2071988145667928442" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@AndrewYNg · 在 X 上查看原文 →</a></div></div>
+  <div class="stats">
+    <span>💬 367</span>
+    <span>🔁 1.6K</span>
+    <span>❤️ 8.2K</span>
+    <span>🔖 582K</span>
+    <span>👁 582.2K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/AndrewYNg/status/2071988145667928442" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074619120847589444">
+  <div class="head">
+    <span class="name">AravSrinivas</span>
+    <span class="uname">@AravSrinivas</span>
+    <span class="verified">✓</span>
+    <span class="time">7/8 06:18</span>
+    <span class="badge heat" style="margin-left:8px">🔥 222</span>
+    <span class="badge age" style="margin-left:4px">⏱ 14.7h</span>
+  </div>
+  <div class="text text-zh">Vera CPU 是面向 Agentic runtime 专门定制的。
+我们一直和 NVIDIA 一起合作，在 Vera CPU 上跑驱动 Perplexity Computer 的沙箱基础设施，效果显著提升。更多细节很快会发布！</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Vera CPUs are custom-built for agentic runtime. 
+We've been working together with NVIDIA on running our sandbox infrastructure that powers Perplexity Computer on Vera CPUs, with significant improvements. We will be sharing more on this soon!</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 32</span>
+    <span>🔁 34</span>
+    <span>❤️ 494</span>
+    <span>🔖 53K</span>
+    <span>👁 53.5K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/AravSrinivas/status/2074619120847589444" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2072004190856212902">
+  <div class="head">
+    <span class="name">DrJimFan</span>
+    <span class="uname">@DrJimFan</span>
+    
+    <span class="time">7/1 01:07</span>
+    <span class="badge heat" style="margin-left:8px">🔥 94</span>
+    <span class="badge age" style="margin-left:4px">⏱ 7.8d</span>
+  </div>
+  <div class="text text-zh">今天，我们给机器人装上一个能自我进化、不断叠加的 /skills 库！隆重推出 ASPIRE：解决第 100 个任务的机器人，不再像第一次那样一无所知。编程 Agent 观察仿真和真实机器人的多模态感知轨迹，发起对控制程序的进化搜索，并把最好的 know-how 蒸馏进一个不断扩张的技能库里。
+
+ASPIRE 是一种全新的持续学习：『训练』是技能精炼而不是梯度下降。『训练好的模型』不是一组浮点权重，而是一个感觉运动技能仓库。『分布式训练』也不是被切片的 minibatch，而是一组 Agent 分别练不同的技能。
+
+妙处在于：ASPIRE 给两个被用烂的术语『sim2real transfer』和『cross-embodiment transfer』赋予了全新含义。从仿真到现实的迁移素来艰难，一个端到端策略要同时吞下视觉差异（仿真看起来总比真机镜头廉价）和它永远摸不太准的接触物理。ASPIRE 巧妙绕开这堆坑：它跨过 gap 的不是像素也不是权重，是 know-how。机器人在真实世界里仍然要练习——不是 zero-shot，但因为不用从零重新发现策略，所以快得多。换成从单臂到双臂，通常要采新数据、从头重训。ASPIRE 在『迁移学习』token 上砍了高达 ~10 倍（没错，token 正在变成训练算力的新计量单位 ;)）
+
+到网站看我们 150+ 任务、90+ 技能的完整图库，全都是机器人自己学出来的。可以把『训练好的权重』作为一个 HTML 页面而不是 GGUF 发出去，想想还挺疯狂。我们会开源全套代码栈，让你自己的机器人技能库直接在我们基础上叠加。
+
+深度解析见 thread：</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Today, we give robots a /skills library that self-evolves and compounds indefinitely! Introducing ASPIRE: a robot solving its 100th task is no longer as clueless as solving its first. Coding agents observe multimodal sensory traces from simulation and real robots, launch an evolutionary search over control programs, and distill the best know-how into an ever-expanding library. 
+
+ASPIRE is a new type of continual learning: &quot;training&quot; is skill refinement instead of gradient descent. 
+&quot;Trained model&quot; is a repo of sensorimotor skills instead of floating weights. 
+“Distributed training” is a panel of agents each practicing a different skill instead of sharded minibatches.
+
+Here's the beauty: ASPIRE gives the tired terms &quot;sim2real transfer&quot; and &quot;cross-embodiment transfer&quot; a whole new meaning. Bridging the sim-to-real gap is notoriously brutal. An end-to-end policy has to swallow both the visual shift (sim looks toyish next to a real camera) and the subtle contact physics it never quite gets right. ASPIRE sidesteps the mess, because it doesn't ship pixels or weights across the gap, but ships the know-how. The robot still has to practice in the real world, not zero-shot, but it gets there way faster because it isn't rediscovering the strategy from scratch. Same for going single-arm to bimanual hardware, which usually requires new data and retraining from zero. ASPIRE achieves up to ~10x cut in &quot;transfer learning” tokens (yes, tokens are the new unit of *training* compute ;)
+
+Check out our gallery of 150+ tasks and 90+ skills the robots taught themselves, all on the website! Kind of wild that we can ship the &quot;learned weights&quot; as an HTML page rather than a GGUF. We'll open-source the full stack so your own robot library starts compounding from ours! 
+
+Deep dive in thread:</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 71</span>
+    <span>🔁 222</span>
+    <span>❤️ 1.6K</span>
+    <span>🔖 188K</span>
+    <span>👁 188.2K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/DrJimFan/status/2072004190856212902" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2068039709126017356">
+  <div class="head">
+    <span class="name">AndrewYNg</span>
+    <span class="uname">@AndrewYNg</span>
+    <span class="verified">✓</span>
+    <span class="time">6/20 02:34</span>
+    <span class="badge heat" style="margin-left:8px">🔥 37</span>
+    <span class="badge age" style="margin-left:4px">⏱ 18.8d</span>
+  </div>
+  <div class="text text-zh">过去两周，美国政府和 Anthropic 都做出了很强硬的举动，展示了他们可以通过限制他人能拿前沿模型做什么来控制 AI 的访问。一旦看到这一幕就很难再装作没看到，它正在显著加速许多企业和国家去保证『任何人想停就停不了』的可靠 AI 访问。
+
+Anthropic 先发布了 Claude Fable 5，也就是 Mythos 模型加了额外护栏的版本，其中包括一些在安全理由下完全说得通的限制（比如不许用在黑客攻击、生物武器等）。然而，Anthropic 同时限制了开发者把它拿去做竞争性 LLM 的研发。这一点让人担忧，因为整个 AI 社区——包括 Anthropic 自己——都从开放研究中受益巨大。事实上，AI 革命正是由我以前的团队（Google Brain）免费公开 Transformer 论文点燃的！
+
+想象一下，如果微软的使用条款禁止任何人用他们的工具做竞品软件，或者 Google 不让你拿它去搜竞品搜索引擎的资料。Anthropic 拿『不安全』来论证也不站不住脚。一开始，Anthropic 在暗地里对被识别在做 LLM 研究的用户偷偷降级 Fable 5 的表现，既不通知，也不动声色地弱化模型输出。引发强烈反弹后，它收回了这一做法并承诺以后此类降级会保持透明，但仍然拒绝用它最强能力帮 AI 研究人员。
+
+这一举动是 Anthropic 一次赤裸裸的权力展示。它用『安全』论调卡潜在竞争对手的脖子。当平台被视为稳定、可靠的合作伙伴时，大家才愿意在上面搭东西。Anthropic 这些突然的规则变化（包括对 Fable 使用强制 30 天数据保留），让开发者不得不重新审视：是不是不仅 Anthropic，而是任何单一专有 LLM 提供商的稳定性都不再可信。
+
+随后美国政府做了一次更大的『权力展示』。它动用了商务部对可能构成国家安全威胁的技术的监管权，限制 Mythos 和 Fable 的出口，要求任何外国人——无论在美国境内还是境外、包括 Anthropic 自己的员工——使用都需要许可证。这直接导致 Anthropic 把 Fable 的访问在全球范围内关停。
+
+Sam Altman 在回应 Anthropic 时说：『把话说成这样营销效果炸裂——『我们造了一颗炸弹，正准备丢你头上。$100M 一顶防爆头盔卖给你。』」但一旦你真用这种恐惧营销，就更可能让美国政府相信你，认同对你的『炸弹』施加出口管制。
+
+说清楚：我并不认为 Anthropic 真造了什么炸弹，也不认为给 Fable 加出口管制是合适的。
+
+但在美国政府做出这一举动之后，很多国家（包括美国的盟友）都看清了美国可以突然切断他们对 AI 模型的访问。在全球很多首都，这直接催生了关于『AI 主权』的讨论——也就是如何保证关键技术的连续接入。
+
+过去几十年，很多国家都习惯把自己供应链的很多环节放在美国、中国或其他主要生产国。一旦某个国家发出威胁、或采取行动限制别国接入，其他国家自然会理性地去找替代方案。过去中国半导体进步缓慢；一旦美国开始限制对华出口，中国的努力立刻全速推进。同理，中国威胁过美国稀土之后，美国找替代品的努力也迅速加速。现在一家美国私企和美国政府可以短期内限制别国使用前沿 AI 模型这件事已经明牌，其他人投资开源替代品的动力被显著放大。训前沿模型当然不容易，最后到底能不能做出替代还不好说，但卢比孔河已经跨过了。
+
+Satya Nadella 写了篇文章谈在前沿 AI 技术上搭建健康生态的重要性。我非常赞同，也希望本周这些事最终能变成促成这件事的契机。
+
+我希望我们能建一个更自由、更开放的世界，让研究成果可以自由分享，法律与社会规范构成公平的赛场，让每个人都可以前进。过去这两周还有个歪打正着的好处：现在每个人都更清楚当下系统里那些不稳定的点了，那我们就能一起把它们打稳。
+
+（原文：The Batch 时事通讯）</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Over the last two weeks, both the U.S. Government and Anthropic took significant actions that demonstrated their power to control access to AI by restricting what others can do with frontier models. This has been one of those moments that, once seen, will be hard to unsee, and it is significantly accelerating many businesses’ and nation states’ efforts to ensure reliable access to AI that no one else can terminate.
+
+Anthropic first released Claude Fable 5, a version of its Mythos model with additional guardrails, including some restrictions that seem well justified on safety grounds (such as limitations on applying it to hacking, bioweapons, and so forth). However, it also restricted developers’ ability to use it to build competing LLM technology. This move was concerning, given that the whole AI community, including Anthropic, has benefitted tremendously from open research — indeed, the AI revolution was kicked off by my former team (Google Brain) freely publishing the Transformers paper!
+
+Imagine if Microsoft’s terms of use barred anyone from using their tools to build competitive software, or if Google barred using it to search for information to work on competing search engines. Anthropic’s argument that it was unsafe for others to be able to make advances in AI also rang hollow. Initially, Anthropic silently degraded Fable 5’s performance for users detected to be working on LLM research through invisible interventions that weakened the model’s outputs without notifying the user. After significant backlash, it walked back this decision and decided to be transparent when it did this, but it still refuses to use its latest capabilities to help AI researchers.
+
+This move represents a raw demonstration of power by Anthropic. It has used “safety” arguments to hinder potential competitors. Platforms succeed when they are viewed as stable, reliable partners that one can build on. The sudden rule changes by Anthropic (including a mandatory 30 day data retention policy for Fable usage) have made developers wonder about the stability of building on any one proprietary LLM provider, not just Anthropic.
+
+The U.S. Government then shortly followed with an even greater demonstration of power. It used the Commerce Department’s authority to regulate technologies that may be national security threats to restrict exports of Mythos and Fable, requiring a license for use by any foreign national, whether inside or outside of the U.S., including employees of Anthropic. This led Anthropic to disable access to Fable to all users worldwide.
+
+Sam Altman pointed out, referring to Anthropic, “It is clearly incredible marketing to say, ‘We have built a bomb, we are about to drop it on your head. We will sell you a bomb shelter for $100 million.’” But when one engages in this type of fear-based marketing, it increases the odds that the U.S. Government will agree with you and slap export controls on the bomb you say you have built.
+
+To be clear, I don't think Anthropic has built anything like a bomb, and I don't think export controls on Fable are appropriate.
+
+However, following the U.S. Government making this move, many nations, including U.S. allies, saw how the U.S. can suddenly yank their access to AI models. In many capitals around the world, this has spurred discussions on AI sovereignty and how others can ensure uninterrupted access to this critical technology.
+
+For decades, many nations were comfortable having many parts of their supply chain rely on the U.S., China, and other major producers. Once a nation issues a threat, or takes action, to limit other nations’ access, other nations will rationally try to secure alternatives. For decades, semiconductor manufacturing in China made slow progress; once the U.S. moved to limit China’s access, China’s efforts kicked into high gear. Similarly, once China threatened U.S. access to rare earth minerals, U.S. efforts to secure alternatives accelerated. Now that it has become crystal clear that private U.S. companies and the U.S. government can limit, in short order, other nations’ access to frontier AI models, the incentive of others to invest more in alternatives like open source grows significantly. Of course, training frontier models is not easy, so it remains to be seen how successful they are, but we have crossed the rubicon.
+
+Satya Nadella wrote an essay about the importance of building a healthy ecosystem on top of frontier AI technology. I heartily agree with him, and hope this week’s events will ultimately prove to be constructive steps toward this.
+
+I hope we can build a more free, more open world, where research is freely shared, and laws and societal norms shape a level playing field that allows everyone to make progress. A silver lining of the events of these past two weeks is now that everyone better realizes key points of instability of the current system, we can all work to create a more stable foundation.
+
+[Original text: The Batch newsletter]</div>
+  </details>
+  
+  <div class="media"><a href="https://x.com/AndrewYNg/status/2068039709126017356" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto"><img src="https://pbs.twimg.com/media/HLMm79dbgAApRoV.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block"></a><div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/AndrewYNg/status/2068039709126017356" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@AndrewYNg · 在 X 上查看原文 →</a></div></div>
+  <div class="stats">
+    <span>💬 168</span>
+    <span>🔁 282</span>
+    <span>❤️ 1.3K</span>
+    <span>🔖 156K</span>
+    <span>👁 156.8K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/AndrewYNg/status/2068039709126017356" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074578747106431017">
+  <div class="head">
+    <span class="name">Simonw</span>
+    <span class="uname">@simonw</span>
+    <span class="verified">✓</span>
+    <span class="time">7/8 03:38</span>
+    <span class="badge heat" style="margin-left:8px">🔥 30</span>
+    <span class="badge age" style="margin-left:4px">⏱ 17.4h</span>
+  </div>
+  <div class="text text-zh">我刚刚发布了 sqlite-utils 4.0，这是第 124 个 release，但却是自 2020 年 3.0 以来第一个主版本号升级。
+
+我硬是把兼容性维持到了 3.39，最后是累积下来的设计错误逼着我不得不跳号！https://t.co/qQ83UiBOvv</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">I released sqlite-utils 4.0, the 124th release but the first major version bump since 3.0 back in 2020
+
+I managed to keep things backwards-compatible all the way up to version 3.39 before the accumulated design mistakes forced me to bump that number!  https://t.co/qQ83UiBOvv</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 15</span>
+    <span>🔁 2</span>
+    <span>❤️ 70</span>
+    <span>🔖 14K</span>
+    <span>👁 14.6K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/simonw/status/2074578747106431017" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+</section>
 <section id="llm">
-    <h2>🧠 大模型 / LLM</h2>
-    <p class="section-meta">8 条 · 按综合分 _score 降序 · 中文译版 + 原文折叠</p>
-    <div class="tweet" id="tweet-2074548242386178258">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1950950107937185792/QOfEjFoJ_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Claude</span>
-      <span class="uname">@claudeai</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 01:36</span><span class="badge heat" style="margin-left:8px">🔥 39660</span><span class="badge age" style="margin-left:4px">⏱ 13.4h</span></div>
-    <div class="text text-zh">我们将在 7 月 12 日之前向所有付费方案开放 Claude Fable 5 的访问权限。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">We&#39;re extending access to Claude Fable 5 on all paid plans through July 12.</div>
-    </details>
+  <h2>🧠 大模型 / LLM</h2>
+  <p>8 条 · 24h 热门 · 按综合分 _score 降序</p>
+  <div class="tweet" id="tweet-2074495252447089004">
+  <div class="head">
+    <span class="name">Midudev</span>
+    <span class="uname">@midudev</span>
     
-    
-    
-    <div class="stats"><span>💬 5.2K</span><span>🔁 8.7K</span><span>❤️ 72.7K</span><span>🔖 5.4K</span><span>👁 13.4M</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/claudeai/status/2074548242386178258" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+    <span class="time">7/7 22:06</span>
+    <span class="badge heat" style="margin-left:8px">🔥 778</span>
+    <span class="badge age" style="margin-left:4px">⏱ 22.9h</span>
   </div>
-<div class="tweet" id="tweet-2074570404035993780">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">ClaudeDevs</span>
-      <span class="uname">@ClaudeDevs</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 03:05</span><span class="badge heat" style="margin-left:8px">🔥 6131</span><span class="badge age" style="margin-left:4px">⏱ 11.9h</span></div>
-    <div class="text text-zh">6 个月的 Claude Max 20x,我们买单。
+  <div class="text text-zh">一个用 Claude Code 找工作的开源仓库。
 
-我们正在把 Claude for Open Source 扩展到更多社区。
+clone 下来，填好你的个人资料，AI 就会帮你评估岗位、调整简历、写求职信，甚至准备面试。
 
-如果你是维护者、核心贡献者、跨生态提 PR 的人,或者正在独自支撑某个关键包的人,今天就来申请! <a href="https://t.co/F4bB61z673" target="_blank" rel="noopener">https://t.co/F4bB61z673</a></div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">6 months of Claude Max 20x, on us.
+让你的求职流程彻底自动化：
+→ https://t.co/LkOuGYXbYd https://t.co/t9VT8fzfqT</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Un repo para buscar trabajo con Claude Code.
 
-We&#39;re expanding Claude for Open Source to more of the community.
+Lo clonas, rellenas tu perfil y la IA evalúa ofertas, adapta tu CV, escribe cartas y te prepara entrevistas.
 
-If you&#39;re a maintainer, a core contributor, someone landing PRs across the ecosystem, or someone keeping a critical package alive, apply today! <a href="https://t.co/F4bB61z673" target="_blank" rel="noopener">https://t.co/F4bB61z673</a></div>
-    </details>
-    <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/ClaudeDevs_2074570404035993780.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/ClaudeDevs/status/2074570404035993780" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@ClaudeDevs · 在 X 上查看原文 →</a></div></div>
-    
-    
-    <div class="stats"><span>💬 406</span><span>🔁 784</span><span>❤️ 12.3K</span><span>🔖 5.3K</span><span>👁 1.2M</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/ClaudeDevs/status/2074570404035993780" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+Automatiza tu búsqueda de trabajo:
+→ https://t.co/LkOuGYXbYd https://t.co/t9VT8fzfqT</div>
+  </details>
+  
+  <div class="media"><a href="https://x.com/midudev/status/2074495252447089004" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto"><img src="https://pbs.twimg.com/media/HMoWb6RXgAAmUi9.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block"></a><div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/midudev/status/2074495252447089004" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@midudev · 在 X 上查看原文 →</a></div></div>
+  <div class="stats">
+    <span>💬 15</span>
+    <span>🔁 237</span>
+    <span>❤️ 2.4K</span>
+    <span>🔖 124K</span>
+    <span>👁 125.0K</span>
   </div>
-<div class="tweet" id="tweet-2074530918199431364">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2005664281002491904/bz2ZO_nU_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Polymarket</span>
-      <span class="uname">@Polymarket</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 00:28</span><span class="badge heat" style="margin-left:8px">🔥 1991</span><span class="badge age" style="margin-left:4px">⏱ 14.5h</span></div>
-    <div class="text text-zh">快讯:Microsoft 计划在 Excel、Outlook 等产品中用自研 AI 模型替代 OpenAI 和 Anthropic。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">JUST IN: Microsoft to replace OpenAI &amp;amp; Anthropic with its own AI models in Excel, Outlook &amp;amp; more.</div>
-    </details>
-    
-    
-    
-    <div class="stats"><span>💬 235</span><span>🔁 285</span><span>❤️ 4.4K</span><span>🔖 384</span><span>👁 497.7K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/Polymarket/status/2074530918199431364" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/midudev/status/2074495252447089004" target="_blank" rel="noopener">查看原文 →</a>
   </div>
-<div class="tweet" id="tweet-2074438871526379532">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2010392290590912512/x7vtAe5W_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Avid</span>
-      <span class="uname">@Av1dlive</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 18:22</span><span class="badge heat" style="margin-left:8px">🔥 1078</span><span class="badge age" style="margin-left:4px">⏱ 20.6h</span></div>
-    <div class="text text-zh">这玩意儿真的危险
-
-有人刚发现用一条 prompt 就能在 opus 4.8 上获得 fable 5 的推理能力
-
-你只有不到 24 小时来设置好——因为它会吃掉你 20% 的使用额度
-
-方法如下:
-
-1) 粘贴 prompt,让它&quot;写一份操作手册&quot;
-2) 创建一个新的 Claude Project,在项目指令中&quot;添加这份 .md 文件&quot;
-3) 使用 Opus 4.8 High/Max,现在你就能以 1/5 的价格拿到 Fable 5 的推理能力
-
-无论如何先保存并收藏</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">this is f**king dangerous
-
-someone just figured out how to get fable 5 reasoning in opus 4.8 with one prompt 
-
-you have less than 24 hours to set this up as this takes away 20% of your usage limit 
-
-here is how:
-
-1) Paste the prompt and ask it to &quot;make an operating manual&quot;
-2) Create a New Claude Project and &quot;Add this .md in Project instructions
-3) Use Opus 4.8 High/Max and now you have Fable 5 reasoning at 1/5th the price
-
-save and bookmark it no matter what</div>
-    </details>
-    <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/Av1dlive_2074438871526379532.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/Av1dlive/status/2074438871526379532" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@Av1dlive · 在 X 上查看原文 →</a></div></div>
-    <div class="stats"><span>💬 97</span><span>🔁 262</span><span>❤️ 2.6K</span><span>🔖 7.2K</span><span>👁 660.8K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/Av1dlive/status/2074438871526379532" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
-  </div>
+</div>
 <div class="tweet" id="tweet-2074494130126811473">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1702611993327251456/PUUuOA4W_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Liquid AI</span>
-      <span class="uname">@liquidai</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 22:01</span><span class="badge heat" style="margin-left:8px">🔥 875</span><span class="badge age" style="margin-left:4px">⏱ 17.0h</span></div>
-    <div class="text text-zh">今天我们发布 Antidoom——一种开源方法,用于消除推理模型中一种常见的失效模式:死循环(doom loop)。
+  <div class="head">
+    <span class="name">Liquidai</span>
+    <span class="uname">@liquidai</span>
+    
+    <span class="time">7/7 22:01</span>
+    <span class="badge heat" style="margin-left:8px">🔥 745</span>
+    <span class="badge age" style="margin-left:4px">⏱ 23.0h</span>
+  </div>
+  <div class="text text-zh">今天我们正式发布 Antidoom —— 一种开源方法，专门解决推理模型里最常见的故障模式：doom loop（死循环重复）。
 
-修复前后的死循环率对比,各项评估分数全面提升:
+应用前后 doom loop 发生率对比，所有评测分数都有提升：
 
-&gt; LFM2.5-2.6B 早期 checkpoint:10.2% → 1.4%
+&gt; LFM2.5-2.6B 早期 checkpoint：10.2% → 1.4%
 
-&gt; Qwen3.5-4B:22.9% → 1%(greedy sampling)
+&gt; Qwen3.5-4B：22.9% → 1%（greedy sampling）
 
 🧵</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">Today we release Antidoom, an open-source method that removes a common failure mode in reasoning models: the doom loop.
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Today we release Antidoom, an open-source method that removes a common failure mode in reasoning models: the doom loop.
 
 Doom-loop rates before and after, with eval scores up across the board:
 
@@ -286,630 +476,495 @@ Doom-loop rates before and after, with eval scores up across the board:
 &gt; Qwen3.5-4B: 22.9% → 1% (greedy sampling)
 
 🧵</div>
-    </details>
-    
-    
-    
-    <div class="stats"><span>💬 75</span><span>🔁 243</span><span>❤️ 2K</span><span>🔖 1.3K</span><span>👁 215.6K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/liquidai/status/2074494130126811473" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 78</span>
+    <span>🔁 257</span>
+    <span>❤️ 2.1K</span>
+    <span>🔖 236K</span>
+    <span>👁 236.5K</span>
   </div>
-<div class="tweet" id="tweet-2074579442610172158">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2046510439945945088/9BOWrRqY_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Shiv</span>
-      <span class="uname">@shivsakhuja</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 03:40</span><span class="badge heat" style="margin-left:8px">🔥 687</span><span class="badge age" style="margin-left:4px">⏱ 11.3h</span></div>
-    <div class="text text-zh">在 Claude 中推出 iMessage 视频广告
-
-我们用一个 skill 就教会了 Claude 一次性生成 iMessage 视频广告。
-
-这些 iMessage 广告目前在 Meta 上效果炸裂。
-
-这个 skill 让 Claude 一次性产出完整视频广告:iPhone 画面、音效、背景音乐、片尾卡,一应俱全。
-
-而且它就是 HTML,没有用任何视频生成模型,所以非常便宜!
-
-在下方评论 Goose,我就把 skill 发给你。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">Introducing iMessage video ads in Claude
-
-We taught Claude to make iMessage video ads in one shot with a single skill.
-
-These iMessage ads are absolutely killing it on Meta right now.
-
-The skill teaches Claude to make a full video ad in one shot with iPhone frame, SFX, music, and end card.
-
-And it&#39;s just HTML. It doesn&#39;t use any video generation models, so it&#39;s cheap!
-
-Comment Goose below and I&#39;ll send you the skill.</div>
-    </details>
-    
-    
-    
-    <div class="stats"><span>💬 648</span><span>🔁 54</span><span>❤️ 1.1K</span><span>🔖 2.1K</span><span>👁 136K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/shivsakhuja/status/2074579442610172158" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/liquidai/status/2074494130126811473" target="_blank" rel="noopener">查看原文 →</a>
   </div>
-<div class="tweet" id="tweet-2074532904009421260">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1745893660099592193/MmYemsw6_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">elie</span>
-      <span class="uname">@eliebakouch</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 00:36</span><span class="badge heat" style="margin-left:8px">🔥 542</span><span class="badge age" style="margin-left:4px">⏱ 14.4h</span></div>
-    <div class="text text-zh">计算了 38 个开源模型每一层在 J-lens 几何上的相似度(CKA)。模式出奇地普遍:同样的深度布局、在相同相对深度处的相同组织,甚至在 llama 和 olmo 这种毫无关联的模型族之间也是如此。
-
-<a href="https://t.co/C6188kLOXg" target="_blank" rel="noopener">https://t.co/C6188kLOXg</a> <a href="https://t.co/QkxHj6JX8f" target="_blank" rel="noopener">https://t.co/QkxHj6JX8f</a></div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">computed the similarity (CKA) on the J-lens geometry of every layer inside and across 38 open models. the patterns are weirdly universal: same depth layout, same organization at the same relative depth, even between unrelated families like llama and olmo
-
-<a href="https://t.co/C6188kLOXg" target="_blank" rel="noopener">https://t.co/C6188kLOXg</a> <a href="https://t.co/QkxHj6JX8f" target="_blank" rel="noopener">https://t.co/QkxHj6JX8f</a></div>
-    </details>
-    <div class="media"><img src="https://pbs.twimg.com/media/HMo4V00XMAAyenI.jpg" alt="media" loading="lazy"></div>
-    <a class="ext-link" href="http://eliebak.com/viz/jspace-open" target="_blank" rel="noopener">http://eliebak.com/viz/jspace-open</a>
-    <div class="quoted-tweet">
-      <div class="q-head"><span class="q-name">Anthropic</span><span class="q-uname">@AnthropicAI</span></div>
-      <div class="q-text">New Anthropic research: A global workspace in language models.
-
-Of everything happening in your brain right now, only a tiny fraction is consciously accessible—thoughts you can describe, hold in mind, and reason with.
-
-We found a strikingly similar divide inside Claude. https://t…</div>
-    </div>
-    <div class="stats"><span>💬 47</span><span>🔁 117</span><span>❤️ 1.1K</span><span>🔖 782</span><span>👁 130K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/eliebakouch/status/2074532904009421260" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
-  </div>
-<div class="tweet" id="tweet-2074586077155688864">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2005664281002491904/bz2ZO_nU_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Polymarket</span>
-      <span class="uname">@Polymarket</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 04:07</span><span class="badge heat" style="margin-left:8px">🔥 507</span><span class="badge age" style="margin-left:4px">⏱ 10.9h</span></div>
-    <div class="text text-zh">最新:Anthropic 推出“Claude for Open Source”,为符合条件的开源贡献者提供 6 个月免费 Claude Max。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">NEW: Anthropic launches “Claude for Open Source,” offering 6 months of free Claude Max for eligible open-source contributors.</div>
-    </details>
+</div>
+<div class="tweet" id="tweet-2074442048498012586">
+  <div class="head">
+    <span class="name">Xudong07452910</span>
+    <span class="uname">@Xudong07452910</span>
     
-    
-    
-    <div class="stats"><span>💬 65</span><span>🔁 45</span><span>❤️ 960</span><span>🔖 147</span><span>👁 114.7K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/Polymarket/status/2074586077155688864" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+    <span class="time">7/7 18:35</span>
+    <span class="badge heat" style="margin-left:8px">🔥 409</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.1d</span>
   </div>
-  </section>
-<section id="agent">
-    <h2>🤖 AI Agent</h2>
-    <p class="section-meta">8 条 · 按综合分 _score 降序 · 中文译版 + 原文折叠</p>
-    <div class="tweet" id="tweet-2074527573116133425">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2054197823738871808/3M0Lf362_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Codez</span>
-      <span class="uname">@0xCodez</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 00:14</span><span class="badge heat" style="margin-left:8px">🔥 816</span><span class="badge age" style="margin-left:4px">⏱ 14.8h</span></div>
-    <div class="text text-zh">Anthropic 刚刚发布了 5 场 workshop,从零开始搭建可自我改进的 agentic 系统:
+  <div class="text text-zh">Claude Code 有个很值得养成的收尾习惯：
 
-00:00 - 发布你的第一个 Claude agent
-36:44 - 可自我改进的 agent(tools、skills)
-1:21:25 - 为 Claude agent 构建记忆
-1:49:47 - 搭建一个主动型 agent
-2:11:31 - 让你的 agent 自主运行
+每次关掉一个长会话之前，先让它写「交接文档」。
 
-这 3 小时的 Claude 教程能顶 20 门付费的 agentic 课程。
+直接输入：
 
-今天先看视频,再读下方文章——用 Fable 5 构建可自我改进的 agentic 系统。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">Anthropic just released 5 workshops on building self-improving agentic systems from scratch:
+「这个会话要结束了。请写一份交接文档存到 HANDOFF.md：我们在做什么任务、已经完成了什么、当前卡在哪、下一步计划是什么、有哪些踩过的坑绝对不要再踩。写给一个完全没有上下文的新会话看。」
 
-00:00 - Ship your first Claude agent 
-36:44 - Self-improving agents (tools,skills)
-1:21:25 - Build memory for Claude agents
-1:49:47 - Set up a proactive agent 
-2:11:31 - Make your agent autonomous
+下次开新会话，第一句话就是「先读 HANDOFF.md」。
 
-These 3-hours of Claude workshops will replace 20 paid agentic courses.  
+这一步特别适合跨天推进的大任务。
 
-Watch today, then read article below on how to build a self-improving agentic system with Fable 5.</div>
-    </details>
+因为 AI 的记忆以会话为界，你的项目以周为界，中间的落差，每次都靠你口头补，又累又漏。
+
+聪明但每天失忆的员工，最需要的不是变得更聪明，是一本工作日志。
+
+这其实是给 AI 建「跨会话记忆」的最低成本方案：不装任何插件，一个 md 文件就够。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Claude Code 有个很值得养成的收尾习惯：
+
+每次关掉一个长会话之前，先让它写「交接文档」。
+
+直接输入：
+
+「这个会话要结束了。请写一份交接文档存到 HANDOFF.md：我们在做什么任务、已经完成了什么、当前卡在哪、下一步计划是什么、有哪些踩过的坑绝对不要再踩。写给一个完全没有上下文的新会话看。」
+
+下次开新会话，第一句话就是「先读 HANDOFF.md」。
+
+这一步特别适合跨天推进的大任务。
+
+因为 AI 的记忆以会话为界，你的项目以周为界，中间的落差，每次都靠你口头补，又累又漏。
+
+聪明但每天失忆的员工，最需要的不是变得更聪明，是一本工作日志。
+
+这其实是给 AI 建「跨会话记忆」的最低成本方案：不装任何插件，一个 md 文件就够。</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 68</span>
+    <span>🔁 212</span>
+    <span>❤️ 1.2K</span>
+    <span>🔖 113K</span>
+    <span>👁 113.3K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/Xudong07452910/status/2074442048498012586" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074378407488688327">
+  <div class="head">
+    <span class="name">Arnavmj</span>
+    <span class="uname">@Arnavmj</span>
     
-    <div class="stats"><span>💬 32</span><span>🔁 264</span><span>❤️ 1.5K</span><span>🔖 3.3K</span><span>👁 255.7K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/0xCodez/status/2074527573116133425" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+    <span class="time">7/7 14:22</span>
+    <span class="badge heat" style="margin-left:8px">🔥 394</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.3d</span>
   </div>
-<div class="tweet" id="tweet-2074403080221687948">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2049206796355829760/YsDV4Obo_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">AITECH CLOUD NETWORK</span>
-      <span class="uname">@AITECHio</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 16:00</span><span class="badge heat" style="margin-left:8px">🔥 164</span><span class="badge age" style="margin-left:4px">⏱ 23.0h</span></div>
-    <div class="text text-zh">普通员工每天要切 10 个 App。AI Agent 不用。
+  <div class="text text-zh">我从来没想到我会说这句话……
+但我觉得视频剪辑从这一刻起被永远改变了
+营销的规则也一样 🤯
 
-人在这些 App 之间来回跳:
+左边的视频是原始素材
+右边的几乎全程由 AI 剪辑完成
+没有藏着掖着的 prompt，没有不为人知的工作流
 
-• 邮件
-• CRM
-• 文档
-• 仪表盘
-• 表格
+我只是把素材丢给它，让它自己跑
+【评论一下 TOOL 就能拿到使用方法】
 
-AI agent 不在乎界面,只在乎访问权限。
+瓶颈不再是剪辑本身
+而是『知道什么值得被剪』
 
-给 agent 合适的权限,它就能在所有这些系统里工作,而你连一个标签页都不用开。
+也就是讲故事的能力——这个以后再展开
+（现在该去练练这门手艺了）
 
-也许未来不是更好的软件,
-而是你再也不用打开的软件。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">The Average Employee Uses 10 Apps. An AI Agent Doesn&#39;t.
+我真的没想到这么快就说出这些话……
+但我确信 AI 重新定义了视频剪辑，没错，永远地
+背后这个模型叫『gemini omni flash』
 
-People jump between Slack.
+我说完了，你怎么看？
 
-• Email.
-• CRM.
-• Docs.
-• Dashboards.
-• Spreadsheets.
+Arnav「前视频剪辑师」MJ</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">I didn't think I'd ever say this...
+But I think video editing just changed forever
+and so does the rules of marketing 🤯 
 
-AI agents don&#39;t care about interfaces. They care about access.
+The video on the left is raw
+The one on the right is edited almost entirely by AI
+No hidden prompts No secret workflow
 
-Give an agent the right permissions and it can work across all of those systems without opening a single tab.
+I just gave it the footage and let it cook
+[Comment- TOOL if you wanna try it out]
 
-Maybe the future isn&#39;t better software.
-Maybe it&#39;s software you never have to open.</div>
-    </details>
-    <div class="media"><img src="https://pbs.twimg.com/media/HMnCk69awAACewr.jpg" alt="media" loading="lazy"></div>
+The bottleneck isn't going to be editing anymore
+It's going to be knowing what deserves to be edited
+
+i.e Storytelling--- but more on that later
+(time to brush up those skills)
+
+But I genuinely didn't think I'd say this so soon...
+But I think AI just changed video editing forever, yes forever
+The info the model is &quot;gemini omni flash&quot;
+
+I rest my case, what do you think?
+
+Arnav &quot;ex-video editor&quot; MJ</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 968</span>
+    <span>🔁 89</span>
+    <span>❤️ 1.1K</span>
+    <span>🔖 110K</span>
+    <span>👁 110.8K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/Arnavmj/status/2074378407488688327" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074338011882623342">
+  <div class="head">
+    <span class="name">MengTo</span>
+    <span class="uname">@MengTo</span>
     
+    <span class="time">7/7 11:41</span>
+    <span class="badge heat" style="margin-left:8px">🔥 380</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.4d</span>
+  </div>
+  <div class="text text-zh">Taste skill + https://t.co/o0aFB11BZQ 是把 prompt 打磨成精致、不带 AI 痕迹的设计稿和图像的最简单方式之一。
+
+配合 Codex 或 Claude Code 使用，几乎可以从一段视频或整页截图复刻出任何 landing page。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">The Taste skill + https://t.co/o0aFB11BZQ is one of the easiest ways to turn prompts into polished, non-AI-slop designs and image gen.
+
+Pair it with Codex or Claude Code to recreate almost any landing page from a video or full-page screenshot.</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 56</span>
+    <span>🔁 84</span>
+    <span>❤️ 1.5K</span>
+    <span>🔖 228K</span>
+    <span>👁 228.0K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/MengTo/status/2074338011882623342" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074364045294293191">
+  <div class="head">
+    <span class="name">Op7418</span>
+    <span class="uname">@op7418</span>
     
-    <div class="stats"><span>💬 16</span><span>🔁 88</span><span>❤️ 412</span><span>🔖 17</span><span>👁 37.6K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/AITECHio/status/2074403080221687948" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+    <span class="time">7/7 13:25</span>
+    <span class="badge heat" style="margin-left:8px">🔥 340</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.3d</span>
   </div>
-<div class="tweet" id="tweet-2074562968923087074">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1634313760444751873/QfwY91Hp_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Anatoli Kopadze</span>
-      <span class="uname">@AnatoliKopadze</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 02:35</span><span class="badge heat" style="margin-left:8px">🔥 136</span><span class="badge age" style="margin-left:4px">⏱ 12.4h</span></div>
-    <div class="text text-zh">Anthropic 刚刚放出 5 场 workshop,带你从零开始用 AI agent 构建完整应用。
+  <div class="text text-zh">Claude 官方写了一篇关于 Loop Engineer 的入门文章。
 
-任何水平都适用,挑你现在所在的时间点:
+其实现在我们所说的 Loop Engineer，所有的底层逻辑在提出这个概念以前就已经具备了，甚至这些工作流程也是大家一直在用的，只是被套上了一个新的概念。
 
-00:00 - 没人讲透的模型选择
-31:14 - 你需要知道的全部 prompt 知识
-1:04:42 - 多数人从没发现过的 Claude Code 功能
-1:51:34 - 从一句 prompt 到一个能跑的产品
-2:19:10 - 用 Claude 构建你的第一个应用
+在这篇文章中，他们把 Loop 分成了四种类型：
 
-今天先看视频,再去读那份讲透 agent loop 的指南。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">Anthropic just dropped 5 workshops that take you from zero to a full app with AI agents.
+回合制循环（Single-turn Loop）
 
-Useful at any level, just pick the timecode where you&#39;re at:
+这是最基本的 Claude Code 工作方式。你发出的每一个提示词（Prompt）都是一个循环，在这个循环中你不需要额外干预。Claude Code 完成这个循环后会给你输出，它的具体步骤是：收集上下文、采取行动、检查工作、重复，直到它认为你的提示词任务已经完成，或者觉得需要你介入时才会停止。
 
-00:00 - The model choice nobody explains
-31:14 - All you need to know about prompting
-1:04:42 - Claude Code features most people never find
-1:51:34 - From a prompt to a working product
-2:19:10 - Building your first app with Claude
+基于目标的循环（Goal-oriented Loop）
 
-Watch today, then go to the guide that explains everything you have to know about loops.</div>
-    </details>
+也就是 GOAL 模式（如 Codex、Claude Code 等工具都支持该模式）。有时候单回合不足以完成复杂任务，系统就会进行多次迭代，直到达成那个更大的目标。
+
+基于时间的循环（Time-based Loop）
+
+也就是 Claude Code 中的 loop 命令。你可以设置在指定的时间间隔自动触发某一个提示词，去运行特定任务，比如定期进行 PR 合并等。
+
+主动循环（Active Loop）
+
+你只需要设置一个事件，一旦该事件发生就会自动触发循环，完全不需要人工干预。例如，一旦 GitHub 上有了新的 Issue 或 PR，AI 就会自动进行审核和记录。
+
+此外，官方还针对 Loop 给出了一些优化建议：
+
+循环的质量取决于系统：你需要保证代码库本身的质量，比如完善的文档、严格的代码审查以及保持代码库的简洁等。
+
+管理你的 Token 消耗：像 GOAL 这种基于目标的模式，对 Token 的消耗是非常巨大的。因此，你需要给循环设置明确的界限，比如什么时候该用大模型、什么时候该用小模型，以及明确的启动和结束条件。否则，一旦系统自己无限制地跑下去，不仅容易跑偏，还会消耗大量的 Token。
+
+这些循环模式，本质上都是由我们现在 Agent 常见的各种能力组合而成的，比如前面提到的 GOAL 模式、Loop 模式，以及常见的 Skills 和 Hooks 等。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Claude 官方写了一篇关于 Loop Engineer 的入门文章。
+
+其实现在我们所说的 Loop Engineer，所有的底层逻辑在提出这个概念以前就已经具备了，甚至这些工作流程也是大家一直在用的，只是被套上了一个新的概念。
+
+在这篇文章中，他们把 Loop 分成了四种类型：
+
+回合制循环（Single-turn Loop） 
+
+这是最基本的 Claude Code 工作方式。你发出的每一个提示词（Prompt）都是一个循环，在这个循环中你不需要额外干预。Claude Code 完成这个循环后会给你输出，它的具体步骤是：收集上下文、采取行动、检查工作、重复，直到它认为你的提示词任务已经完成，或者觉得需要你介入时才会停止。
+
+基于目标的循环（Goal-oriented Loop） 
+
+也就是 GOAL 模式（如 Codex、Claude Code 等工具都支持该模式）。有时候单回合不足以完成复杂任务，系统就会进行多次迭代，直到达成那个更大的目标。
+
+基于时间的循环（Time-based Loop） 
+
+也就是 Claude Code 中的 loop 命令。你可以设置在指定的时间间隔自动触发某一个提示词，去运行特定任务，比如定期进行 PR 合并等。
+
+主动循环（Active Loop） 
+
+你只需要设置一个事件，一旦该事件发生就会自动触发循环，完全不需要人工干预。例如，一旦 GitHub 上有了新的 Issue 或 PR，AI 就会自动进行审核和记录。
+
+此外，官方还针对 Loop 给出了一些优化建议：
+
+循环的质量取决于系统：你需要保证代码库本身的质量，比如完善的文档、严格的代码审查以及保持代码库的简洁等。
+
+管理你的 Token 消耗：像 GOAL 这种基于目标的模式，对 Token 的消耗是非常巨大的。因此，你需要给循环设置明确的界限，比如什么时候该用大模型、什么时候该用小模型，以及明确的启动和结束条件。否则，一旦系统自己无限制地跑下去，不仅容易跑偏，还会消耗大量的 Token。
+
+这些循环模式，本质上都是由我们现在 Agent 常见的各种能力组合而成的，比如前面提到的 GOAL 模式、Loop 模式，以及常见的 Skills 和 Hooks 等。</div>
+  </details>
+  
+  <div class="media"><a href="https://x.com/op7418/status/2074364045294293191" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto"><img src="https://pbs.twimg.com/media/HMmfFDGaMAAiXRy.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block"></a><div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/op7418/status/2074364045294293191" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@op7418 · 在 X 上查看原文 →</a></div></div>
+  <div class="stats">
+    <span>💬 43</span>
+    <span>🔁 222</span>
+    <span>❤️ 1.1K</span>
+    <span>🔖 161K</span>
+    <span>👁 161.8K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/op7418/status/2074364045294293191" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074339610587742356">
+  <div class="head">
+    <span class="name">Claudecode84</span>
+    <span class="uname">@claudecode84</span>
     
-    <div class="stats"><span>💬 16</span><span>🔁 33</span><span>❤️ 237</span><span>🔖 436</span><span>👁 35.9K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/AnatoliKopadze/status/2074562968923087074" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+    <span class="time">7/7 11:47</span>
+    <span class="badge heat" style="margin-left:8px">🔥 327</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.4d</span>
   </div>
-<div class="tweet" id="tweet-2074551721393840547">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1955709395553124352/b_NlfUL__normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">The Startup Ideas Podcast (SIP) 🦃</span>
-      <span class="uname">@startupideaspod</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 01:50</span><span class="badge heat" style="margin-left:8px">🔥 88</span><span class="badge age" style="margin-left:4px">⏱ 13.2h</span></div>
-    <div class="text text-zh">从零开始做 AI agent 业务,30 天完整方案:
+  <div class="text text-zh">Anthropic 工程师在用的
+即使把电脑合上也能自主持续运转的
+Loop 构建文件
+只用一个文件夹就让 Claude 进化了
 
-第一件没人先做的事?不写一行代码。
+/
+├── CONTRACT.md
+├── schedule.yml
+├── rubrics/
+├── state/
+│   └── checkpoint.json
+└── receipts/
+    ├── 2026-07-05/
+    ├── 2026-07-06/
+    └── ...
 
-第 1 天:选一个“漏掉就亏钱”的细分市场(家政、物业管理、保险)。
+就这些。
+仅凭这个文件夹
+管理了 5,382 个班次的
+AI 工作
 
-第 2 天:访谈 10 个一线运营人员,让他们屏幕共享工作流,你就看着。
+昨天 20:41 之后
+人类键盘敲击次数：0
+在那段时间里：
+・创建 14 个 Pull Request
+・3 次回滚
+・生成 6 份摘要
+・日志整理
+・状态保存
+全都在人睡醒之前就完成了
 
-第 3-4 天:找出那个兼具“高频 + 痛点 + 明确成功指标”的流程,写出 spec。
+不需要打开聊天界面
+也不用说「接着干」
+「把这个改一下」
+「谢谢」
+这类对话压根不存在
 
-第 5 天:手动跑一遍——把上下文复制粘贴进 Claude,草拟输出,让人来审核。这是在不写任何东西之前,先验证 AI 到底有没有用。
+AI 不是在聊天里干活，
+而是读『契约（Contract）』就开始工作
 
-第 6-7 天:做最小可用版本,用 50 个真实样本搭一个 eval 集。
+这个文件夹的分工：
+📄 CONTRACT.md
+AI 要遵守的规则和职责
+什么算完成
+可以执行到哪一步，都在这里定义
 
-第 2 周:在同一个细分市场卖出 2 个试点。
+【schedule.yml】
+什么时候、执行什么工作。
+定时任务和依赖关系也在这里统一管理。
 
-第 3 周:套上外壳——日志、审批、数据分析。
+【rubrics/】
+质量标准。AI 自己对产出打分，
+不达标就重做。
 
-第 4 周:把试点变成证据,把拆解案例发出来。
+【state/checkpoint.json】
+记忆。上次推进到哪里，
+失败原因、当前状态都保存在这里。
 
-全程同步建立受众。
+【receipts/】
+审计日志。
+『何时、改了什么、为何改』全都记录下来。
 
-多数人先做软件,然后祈祷有人要。
+也就是说，
+驱动 AI 的不是聊天框，
+而是文件夹结构本身
+它就是 AI 的操作系统。
 
-赢家先靠复制粘贴证明 AI 真的有用,然后才动手写一行代码。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">Here&#39;s the exact 30-day plan to build an AI agent business from zero:
+・CONTRACT 划定边界线。
+・Schedule 分配工作。
+・Rubrics 判定质量。
+・Checkpoint 保存记忆。
+・Receipts 留下凭据。
 
-The part nobody does first? You don&#39;t write a single line of code.
+这就是长时间自主运转的
+AI Agent 的基础架构。
 
-Day 1: Pick a niche where missed work costs money (home services, property mgmt, insurance).
+这种思路在
+・Claude Code
+・Codex
+等 Agent 的运营上
+可以直接复用。
+建议收藏。
+几个月后这种目录结构
+很可能会成为 AI 开发的标准范式。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Anthropicのエンジニアにが使う
+PCを閉じた後も自律的に
+動き続けるループ構築ファイル
+たった1つのフォルダでClaudeが進化した　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
 
-Day 2: Interview 10 operators. Have them screen share their workflow. Just watch.
+/
+├── CONTRACT.md
+├── schedule.yml
+├── rubrics/
+├── state/
+  │   └── checkpoint.json
+└── receipts/
+    ├── 2026-07-05/
+    ├── 2026-07-06/
+    └── ...
 
-Day 3-4: Find the one workflow with frequency + pain + a clear success metric. Write the spec.
+これだけ。
+このフォルダだけで
+5,382シフト分の
+AIの仕事が管理されている
 
-Day 5: Run it MANUALLY. Copy-paste the context into Claude, draft the output, have a human approve it. You&#39;re testing if AI even helps before you build anything.
+昨日20:41以降
+人間のキーストロークは0回
+その間に、
+・14件のPull Requestを作成 ・3件のロールバック ・6件のサマリー生成 ・ログ整理 ・状態保存
+すべて人が起きる前に終わっていた
 
-Day 6-7: Build the smallest useful version. Create an eval set from 50 real examples.
+チャット画面は表示してない
+「続きをお願い」 「これ修正して」 「ありがとう」
+そんな会話もしてない
 
-Week 2: Sell 2 pilots in the same niche.
+AIはチャットではなく、 契約（Contract）を読んで仕事を始める
 
-Week 3: Add the wrapper — logs, approvals, analytics.
+このフォルダの役割
+📄 CONTRACT.md AIが守るルールと責務
+ 何を完成とするか
+どこまで実行していいかを定義する
 
-Week 4: Turn the pilots into proof. Publish the teardowns.
+【schedule.yml】 いつ、どの仕事を実行するか。
+定期実行や依存関係もここで管理する。
 
-And build an audience the entire way through.
+【rubrics/】 品質基準。 AI自身が成果物を採点し
+基準を満たさなければやり直す
 
-Most people build the software first and pray someone wants it.
+【state/checkpoint.json】 記憶。 前回どこまで進んだか
+失敗理由、現在の状態を保存する
 
-Winners prove the AI works with copy-paste before they write a single line.</div>
-    </details>
-    <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/startupideaspod_2074551721393840547.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/startupideaspod/status/2074551721393840547" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@startupideaspod · 在 X 上查看原文 →</a></div></div>
-    <div class="stats"><span>💬 12</span><span>🔁 19</span><span>❤️ 168</span><span>🔖 313</span><span>👁 21.3K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/startupideaspod/status/2074551721393840547" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+【receipts/】 監査ログ 「いつ・何を・なぜ変更したか」を
+すべて記録する
+
+つまり、
+チャットがAIを動かしているのではない
+フォルダ構造そのものが
+AIのオペレーティングシステムになる
+
+・CONTRACTが境界線を決める。
+・Scheduleが仕事を配る。
+・Rubricsが品質を判定する。
+・Checkpointが記憶する。
+・Receiptsが証明を残す。
+
+これが、長時間自律的に動く
+AIエージェントの基本アーキテクチャ。
+
+この考え方は
+・Claude Code
+・Codex
+などのエージェント運用にも
+そのまま応用できる。
+保存推奨です
+ 数か月後には、このフォルダ構成が
+AI開発の標準になってると思う</div>
+  </details>
+  
+  <div class="media"><a href="https://x.com/claudecode84/status/2074339610587742356" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto"><img src="https://pbs.twimg.com/media/HMmI4Y_bQAAwwlG.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block"></a><div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/claudecode84/status/2074339610587742356" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@claudecode84 · 在 X 上查看原文 →</a></div></div>
+  <div class="stats">
+    <span>💬 11</span>
+    <span>🔁 108</span>
+    <span>❤️ 1.3K</span>
+    <span>🔖 191K</span>
+    <span>👁 191.4K</span>
   </div>
-<div class="tweet" id="tweet-2074461929545044245">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2071329071645048832/2xq-8Bqv_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Jimmy Neuron 💡</span>
-      <span class="uname">@Neuron_404</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 19:54</span><span class="badge heat" style="margin-left:8px">🔥 85</span><span class="badge age" style="margin-left:4px">⏱ 19.1h</span></div>
-    <div class="text text-zh">一位开发者把一个空白 HTML 文件交给 Claude,做出了完整的 3D 网站。
-
-项目从一个空白的 index.html 起步——一个 stylesheet 链接、一个 script 标签,没了。Claude 拉起了一个电影感的 3D 武士刀场景,还配了一个在页面加载时打招呼的欢迎 chatbot。
-
-大多数 builder 还在手写这种视觉,这一位直接跳过了这一步。
-
-&gt; 从一份空 index.html 模板起步
-&gt; Claude 拉起完整 3D 武士刀场景
-&gt; 页面加载时弹出可交互的欢迎 chatbot
-&gt; 暗色电影感“精准与极致”主题
-&gt; 整段视觉效果由 agent 从空代码生成
-
-当一些人还在手写代码时,另一些人已经直接把 3D 搭建交给 AI agent 了。
-
-突破不是设计天赋,而是把一份空 HTML 交给 agent。
-
-关注我,别错过 AI 圈的趋势。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">A DEVELOPER TURNED A BLANK HTML FILE INTO A FULL 3D WEBSITE WITH CLAUDE.
-
-The project started as a bare index.html — a stylesheet link and a script tag, nothing else. Claude wired up a cinematic 3D katana scene with a welcome chatbot greeting visitors on load.
-
-Most builders are still hand-coding visuals like this. This one skipped that entire step.
-
-&gt; started as a bare index.html boilerplate
-&gt; Claude wired up the full 3D katana scene
-&gt; interactive welcome chatbot on page load
-&gt; dark cinematic &quot;precision meets mastery&quot; theme
-&gt; the whole visual generated by the agent from bare code
-
-While some are still hand-coding, others are already handing the 3D build to an AI agent.
-
-The breakthrough was not design talent. It was a bare HTML file handed to an agent.
-
-Follow me so you don&#39;t miss out on trends in the world of AI.</div>
-    </details>
-    <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/Neuron_404_2074461929545044245.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/Neuron_404/status/2074461929545044245" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@Neuron_404 · 在 X 上查看原文 →</a></div></div>
-    <div class="stats"><span>💬 14</span><span>🔁 12</span><span>❤️ 250</span><span>🔖 9</span><span>👁 6.2K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/Neuron_404/status/2074461929545044245" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/claudecode84/status/2074339610587742356" target="_blank" rel="noopener">查看原文 →</a>
   </div>
-<div class="tweet" id="tweet-2074465286238122485">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1964533406399942657/6mf-WCsr_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Dami-Defi</span>
-      <span class="uname">@DamiDefi</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 20:07</span><span class="badge heat" style="margin-left:8px">🔥 84</span><span class="badge age" style="margin-left:4px">⏱ 18.9h</span></div>
-    <div class="text text-zh">Fable 5 现在只能在 API 用了,这位老哥刚展示怎么让 Opus 像 Fable 一样思考,却不用付 Fable 的价格。
-
-AI 圈最大的误解就是:最强的模型一定能给出最好的结果。
-
-事实并非如此。
-
-真正的优势不在模型本身,而在围绕它的整个系统。
-
-在动态 agent workflow 上对 Fable 5、Opus、Sonnet 做了大量测试后,有一个发现很突出:让 Fable 负责规划、让更便宜的模型负责执行,效果常常和全程使用 Fable 几乎一样,但成本只有它的一小部分。
-
-诀窍是提取 Fable 的推理过程,而不是依赖 Fable 本身。
-
-别把前沿模型当昂贵工人,把它们当资深架构师——让它们把思考过程记录下来,供小模型复用。
-
-第二个关键能力是模型路由(model routing)。
-
-用你最强的模型做规划、编排和关键决策,其他执行交给更快更便宜的模型。
-
-当 AI 成本成为竞争优势,赢家不是那些能用上最聪明模型的人,
-
-而是那些在最聪明模型周围搭出最聪明系统的人。
-
-先看完整视频,再自己试着实现这些工作流。掌握流程,永远比拿到某个单一模型的访问权更持久。
-
-视频来源:Nate Herk(YouTube)</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">WITH FABLE 5 NOW ONLY AVAILABLE ON API, THIS GUY JUST SHOWED HOW TO MAKE OPUS THINK LIKE IT WITHOUT PAYING FABLE PRICES.
-
-The biggest misconception in AI today is that the best model always produces the best results.
-
-It doesn&#39;t.
-
-The real advantage isn&#39;t the model. It&#39;s the system wrapped around it.
-
-After extensively testing Fable 5, Opus, and Sonnet across dynamic agent workflows, one insight stood out: when Fable planned the work and cheaper models executed it, the results were often nearly identical to using Fable end-to-end, but at a fraction of the cost.
-
-The trick is to extract Fable&#39;s reasoning process instead of relying on Fable itself.
-
-Instead of treating frontier models as expensive workers, treat them as senior architects that document their thinking for smaller models to reuse.
-
-The second unlock is model routing.
-
-Use your strongest model for planning, orchestration, and critical decisions, then delegate execution to faster, cheaper models wherever possible.
-
-As AI costs become a competitive advantage, the winners won&#39;t be the people with access to the smartest models.
-
-They&#39;ll be the ones who build the smartest systems around them.
-
-Watch the full video, then try implementing these workflows yourself. Owning the process will always outlast access to any single model.
-
-VIdeo Cred: Nate Herk (Youtube)</div>
-    </details>
+</div>
+<div class="tweet" id="tweet-2074369125699453110">
+  <div class="head">
+    <span class="name">CyrilXBT</span>
+    <span class="uname">@cyrilXBT</span>
     
-    <div class="stats"><span>💬 9</span><span>🔁 20</span><span>❤️ 213</span><span>🔖 114</span><span>👁 23.1K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/DamiDefi/status/2074465286238122485" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+    <span class="time">7/7 13:45</span>
+    <span class="badge heat" style="margin-left:8px">🔥 267</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.3d</span>
   </div>
-<div class="tweet" id="tweet-2074520062820487660">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2012162102283407360/U-fPj6wg_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">0xMarioNawfal</span>
-      <span class="uname">@RoundtableSpace</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 23:45</span><span class="badge heat" style="margin-left:8px">🔥 83</span><span class="badge age" style="margin-left:4px">⏱ 15.3h</span></div>
-    <div class="text text-zh">腾讯刚刚开源了 AI Agent 的长期记忆系统
+  <div class="text text-zh">15 分钟搭一个 AI 第二大脑。
+不用写代码，不用花 $1000 上课。
 
-* Agent Memory 基于 SQLite,提供本地、可审计的记忆,无云依赖
-* 通过多层语义记忆系统,在提升召回的同时降低 token 用量
+这就是完整流程。
+Step 1：下载 Claude Desktop。
+Step 2：下载 Obsidian。
+Step 3：新建一个 vault，往里面丢 .MD 文件。
+Step 4：用 karpathy 的这个 prompt 让 Claude Code 连接你的 vault：https://t.co/5LkhJDHoBm
 
-仓库:<a href="https://t.co/qK74xq2gnD" target="_blank" rel="noopener">https://t.co/qK74xq2gnD</a></div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">TENCENT JUST OPEN-SOURCED LONG-TERM MEMORY FOR AI AGENTS
+搞定。
 
-* Agent Memory adds local, inspectable memory with SQLite and no cloud dependencies
-* Cuts token usage while improving recall through a multi-layer semantic memory system
+你整个知识库都变得可搜索、可关联、可被地球上最强的 AI 模型查询。
 
-Repo: <a href="https://t.co/qK74xq2gnD" target="_blank" rel="noopener">https://t.co/qK74xq2gnD</a></div>
-    </details>
-    <div class="media"><img src="https://pbs.twimg.com/media/HMonSRBaQAElIxM.jpg" alt="media" loading="lazy"></div>
-    <a class="ext-link" href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank" rel="noopener">https://github.com/TencentCloud/TencentDB-Agent-Memory</a>
-    
-    <div class="stats"><span>💬 17</span><span>🔁 13</span><span>❤️ 161</span><span>🔖 105</span><span>👁 46.5K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/RoundtableSpace/status/2074520062820487660" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
-  </div>
-<div class="tweet" id="tweet-2074701028499550480">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2030902400685637632/HJ0CT3i8_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Dharmik Harinkhede</span>
-      <span class="uname">@AiwithDharmik</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 11:44</span><span class="badge heat" style="margin-left:8px">🔥 81</span><span class="badge age" style="margin-left:4px">⏱ 3.3h</span></div>
-    <div class="text text-zh">这就是 Claude Code 资源圣经。
+你写过的每一条笔记。
 
-54 个工具。
-Agents / MCP servers / Skills / 自动化。
-大多数人还没发现这套体系。
+你记下的每一个想法。
+你收藏过的每一条资源。
 
-下面是精选版(每个分类 3 个最佳链接)👇
+Claude 会全部读完，找到你漏掉的关联，挖出你自己都忘记曾经有过的洞见。
 
-🟦 官方
+大多数人把 Claude 当搜索引擎用。
 
-• <a href="https://t.co/wUgyGVQv0N" target="_blank" rel="noopener">https://t.co/wUgyGVQv0N</a> — Claude Code 文档
-• <a href="https://t.co/LqsuALUQFd" target="_blank" rel="noopener">https://t.co/LqsuALUQFd</a> — 官方 MCP servers
-• <a href="https://t.co/nNUjTlctFr" target="_blank" rel="noopener">https://t.co/nNUjTlctFr</a> — 免费认证
+搭建第二大脑的人，把它当成自己全部知识的『智能层』。
 
-🟧 目录
-
-• <a href="https://t.co/1N8S7DFqNQ" target="_blank" rel="noopener">https://t.co/1N8S7DFqNQ</a> — Claude Code 全集合
-• <a href="https://t.co/rU9ayC9IT5" target="_blank" rel="noopener">https://t.co/rU9ayC9IT5</a> — MCP 列表
-• <a href="https://t.co/zqxkelsmQs" target="_blank" rel="noopener">https://t.co/zqxkelsmQs</a> — 50+ MCP
-
-🟨 MCP SERVERS
-
-• <a href="https://t.co/Rnk2eybMdm" target="_blank" rel="noopener">https://t.co/Rnk2eybMdm</a> — 浏览器自动化
-• <a href="https://t.co/TuH95p48R5" target="_blank" rel="noopener">https://t.co/TuH95p48R5</a> — 数据库 + 鉴权
-• <a href="https://t.co/F357CUGxWk" target="_blank" rel="noopener">https://t.co/F357CUGxWk</a> — 部署应用
-
-🟩 Skills
-
-• <a href="https://t.co/Et9TxD69zQ" target="_blank" rel="noopener">https://t.co/Et9TxD69zQ</a> — 浏览器控制
-• <a href="https://t.co/H7jYLrANzz" target="_blank" rel="noopener">https://t.co/H7jYLrANzz</a> — 完整开发工作流
-• <a href="https://t.co/jjHcSwzZ70" target="_blank" rel="noopener">https://t.co/jjHcSwzZ70</a> • 周期性任务
-
-🟪 多路复用器
-
-• <a href="https://t.co/8otPEIdRJ8" target="_blank" rel="noopener">https://t.co/8otPEIdRJ8</a> — agent 终端
-• <a href="https://t.co/AdZ5iC0knr" target="_blank" rel="noopener">https://t.co/AdZ5iC0knr</a> — 编排 agents
-• <a href="https://t.co/qAuPZukJ2P" target="_blank" rel="noopener">https://t.co/qAuPZukJ2P</a> — 并行开发
-
-🟥 Agent 框架
-
-• <a href="https://t.co/euRpLbJjh0" target="_blank" rel="noopener">https://t.co/euRpLbJjh0</a> — 多 agent 协同
-• <a href="https://t.co/1LnAqcedR0" target="_blank" rel="noopener">https://t.co/1LnAqcedR0</a> — agent 协作
-• <a href="https://t.co/vxTLOFCQnf" target="_blank" rel="noopener">https://t.co/vxTLOFCQnf</a> — NousResearch agents
-
-⚙️ 自动化
-
-• <a href="https://t.co/uwJYSuEd2a" target="_blank" rel="noopener">https://t.co/uwJYSuEd2a</a> — 代码化工作流
-• <a href="https://t.co/Jt3tSkTC5K" target="_blank" rel="noopener">https://t.co/Jt3tSkTC5K</a> — 监控 agents
-• <a href="https://t.co/YY3Eos4E4e" target="_blank" rel="noopener">https://t.co/YY3Eos4E4e</a> — 自托管基础设施
-
-📚 文章
-
-• <a href="https://t.co/a2fJ01Rd1P" target="_blank" rel="noopener">https://t.co/a2fJ01Rd1P</a> — 最佳 CLI 工具
-• <a href="https://t.co/LKR5IO2TTc" target="_blank" rel="noopener">https://t.co/LKR5IO2TTc</a> — 顶级 MCP servers
-• <a href="https://t.co/ZvDZIGdxtK" target="_blank" rel="noopener">https://t.co/ZvDZIGdxtK</a> — 并行 agents
-
-这基本就是 Claude Code 的生态地图。
-
-现在学 → 你赶上早集
-无视它 → 你已经晚一步
-
-收藏起来,以后一定用得到。
-
-如果你喜欢这类内容,记得关注 <a href="https://x.com/AiwithDharmik" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@AiwithDharmik</a> 获取更多 AI 干货。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">This is the Claude Code Resource Bible.
-
-54 tools.
-Agents. MCP servers. Skills. Automation.
-Most people still haven’t discovered this stack.
-
-Here’s the curated version (3 best links per section) 👇
-
-🟦 OFFICIAL
-
-• <a href="https://t.co/wUgyGVQv0N" target="_blank" rel="noopener">https://t.co/wUgyGVQv0N</a> — Claude Code docs
-• <a href="https://t.co/LqsuALUQFd" target="_blank" rel="noopener">https://t.co/LqsuALUQFd</a> — official MCP servers
-• <a href="https://t.co/nNUjTlctFr" target="_blank" rel="noopener">https://t.co/nNUjTlctFr</a> — free certification
-
-🟧 DIRECTORIES
-
-• <a href="https://t.co/1N8S7DFqNQ" target="_blank" rel="noopener">https://t.co/1N8S7DFqNQ</a> — everything Claude Code
-• <a href="https://t.co/rU9ayC9IT5" target="_blank" rel="noopener">https://t.co/rU9ayC9IT5</a> — MCP list
-• <a href="https://t.co/zqxkelsmQs" target="_blank" rel="noopener">https://t.co/zqxkelsmQs</a> — 50+ MCPs
-
-🟨 MCP SERVERS
-
-• <a href="https://t.co/Rnk2eybMdm" target="_blank" rel="noopener">https://t.co/Rnk2eybMdm</a> — browser automation
-• <a href="https://t.co/TuH95p48R5" target="_blank" rel="noopener">https://t.co/TuH95p48R5</a> — database + auth
-• <a href="https://t.co/F357CUGxWk" target="_blank" rel="noopener">https://t.co/F357CUGxWk</a> — deploy apps
-
-🟩 SKILLS
-
-• <a href="https://t.co/Et9TxD69zQ" target="_blank" rel="noopener">https://t.co/Et9TxD69zQ</a> — browser control
-• <a href="https://t.co/H7jYLrANzz" target="_blank" rel="noopener">https://t.co/H7jYLrANzz</a> — full dev workflow
-• <a href="https://t.co/jjHcSwzZ70" target="_blank" rel="noopener">https://t.co/jjHcSwzZ70</a> — recurring tasks
-
-🟪 MULTIPLEXERS
-
-• <a href="https://t.co/8otPEIdRJ8" target="_blank" rel="noopener">https://t.co/8otPEIdRJ8</a> — agent terminal
-• <a href="https://t.co/AdZ5iC0knr" target="_blank" rel="noopener">https://t.co/AdZ5iC0knr</a> — orchestrate agents
-• <a href="https://t.co/qAuPZukJ2P" target="_blank" rel="noopener">https://t.co/qAuPZukJ2P</a> — parallel dev
-
-🟥 AGENT FRAMEWORKS
-
-• <a href="https://t.co/euRpLbJjh0" target="_blank" rel="noopener">https://t.co/euRpLbJjh0</a> — multi-agent coordination
-• <a href="https://t.co/1LnAqcedR0" target="_blank" rel="noopener">https://t.co/1LnAqcedR0</a> — agent collaboration
-• <a href="https://t.co/vxTLOFCQnf" target="_blank" rel="noopener">https://t.co/vxTLOFCQnf</a> — NousResearch agents
-
-⚙️ AUTOMATION
-
-• <a href="https://t.co/uwJYSuEd2a" target="_blank" rel="noopener">https://t.co/uwJYSuEd2a</a> — workflows in code
-• <a href="https://t.co/Jt3tSkTC5K" target="_blank" rel="noopener">https://t.co/Jt3tSkTC5K</a> — monitor agents
-• <a href="https://t.co/YY3Eos4E4e" target="_blank" rel="noopener">https://t.co/YY3Eos4E4e</a> — self-hosted infra
-
-📚 ARTICLES
-
-• <a href="https://t.co/a2fJ01Rd1P" target="_blank" rel="noopener">https://t.co/a2fJ01Rd1P</a> — best CLI tools
-• <a href="https://t.co/LKR5IO2TTc" target="_blank" rel="noopener">https://t.co/LKR5IO2TTc</a> — top MCP servers
-• <a href="https://t.co/ZvDZIGdxtK" target="_blank" rel="noopener">https://t.co/ZvDZIGdxtK</a> — parallel agents
-
-This is basically the Claude Code ecosystem map.
-
-Learn it now → you&#39;re early
-Ignore it → you&#39;re late
-
-Bookmark this. You&#39;ll need it..
-
-If you’d love to see more content like this, don’t forget to follow <a href="https://x.com/AiwithDharmik" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@AiwithDharmik</a> for more AI magic.</div>
-    </details>
-    <div class="media"><img src="https://pbs.twimg.com/media/HMrRlGnbcAAL3us.jpg" alt="media" loading="lazy"></div>
-    <a class="ext-link" href="http://code.claude.com/docs" target="_blank" rel="noopener">http://code.claude.com/docs</a>
-    
-    <div class="stats"><span>💬 6</span><span>🔁 28</span><span>❤️ 54</span><span>🔖 6</span><span>👁 453</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/AiwithDharmik/status/2074701028499550480" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
-  </div>
-  </section>
-<section id="vibe">
-    <h2>🎨 Vibe Coding</h2>
-    <p class="section-meta">8 条 · 按综合分 _score 降序 · 中文译版 + 原文折叠</p>
-    <div class="tweet" id="tweet-2074369125699453110">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2035229727414534145/aWap3Jbq_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">CyrilXBT</span>
-      <span class="uname">@cyrilXBT</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 13:45</span><span class="badge heat" style="margin-left:8px">🔥 313</span><span class="badge age" style="margin-left:4px">⏱ 25.2h</span></div>
-    <div class="text text-zh">15 分钟搭一个 AI 第二大脑。
-不用写代码,不用花 1000 美元上课。
-
-完整设置如下。
-第 1 步:下载 Claude Desktop。
-第 2 步:下载 Obsidian。
-第 3 步:新建一个 vault,往里面丢 .md 文件。
-第 4 步:用 Karpathy 的 prompt 让 Claude Code 连接到你的 vault:<a href="https://t.co/5LkhJDHoBm" target="_blank" rel="noopener">https://t.co/5LkhJDHoBm</a>
-
-就这样。
-
-你的整个知识库,变成可搜索、可连接、可被地球上最强 AI 模型查询的形态。
-
-你写过的每一条笔记,
-捕捉过的每一个想法,
-收藏过的每一份资源。
-
-Claude 全部读完,找出你漏掉的关联,挖出你自己都已经忘记的洞见。
-
-大多数人把 Claude 当搜索引擎用,
-而搭第二大脑的人把它当作自己所有知识之上的“智能层”。
-
-这种差距,就是“问 Google 一个问题”和“拥有一个读完你所有文字的研究伙伴”的差距。
+差距就像『问 Google 一个问题』和『拥有一个读过你所有文字的研究搭档』之间的差距。
 
 收藏这一条。
 
-今晚就搭起来。关注 <a href="https://x.com/cyrilXBT" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@cyrilXBT</a></div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">YOU CAN BUILD AN AI SECOND BRAIN IN 15 MINUTES.
+今晚就搭起来。Follow @cyrilXBT</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">YOU CAN BUILD AN AI SECOND BRAIN IN 15 MINUTES.
 No coding experience. No $1000 course.
 
 Here is the entire setup.
 Step 1: Download Claude Desktop.
 Step 2: Download Obsidian.
 Step 3: Create a new vault and start dropping .MD files into it.
-Step 4: Tell Claude Code to connect to your vault using Karpathy&#39;s prompt: <a href="https://t.co/5LkhJDHoBm" target="_blank" rel="noopener">https://t.co/5LkhJDHoBm</a>
+Step 4: Tell Claude Code to connect to your vault using Karpathy's prompt: https://t.co/5LkhJDHoBm
 
 That is it.
 
@@ -930,648 +985,1124 @@ That gap is the gap between asking Google a question and having a research partn
 
 Bookmark this.
 
-Build it tonight. Follow <a href="https://x.com/cyrilXBT" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@cyrilXBT</a></div>
-    </details>
-    
-    <div class="stats"><span>💬 36</span><span>🔁 155</span><span>❤️ 848</span><span>🔖 1.5K</span><span>👁 123.2K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/cyrilXBT/status/2074369125699453110" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+Build it tonight. Follow @cyrilXBT</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 36</span>
+    <span>🔁 155</span>
+    <span>❤️ 856</span>
+    <span>🔖 126K</span>
+    <span>👁 126.1K</span>
   </div>
-<div class="tweet" id="tweet-2074644750125117566">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1755983593925378048/kYutau0B_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Cointelegraph</span>
-      <span class="uname">@Cointelegraph</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 08:00</span><span class="badge heat" style="margin-left:8px">🔥 264</span><span class="badge age" style="margin-left:4px">⏱ 7.0h</span></div>
-    <div class="text text-zh">🔥 快讯:据 The Information 报道,Elon Musk 的 SpaceXAI 与 Cursor 即将在周三前发布它们首个联合开发的 AI 模型。<a href="https://t.co/ZIpBWeBnuh" target="_blank" rel="noopener">https://t.co/ZIpBWeBnuh</a></div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">🔥 JUST IN: Elon Musk&#39;s SpaceXAI and Cursor are set to launch their first jointly built AI model as soon as Wednesday, per The Information. <a href="https://t.co/ZIpBWeBnuh" target="_blank" rel="noopener">https://t.co/ZIpBWeBnuh</a></div>
-    </details>
-    <div class="media"><img src="https://pbs.twimg.com/media/HMqeZj-XIAAmmTQ.png" alt="media" loading="lazy"></div>
-<div class="media"><img src="https://pbs.twimg.com/media/HMqeZ3vWsAAFkth.jpg" alt="media" loading="lazy"></div>
-    
-    
-    <div class="stats"><span>💬 59</span><span>🔁 58</span><span>❤️ 303</span><span>🔖 15</span><span>👁 46.3K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/Cointelegraph/status/2074644750125117566" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/cyrilXBT/status/2074369125699453110" target="_blank" rel="noopener">查看原文 →</a>
   </div>
-<div class="tweet" id="tweet-2074576687052804607">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2042194820643291136/a7VPl8re_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">angel</span>
-      <span class="uname">@angeldot_</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 03:30</span><span class="badge heat" style="margin-left:8px">🔥 242</span><span class="badge age" style="margin-left:4px">⏱ 11.5h</span></div>
-    <div class="text text-zh">GITHUB 刚刚推出了 2026/27 最重要技术岗位之一的官方认证
-
-→ Agentic AI Developer(GH-600)
-
-这是第一次,“和 AI agent 协作”被正式承认为一门工程学科。
-
-我们讨论的早已不是:
-• prompt engineering
-• vibe coding
-• 简单自动化
-
-我们讨论的是一个全新的技术角色:
-
-→ Agentic AI Developer
-
-这个人的职责:
-• 协调 AI agents
-• 搭建自主工作流
-• 把 agent 接入真实环境
-• 监控生产中的故障
-• 避免 CI/CD 流水线里的关键错误
-• 知道什么时候 agent 不可靠
-
-以前:
-→ “我和 AI agents 打交道”几乎没法被验证。
-
-现在:
-→ GitHub 正式认证这套技能。
-
-这会改变市场。
-
-企业会需要这种角色,
-但目前专精于此的开发者还非常少。
-
-如果你已经在用:
-• Copilot
-• Codex
-• Claude Code
-• agentic workflows
-• AI 自动化
-
-你大概率已经在做这件事了。
-
-GH-600 就是把这件事“正式盖章”的方式。
-
-收藏这一条 🔖
-
-链接在下方 👇</div>
-    <details class="en-details">
-      <summary>原文 (ES)</summary>
-      <div class="text text-en">GITHUB ACABA DE LANZAR LA CERTIFICACIÓN OFICIAL DE UNO DE LOS ROLES TECH MÁS IMPORTANTES DE 2026/27
-
-→ Agentic AI Developer (GH-600)
-
-Y es la primera vez que trabajar con agentes de IA se convierte oficialmente en una disciplina reconocida de ingeniería.
-
-Ya no hablamos de:
-• prompt engineering
-• vibe coding
-• automatizaciones simples
-
-Hablamos de un nuevo perfil técnico:
-
-→ Agentic AI Developer
-
-La persona que:
-• coordina agentes de IA
-• construye workflows autónomos
-• integra agentes en entornos reales
-• supervisa fallos en producción
-• evita errores críticos en pipelines CI/CD
-• sabe cuándo un agente no es fiable
-
-Antes:
-→ “Trabajo con agentes de IA” era difícil de validar.
-
-Ahora:
-→ GitHub certifica oficialmente ese skillset.
-
-Y eso cambia el mercado.
-
-Las empresas van a necesitar este perfil.
-Pero todavía hay muy pocos developers especializados en ello.
-
-Si ya trabajas con:
-• Copilot
-• Codex
-• Claude Code
-• workflows agentic
-• automatizaciones con IA
-
-Probablemente ya estés haciendo este trabajo.
-
-GH-600 es la forma de demostrarlo.
-
-Guárdate esto 🔖
-
-Enlace abajo 👇</div>
-    </details>
-    <div class="media"><img src="https://pbs.twimg.com/media/HMjEQPgXUAAdCRi.jpg" alt="media" loading="lazy"></div>
+</div>
+</section>
+<section id="agent">
+  <h2>🤖 AI Agent</h2>
+  <p>8 条 · 24h 热门 · 按综合分 _score 降序</p>
+  <div class="tweet" id="tweet-2074732144988135546">
+  <div class="head">
+    <span class="name">HowToPrompt__</span>
+    <span class="uname">@HowToPrompt__</span>
     
-    <div class="quoted-tweet">
-      <div class="q-head"><span class="q-name">Nico</span><span class="q-uname">@nicos_ai</span></div>
-      <div class="q-text">https://t.co/pDfRyF3A1d</div>
-    </div>
-    <div class="stats"><span>💬 16</span><span>🔁 73</span><span>❤️ 402</span><span>🔖 417</span><span>👁 34.5K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/angeldot_/status/2074576687052804607" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+    <span class="time">7/8 13:47</span>
+    <span class="badge heat" style="margin-left:8px">🔥 91</span>
+    <span class="badge age" style="margin-left:4px">⏱ 7.3h</span>
   </div>
-<div class="tweet" id="tweet-2074593473664106721">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1971239347115450368/Ul-xn5JD_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">0xDesigner</span>
-      <span class="uname">@0xDesigner</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 04:36</span><span class="badge heat" style="margin-left:8px">🔥 139</span><span class="badge age" style="margin-left:4px">⏱ 10.4h</span></div>
-    <div class="text text-zh">不会只有我一个人在 cursor 里免费把 fable 5 的 max thinking 薅到爽吧?
+  <div class="text text-zh">微软让 ChatGPT 的准确率从 41% 直接跳到 80%，全程没动过任何参数。
 
-希望 cursor 团队不会因为这条推文发现这是个 bug 然后给修了。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">am i the only one ripping fable 5 on max thinking for free in cursor?
+这套系统叫 SkillOpt。
 
-i hope this isn&#39;t a bug that the cursor team finds and fixes because of this tweet.</div>
-    </details>
-    
-    
-    
-    <div class="stats"><span>💬 25</span><span>🔁 1</span><span>❤️ 233</span><span>🔖 64</span><span>👁 71.5K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/0xDesigner/status/2074593473664106721" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+大多数人以为 AI Agent 进步靠写更好的 prompt 或微调模型本身。但微调僵硬、慢、还贵；而『prompt 工程』基本就是拍脑袋。
+
+微软的做法是：把 AI 的『技能文档』（也就是那段告诉它怎么解决问题的文字）当成一个活的、能自己从失败里学习的模型。
+
+具体流程是这样的：
+
+1. Rollouts：Agent 自己试着跑任务，把成功和失败都记录下来。
+
+2. Optimizer Model：一个独立的小模型分析这些结果，对技能文档做原子级修改（新增、删除或替换）。
+
+3. Validation Gate：新版本只有在留出验证集上的表现严格变好时，才会被『采纳』。
+
+这本质上就是自然语言版的『梯度下降』。
+
+结果非常炸裂：
+
+在 6 个主流 benchmark 上，SkillOpt 跑赢了所有人工写的技能和所有 one-shot LLM 方案。
+
+有些任务上准确率直接起飞：ALFWorld 上有一个模型从 70% 涨到 85%；纯对话场景下，准确率提高了 23 个百分点以上。
+
+最爽的是什么？
+
+推理时零额外开销。
+
+你只在优化阶段花一次算力，之后 Agent 就按这份『超优剧本』一直跑下去。
+
+这份剧本通过反馈自己『训练』自己。
+
+如果你想拥有这样一个 Agent：每天都在变好，而你不用写一行代码，这就是答案。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Microsoft made ChatGPT's accuracy jump from 41% to 80% without touching a single parameter.
+
+The system is called SkillOpt.
+
+Most people think AI agents improve by writing better prompts or fine-tuning the model itself. But fine-tuning is rigid, slow, and expensive. And &quot;prompt engineering&quot; is just guessing.
+
+Microsoft’s approach treats the AI’s skill set, the actual text document that tells it how to solve a problem, as a living, breathing model that learns from its own failures.
+
+Here is how it works:
+
+1. Rollouts: The agent attempts tasks. It captures its own successes and failures.
+
+2. Optimizer Model: A separate, small model analyzes those results and makes atomic edits to the skill document (Add, Delete, or Replace).
+
+3. Validation Gate: The new skill is only &quot;accepted&quot; if it strictly improves performance on a held-out set of tasks.
+
+It is essentially &quot;Gradient Descent&quot; for natural language.
+
+And the results are staggering:
+
+Across six major benchmarks, SkillOpt outperformed every human-written skill and every one-shot LLM approach.
+
+On some tasks, accuracy skyrocketed. On the ALFWorld benchmark, one model jumped from 70% to 85% accuracy. In direct chat scenarios, it boosted accuracy by over 23 points.
+
+The best part?
+
+There is zero inference-time overhead.
+
+You spend the compute optimizing the skill once. Then, the agent runs with that hyper-optimized playbook forever.
+
+The playbook effectively &quot;trains&quot; itself through feedback.
+
+If you want an agent that actually gets better at its job every single day, without you having to touch a single line of code, this is how it’s done.</div>
+  </details>
+  
+  <div class="media"><a href="https://x.com/HowToPrompt__/status/2074732144988135546" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto"><img src="https://pbs.twimg.com/media/HMrtjZYa0AA6uom.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block"></a><div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/HowToPrompt__/status/2074732144988135546" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@HowToPrompt__ · 在 X 上查看原文 →</a></div></div>
+  <div class="stats">
+    <span>💬 11</span>
+    <span>🔁 20</span>
+    <span>❤️ 120</span>
+    <span>🔖 7K</span>
+    <span>👁 7.6K</span>
   </div>
-<div class="tweet" id="tweet-2074395493468188797">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2004508280035373056/c-gQujkd_normal.png" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">ChainGPT</span>
-      <span class="uname">@Chain_GPT</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 15:30</span><span class="badge heat" style="margin-left:8px">🔥 109</span><span class="badge age" style="margin-left:4px">⏱ 23.5h</span></div>
-    <div class="text text-zh">人人都要变成 builder 了。
-
-30 分钟后直播开始!
-
-<a href="https://x.com/CEOGuy" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@CEOGuy</a> 和 <a href="https://x.com/AethirCloud" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@AethirCloud</a> 分享 vibe coding 的实战技巧,还有 Aethir 与 ChainGPT 正在酝酿的某个项目的一手消息..
-
-🕐 UTC 8:00
-📅 今天,7 月 7 日
-📌 <a href="https://t.co/3uDHFi8Eo8" target="_blank" rel="noopener">https://t.co/3uDHFi8Eo8</a> <a href="https://t.co/ULlhi2RVfi" target="_blank" rel="noopener">https://t.co/ULlhi2RVfi</a></div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">Everyone&#39;s about to become a builder.
-
-We&#39;re LIVE in 30 minutes!
-
-<a href="https://x.com/CEOGuy" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@CEOGuy</a> and <a href="https://x.com/AethirCloud" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@AethirCloud</a> share pro-tips for vibe coding, and some alpha on something Aethir and ChainGPT are cooking up..
-
-🕐 8:00am UTC
-📅 Today, July 7th
-📌 <a href="https://t.co/3uDHFi8Eo8" target="_blank" rel="noopener">https://t.co/3uDHFi8Eo8</a> <a href="https://t.co/ULlhi2RVfi" target="_blank" rel="noopener">https://t.co/ULlhi2RVfi</a></div>
-    </details>
-    <div class="media"><img src="https://pbs.twimg.com/media/HMm5ew-XoAAfG7X.jpg" alt="media" loading="lazy"></div>
-    <a class="ext-link" href="http://x.com/i/spaces/1XxyggpQYDvGM" target="_blank" rel="noopener">http://x.com/i/spaces/1XxyggpQYDvGM</a>
-    
-    <div class="stats"><span>💬 58</span><span>🔁 53</span><span>❤️ 262</span><span>🔖 5</span><span>👁 32.4K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/Chain_GPT/status/2074395493468188797" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/HowToPrompt__/status/2074732144988135546" target="_blank" rel="noopener">查看原文 →</a>
   </div>
-<div class="tweet" id="tweet-2074555399970357667">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1816185267037859840/Fd18CH0v_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Rohan Paul</span>
-      <span class="uname">@rohanpaul_ai</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 02:05</span><span class="badge heat" style="margin-left:8px">🔥 101</span><span class="badge age" style="margin-left:4px">⏱ 12.9h</span></div>
-    <div class="text text-zh">彭博社:Microsoft 正在 Excel 和 Outlook 中替换 OpenAI 和 Anthropic 的模型,以降低 Copilot 的成本。
-
-Excel 和 Outlook 过去更依赖外部模型。现在 Microsoft 想减少对那些掌握前沿模型定价权的实验室的高价调用。
-
-OpenAI 仍通过长期合作给 Microsoft 优惠的访问权,但这个折扣可能会消失。
-
-Microsoft AI 负责人 Mustafa Suleyman 已经明确表示:Microsoft 想要先降低、最终彻底摆脱这笔外部开销。
-
----
-
-bloomberg.com/news/articles/2026-07-07/microsoft-replaces-openai-anthropic-with-own-ai-in-some-apps</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">Bloomberg: Microsoft is replacing OpenAI and Anthropic models inside Excel and Outlook to cut Copilot costs.
-
-Excel and Outlook used to lean more heavily on outside models. Now Microsoft wants fewer expensive calls to labs that control pricing for frontier model access.
-
-OpenAI still gives Microsoft favorable access through their long partnership, but that discount may fade.
-
-Microsoft AI head Mustafa Suleyman has been clear that Microsoft wants to reduce, then remove, that outside cost.
-
----
-
-bloomberg .com/news/articles/2026-07-07/microsoft-replaces-openai-anthropic-with-own-ai-in-some-apps</div>
-    </details>
-    <div class="media"><img src="https://pbs.twimg.com/media/HMpMjcHa8AAO4zo.png" alt="media" loading="lazy"></div>
+</div>
+<div class="tweet" id="tweet-2074551721393840547">
+  <div class="head">
+    <span class="name">Startupideaspod</span>
+    <span class="uname">@startupideaspod</span>
     
-    
-    <div class="stats"><span>💬 19</span><span>🔁 28</span><span>❤️ 150</span><span>🔖 48</span><span>👁 48.2K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/rohanpaul_ai/status/2074555399970357667" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+    <span class="time">7/8 01:50</span>
+    <span class="badge heat" style="margin-left:8px">🔥 83</span>
+    <span class="badge age" style="margin-left:4px">⏱ 19.2h</span>
   </div>
-<div class="tweet" id="tweet-2074378380385067230">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2043255869513601025/wFHeLjZX_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Miles Deutscher</span>
-      <span class="uname">@milesdeutscher</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 14:22</span><span class="badge heat" style="margin-left:8px">🔥 76</span><span class="badge age" style="margin-left:4px">⏱ 24.6h</span></div>
-    <div class="text text-zh">我最近分享了用 Fable 5 做惊艳 UI/UX 设计最强的一种玩法。
+  <div class="text text-zh">从零开始搭建一个 AI Agent 业务的 30 天明确计划：
 
-AI 生成的前端,问题就是它们看起来全都一个样。
+大家都跳过的第一步：你一行代码都不用写。
 
-通用布局、无聊的组件、呆板的图标,同样的设计模式被无限循环复用。
+Day 1：选一个『少干活就亏钱』的细分场景（家政、物业管理、保险等）。
 
-这个 Taste Skill 就是来解决问题的。
+Day 2：约访 10 个行业从业者，让他们屏幕共享自己的工作流，你就看着。
 
-这个开源的 skill 文件,能给你的 AI 编程 agent 真正的设计品味。
+Day 3-4：找到一个同时具备高频、痛点、可量化成功指标的流程，把它写成 spec。
 
-下面教你 60 秒内把它装好:
+Day 5：纯手工跑一遍。把上下文复制粘贴到 Claude 里，让它起草结果，再由人来审。一行代码都不写，先验证 AI 到底有没有用。
 
-1. 安装
+Day 6-7：搭建最小可用版本。用 50 个真实样本组成一个评估集。
 
-终端命令
+Week 2：在同一个细分场景拿下 2 个试点客户。
 
-npx skills add Leonxlnx/taste-skill
+Week 3：补上外壳——日志、审批、数据分析。
 
-Prompt
+Week 4：把试点成果转成案例。把拆解全部公开。
 
-“请从这个链接 <a href="https://t.co/1nFvIQMoSM" target="_blank" rel="noopener">https://t.co/1nFvIQMoSM</a> 完整安装 Taste Skill 包。”
+全程同步建立自己的受众。
 
-2. 工作原理
+大多数人是先把软件做出来，再祈祷有人要。
 
-→ Agent 先读 brief,推断出正确的设计方向,再开始构建。
+赢家在敲第一行代码之前，就靠复制粘贴证明了 AI 能用。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Here's the exact 30-day plan to build an AI agent business from zero:
 
-→ 它知道什么时候该用成熟的设计系统(Material、shadcn、Tailwind),什么时候该走原生 CSS。
+The part nobody does first? You don't write a single line of code.
 
-→ 暗色模式默认就开。
+Day 1: Pick a niche where missed work costs money (home services, property mgmt, insurance).
 
-3. Skill 选择
+Day 2: Interview 10 operators. Have them screen share their workflow. Just watch.
 
-按场景有 13 个 skill 可挑:
-→ design-taste-frontend (v2):默认
-→ soft-skill:安静、有“贵气”的界面
-→ minimalist-skill:编辑级产品 UI,结构锐利
-→ brutalist-skill:瑞士排版,对比更硬
-→ redesign-skill:先审计再重做(适合已有项目)
+Day 3-4: Find the one workflow with frequency + pain + a clear success metric. Write the spec.
 
-如果你正在 vibe coding 应用——收藏这条,设计就能上一个台阶。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">I recently shared the most powerful way to use Fable 5 for amazing UI/UX design work.
+Day 5: Run it MANUALLY. Copy-paste the context into Claude, draft the output, have a human approve it. You're testing if AI even helps before you build anything.
 
-The problem with AI-generated frontends is that they all look the same.
+Day 6-7: Build the smallest useful version. Create an eval set from 50 real examples.
 
-Generic layouts, boring components, blocky icons, and the same design patterns are recycled endlessly.
+Week 2: Sell 2 pilots in the same niche.
 
-This Taste Skill fixes that.
+Week 3: Add the wrapper — logs, approvals, analytics.
 
-This open-source skill file gives your AI coding agent actual design taste.
+Week 4: Turn the pilots into proof. Publish the teardowns.
 
-Here&#39;s how to get everything set up in &lt;60 seconds:
+And build an audience the entire way through.
 
-1. Installation
+Most people build the software first and pray someone wants it.
 
-TERMINAL COMMAND
-
-npx skills add Leonxlnx/taste-skill
-
-PROMPT
-
-&quot;I want you to fully install this Taste Skill package from <a href="https://t.co/1nFvIQMoSM.&quot;" target="_blank" rel="noopener">https://t.co/1nFvIQMoSM.&quot;</a>
-
-2. How it works
-
-→ The agent reads the brief first, infers the right design direction, then builds.
-
-→ It knows when to reach for a real design system (Material, shadcn, Tailwind) vs when to go native CSS
-
-→ Dark mode is always built in by default
-
-3. Skill selection
-
-There are 13 skills to pick from depending on the job:
-→ design-taste-frontend (v2): the default
-→ soft-skill: calm, expensive-looking interfaces
-→ minimalist-skill: editorial product UI, sharp structure
-↔ brutalist-skill: Swiss typography, harder contrast
-→ redesign-skill: audit-first for existing projects
-
-If you&#39;re vibe-coding apps - bookmark this post to ship beautiful design.</div>
-    </details>
-    
-    
-    <div class="quoted-tweet">
-      <div class="q-head"><span class="q-name">Miles Deutscher</span><span class="q-uname">@milesdeutscher</span></div>
-      <div class="q-text">This is an insane Fable 5 UI/UX hack.
-
-This &quot;Taste&quot; skill completely kills generic AI-slop and gives Fable 5 the tools &amp;amp; instructions needed to ship beautiful design.
-
-This might just be the best AI skill I&#39;ve ever used.
-
-https://t.co/XVQ6JpjYCy https://t.co</div>
-    </div>
-    <div class="stats"><span>💬 34</span><span>🔁 19</span><span>❤️ 191</span><span>🔖 377</span><span>👁 63.5K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/milesdeutscher/status/2074378380385067230" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+Winners prove the AI works with copy-paste before they write a single line.</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/startupideaspod_2074551721393840547.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/startupideaspod/status/2074551721393840547" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@startupideaspod · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 17</span>
+    <span>🔁 25</span>
+    <span>❤️ 200</span>
+    <span>🔖 23K</span>
+    <span>👁 23.6K</span>
   </div>
-<div class="tweet" id="tweet-2074403668003332356">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2034559748574466048/ExKH5MXt_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Brooks Whale X 🐋</span>
-      <span class="uname">@BrooksWhaleX</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 16:02</span><span class="badge heat" style="margin-left:8px">🔥 75</span><span class="badge age" style="margin-left:4px">⏱ 23.0h</span></div>
-    <div class="text text-zh">🚨 WORKOUT GATE:Claude 现在要“运动一下”才能用
-
-有人给 Claude Code 写了一个聪明的小插件叫 Workout Gate。它会暂停你的工作流,直到你完成一组俯卧撑或深蹲——用一种意外有效的方式,把生产力和身体活动结合在一起。
-
-触发后,插件会临时扣住你的 prompt,打开摄像头,引导你完成动作。它用 MediaPipe 实时精准计数,没机会偷懒。必须做完规定动作,prompt 才会被放行。提前停下来,剩余次数会滚到下一次会话里,作为“动作债”。
-
-工具提供多种模式:chill、demo、hardcore 预设,还能基于特定 prompt、时间间隔或随机时机触发。还能直接在 Claude Code 状态栏里追踪你的统计数据、连续打卡天数和个人最佳。
-
-我们已经把写代码自动化了。现在这个插件也帮我们更好地照顾自己。
-
-100% 开源</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">🚨 WORKOUT GATE: CLAUDE NOW REQUIRES EXERCISE TO FUNCTION
-
-Someone has created a clever plugin called Workout Gate for Claude Code. It pauses your workflow until you complete a set of push-ups or squats, blending productivity with physical movement in a surprisingly effective way.
-
-When triggered, the plugin temporarily holds your prompt, activates your webcam, and guides you through the exercises. It uses MediaPipe to count your reps accurately in real time, with no room for shortcuts. You must finish the required movements before the prompt is released. If you stop early, the remaining reps carry over as debt to your next session.
-
-The tool offers flexible options, including chill, demo, and hardcore presets, along with triggers based on specific prompts, time intervals, or random moments. It also tracks your stats, streaks, and personal records directly in the Claude Code status line.
-
-We have automated coding. Now this plugin helps us take better care of ourselves too.﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿
-
-100% open-source</div>
-    </details>
-    <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/BrooksWhaleX_2074403668003332356.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/BrooksWhaleX/status/2074403668003332356" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@BrooksWhaleX · 在 X 上查看原文 →</a></div></div>
-    
-    
-    <div class="stats"><span>💬 45</span><span>🔁 70</span><span>❤️ 125</span><span>🔖 15</span><span>👁 3.9K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/BrooksWhaleX/status/2074403668003332356" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/startupideaspod/status/2074551721393840547" target="_blank" rel="noopener">查看原文 →</a>
   </div>
-  </section>
+</div>
+<div class="tweet" id="tweet-2074520062820487660">
+  <div class="head">
+    <span class="name">RoundtableSpace</span>
+    <span class="uname">@RoundtableSpace</span>
+    
+    <span class="time">7/7 23:45</span>
+    <span class="badge heat" style="margin-left:8px">🔥 79</span>
+    <span class="badge age" style="margin-left:4px">⏱ 21.3h</span>
+  </div>
+  <div class="text text-zh">TENCENT 开源了面向 AI Agent 的长期记忆系统
+
+* Agent Memory 提供本地、可审计的存储，基于 SQLite，零云依赖
+* 通过多层语义记忆系统在提升召回的同时削减 token 消耗
+
+仓库：https://t.co/qK74xq2gnD</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">TENCENT JUST OPEN-SOURCED LONG-TERM MEMORY FOR AI AGENTS
+
+* Agent Memory adds local, inspectable memory with SQLite and no cloud dependencies
+* Cuts token usage while improving recall through a multi-layer semantic memory system
+
+Repo: https://t.co/qK74xq2gnD</div>
+  </details>
+  
+  <div class="media"><a href="https://x.com/RoundtableSpace/status/2074520062820487660" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto"><img src="https://pbs.twimg.com/media/HMonSRBaQAElIxM.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block"></a><div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/RoundtableSpace/status/2074520062820487660" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@RoundtableSpace · 在 X 上查看原文 →</a></div></div>
+  <div class="stats">
+    <span>💬 19</span>
+    <span>🔁 18</span>
+    <span>❤️ 195</span>
+    <span>🔖 47K</span>
+    <span>👁 47.8K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/RoundtableSpace/status/2074520062820487660" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074465286238122485">
+  <div class="head">
+    <span class="name">DamiDefi</span>
+    <span class="uname">@DamiDefi</span>
+    
+    <span class="time">7/7 20:07</span>
+    <span class="badge heat" style="margin-left:8px">🔥 69</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.0d</span>
+  </div>
+  <div class="text text-zh">FABLE 5 现在只通过 API 提供，这位老哥却展示了如何让 OPUS 拥有和 FABLE 一样的推理能力，又不用付 FABLE 那种天价。
+
+当下 AI 圈最大的误解是：模型越强，效果就一定越好。
+
+事实不是这样。
+
+真正的优势不在模型本身，而在套在它外面的整套系统。
+
+我把 Fable 5、Opus、Sonnet 都丢到动态 Agent 工作流里跑了大量测试，有一个结论特别扎眼：当用 Fable 来规划工作、由更便宜的模型去执行，最终的效果和全程 Fable 几乎一样，但成本只是它的零头。
+
+诀窍是：把 Fable 的推理过程抽出来，而不是依赖 Fable 本身。
+
+不要把前沿模型当成高价打工仔，而要把它当成『资深架构师』，让它把思路记录下来给更小的模型复用。
+
+第二个关键是模型路由。
+
+把最强的模型用在规划、编排和关键决策上，然后把执行交给更快、更便宜的模型。
+
+随着 AI 成本变成一种竞争优势，最后的赢家不会是『拥有最强模型』的人。
+
+而是在它周围搭出最聪明系统的人。
+
+看完完整视频，自己动手把这些工作流跑一遍。掌握流程永远比独占一个模型走得更远。
+
+视频来源：Nate Herk (YouTube)</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">WITH FABLE 5 NOW ONLY AVAILABLE ON API, THIS GUY JUST SHOWED HOW TO MAKE OPUS THINK LIKE IT WITHOUT PAYING FABLE PRICES.
+
+The biggest misconception in AI today is that the best model always produces the best results.
+
+It doesn't.
+
+The real advantage isn't the model. It's the system wrapped around it.
+
+After extensively testing Fable 5, Opus, and Sonnet across dynamic agent workflows, one insight stood out: when Fable planned the work and cheaper models executed it, the results were often nearly identical to using Fable end-to-end, but at a fraction of the cost.
+
+The trick is to extract Fable's reasoning process instead of relying on Fable itself.
+
+Instead of treating frontier models as expensive workers, treat them as senior architects that document their thinking for smaller models to reuse.
+
+The second unlock is model routing.
+
+Use your strongest model for planning, orchestration, and critical decisions, then delegate execution to faster, cheaper models wherever possible.
+
+As AI costs become a competitive advantage, the winners won't be the people with access to the smartest models.
+
+They'll be the ones who build the smartest systems around them.
+
+Watch the full video, then try implementing these workflows yourself. Owning the process will always outlast access to any single model.
+
+VIdeo Cred: Nate Herk (Youtube)</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/DamiDefi_2074465286238122485.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/DamiDefi/status/2074465286238122485" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@DamiDefi · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 9</span>
+    <span>🔁 20</span>
+    <span>❤️ 215</span>
+    <span>🔖 23K</span>
+    <span>👁 23.6K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/DamiDefi/status/2074465286238122485" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074399266404171989">
+  <div class="head">
+    <span class="name">RoundtableSpace</span>
+    <span class="uname">@RoundtableSpace</span>
+    
+    <span class="time">7/7 15:45</span>
+    <span class="badge heat" style="margin-left:8px">🔥 64</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.2d</span>
+  </div>
+  <div class="text text-zh">本周值得 star 的 6 个开源 AI Agent 仓库
+
+1. **agency-agents**
+   横跨 16 个团队的 232 个专业 AI Agent，一条命令即可安装。
+(https://t.co/sMx55VxwDk)
+
+2. **codebase-memory-mcp**
+   把你的整个代码库变成知识图谱，token 消耗直降 99% 以上。
+  (https://t.co/wElJiiEjja)
+
+3. **OpenMontage**
+   把你的编程 Agent 变身 AI 视频制作工作室。
+(https://t.co/Z5cv528Kru)
+
+4. **Agent-Reach**
+   让你的 AI Agent 直接逛 X、Reddit、YouTube、GitHub 等，无需付费 API。
+(https://t.co/SwmHlIwjuK)
+
+5. **orca**
+   在桌面和移动端并行运行多个编程 Agent。
+(https://t.co/LhtsWIMLNi)
+
+6. **OmniRoute**
+   一个端点打通 237 家 AI 提供商，包含 90 多个免费模型。
+(https://t.co/3ZcxcMgg20)</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">6 OPEN-SOURCE AI AGENT REPOS YOU SHOULD STAR THIS WEEK
+
+1. **agency-agents**
+   232 specialized AI agents across 16 teams, installable with one command.
+(https://t.co/sMx55VxwDk)
+
+2. **codebase-memory-mcp**
+   Turns your entire codebase into a knowledge graph and cuts token usage by 99%+.
+  (https://t.co/wElJiiEjja)
+
+3. **OpenMontage**
+   Transforms your coding agent into an AI video production studio.
+(https://t.co/Z5cv528Kru)
+
+4. **Agent-Reach**
+   Lets your AI agent browse X, Reddit, YouTube, GitHub, and more without paid APIs.
+(https://t.co/SwmHlIwjuK)
+
+5. **orca**
+   Runs multiple coding agents in parallel across desktop and mobile.
+(https://t.co/LhtsWIMLNi)
+
+6. **OmniRoute**
+   One endpoint for 237 AI providers, including 90+ free models.
+(https://t.co/3ZcxcMgg20)</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 16</span>
+    <span>🔁 27</span>
+    <span>❤️ 179</span>
+    <span>🔖 58K</span>
+    <span>👁 58.7K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/RoundtableSpace/status/2074399266404171989" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074482629181657574">
+  <div class="head">
+    <span class="name">DimaHolovatyi</span>
+    <span class="uname">@DimaHolovatyi</span>
+    
+    <span class="time">7/7 21:16</span>
+    <span class="badge heat" style="margin-left:8px">🔥 60</span>
+    <span class="badge age" style="margin-left:4px">⏱ 23.8h</span>
+  </div>
+  <div class="text text-zh">有人做了一套 AI，把照片直接变成电影级视频。
+
+大多数 Airbnb 房东都有同一个痛点：房子很漂亮，但营销素材拉胯。几张静态照片埋在上千条房源里，根本没法说服人下单。
+
+一个开发者看到了机会。他没去雇视频剪辑师，也没找 3D 艺术家，而是打开 Claude，花一个周末就自己搭了个 AI Agent。
+
+他给它安排了一个活：拿到一个 Airbnb 房源链接，分析每张照片，理解布局、家具、灯光和房间风格，然后生成一段电影级漫游视频，看起来就像有专业摄影师实拍一样。
+
+没相机，没无人机，没昂贵剪辑，全靠 AI。
+
+然后他开始把这种视频卖给 Airbnb 房东。房东发来一个房源链接，他的 AI Agent 就在不到 30 分钟内把照片变成完整的宣传片，配上镜头移动、真实灯光、音乐、字幕，做出一个打磨过的成片。
+
+每个视频定价 $150 到 $300。第一个月，他就靠 AI 自动跑出了 $10,000+。
+
+最疯狂的一点是？
+
+他卖的不是 AI，他卖的是一种『让房东在仍然只靠静态照片的市场里一眼就跳出来』的更快方式。
+
+下面这段视频里，你会看到启发整个系统的那个 Claude 工作流，以及一个 AI Agent 是怎么把普通的房源照片变成电影感营销视频的。
+
+你觉得 Airbnb 房源最后都会从纯照片升级到 AI 生成的视频吗？
+
+评论区说说你的看法。
+
+Follow @DimaHolovatyi，第一时间获取 AI 故事、自动化与商业灵感。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">He Built An AI That Turns Photos Into Cinematic Videos.
+
+Most Airbnb hosts have the same problem: they have beautiful properties, but terrible marketing. A few static photos buried among thousands of other listings rarely convince someone to book.
+
+One developer saw the opportunity. Instead of hiring video editors or 3D artists, he opened Claude and spent one weekend building his own AI agent.
+
+He gave it one job: take an Airbnb listing, analyze every photo, understand the layout, furniture, lighting, and room style, then generate a realistic cinematic walkthrough that looked like it was filmed by a professional videographer.
+
+No cameras. No drone shots. No expensive editing. Just AI.
+
+Then he started selling the videos to Airbnb hosts. A property owner would send a listing link, and his AI agent would turn the photos into a full promotional video with smooth camera movement, realistic lighting, music, captions, and a polished final edit in less than 30 minutes.
+
+He charged between $150 and $300 per video. Within the first month, he generated over $10,000 by letting the AI do most of the work.
+
+The craziest part?
+
+He wasn't selling AI. He was selling a faster way for property owners to stand out in a market where everyone still relies on static photos.
+
+In the video below, you'll see the Claude workflow that inspired the entire system and how one AI agent can turn ordinary listing photos into cinematic marketing videos.
+
+Do you think every Airbnb listing will eventually have an AI-generated video instead of just photos?
+
+Leave your thoughts in the comments.
+
+Follow @DimaHolovatyi for more AI stories, automation, and business ideas before everyone else catches on.</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/DimaHolovatyi_2074482629181657574.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/DimaHolovatyi/status/2074482629181657574" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@DimaHolovatyi · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 7</span>
+    <span>🔁 8</span>
+    <span>❤️ 210</span>
+    <span>🔖 7K</span>
+    <span>👁 8.0K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/DimaHolovatyi/status/2074482629181657574" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074350193815003288">
+  <div class="head">
+    <span class="name">Suraj_sharma14</span>
+    <span class="uname">@suraj_sharma14</span>
+    
+    <span class="time">7/7 12:30</span>
+    <span class="badge heat" style="margin-left:8px">🔥 55</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.4d</span>
+  </div>
+  <div class="text text-zh">如何搭建你的第一个 AI Agent（完整教程）
+
+先收藏，回头谢我！https://t.co/TllVY3p7IX</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">How to build your first AI agent (Full guide)  
+
+Bookmark this thank me later! https://t.co/TllVY3p7IX</div>
+  </details>
+  
+  <div class="media"><a href="https://x.com/suraj_sharma14/status/2074350193815003288" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto"><img src="https://pbs.twimg.com/media/HMe1Z4-acAA-223.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block"></a><div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/suraj_sharma14/status/2074350193815003288" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@suraj_sharma14 · 在 X 上查看原文 →</a></div></div>
+  <div class="stats">
+    <span>💬 4</span>
+    <span>🔁 30</span>
+    <span>❤️ 210</span>
+    <span>🔖 4K</span>
+    <span>👁 4.8K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/suraj_sharma14/status/2074350193815003288" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074559295660978521">
+  <div class="head">
+    <span class="name">Rohanpaul_ai</span>
+    <span class="uname">@rohanpaul_ai</span>
+    
+    <span class="time">7/8 02:20</span>
+    <span class="badge heat" style="margin-left:8px">🔥 40</span>
+    <span class="badge age" style="margin-left:4px">⏱ 18.7h</span>
+  </div>
+  <div class="text text-zh">Google Gemini 这套新工具给开发者搭生产级 AI Agent 加了一层 buff。
+
+也就是 Gemini API Managed Agents 现在离生产部署近了一大截：新增了后台任务、远程 MCP、函数调用、凭据刷新，以及 free-tier 访问。
+
+Managed Agents 是 Google 托管的 AI worker，在隔离的 Linux 沙箱里跑 antigravity-preview-05-2026。
+
+过去老的 Agent 应用经常在长任务超过一次普通 HTTP 请求时长时崩掉。
+
+这里的关键对象是『Interaction』。它保存了任务、模型的执行步骤、工具调用、工具结果以及最终输出。
+
+所以你不用再让应用自己手动记每一轮、每个工具结果和每个文件，这些都被 Google 在服务端追踪了。
+
+远程 MCP 让工具这一块玩法大变：Agent 可以不靠自定义代理就直连私有服务。
+
+企业现在可以把可观测性、数据库或内部 API 接到 Google Search 和代码执行旁边。
+
+Function calling 又加了一层分工：Google 跑沙箱工具，你的应用处理业务逻辑。
+
+Credential refresh 解决了一个生产痛点：短寿命 token 可以在不丢沙箱状态的前提下轮换。
+
+整体来说，Gemini API 现在不再像是一个模型端点，更像是一套 Agent 基础设施。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Google Gemini just gave developers much stronger tools for production AI agents.
+
+i.e. Gemini API Managed Agents now are much closer to production with new addition of background tasks, remote MCP, function calls, credential refresh, and free-tier access.
+
+Managed Agents are Google-hosted AI workers that run antigravity-preview-05-2026 inside an isolated Linux sandbox.
+
+Older agent apps often broke when a long task outlived a normal HTTP request.
+
+An &quot;Interaction&quot; is the important object here. It stores the task, the model’s steps, tool calls, tool results, and final output.
+
+So instead of your app manually tracking every turn, tool result, and file, Google tracks much of that server-side.
+
+Remote MCP support changes the tool story, because agents can contact private services without custom proxy glue.
+
+A company can now connect observability, databases, or internal APIs beside Google Search and code execution.
+
+Function calling adds another split, where Google runs sandbox tools and your app handles business logic.
+
+Credential refresh fixes a production pain, since short-lived tokens can rotate without losing sandbox state.
+
+Overall, this makes Gemini API feel less like a model endpoint and more like agent infrastructure.</div>
+  </details>
+  
+  <div class="media"><a href="https://x.com/rohanpaul_ai/status/2074559295660978521" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto"><img src="https://pbs.twimg.com/media/HMpQqv8bgAAXwPv.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block"></a><div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/rohanpaul_ai/status/2074559295660978521" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@rohanpaul_ai · 在 X 上查看原文 →</a></div></div>
+  <div class="stats">
+    <span>💬 18</span>
+    <span>🔁 11</span>
+    <span>❤️ 92</span>
+    <span>🔖 9K</span>
+    <span>👁 9.7K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/rohanpaul_ai/status/2074559295660978521" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+</section>
+<section id="vibe">
+  <h2>🎨 Vibe Coding</h2>
+  <p>8 条 · 24h 热门 · 按综合分 _score 降序</p>
+  <div class="tweet" id="tweet-2074462824294719587">
+  <div class="head">
+    <span class="name">Forgebitz</span>
+    <span class="uname">@forgebitz</span>
+    
+    <span class="time">7/7 19:57</span>
+    <span class="badge heat" style="margin-left:8px">🔥 181</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.0d</span>
+  </div>
+  <div class="text text-zh">vibe coding 最棒的一点是：再没人要求我用 8% 的股权去『再造一个 Facebook』了。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">the best thing about vibe coding is that no one is asking me to &quot;build the next facebook&quot; for a 8% stake anymore</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 42</span>
+    <span>🔁 16</span>
+    <span>❤️ 670</span>
+    <span>🔖 25K</span>
+    <span>👁 25.8K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/forgebitz/status/2074462824294719587" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074560710231589240">
+  <div class="head">
+    <span class="name">TyroneC__</span>
+    <span class="uname">@TyroneC__</span>
+    
+    <span class="time">7/8 02:26</span>
+    <span class="badge heat" style="margin-left:8px">🔥 88</span>
+    <span class="badge age" style="margin-left:4px">⏱ 18.6h</span>
+  </div>
+  <div class="text text-zh">我受够了自己最好的作品在文件夹里发霉。
+
+所以我自己搭了一个 playground。
+不是作品集，是一个真正能展示东西的地方。
+
+这个页面本身就是一个交互研究。
+
+全程用 Claude Code 写的。
+还在 WIP，偶尔有 bug，目前只支持桌面端。https://t.co/7iqXR7VaeA</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">I got tired of my best work rotting in folders.
+
+So I built my own playground. 
+Not a portfolio. A place to actually show the stuff.
+
+And the page itself is an interaction study.
+
+Built entirely with Claude Code. 
+WIP. Still slightly buggy. Desktop only for now. https://t.co/7iqXR7VaeA</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/TyroneC___2074560710231589240.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/TyroneC__/status/2074560710231589240" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@TyroneC__ · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 29</span>
+    <span>🔁 7</span>
+    <span>❤️ 254</span>
+    <span>🔖 11K</span>
+    <span>👁 11.3K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/TyroneC__/status/2074560710231589240" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074563652825514251">
+  <div class="head">
+    <span class="name">TechCrunch</span>
+    <span class="uname">@TechCrunch</span>
+    
+    <span class="time">7/8 02:38</span>
+    <span class="badge heat" style="margin-left:8px">🔥 47</span>
+    <span class="badge age" style="margin-left:4px">⏱ 18.4h</span>
+  </div>
+  <div class="text text-zh">Figma 收购了一家 vibe coding 应用背后的团队 https://t.co/Azy632pyeW</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Figma acquires team behind a vibe coding app https://t.co/Azy632pyeW</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 7</span>
+    <span>🔁 7</span>
+    <span>❤️ 93</span>
+    <span>🔖 46K</span>
+    <span>👁 46.2K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/TechCrunch/status/2074563652825514251" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074526128186753103">
+  <div class="head">
+    <span class="name">0xMovez</span>
+    <span class="uname">@0xMovez</span>
+    
+    <span class="time">7/8 00:09</span>
+    <span class="badge heat" style="margin-left:8px">🔥 47</span>
+    <span class="badge age" style="margin-left:4px">⏱ 20.9h</span>
+  </div>
+  <div class="text text-zh">Anthropic DevRel：
+
+「在 Anthropic，团队里有 90% 的人在 loops 和 automode 的加持下，进入『自动驾驶式写代码』。
+
+目前 Agent loop 生成的代码量已经超过 40%。3-6 个月之内，这个比例会涨到 60% 以上。」
+
+在这场 50 分钟的 workshop 里，Anthropic DevRel 和一位 Google 资深开发者一起揭秘了最实用的 Claude 玩法。
+
+比那些 $500 的 vibe coding 课程更值钱。
+
+auto-mode → loops → dynamic workflows
+
+今天就去看，再把下面这篇文章读一遍。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Anthropic DevRel:
+
+&quot;At Anthropic, 90% of our team writes code on autopilot with the help of loops and automode.
+
+Agentic loops generate more than 40% of our code right now. In 3-6 months, it will be &gt;60%.&quot;
+
+in 50-minute workshop, Anthropic DevRel reveal the best Claude life-hacks with senior Google developer.
+
+worth more than a $500 course on vibe coding.
+
+auto-mode → loops → dynamic workflows
+
+Watch it today, then read the article below.</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/0xMovez_2074526128186753103.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/0xMovez/status/2074526128186753103" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@0xMovez · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 13</span>
+    <span>🔁 11</span>
+    <span>❤️ 125</span>
+    <span>🔖 16K</span>
+    <span>👁 16.5K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/0xMovez/status/2074526128186753103" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074464872486871091">
+  <div class="head">
+    <span class="name">Divyyanshishrma</span>
+    <span class="uname">@Divyyanshishrma</span>
+    
+    <span class="time">7/7 20:05</span>
+    <span class="badge heat" style="margin-left:8px">🔥 41</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.0d</span>
+  </div>
+  <div class="text text-zh">Anthropic 的 Claude Code 团队刚刚演示了：如何在 30 分钟内自动化你的整个工程工作流。
+
+免费授课的还是亲手做出这套东西的人。
+
+他们刚刚放出了一段 20 分钟的演讲，完整拆解他们到底是怎么做的。
+
+比那些 $500 的 vibe coding 课程还要值钱。收藏这一条：https://t.co/S4YdBxWi8X</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Anthropic’s Claude Code team just showed how to automate your engineering workflow in under 30 minutes.
+
+Free. Taught by the people who built it.
+
+He just dropped a 20 min talk on exactly how he does it.
+
+Worth more than any $500 vibe coding course. Bookmark it: https://t.co/S4YdBxWi8X</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/Divyyanshishrma_2074464872486871091.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/Divyyanshishrma/status/2074464872486871091" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@Divyyanshishrma · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 10</span>
+    <span>🔁 22</span>
+    <span>❤️ 107</span>
+    <span>🔖 13K</span>
+    <span>👁 13.3K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/Divyyanshishrma/status/2074464872486871091" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074599338928407018">
+  <div class="head">
+    <span class="name">Googledevs</span>
+    <span class="uname">@googledevs</span>
+    
+    <span class="time">7/8 05:00</span>
+    <span class="badge heat" style="margin-left:8px">🔥 39</span>
+    <span class="badge age" style="margin-left:4px">⏱ 16.1h</span>
+  </div>
+  <div class="text text-zh">Vibe coding 即将进入 Android 开发领域。⚡️
+
+我们用 Gemini API 做了一个原生、独立的健身+待办事项 App，并通过 AI Studio 直接部署到了一台真机上。
+
+看完整一期：https://t.co/amBpHWUDtR https://t.co/stGYMGFmRp</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Vibe coding is coming to Android development. ⚡️
+
+We built a native, standalone fitness and to-do app (powered by the Gemini API) and deployed it directly to a physical device using AI Studio.
+
+Watch the full episode here: https://t.co/amBpHWUDtR https://t.co/stGYMGFmRp</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/googledevs_2074599338928407018.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/googledevs/status/2074599338928407018" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@googledevs · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 12</span>
+    <span>🔁 15</span>
+    <span>❤️ 69</span>
+    <span>🔖 13K</span>
+    <span>👁 13.3K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/googledevs/status/2074599338928407018" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074523982385041512">
+  <div class="head">
+    <span class="name">GoogleCloudTech</span>
+    <span class="uname">@GoogleCloudTech</span>
+    
+    <span class="time">7/8 00:00</span>
+    <span class="badge heat" style="margin-left:8px">🔥 29</span>
+    <span class="badge age" style="margin-left:4px">⏱ 21.0h</span>
+  </div>
+  <div class="text text-zh">Vibe coding 是通向企业级基础设施的快车道。本周的直播里，你会看到 AI Studio 如何一键集成 Cloud SQL &amp;amp; Firestore 来解决『Day 2』部署问题，并现场 vibe-code 一款 3D 多人游戏！
+
+https://t.co/jFNCZxuRv0</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Vibe coding is the on-ramp to enterprise infrastructure. On this week's livestream, see how AI Studio offers one-click integrations with Cloud SQL &amp;amp; Firestore to solve the &quot;Day 2&quot; deployment problem and watch us vibe-code a live 3D multiplayer game! 
+ https://t.co/jFNCZxuRv0</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 5</span>
+    <span>🔁 15</span>
+    <span>❤️ 61</span>
+    <span>🔖 10K</span>
+    <span>👁 11.0K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/GoogleCloudTech/status/2074523982385041512" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074145882539434124">
+  <div class="head">
+    <span class="name">Aditya_181105</span>
+    <span class="uname">@Aditya_181105</span>
+    
+    <span class="time">7/6 22:58</span>
+    <span class="badge heat" style="margin-left:8px">🔥 17</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.9d</span>
+  </div>
+  <div class="text text-zh">我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+我恨 VIBE CODING
+
+oh，我找到了最好的 prompt
+
+我爱 VIBE CODING</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+I HATE VIBE CODING
+
+oh, I found the best prompt
+
+I LOVE VIBE CODING</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 43</span>
+    <span>🔁 4</span>
+    <span>❤️ 82</span>
+    <span>🔖 4K</span>
+    <span>👁 4.5K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/Aditya_181105/status/2074145882539434124" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+</section>
 <section id="world">
-    <h2>🌍 世界模型</h2>
-    <p class="section-meta">6 条 · 按综合分 _score 降序 · 中文译版 + 原文折叠</p>
-    <div class="tweet" id="tweet-2074702989667787078">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1498070100393754625/C2V-fbll_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">DogeDesigner</span>
-      <span class="uname">@cb_doge</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 11:51</span><span class="badge heat" style="margin-left:8px">🔥 381</span><span class="badge age" style="margin-left:4px">⏱ 3.1h</span></div>
-    <div class="text text-zh">美国银行(Bank of America)Ron Epstein 今日谈 SpaceX:
-
-• SpaceX 是太空经济的基础使能者。
-
-• 这家公司的估值应该锚定 2045 年的潜力,而不是近期的盈利。
-
-• 它打造了全球领先的发射业务,在全球发射市场上占据主导地位。
-
-• 235 美元/股只是基础情形估值,乐观情形可能还要高得多。
-
-• “轨道算力”(orbital compute)可能成为它的下一块巨型业务。
-
-• 新技术会持续打开全新的市场。
-
-• 未来甚至可能自研并制造自己的 AI 芯片。
-
-• Tesla 的自动化能力可以用于太空制造。
-
-• Starship 是支撑公司长期愿景的关键技术。
-
-• Starship 是“宇宙之王”,就像当年的 747 是“天空之后”。</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">Ron Epstein of Bank of America on SpaceX today:
-
-• SpaceX is the foundational enabler of the space economy.
-
-• The company should be valued based on its 2045 potential, not near-term earnings.
-
-• The company has built the world’s leading launch franchise and dominates the global launch market.
-
-• $235/share is only the base-case valuation, the bull-case valuation could be significantly higher.
-
-• Orbital compute could become its next massive business.
-
-• New technologies will continue opening entirely new markets.
-
-• Could eventually design and manufacture its own AI chips.
-
-• Tesla’s automation could help enable manufacturing in space.
-
-• Starship is the key technology behind the company’s long-term vision.
-
-• Starship is the “king of the cosmos,” just as the 747 was the “queen of the skies.”</div>
-    </details>
-    <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/cb_doge_2074702989667787078.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/cb_doge/status/2074702989667787078" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@cb_doge · 在 X 上查看原文 →</a></div></div>
+  <h2>🌍 世界模型</h2>
+  <p>6 条 · 24h 热门 · 按综合分 _score 降序</p>
+  <div class="tweet" id="tweet-2074667120177111164">
+  <div class="head">
+    <span class="name">The_Kremlinn</span>
+    <span class="uname">@The_Kremlinn</span>
     
-    
-    <div class="stats"><span>💬 77</span><span>🔁 72</span><span>❤️ 318</span><span>🔖 20</span><span>👁 29.3K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/cb_doge/status/2074702989667787078" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+    <span class="time">7/8 09:29</span>
+    <span class="badge heat" style="margin-left:8px">🔥 98</span>
+    <span class="badge age" style="margin-left:4px">⏱ 11.6h</span>
   </div>
-<div class="tweet" id="tweet-2074667120177111164">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2064040458335010816/BGu2ZYBN_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Aaliyah | AI</span>
-      <span class="uname">@The_Kremlinn</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 09:29</span><span class="badge heat" style="margin-left:8px">🔥 105</span><span class="badge age" style="margin-left:4px">⏱ 5.5h</span></div>
-    <div class="text text-zh">我不只是看这只小猫咪……
+  <div class="text text-zh">我不只是看着这只小猫……
 
 我成了它的导演。🐱
 
-用 HappyOyster 1.0 的 Directing 模式,每个想法都能立刻变成画面。我能实时引导小猫的旅程,镜头会自然地跟着每个动作走,每一幕都像我在拍自己的动画电影。
+用 HappyOyster 1.0 的 Directing 模式，每个想法都能瞬间成真。我可以实时引导小猫的旅程，镜头自动适应每个动作，让每一幕都像是自己在拍一部动画电影。
 
-Adventure 模式更进一步。只需输入一句 prompt 或一张参考图,一个可交互的世界就会被立刻生成,让我自由探索。从漫步五颜六色的花园,到在阳光下的院子里追蝴蝶,每一刻都像活的。
+Adventure 模式更进一步。只需输入一句话 prompt，或者给一张参考图，就能立刻生成一个可以自由探索的交互世界。从漫步在花团锦簇的花园，到在阳光明媚的院子里追蝴蝶，每一刻都活灵活现。
 
-这已经不再是 AI 视频生成,而是一个真正的世界模型——故事不只是被“看”,而是被“体验”。
+这已经不只是 AI 视频生成了，它是一个真正的世界模型——故事不再是看的，而是被体验的。
 
-<a href="https://x.com/HappyOysterAI" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@HappyOysterAI</a> 正在把想象力变成可玩、可交互的世界,也让我们提前看到了未来的电影和游戏将如何被创造。
+@HappyOysterAI 正在把想象力变成可玩、可交互的世界，让我们看到未来的电影和游戏会怎么被创造出来。
 
-他们还办了一个 OySter Awards,创作者可以提交自己的可交互世界,被选中能当首页模板,还有现金奖。
-
-创造它、导演它、探索它 👇
-
-<a href="https://t.co/GYmGCWT9rr" target="_blank" rel="noopener">https://t.co/GYmGCWT9rr</a>
-
-<a href="https://x.com/hashtag/HappyOyster" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">#HappyOyster</a> <a href="https://x.com/hashtag/AIpet" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">#AIpet</a> <a href="https://x.com/hashtag/AI" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">#AI</a> <a href="https://x.com/hashtag/WorldModel" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">#WorldModel</a> <a href="https://x.com/hashtag/AIWorld" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">#AIWorld</a></div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">I didn&#39;t just watch this little kitten...
-
-I became its director. 🐱
-
-With HappyOyster 1.0&#39;s Directing mode, every idea instantly comes to life. I can guide the kitten&#39;s journey in real time while the camera naturally adapts to every movement, making each scene feel like I&#39;m filming my own animated movie.
-
-Adventure mode takes it even further. Just enter a prompt or use a reference image, and an interactive world is generated instantly for me to explore freely. From wandering through colorful flower gardens to chasing butterflies across sunny backyards, every moment feels alive.
-
-This isn&#39;t just AI video generation anymore, it&#39;s a true world model where stories aren&#39;t simply watched, they&#39;re experienced.
-
-<a href="https://x.com/HappyOysterAI" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@HappyOysterAI</a> is turning imagination into playable, interactive worlds, and it&#39;s giving us a glimpse of how future films and games will be created. 
-
-They&#39;re also hosting the OySter Awards, where creators can submit their interactive worlds for a chance to be featured as a homepage template and win cash prizes.
+他们也正在举办 OySter Awards，创作者可以提交自己的交互世界，有机会登上首页模板并拿到现金奖。
 
 Create it. Direct it. Explore it. 👇
 
-<a href="https://t.co/GYmGCWT9rr" target="_blank" rel="noopener">https://t.co/GYmGCWT9rr</a>
+https://t.co/GYmGCWT9rr
 
-<a href="https://x.com/hashtag/HappyOyster" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">#HappyOyster</a> <a href="https://x.com/hashtag/AIpet" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">#AIpet</a> <a href="https://x.com/hashtag/AI" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">#AI</a> <a href="https://x.com/hashtag/WorldModel" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">#WorldModel</a> <a href="https://x.com/hashtag/AIWorld" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">#AIWorld</a></div>
-    </details>
-    
-    
-    
-    <div class="stats"><span>💬 37</span><span>🔁 51</span><span>❤️ 55</span><span>🔖 1</span><span>👁 1.3K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/The_Kremlinn/status/2074667120177111164" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+#HappyOyster #AIpet #AI #WorldModel #AIWorld</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">I didn't just watch this little kitten...
+
+I became its director. 🐱
+
+With HappyOyster 1.0's Directing mode, every idea instantly comes to life. I can guide the kitten's journey in real time while the camera naturally adapts to every movement, making each scene feel like I'm filming my own animated movie.
+
+Adventure mode takes it even further. Just enter a prompt or use a reference image, and an interactive world is generated instantly for me to explore freely. From wandering through colorful flower gardens to chasing butterflies across sunny backyards, every moment feels alive.
+
+This isn't just AI video generation anymore, it's a true world model where stories aren't simply watched, they're experienced.
+
+@HappyOysterAI is turning imagination into playable, interactive worlds, and it's giving us a glimpse of how future films and games will be created. 
+
+They're also hosting the OySter Awards, where creators can submit their interactive worlds for a chance to be featured as a homepage template and win cash prizes.
+
+Create it. Direct it. Explore it. 👇
+
+https://t.co/GYmGCWT9rr
+
+#HappyOyster #AIpet #AI #WorldModel #AIWorld</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/The_Kremlinn_2074667120177111164.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/The_Kremlinn/status/2074667120177111164" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@The_Kremlinn · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 56</span>
+    <span>🔁 63</span>
+    <span>❤️ 75</span>
+    <span>🔖 11K</span>
+    <span>👁 11.8K</span>
   </div>
-<div class="tweet" id="tweet-2074577314428383431">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2070710476422438912/cBRjR3Eb_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Earth Is A Sales Funnel For SATAN</span>
-      <span class="uname">@GENIC0N</span>
-      <span class="verified">✓</span>
-      <span class="time">7/8 03:32</span><span class="badge heat" style="margin-left:8px">🔥 90</span><span class="badge age" style="margin-left:4px">⏱ 11.5h</span></div>
-    <div class="text text-zh">文明是一台“超虚构机器”,词语会在里面变成现实。你得管好自己的嘴,不然有一天你会希望那精灵从来没有从瓶子里跑出来 <a href="https://t.co/BTpTOSCjc1" target="_blank" rel="noopener">https://t.co/BTpTOSCjc1</a></div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">civilization is a hyperstition machine where words turn into realities, you need to watch what you say or you&#39;ll wish the genie had never escaped the lamp <a href="https://t.co/BTpTOSCjc1" target="_blank" rel="noopener">https://t.co/BTpTOSCjc1</a></div>
-    </details>
-    <div class="media"><img src="https://pbs.twimg.com/media/HMphEnhXMAAdriV.png" alt="media" loading="lazy"></div>
-    
-    
-    <div class="stats"><span>💬 6</span><span>🔁 15</span><span>❤️ 182</span><span>🔖 20</span><span>👁 3.7K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/GENIC0N/status/2074577314428383431" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/The_Kremlinn/status/2074667120177111164" target="_blank" rel="noopener">查看原文 →</a>
   </div>
-<div class="tweet" id="tweet-2074499817661731084">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1483577865056702469/rWA-3_T7_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Yann LeCun</span>
-      <span class="uname">@ylecun</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 22:24</span><span class="badge heat" style="margin-left:8px">🔥 84</span><span class="badge age" style="margin-left:4px">⏱ 16.6h</span></div>
-    <div class="text text-zh">超有趣的高密度讨论 🙏🙏🙏
-世界模型、JEPA 与生成式架构的对比、JEPA 自监督中防止坍缩的方法(对比学习、蒸馏、信息最大化),还有 SIGReg / LeJEPA / LeWM 的讲解。
-顺便聊了点 AMI Labs、Project Tapestry,以及 Lisp 和同像(homoiconic)语言 😅</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">Super-fun in-depth discussion 🙏🙏🙏
-World models, JEPA vs generative architectures, anti-collapse methods for JEPA SSL including contrastive, distillation, and information maximization methods, an explanation of SIGReg/LeJEPA/LeWM.
-Plus some bits on AMI Labs, Project Tapestry, as well as Lisp and homoiconic languages 😅</div>
-    </details>
+</div>
+<div class="tweet" id="tweet-2074813935807500785">
+  <div class="head">
+    <span class="name">LeRobotHF</span>
+    <span class="uname">@LeRobotHF</span>
     
-    
-    
-    <div class="stats"><span>💬 5</span><span>🔁 9</span><span>❤️ 203</span><span>🔖 107</span><span>👁 35.4K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/ylecun/status/2074499817661731084" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+    <span class="time">7/8 19:12</span>
+    <span class="badge heat" style="margin-left:8px">🔥 77</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.8h</span>
   </div>
-<div class="tweet" id="tweet-2074483206972166650">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/2072678909380804608/3eIwMcWH_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">Steeve Morin</span>
-      <span class="uname">@steeve</span>
-      
-      <span class="time">7/7 21:18</span><span class="badge heat" style="margin-left:8px">🔥 74</span><span class="badge age" style="margin-left:4px">⏱ 17.7h</span></div>
-    <div class="text text-zh">我们和 <a href="https://x.com/ylecun" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@ylecun</a> 坐下来,和 <a href="https://x.com/videolan" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@videolan</a> / <a href="https://x.com/FFmpeg" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@FFmpeg</a> 的 <a href="https://x.com/medjawii" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@medjawii</a> 和 JB Kempf 一起,聊了 1 小时 30 分钟的世界模型。
+  <div class="text text-zh">认识 VLA-JEPA，LeRobot 中的第一个世界模型策略 🌍
 
-这可能是这个话题有史以来最深的一次技术讨论。我们配上了英文字幕。
+大多数 VLA 只学『观测 → 动作』。VLA-JEPA 还会学『动作相关的动力学』：训练时，一个 JEPA 世界模型必须根据模型自身的动作在潜空间中预测接下来的帧；推理时，世界模型彻底消失，只剩一个标准、快速的 VLA：Qwen 主干 + action head，没有多余负担。
 
-链接在评论区 👇 <a href="https://t.co/MORPLbrKt1" target="_blank" rel="noopener">https://t.co/MORPLbrKt1</a></div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">We sat down with <a href="https://x.com/ylecun" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@ylecun</a> for a 1h30 discussion on world models <a href="https://x.com/medjawii" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@medjawii</a> and JB Kempf of <a href="https://x.com/videolan" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@videolan</a>/@FFmpeg.
+我们的 demo 只用了 13 条样本做微调，就在 NVIDIA DGX Spark 上实时运行。在消费级 RTX 3080 上，能跑到 10Hz，VRAM 占用不到 6GB。
 
-It&#39;s probably the deepest technical discussion on the subject ever recorded. And we added English subtitles.
+训练时用世界模型做监督，推理时零额外开销。这就是全部诀窍。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Meet VLA-JEPA, the first world model policy in LeRobot 🌍
 
-Link in comment 👇 <a href="https://t.co/MORPLbrKt1" target="_blank" rel="noopener">https://t.co/MORPLbrKt1</a></div>
-    </details>
-    <div class="media"><img src="https://pbs.twimg.com/media/HMoKTNzXEAAf0NX.jpg" alt="media" loading="lazy"></div>
-    
-    
-    <div class="stats"><span>💬 15</span><span>🔁 29</span><span>❤️ 156</span><span>🔖 184</span><span>👁 17.2K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/steeve/status/2074483206972166650" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+Most VLAs just learn observation → action. VLA-JEPA also learns action-relevant dynamics: during training, a JEPA world model has to predict upcoming frames in latent space from the model's own actions. Then, at inference, the world model disappears entirely, leaving a standard, fast VLA: Qwen backbone, action head, nothing extra.
+
+In our demo it was fine-tuned on just 13 examples and ran in real time on an NVIDIA DGX Spark. On a consumer RTX 3080, it hits 10Hz using under 6GB of VRAM.
+
+World-model supervision during training, zero extra cost at inference. That's the whole trick.</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/LeRobotHF_2074813935807500785.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/LeRobotHF/status/2074813935807500785" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@LeRobotHF · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 2</span>
+    <span>🔁 9</span>
+    <span>❤️ 73</span>
+    <span>🔖 2K</span>
+    <span>👁 2.5K</span>
   </div>
-<div class="tweet" id="tweet-2074356425430544819">
-    <div class="head"><img src="https://pbs.twimg.com/profile_images/1698572487909400576/BvncwnrP_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
-      <span class="name">The AI Timeline</span>
-      <span class="uname">@TheAITimeline</span>
-      <span class="verified">✓</span>
-      <span class="time">7/7 12:54</span><span class="badge heat" style="margin-left:8px">🔥 47</span><span class="badge age" style="margin-left:4px">⏱ 26.1h</span></div>
-    <div class="text text-zh">🚨 6 月必看的 AI/ML 论文:
-
-- Orca
-- Autodata
-- DSpark
-- Looped World Models
-- Qwen-AgentWorld
-- Tmax
-- Self-Harness
-- MiniMax Sparse Attention
-- You Don&#39;t Need Strong Assumptions
-- Variable-Width Transformers
-- FlashMemory-DeepSeek-V4
-- Scaling the Horizon, Not the Parameters
-- Is One Layer Enough?
-
-每篇都有概览 + 作者亲讲
-切到 thread 模式阅读体验最好</div>
-    <details class="en-details">
-      <summary>原文 (EN)</summary>
-      <div class="text text-en">🚨JUNE&#39;s top AI/ML research papers:
-
-- Orca
-- Autodata
-- DSpark
-- Looped World Models
-- Qwen-AgentWorld
-- Tmax
-- Self-Harness
-- MiniMax Sparse Attention
-- You Don&#39;t Need Strong Assumptions
-- Variable-Width Transformers
-- FlashMemory-DeepSeek-V4
-- Scaling the Horizon, Not the Parameters
-- Is One Layer Enough? 
-
-overview for each + authors&#39; explanations
-read this in thread mode for the best experience</div>
-    </details>
-    
-    
-    
-    <div class="stats"><span>💬 3</span><span>🔁 18</span><span>❤️ 154</span><span>🔖 146</span><span>👁 9.6K</span></div>
-    <div class="link-row">
-      <a class="orig-link" href="https://x.com/TheAITimeline/status/2074356425430544819" target="_blank" rel="noopener">查看原文 →</a>
-    </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/LeRobotHF/status/2074813935807500785" target="_blank" rel="noopener">查看原文 →</a>
   </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <h3>算法说明</h3>
-  <div class="algorithm">
-    <p><strong>热度(heat)</strong>:<code>likes + 2·retweets + replies + views/1000</code>。点赞权重为 1,转发权重为 2(扩散价值更高),评论与曝光按其原始量计入。</p>
-    <p><strong>新鲜度衰减</strong>:8 小时半衰期,采用软半衰期形式 <code>decay = 1 / (1 + ageHours/8)</code>。当 age=8h 时分数衰减为 1/2;age=24h 时衰减为 1/4。选用软半衰期而非严格指数衰减,是为了让 0–4h 内的年轻内容不至于被指数级压垮。</p>
-    <p><strong>综合分(_score)</strong>:<code>_score = heat × decay = heat / (1 + ageHours/8)</code>。同热度下发布时间越近分数越高,24h 窗口外的推文基本被压到不可见。</p>
-    <p><strong>排序</strong>:每条推文被分到 4 个分类(llm / agent / vibe / world)之一,在分类内按 <code>_score</code> 降序展示。卡片右上角的 <span class="badge heat">🔥 N</span> 即为该条推文的综合分,<span class="badge age">⏱ N.Nh</span> 为其年龄。</p>
+</div>
+<div class="tweet" id="tweet-2074495867449434389">
+  <div class="head">
+    <span class="name">Akashi203</span>
+    <span class="uname">@Akashi203</span>
+    
+    <span class="time">7/7 22:08</span>
+    <span class="badge heat" style="margin-left:8px">🔥 47</span>
+    <span class="badge age" style="margin-left:4px">⏱ 22.9h</span>
   </div>
-  <p style="margin-top: 20px;">生成于 2026-07-08 · 数据源 <code>twitter search --json --since 2026-07-07 -t top</code> via twitter-cli 0.8.5</p>
-  <p>采集账号 <code>@math_hyphen</code> · 代理 <code>http://127.0.0.1:7897</code> (Clash Verge) · HTTP 200 OK from x.com</p>
-  <p>Raw JSON: <code>C:/Users/hhhhhyphen/AppData/Local/Temp/x-rescrape/translated.json</code></p>
-</footer>
+  <div class="text text-zh">我们做出了 AGI 编译器
 
+它会观察你的 LLM Agent 工作流，找出那些『表面随机、实际确定』的环节，把它们编译成经过验证的二进制，运行时成本为零。
+
+LLM 只是第一个前端，世界模型和新的模型类型都接同一套工具链，所以这叫『编译器』。
+
+同样 300 个任务，同样一套验证过的答案，成本只有原来的 1/6.4。
+
+paper 和代码放在文末</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">we built the agi compiler
+
+it watches your llm agent work, finds the parts that are secretly deterministic, and compiles them into verified binaries that cost nothing to run
+
+llms are just the first frontend, world models and new model types plug into the same toolchain, that's why it's a compiler
+
+same 300 tasks, same verified answers, 6.4x less money
+
+paper + code at the end</div>
+  </details>
+  
+  <div class="media"><a href="https://x.com/Akashi203/status/2074495867449434389" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto"><img src="https://pbs.twimg.com/media/HMoUfdUXwAAGBWn.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block"></a><div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/Akashi203/status/2074495867449434389" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@Akashi203 · 在 X 上查看原文 →</a></div></div>
+  <div class="stats">
+    <span>💬 11</span>
+    <span>🔁 17</span>
+    <span>❤️ 123</span>
+    <span>🔖 19K</span>
+    <span>👁 19.6K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/Akashi203/status/2074495867449434389" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074506695162663172">
+  <div class="head">
+    <span class="name">SpAItial_AI</span>
+    <span class="uname">@SpAItial_AI</span>
+    
+    <span class="time">7/7 22:51</span>
+    <span class="badge heat" style="margin-left:8px">🔥 44</span>
+    <span class="badge age" style="margin-left:4px">⏱ 22.2h</span>
+  </div>
+  <div class="text text-zh">我们最强的世界模型 Echo，可以用极稀疏的输入重建出高质量场景，并基于世界知识补全缺失区域。
+
+这意味着做几何一致、可漫游的多房间重建，所需的采集、数据和准备工作都少得多。
+
+我们已经迫不及待要分享它了。公测版本即将发布</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Our SOTA world model, Echo, reconstructs high-quality scenes from sparse inputs and fills missing areas using its world knowledge.
+
+That means far less capture, data, and prep to produce geometrically consistent, multi-room reconstructions.
+
+We can’t wait to share it. Public release coming soon</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/SpAItial_AI_2074506695162663172.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/SpAItial_AI/status/2074506695162663172" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@SpAItial_AI · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 5</span>
+    <span>🔁 20</span>
+    <span>❤️ 117</span>
+    <span>🔖 7K</span>
+    <span>👁 7.2K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/SpAItial_AI/status/2074506695162663172" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074537669468787028">
+  <div class="head">
+    <span class="name">Npceo_</span>
+    <span class="uname">@npceo_</span>
+    
+    <span class="time">7/8 00:54</span>
+    <span class="badge heat" style="margin-left:8px">🔥 29</span>
+    <span class="badge age" style="margin-left:4px">⏱ 20.1h</span>
+  </div>
+  <div class="text text-zh">目前用过最强的实时世界模型。
+
+顺便把 Minecraft 测试也直接打爆 —— 和真游戏几乎分不出来。 https://t.co/Z08khq4bsG</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">best real time world model i've used so far. 
+
+totally smashes the minecraft test btw - indistinguishable from the real game. https://t.co/Z08khq4bsG</div>
+  </details>
+  <div class="media"><div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative"><video src="videos/npceo__2074537669468787028.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video></div><div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right"><a href="https://x.com/npceo_/status/2074537669468787028" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@npceo_ · 在 X 上查看原文 →</a></div></div>
+  
+  <div class="stats">
+    <span>💬 1</span>
+    <span>🔁 5</span>
+    <span>❤️ 78</span>
+    <span>🔖 12K</span>
+    <span>👁 12.7K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/npceo_/status/2074537669468787028" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2074341818167349684">
+  <div class="head">
+    <span class="name">Du_yilun</span>
+    <span class="uname">@du_yilun</span>
+    
+    <span class="time">7/7 11:56</span>
+    <span class="badge heat" style="margin-left:8px">🔥 23</span>
+    <span class="badge age" style="margin-left:4px">⏱ 1.4d</span>
+  </div>
+  <div class="text text-zh">很兴奋能在本周的 @icmlconf 上分享我们的工作：为一个面向机器人规划的 4D 预测世界模型！
+
+我们构建了一个紧凑的 3D 潜空间，可以直接解码出 3D 场景，并推理出夹爪位姿。这个 3D 先验让我们能泛化到前所未见的视角。</div>
+  <details class="en-details">
+    <summary>原文 (EN)</summary>
+    <div class="text text-en">Excited to share our work at @icmlconf this week on constructing a 4D predictive world model for robot planning!
+
+We construct a compact 3D latent space that allows to directly decode a 3D scene and infer the gripper pose. The 3D bias allows us to generalize novel viewpoints.</div>
+  </details>
+  
+  
+  <div class="stats">
+    <span>💬 3</span>
+    <span>🔁 7</span>
+    <span>❤️ 93</span>
+    <span>🔖 10K</span>
+    <span>👁 10.2K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/du_yilun/status/2074341818167349684" target="_blank" rel="noopener">查看原文 →</a>
+  </div>
+</div>
+</section>
+
+  <footer>
+    <h2>📐 算法说明</h2>
+    <p><strong>热度分</strong> = likes + 2·retweets + 0.5·replies + 0.001·views</p>
+    <p><strong>新鲜度</strong> = 1 / (1 + ageHours/8)  (8 小时软半衰期)</p>
+    <p><strong>综合分</strong> = 热度 × 新鲜度</p>
+    <p>每个分类保留 top 8（世界模型 top 6），按综合分降序</p>
+    <p>视频: 11 个 · 本地下载 + ffmpeg 压缩到 10s 480p</p>
+  </footer>
 </div>
 </body>
 </html>
