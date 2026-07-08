@@ -51,11 +51,11 @@ h2 { margin: 36px 0 12px; font-size: 22px; }
   box-shadow: 0 4px 12px rgba(31, 41, 51, 0.06);
   position: relative;
 }
-.tweet .head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
-.tweet .name { font-weight: 600; color: var(--ink); }
-.tweet .uname { color: var(--muted); font-size: 13px; }
-.tweet .verified { color: var(--teal); font-size: 12px; font-weight: 700; }
-.tweet .time { color: var(--muted); font-size: 12px; margin-left: auto; }
+.tweet .head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-height: 32px; }
+.tweet .name { font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px; flex-shrink: 1; min-width: 0; }
+.tweet .uname { color: var(--muted); font-size: 13px; flex-shrink: 0; }
+.tweet .verified { color: var(--teal); font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.tweet .time { color: var(--muted); font-size: 12px; margin-left: auto; flex-shrink: 0; white-space: nowrap; }
 .tweet .text { white-space: pre-wrap; word-wrap: break-word; font-size: 15px; }
 .tweet .text a { color: var(--blue); }
 .tweet .text-zh { font-size: 15.5px; }
@@ -160,7 +160,7 @@ h2 { margin: 36px 0 12px; font-size: 22px; }
       <span class="badge age">⏱ 13.4h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1950950107937185792/QOfEjFoJ_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1950950107937185792/QOfEjFoJ_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Claude</span>
       <span class="uname">@claudeai</span>
       <span class="verified">✓</span>
@@ -185,7 +185,7 @@ h2 { margin: 36px 0 12px; font-size: 22px; }
       <span class="badge age">⏱ 11.9h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">ClaudeDevs</span>
       <span class="uname">@ClaudeDevs</span>
       <span class="verified">✓</span>
@@ -218,7 +218,7 @@ If you&#39;re a maintainer, a core contributor, someone landing PRs across the e
       <span class="badge age">⏱ 14.5h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2005664281002491904/bz2ZO_nU_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2005664281002491904/bz2ZO_nU_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Polymarket</span>
       <span class="uname">@Polymarket</span>
       <span class="verified">✓</span>
@@ -243,7 +243,7 @@ If you&#39;re a maintainer, a core contributor, someone landing PRs across the e
       <span class="badge age">⏱ 20.6h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2010392290590912512/x7vtAe5W_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2010392290590912512/x7vtAe5W_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Avid</span>
       <span class="uname">@Av1dlive</span>
       <span class="verified">✓</span>
@@ -292,7 +292,7 @@ save and bookmark it no matter what</div>
       <span class="badge age">⏱ 17.0h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1702611993327251456/PUUuOA4W_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1702611993327251456/PUUuOA4W_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Liquid AI</span>
       <span class="uname">@liquidai</span>
       <span class="verified">✓</span>
@@ -333,7 +333,7 @@ Doom-loop rates before and after, with eval scores up across the board:
       <span class="badge age">⏱ 11.3h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2046510439945945088/9BOWrRqY_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2046510439945945088/9BOWrRqY_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Shiv</span>
       <span class="uname">@shivsakhuja</span>
       <span class="verified">✓</span>
@@ -378,7 +378,7 @@ Comment Goose below and I&#39;ll send you the skill.</div>
       <span class="badge age">⏱ 14.4h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1745893660099592193/MmYemsw6_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1745893660099592193/MmYemsw6_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">elie</span>
       <span class="uname">@eliebakouch</span>
       <span class="verified">✓</span>
@@ -414,7 +414,7 @@ We found a strikingly similar divide inside Claude. https://t…</div>
       <span class="badge age">⏱ 10.9h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2005664281002491904/bz2ZO_nU_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2005664281002491904/bz2ZO_nU_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Polymarket</span>
       <span class="uname">@Polymarket</span>
       <span class="verified">✓</span>
@@ -443,7 +443,7 @@ We found a strikingly similar divide inside Claude. https://t…</div>
       <span class="badge age">⏱ 14.8h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2054197823738871808/3M0Lf362_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2054197823738871808/3M0Lf362_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Codez</span>
       <span class="uname">@0xCodez</span>
       <span class="verified">✓</span>
@@ -488,7 +488,7 @@ Watch today, then read article below on how to build a self-improving agentic sy
       <span class="badge age">⏱ 23.0h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2049206796355829760/YsDV4Obo_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2049206796355829760/YsDV4Obo_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">AITECH CLOUD NETWORK</span>
       <span class="uname">@AITECHio</span>
       <span class="verified">✓</span>
@@ -543,7 +543,7 @@ Maybe it&#39;s software you never have to open.</div>
       <span class="badge age">⏱ 12.4h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1634313760444751873/QfwY91Hp_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1634313760444751873/QfwY91Hp_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Anatoli Kopadze</span>
       <span class="uname">@AnatoliKopadze</span>
       <span class="verified">✓</span>
@@ -587,7 +587,7 @@ Watch today, then go to the guide that explains everything you have to know abou
       <span class="badge age">⏱ 13.2h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1955709395553124352/b_NlfUL__normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1955709395553124352/b_NlfUL__normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">The Startup Ideas Podcast (SIP) 🦃</span>
       <span class="uname">@startupideaspod</span>
       <span class="verified">✓</span>
@@ -657,7 +657,7 @@ Winners prove the AI works with copy-paste before they write a single line.</div
       <span class="badge age">⏱ 19.1h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2071329071645048832/2xq-8Bqv_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2071329071645048832/2xq-8Bqv_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Jimmy Neuron 💡</span>
       <span class="uname">@Neuron_404</span>
       <span class="verified">✓</span>
@@ -717,7 +717,7 @@ Follow me so you don&#39;t miss out on trends in the world of AI.</div>
       <span class="badge age">⏱ 18.9h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1964533406399942657/6mf-WCsr_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1964533406399942657/6mf-WCsr_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Dami-Defi</span>
       <span class="uname">@DamiDefi</span>
       <span class="verified">✓</span>
@@ -793,7 +793,7 @@ VIdeo Cred: Nate Herk (Youtube)</div>
       <span class="badge age">⏱ 15.3h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2012162102283407360/U-fPj6wg_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2012162102283407360/U-fPj6wg_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">0xMarioNawfal</span>
       <span class="uname">@RoundtableSpace</span>
       <span class="verified">✓</span>
@@ -828,7 +828,7 @@ Repo: <a href="https://t.co/qK74xq2gnD" target="_blank" rel="noopener">https://t
       <span class="badge age">⏱ 3.3h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2030902400685637632/HJ0CT3i8_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2030902400685637632/HJ0CT3i8_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Dharmik Harinkhede</span>
       <span class="uname">@AiwithDharmik</span>
       <span class="verified">✓</span>
@@ -983,7 +983,7 @@ If you’d love to see more content like this, don’t forget to follow <a href=
       <span class="badge age">⏱ 25.2h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2035229727414534145/aWap3Jbq_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2035229727414534145/aWap3Jbq_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">CyrilXBT</span>
       <span class="uname">@cyrilXBT</span>
       <span class="verified">✓</span>
@@ -1059,7 +1059,7 @@ Build it tonight. Follow <a href="https://x.com/cyrilXBT" target="_blank" rel="n
       <span class="badge age">⏱ 7.0h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1755983593925378048/kYutau0B_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1755983593925378048/kYutau0B_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Cointelegraph</span>
       <span class="uname">@Cointelegraph</span>
       <span class="verified">✓</span>
@@ -1085,7 +1085,7 @@ Build it tonight. Follow <a href="https://x.com/cyrilXBT" target="_blank" rel="n
       <span class="badge age">⏱ 11.5h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2042194820643291136/a7VPl8re_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2042194820643291136/a7VPl8re_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">angel</span>
       <span class="uname">@angeldot_</span>
       <span class="verified">✓</span>
@@ -1207,7 +1207,7 @@ Enlace abajo 👇</div>
       <span class="badge age">⏱ 10.4h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1971239347115450368/Ul-xn5JD_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1971239347115450368/Ul-xn5JD_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">0xDesigner</span>
       <span class="uname">@0xDesigner</span>
       <span class="verified">✓</span>
@@ -1236,7 +1236,7 @@ i hope this isn&#39;t a bug that the cursor team finds and fixes because of this
       <span class="badge age">⏱ 23.5h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2004508280035373056/c-gQujkd_normal.png" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2004508280035373056/c-gQujkd_normal.png" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">ChainGPT</span>
       <span class="uname">@Chain_GPT</span>
       <span class="verified">✓</span>
@@ -1277,7 +1277,7 @@ We&#39;re LIVE in 30 minutes!
       <span class="badge age">⏱ 12.9h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1816185267037859840/Fd18CH0v_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1816185267037859840/Fd18CH0v_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Rohan Paul</span>
       <span class="uname">@rohanpaul_ai</span>
       <span class="verified">✓</span>
@@ -1322,7 +1322,7 @@ bloomberg .com/news/articles/2026-07-07/microsoft-replaces-openai-anthropic-with
       <span class="badge age">⏱ 24.6h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2043255869513601025/wFHeLjZX_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2043255869513601025/wFHeLjZX_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Miles Deutscher</span>
       <span class="uname">@milesdeutscher</span>
       <span class="verified">✓</span>
@@ -1434,7 +1434,7 @@ https://t.co/XVQ6JpjYCy https://t.co</div>
       <span class="badge age">⏱ 23.0h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2034559748574466048/ExKH5MXt_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2034559748574466048/ExKH5MXt_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Brooks Whale X 🐋</span>
       <span class="uname">@BrooksWhaleX</span>
       <span class="verified">✓</span>
@@ -1472,7 +1472,7 @@ We have automated coding. Now this plugin helps us take better care of ourselves
       <span class="badge age">⏱ 3.1h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1498070100393754625/C2V-fbll_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1498070100393754625/C2V-fbll_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">DogeDesigner</span>
       <span class="uname">@cb_doge</span>
       <span class="verified">✓</span>
@@ -1537,7 +1537,7 @@ We have automated coding. Now this plugin helps us take better care of ourselves
       <span class="badge age">⏱ 5.5h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2064040458335010816/BGu2ZYBN_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2064040458335010816/BGu2ZYBN_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Aaliyah | AI</span>
       <span class="uname">@The_Kremlinn</span>
       <span class="verified">✓</span>
@@ -1598,7 +1598,7 @@ Create it. Direct it. Explore it. 👇
       <span class="badge age">⏱ 11.5h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2070710476422438912/cBRjR3Eb_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2070710476422438912/cBRjR3Eb_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Earth Is A Sales Funnel For SATAN</span>
       <span class="uname">@GENIC0N</span>
       <span class="verified">✓</span>
@@ -1623,7 +1623,7 @@ Create it. Direct it. Explore it. 👇
       <span class="badge age">⏱ 16.6h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1483577865056702469/rWA-3_T7_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1483577865056702469/rWA-3_T7_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Yann LeCun</span>
       <span class="uname">@ylecun</span>
       <span class="verified">✓</span>
@@ -1652,7 +1652,7 @@ Plus some bits on AMI Labs, Project Tapestry, as well as Lisp and homoiconic lan
       <span class="badge age">⏱ 17.7h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/2072678909380804608/3eIwMcWH_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/2072678909380804608/3eIwMcWH_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">Steeve Morin</span>
       <span class="uname">@steeve</span>
       
@@ -1685,7 +1685,7 @@ Link in comment 👇 <a href="https://t.co/MORPLbrKt1" target="_blank" rel="noop
       <span class="badge age">⏱ 26.1h</span>
     </div>
     <div class="head">
-      <img src="https://pbs.twimg.com/profile_images/1698572487909400576/BvncwnrP_normal.jpg" alt="" loading="lazy" style="width:24px;height:24px;border-radius:50%;margin-right:6px;vertical-align:middle;border:1px solid var(--line)">
+      <img src="https://pbs.twimg.com/profile_images/1698572487909400576/BvncwnrP_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
       <span class="name">The AI Timeline</span>
       <span class="uname">@TheAITimeline</span>
       <span class="verified">✓</span>
