@@ -89,8 +89,15 @@ def media_block(it):
         if local.exists() and local.stat().st_size > 5000:
             return (
                 f'<div class="media">\n'
-                f'  <div class="video-frame">\n'
-                f'    <video src="videos/{fn}" controls preload="metadata" playsinline></video>\n'
+                f'  <div class="video-frame" data-fallback="{xurl}">\n'
+                f'    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">\n'
+                f'      <source src="videos/{fn}" type="video/mp4">\n'
+                f'    </video>\n'
+                f'    <div class="video-fallback" style="display:none">\n'
+                f'      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>\n'
+                f'      <a href="videos/{fn}" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>\n'
+                f'      <a href="{xurl}" target="_blank" rel="noopener">▶ 在 X 上观看</a>\n'
+                f'    </div>\n'
                 f'  </div>\n'
                 f'  <div class="media-meta"><a href="{xurl}" target="_blank" rel="noopener">@{esc(screen)} · 在 X 上查看原文 →</a></div>\n'
                 f'</div>'
@@ -780,12 +787,18 @@ body {{
   font-size: 15px;
 }}
 .cards-grid {{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 24px;
 }}
+.tweet-card {{
+  width: calc(50% - 12px);
+  flex: 0 0 auto;
+}}
 @media (max-width: 820px) {{
-  .cards-grid {{ grid-template-columns: 1fr; }}
+  .cards-grid {{ display: flex; }}
+  .tweet-card {{ width: 100%; }}
 }}
 
 /* === Tweet cards === */
@@ -975,12 +988,43 @@ body {{
   overflow: hidden;
   border: 1px solid var(--line);
   background: #000;
+  position: relative;
 }}
 .video-frame video {{
   width: 100%;
+  max-height: 420px;
   display: block;
-  aspect-ratio: 16/9;
-  object-fit: cover;
+  object-fit: contain;
+  background: #000;
+}}
+.video-fallback {{
+  padding: 18px;
+  text-align: center;
+  background: rgba(0,0,0,0.55);
+  border-radius: var(--radius-sm);
+}}
+.video-fallback p {{
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}}
+.video-fallback a {{
+  display: inline-block;
+  margin: 4px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}}
+.video-fallback a:hover {{
+  background: rgba(255,255,255,0.15);
+  border-color: var(--cyan);
 }}
 .video-thumb {{
   display: inline-flex;
@@ -1336,6 +1380,15 @@ const FEED_DATA = {items_json};
     else animate();
   }});
 }})();
+
+// === Video error fallback ===
+function handleVideoError(video) {{
+  const frame = video.closest('.video-frame');
+  if (!frame) return;
+  video.style.display = 'none';
+  const fallback = frame.querySelector('.video-fallback');
+  if (fallback) fallback.style.display = 'block';
+}}
 
 // === 3D tilt cards ===
 document.querySelectorAll('.tweet-card').forEach(card => {{
