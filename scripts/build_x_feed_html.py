@@ -297,8 +297,8 @@ def render_sidebar(current_date):
     for d in dates:
         cls = "date-link current" if d == current_date else "date-link"
         badge = ' <span class="date-badge">今日</span>' if d == current_date else ""
-        desktop_links.append(f'        <a href="/{d}.html" class="{cls}">{d}{badge}</a>')
-        mobile_links.append(f'<a href="/{d}.html" class="{cls}">{d}{badge}</a>')
+        desktop_links.append(f'        <a href="/reports/{d}.html" class="{cls}">{d}{badge}</a>')
+        mobile_links.append(f'<a href="/reports/{d}.html" class="{cls}">{d}{badge}</a>')
     desktop = "\n".join([
         '  <aside class="sidebar" aria-label="历史日报">',
         '    <div class="sidebar-header">',
