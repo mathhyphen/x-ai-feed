@@ -273,6 +273,54 @@ contrib_html = "\n".join(
     for k, v in top_contrib
 )
 
+# Sidebar helpers
+def get_available_dates():
+    """Scan deployed reports/ directory for historical daily issues."""
+    repo = Path(r"D:/project/papers/neurovfm/x-ai-feed-repo")
+    reports_dir = repo / "reports"
+    dates = []
+    if reports_dir.exists():
+        for f in reports_dir.glob("*.html"):
+            m = re.match(r"(\d{4}-\d{2}-\d{2})\.html", f.name)
+            if m:
+                dates.append(m.group(1))
+    return sorted(set(dates), reverse=True)
+
+
+def render_sidebar(current_date):
+    dates = get_available_dates()
+    if current_date not in dates:
+        dates.insert(0, current_date)
+    dates = sorted(set(dates), reverse=True)
+    desktop_links = []
+    mobile_links = []
+    for d in dates:
+        cls = "date-link current" if d == current_date else "date-link"
+        badge = ' <span class="date-badge">今日</span>' if d == current_date else ""
+        desktop_links.append(f'        <a href="/{d}.html" class="{cls}">{d}{badge}</a>')
+        mobile_links.append(f'<a href="/{d}.html" class="{cls}">{d}{badge}</a>')
+    desktop = "\n".join([
+        '  <aside class="sidebar" aria-label="历史日报">',
+        '    <div class="sidebar-header">',
+        '      <span class="sidebar-icon" aria-hidden="true">\u2630</span>',
+        '      <span>历史日报</span>',
+        '    </div>',
+        '    <nav class="sidebar-nav">',
+        *desktop_links,
+        '    </nav>',
+        '  </aside>',
+    ])
+    mobile = "\n".join([
+        '  <div class="mobile-dates" aria-label="历史日报">',
+        '    <span class="mobile-dates-label">历史日报</span>',
+        '    <nav class="mobile-dates-nav">',
+        *mobile_links,
+        '    </nav>',
+        '  </div>',
+    ])
+    return "\n" + desktop + "\n" + mobile
+
+
 # Items JSON for JS
 items_json = json.dumps(items, ensure_ascii=False, separators=(",", ":"))
 
@@ -598,12 +646,116 @@ body {{
 }}
 
 /* === Main layout === */
-.main {{
+.page-layout {{
   position: relative;
   z-index: 1;
-  padding: 0 4vw 8vw;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 4vw 8vw;
+}}
+.main {{
+  min-width: 0;
+}}
+
+/* === Sidebar === */
+.sidebar {{
+  position: sticky;
+  top: 84px;
+  height: calc(100vh - 104px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-sm);
+}}
+.sidebar-header {{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}}
+.sidebar-icon {{
+  font-size: 14px;
+}}
+.sidebar-nav {{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}}
+.date-link {{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  font-family: var(--mono);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}}
+.date-link:hover {{
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border-color: var(--line);
+}}
+.date-link.current {{
+  background: rgba(6,182,212,0.12);
+  color: var(--cyan);
+  border-color: rgba(6,182,212,0.35);
+  font-weight: 700;
+}}
+.date-badge {{
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--cyan);
+  color: #000;
+  font-weight: 800;
+  font-family: var(--font);
+}}
+
+/* === Mobile dates === */
+.mobile-dates {{
+  display: none;
+  margin-bottom: 20px;
+}}
+.mobile-dates-label {{
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}}
+.mobile-dates-nav {{
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+  scrollbar-width: none;
+}}
+.mobile-dates-nav::-webkit-scrollbar {{ display: none; }}
+.mobile-dates-nav .date-link {{
+  flex: 0 0 auto;
+  white-space: nowrap;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
 }}
 
 /* === Dashboard === */
@@ -1205,6 +1357,9 @@ body {{
   .panel {{ padding: 18px; }}
   .card-head {{ flex-wrap: wrap; }}
   .score-badge {{ width: 100%; flex-direction: row; justify-content: space-between; padding-top: 12px; margin-left: 0; }}
+  .page-layout {{ grid-template-columns: 1fr; padding: 0 3vw 8vw; gap: 16px; }}
+  .sidebar {{ display: none; }}
+  .mobile-dates {{ display: block; }}
 }}
 
 /* === Reduced motion === */
@@ -1248,7 +1403,9 @@ body {{
   </div>
 </nav>
 
-<main class="main">
+<div class="page-layout">
+{render_sidebar(TODAY)}
+  <main class="main">
   <section class="dashboard" aria-label="数据概览">
     <div class="panel">
       <div class="panel-title">今日概览</div>
@@ -1270,7 +1427,8 @@ body {{
   </section>
 
 {sections_html}
-</main>
+  </main>
+</div>
 
 <footer class="footer">
   <p>AI HORIZON · X AI 日报 · {TODAY} · 生成于 {gen_bj}</p>

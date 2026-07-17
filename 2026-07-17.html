@@ -317,12 +317,116 @@ body {
 }
 
 /* === Main layout === */
-.main {
+.page-layout {
   position: relative;
   z-index: 1;
-  padding: 0 4vw 8vw;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 4vw 8vw;
+}
+.main {
+  min-width: 0;
+}
+
+/* === Sidebar === */
+.sidebar {
+  position: sticky;
+  top: 84px;
+  height: calc(100vh - 104px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-sm);
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.sidebar-icon {
+  font-size: 14px;
+}
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.date-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  font-family: var(--mono);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.date-link:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border-color: var(--line);
+}
+.date-link.current {
+  background: rgba(6,182,212,0.12);
+  color: var(--cyan);
+  border-color: rgba(6,182,212,0.35);
+  font-weight: 700;
+}
+.date-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--cyan);
+  color: #000;
+  font-weight: 800;
+  font-family: var(--font);
+}
+
+/* === Mobile dates === */
+.mobile-dates {
+  display: none;
+  margin-bottom: 20px;
+}
+.mobile-dates-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.mobile-dates-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+  scrollbar-width: none;
+}
+.mobile-dates-nav::-webkit-scrollbar { display: none; }
+.mobile-dates-nav .date-link {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
 }
 
 /* === Dashboard === */
@@ -924,6 +1028,9 @@ body {
   .panel { padding: 18px; }
   .card-head { flex-wrap: wrap; }
   .score-badge { width: 100%; flex-direction: row; justify-content: space-between; padding-top: 12px; margin-left: 0; }
+  .page-layout { grid-template-columns: 1fr; padding: 0 3vw 8vw; gap: 16px; }
+  .sidebar { display: none; }
+  .mobile-dates { display: block; }
 }
 
 /* === Reduced motion === */
@@ -991,7 +1098,42 @@ body {
   </div>
 </nav>
 
-<main class="main">
+<div class="page-layout">
+
+  <aside class="sidebar" aria-label="历史日报">
+    <div class="sidebar-header">
+      <span class="sidebar-icon" aria-hidden="true">☰</span>
+      <span>历史日报</span>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="/2026-07-17.html" class="date-link current">2026-07-17 <span class="date-badge">今日</span></a>
+        <a href="/2026-07-16.html" class="date-link">2026-07-16</a>
+        <a href="/2026-07-15.html" class="date-link">2026-07-15</a>
+        <a href="/2026-07-14.html" class="date-link">2026-07-14</a>
+        <a href="/2026-07-13.html" class="date-link">2026-07-13</a>
+        <a href="/2026-07-12.html" class="date-link">2026-07-12</a>
+        <a href="/2026-07-11.html" class="date-link">2026-07-11</a>
+        <a href="/2026-07-10.html" class="date-link">2026-07-10</a>
+        <a href="/2026-07-09.html" class="date-link">2026-07-09</a>
+        <a href="/2026-07-08.html" class="date-link">2026-07-08</a>
+    </nav>
+  </aside>
+  <div class="mobile-dates" aria-label="历史日报">
+    <span class="mobile-dates-label">历史日报</span>
+    <nav class="mobile-dates-nav">
+<a href="/2026-07-17.html" class="date-link current">2026-07-17 <span class="date-badge">今日</span></a>
+<a href="/2026-07-16.html" class="date-link">2026-07-16</a>
+<a href="/2026-07-15.html" class="date-link">2026-07-15</a>
+<a href="/2026-07-14.html" class="date-link">2026-07-14</a>
+<a href="/2026-07-13.html" class="date-link">2026-07-13</a>
+<a href="/2026-07-12.html" class="date-link">2026-07-12</a>
+<a href="/2026-07-11.html" class="date-link">2026-07-11</a>
+<a href="/2026-07-10.html" class="date-link">2026-07-10</a>
+<a href="/2026-07-09.html" class="date-link">2026-07-09</a>
+<a href="/2026-07-08.html" class="date-link">2026-07-08</a>
+    </nav>
+  </div>
+  <main class="main">
   <section class="dashboard" aria-label="数据概览">
     <div class="panel">
       <div class="panel-title">今日概览</div>
@@ -2430,10 +2572,11 @@ I completely lost it. Had to lower down the volume of my laugh 😂😂 <a href=
 </article>
     </div>
   </section>
-</main>
+  </main>
+</div>
 
 <footer class="footer">
-  <p>AI HORIZON · X AI 日报 · 2026-07-17 · 生成于 2026-07-17 22:26 北京时间</p>
+  <p>AI HORIZON · X AI 日报 · 2026-07-17 · 生成于 2026-07-17 22:48 北京时间</p>
   <p>数据来自公开 X 推文，按热度 × 时效排序。部署于 <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>。</p>
 </footer>
 
