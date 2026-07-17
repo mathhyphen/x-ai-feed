@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>X AI 热门动态 · 24h · 2026-07-17</title>
+<style>
+:root {
+  --ink: #1f2933; --muted: #5f6b76; --line: #d9e1e8; --paper: #fbfcfd; --panel: #ffffff;
+  --teal: #0f766e; --teal-soft: #e5f4f1; --amber: #b7791f; --amber-soft: #fff5dd;
+  --rose: #b4233a; --rose-soft: #fff0f2; --blue: #1f5f99; --blue-soft: #eef6ff; --green: #2f7d32;
+  --shadow: 0 12px 28px rgba(31, 41, 51, 0.08); --radius: 8px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0; color: var(--ink); background: var(--paper);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif; line-height: 1.72; }
+.page { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 30px 0 60px; }
+header { padding: 24px 0 20px; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, #ffffff 0%, #f7fafb 100%); }
+.eyebrow { display: inline-flex; gap: 8px; color: var(--teal); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+h1 { margin: 14px 0 12px; font-size: clamp(26px, 3.6vw, 40px); line-height: 1.18; }
+.subtitle { margin: 0 0 14px; color: var(--muted); font-size: 16px; }
+.subtitle strong { color: var(--ink); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px; }
+.pill { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+.pill strong { font-weight: 600; }
+section { margin: 28px 0; }
+section h2 { font-size: 22px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+section > p { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+.tweet { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel);
+  padding: 14px 16px; margin: 10px 0; box-shadow: 0 4px 12px rgba(31, 41, 51, 0.06); }
+.tweet .head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; min-height: 32px; }
+.tweet .name { font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px; flex-shrink: 1; min-width: 0; }
+.tweet .uname { color: var(--muted); font-size: 13px; flex-shrink: 0; }
+.tweet .verified { color: var(--teal); font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.tweet .time { color: var(--muted); font-size: 12px; margin-left: auto; flex-shrink: 0; white-space: nowrap; }
+.tweet .text { white-space: pre-wrap; word-wrap: break-word; font-size: 15px; }
+.tweet .text a { color: var(--blue); }
+.tweet .text-zh { font-size: 15.5px; }
+.tweet .text-en { font-size: 13.5px; color: var(--muted); background: #fafbfc; padding: 10px 12px; border-radius: 6px; border: 1px dashed var(--line); margin-top: 6px; white-space: pre-wrap; word-wrap: break-word; }
+.tweet .stats { display: flex; gap: 14px; margin-top: 10px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+.tweet .stats span { display: inline-flex; align-items: center; gap: 4px; }
+.tweet .media { margin-top: 8px; }
+.tweet .link-row { margin-top: 8px; }
+.tweet .link-row a { color: var(--teal); text-decoration: none; font-size: 13px; }
+.badge { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); background: #fafbfc; color: var(--muted); }
+.badge.heat { background: var(--rose-soft); color: var(--rose); border-color: #fbd5db; }
+.badge.age { background: var(--teal-soft); color: var(--teal); border-color: #c8e8e2; }
+details.en-details { margin-top: 6px; }
+details.en-details summary { cursor: pointer; font-size: 13px; color: var(--muted); user-select: none; padding: 2px 0; }
+details.en-details[open] summary { color: var(--ink); font-weight: 600; }
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+footer h2 { font-size: 18px; color: var(--ink); }
+footer p { margin: 6px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <span class="eyebrow">🐦 X (Twitter) · AI 热门动态 · 24h</span>
+    <h1>X 上 24 小时内的 AI 热门动态</h1>
+    <p class="subtitle">大模型 / Agent / Vibe Coding / 世界模型 · 2026-07-16 ~ 2026-07-17 · <strong>按 热度×新鲜度 综合排序</strong></p>
+    <div class="meta">
+      <span class="pill"><strong>来源</strong> X / Twitter (via twitter-cli · agent-reach)</span>
+      <span class="pill"><strong>账号</strong> @math_hyphen</span>
+      <span class="pill"><strong>窗口</strong> 最近 24h</span>
+      <span class="pill"><strong>采集</strong> 2026-07-17 15:22 北京时间</span>
+      <span class="pill"><strong>总数</strong> 21 条去重</span>
+      <span class="pill"><strong>路线</strong> twitter search (404) -> 降级 feed + user-posts 稳定路线</span>
+      <span class="pill"><strong>算法</strong> heat / (1 + ageHours/8)</span>
+    </div>
+  </header>
+
+  <section id="leaders">
+    <h2>⭐ AI 大佬动态</h2>
+    <p>3 条 · AI 领袖与资深从业者的发声 · 按综合分 _score 降序 · 中文译版 + 原文折叠</p>
+<div class="tweet" id="tweet-2077817060068057493">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Sam Altman</span>
+    <span class="uname">@sama</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 02:06</span>
+    <span class="badge heat" style="margin-left:8px">🔥 9035</span>
+    <span class="badge age" style="margin-left:4px">⏱ 13.0h</span>
+  </div>
+  <div class="text text-zh">过去 12 个月我们并非有史以来最好的表现，这主要怪我；但接下来的 12 个月，我们将迎来迄今最好的成绩。团队正在做非常出色的工作，我想你们会对他们正在打磨的东西非常满意。我为此高兴有很多原因，但最主要的是我在乎用户能不能赢。AI 必须是给更多人带来自由、主动权和财富。我们想做对的事，但不想靠吓唬人来让大家用我们的东西。</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">we did not have our best last 12 months ever, which is mostly my fault, but we are about to have our best 12 months to date. the team is doing amazing work and i think you’ll be very happy with what they’ve got cooking for you.
+
+i am happy about this for many reasons, but mostly because i care about our users winning. AI has to be about giving lots of people more freedom, agency, and wealth. we want to do the right thing, but we do not want to scare people into doing our thing.</div>
+  </details>
+  
+  <div class="stats">
+    <span>💬 1.8K</span>
+    <span>🔁 699</span>
+    <span>❤️ 19.9K</span>
+    <span>🔖 1.7K</span>
+    <span>👁 1.5M</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/sama/status/2077817060068057493" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077842579232895286">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Sam Altman</span>
+    <span class="uname">@sama</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 03:47</span>
+    <span class="badge heat" style="margin-left:8px">🔥 4825</span>
+    <span class="badge age" style="margin-left:4px">⏱ 11.3h</span>
+  </div>
+  <div class="text text-zh">到今天我跟 ChatGPT 说话已经比打字还多了。新的语音模型确实跨过了一道门槛。</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">i talk to chatgpt more than i type to it at this point
+
+new voice model really crossed a threshold</div>
+  </details>
+  
+  <div class="stats">
+    <span>💬 1.5K</span>
+    <span>🔁 276</span>
+    <span>❤️ 9.8K</span>
+    <span>🔖 404</span>
+    <span>👁 577.5K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/sama/status/2077842579232895286" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077944609251221853">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/2022344365251911680/VTRlBO9__normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">AI_Explorer</span>
+    <span class="uname">@ai_explorer25</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 10:32</span>
+    <span class="badge heat" style="margin-left:8px">🔥 158</span>
+    <span class="badge age" style="margin-left:4px">⏱ 4.5h</span>
+  </div>
+  <div class="text text-zh">AI 领域最值得关注的 20 个账号：<a href="https://x.com/karpathy" target="_blank" rel="noopener">@karpathy</a> = 大模型之王；<a href="https://x.com/steipete" target="_blank" rel="noopener">@steipete</a> = 打造了 openclaw；<a href="https://x.com/gregisenberg" target="_blank" rel="noopener">@gregisenberg</a> = 创业点子之王；<a href="https://x.com/rileybrown" target="_blank" rel="noopener">@rileybrown</a> = vibe coding 之王；<a href="https://x.com/corbin_braun" target="_blank" rel="noopener">@corbin_braun</a> = Cursor 之王；<a href="https://x.com/jackfriks" target="_blank" rel="noopener">@jackfriks</a> = 独立 App 之王；<a href="https://x.com/levelsio" target="_blank" rel="noopener">@levelsio</a> = 独立创业之王；<a href="https://x.com/marclou" target="_blank" rel="noopener">@marclou</a> = 独立创业之王；<a href="https://x.com/EXM7777" target="_blank" rel="noopener">@EXM7777</a> = AI 运维与系统之王；<a href="https://x.com/eptwts" target="_blank" rel="noopener">@eptwts</a> = AI 财经推特之王；<a href="https://x.com/godofprompt" target="_blank" rel="noopener">@godofprompt</a> = 提示词之王；<a href="https://x.com/ai_explorer25" target="_blank" rel="noopener">@ai_explorer25</a> = AI 女王；<a href="https://x.com/AmirMushich" target="_blank" rel="noopener">@AmirMushich</a> = AI 广告之王；<a href="https://x.com/0xROAS" target="_blank" rel="noopener">@0xROAS</a> = AI UGC 之王；<a href="https://x.com/egeberberina" target="_blank" rel="noopener">@egeberberina</a> = AI 图像之王；<a href="https://x.com/MengTo" target="_blank" rel="noopener">@MengTo</a> = AI 落地页之王；<a href="https://x.com/rryssf" target="_blank" rel="noopener">@rryssf</a> = 自动化之王；<a href="https://x.com/kloss_xyz" target="_blank" rel="noopener">@kloss_xyz</a> = 系统架构之王；<a href="https://x.com/emollick" target="_blank" rel="noopener">@emollick</a> = AI 科研之王；<a href="https://x.com/Hesamation" target="_blank" rel="noopener">@Hesamation</a> = AI/ML 之王。全部关注，学起来。</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">The best 20 accounts to follow in AI:
+
+<a href="https://x.com/karpathy" target="_blank" rel="noopener">@karpathy</a> = LLMs king
+<a href="https://x.com/steipete" target="_blank" rel="noopener">@steipete</a> = built openclaw
+<a href="https://x.com/gregisenberg" target="_blank" rel="noopener">@gregisenberg</a> = startup ideas king
+<a href="https://x.com/rileybrown" target="_blank" rel="noopener">@rileybrown</a> = vibecode king
+<a href="https://x.com/corbin_braun" target="_blank" rel="noopener">@corbin_braun</a> = cursor king
+<a href="https://x.com/jackfriks" target="_blank" rel="noopener">@jackfriks</a> = solo apps king
+<a href="https://x.com/levelsio" target="_blank" rel="noopener">@levelsio</a> = solo startups king
+<a href="https://x.com/marclou" target="_blank" rel="noopener">@marclou</a> = solo startups king
+<a href="https://x.com/EXM7777" target="_blank" rel="noopener">@EXM7777</a> = AI ops + systems king
+<a href="https://x.com/eptwts" target="_blank" rel="noopener">@eptwts</a> = AI money twitter king
+<a href="https://x.com/godofprompt" target="_blank" rel="noopener">@godofprompt</a> = prompt king
+<a href="https://x.com/ai_explorer25" target="_blank" rel="noopener">@ai_explorer25</a> = AI queen
+<a href="https://x.com/AmirMushich" target="_blank" rel="noopener">@AmirMushich</a>= AI ads king
+<a href="https://x.com/0xROAS" target="_blank" rel="noopener">@0xROAS</a> = AI UGCs king
+<a href="https://x.com/egeberkina" target="_blank" rel="noopener">@egeberkina</a> = AI images king
+<a href="https://x.com/MengTo" target="_blank" rel="noopener">@MengTo</a>= AI landing pages king
+<a href="https://x.com/rryssf" target="_blank" rel="noopener">@rryssf</a> = automations king
+<a href="https://x.com/kloss_xyz" target="_blank" rel="noopener">@kloss_xyz</a> = systems architecture king
+<a href="https://x.com/emollick" target="_blank" rel="noopener">@emollick</a> = AI science king
+<a href="https://x.com/Hesamation" target="_blank" rel="noopener">@Hesamation</a> = AI/ML king
+
+follow them all and learn.</div>
+  </details>
+  
+  <div class="stats">
+    <span>💬 11</span>
+    <span>🔁 30</span>
+    <span>❤️ 169</span>
+    <span>🔖 234</span>
+    <span>👁 13.7K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/ai_explorer25/status/2077944609251221853" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+  </section>
+
+  <section id="llm">
+    <h2>🧠 LLM</h2>
+    <p>4 条 · 大模型发布、能力与评测 · 按综合分 _score 降序 · 中文译版 + 原文折叠</p>
+<div class="tweet" id="tweet-2077830229968683203">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/1910294000927645696/QseOV0uF_normal.png" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Kimi.ai</span>
+    <span class="uname">@Kimi_Moonshot</span>
+    
+    <span class="time">7/17 02:58</span>
+    <span class="badge heat" style="margin-left:8px">🔥 20081</span>
+    <span class="badge age" style="margin-left:4px">⏱ 12.1h</span>
+  </div>
+  <div class="text text-zh">发布 Kimi K3：开放的前沿智能。
+🔹 2.8 万亿参数，100 万上下文，原生多模态
+🔹 Kimi Delta Attention 让百万 token 上下文的解码速度提升至 6.3 倍
+🔹 Attention Residuals 在额外成本 &lt;2% 下带来约 25% 的训练效率提升
+🔹 面向长程 agentic coding 与自我进化工作流而打造
+Kimi K3 现已在 kimi.com、Kimi Work、Kimi Code 及 Kimi API 上线。开源权重将于 2026 年 7 月 27 日放出。</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">Introducing Kimi K3: Open Frontier Intelligence
+
+🔹 2.8 Trillion Parameters, 1 Million Context, Native Multimodal
+🔹 Kimi Delta Attention enables up to 6.3x faster decoding in million-token contexts
+🔹 Attention Residuals deliver ~25% higher training efficiency at &lt;2% additional cost
+🔹 Built for long-horizon agentic coding and self-evolving workflows
+
+Kimi K3 is now live on on <a href="https://t.co/zrk6zZxZUo," target="_blank" rel="noopener">https://t.co/zrk6zZxZUo,</a> Kimi Work, Kimi Code, and the Kimi API.
+Open Weights by July 27, 2026.
+
+🔗 API: <a href="https://t.co/XCrgjXAqMw" target="_blank" rel="noopener">https://t.co/XCrgjXAqMw</a>
+🔗 Tech blog: <a href="https://t.co/YTfiMSNM1f" target="_blank" rel="noopener">https://t.co/YTfiMSNM1f</a></div>
+  </details>
+  <div class="media">
+  <a href="https://x.com/Kimi_Moonshot/status/2077830229968683203" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto">
+    <img src="https://pbs.twimg.com/media/HNXu0kobMAAPljb.png" alt="tweet image" loading="lazy" style="width:100%;display:block">
+  </a>
+  <div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/Kimi_Moonshot/status/2077830229968683203" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@Kimi_Moonshot · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 974</span>
+    <span>🔁 4.4K</span>
+    <span>❤️ 32.8K</span>
+    <span>🔖 11.4K</span>
+    <span>👁 8.4M</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/Kimi_Moonshot/status/2077830229968683203" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077603834453770467">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">ClaudeDevs</span>
+    <span class="uname">@ClaudeDevs</span>
+    <span class="verified">✓</span>
+    <span class="time">7/16 11:58</span>
+    <span class="badge heat" style="margin-left:8px">🔥 10702</span>
+    <span class="badge age" style="margin-left:4px">⏱ 27.1h</span>
+  </div>
+  <div class="text text-zh">我们已为所有用户重置了 5 小时与每周的速率限制。</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">We&#x27;ve reset 5-hour and weekly rate limits for all users.</div>
+  </details>
+  
+  <div class="stats">
+    <span>💬 3.0K</span>
+    <span>🔁 2.4K</span>
+    <span>❤️ 34.2K</span>
+    <span>🔖 1.6K</span>
+    <span>👁 6.5M</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/ClaudeDevs/status/2077603834453770467" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077840176370602179">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/930100383191461893/AAUl7IJ3_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">John Lindquist</span>
+    <span class="uname">@johnlindquist</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 03:37</span>
+    <span class="badge heat" style="margin-left:8px">🔥 1102</span>
+    <span class="badge age" style="margin-left:4px">⏱ 11.5h</span>
+  </div>
+  <div class="text text-zh">我对 K3 说：「我希望你用 2026 年 7 月最新的 CSS、WebGL、着色器等技术，把网页设计的边界推到极限，做出你能想象到的最惊艳、信息量最大的单页体验。」结果如下：</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">I asked k3:
+
+&quot;I want you to push the boundaries of what&#x27;s possible in web design with the absolute latest in css, webgl, shaders, etc as of July 2026 and create the most impressive, informational single-page experience you can imagine&quot;
+
+Result:</div>
+  </details>
+  
+  <div class="stats">
+    <span>💬 88</span>
+    <span>🔁 67</span>
+    <span>❤️ 2.0K</span>
+    <span>🔖 2.5K</span>
+    <span>👁 535.5K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/johnlindquist/status/2077840176370602179" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077852005129933247">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Simon Willison</span>
+    <span class="uname">@simonw</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 04:24</span>
+    <span class="badge heat" style="margin-left:8px">🔥 246</span>
+    <span class="badge age" style="margin-left:4px">⏱ 10.7h</span>
+  </div>
+  <div class="text text-zh">我对 Kimi K3 的笔记，外加一些关于 pelican 基准的思考——即便它正愈发脱离模型在真正重要的事（比如跨较长对话的 agentic 工具调用）上的真实水平，我们仍能从中学到东西。</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">My notes on Kimi K3, plus some thoughts on what we can still learn from the pelican benchmark even while it becomes further detached from how good the models are at the things that matter (like agentic tool calling across longer conversations) <a href="https://t.co/F4AicvxAmq" target="_blank" rel="noopener">https://t.co/F4AicvxAmq</a></div>
+  </details>
+  
+  <div class="stats">
+    <span>💬 23</span>
+    <span>🔁 36</span>
+    <span>❤️ 454</span>
+    <span>🔖 186</span>
+    <span>👁 36.2K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/simonw/status/2077852005129933247" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+  </section>
+
+  <section id="agent">
+    <h2>🤖 AI Agent</h2>
+    <p>6 条 · Agent 框架、工具调用与自动化 · 按综合分 _score 降序 · 中文译版 + 原文折叠</p>
+<div class="tweet" id="tweet-2077770386444341332">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/2018401342755364864/xVn-9oYv_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">bolt.new</span>
+    <span class="uname">@boltdotnew</span>
+    <span class="verified">✓</span>
+    <span class="time">7/16 23:00</span>
+    <span class="badge heat" style="margin-left:8px">🔥 481</span>
+    <span class="badge age" style="margin-left:4px">⏱ 16.1h</span>
+  </div>
+  <div class="text text-zh">今天我们开源了 Bolt Slides。现在任何 agent（Claude Code、Codex、Bolt）都能做出你以前想都不敢想的幻灯片。这意味着什么？看看这个 👇</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">Today we&#x27;re open sourcing Bolt Slides.
+
+Now any agent (Claude Code, Codex, Bolt) can make slides you couldn&#x27;t even imagine before.
+
+What does that mean? Take a look 👇 <a href="https://t.co/fhZuUNTMxu" target="_blank" rel="noopener">https://t.co/fhZuUNTMxu</a></div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/boltdotnew_2077770386444341332.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/boltdotnew/status/2077770386444341332" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@boltdotnew · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 73</span>
+    <span>🔁 114</span>
+    <span>❤️ 994</span>
+    <span>🔖 1.3K</span>
+    <span>👁 190.5K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/boltdotnew/status/2077770386444341332" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077811074259456149">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/1692568673884446720/RpBy-Tf4_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Jack Wotherspoon</span>
+    <span class="uname">@JackWoth98</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 01:42</span>
+    <span class="badge heat" style="margin-left:8px">🔥 245</span>
+    <span class="badge age" style="margin-left:4px">⏱ 13.4h</span>
+  </div>
+  <div class="text text-zh">Gemini Managed Agents 今天迎来重磅发布 🚀
+🆓 Gemini API 现已提供免费层
+🪙 可用 max_total_tokens 设置预算护栏
+🕘 可用触发器调度你的 agent 定时运行
+试试看，欢迎反馈！</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">Gemini Managed Agents with a big release today 🚀
+
+🆓 - Free tier now available via the Gemini API
+🪙 - Set budget guardrails with max_total_tokens
+🕘 - Schedule your agent to run with triggers
+
+Give them a try and let us know your feedback!</div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/JackWoth98_2077811074259456149.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/JackWoth98/status/2077811074259456149" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@JackWoth98 · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 15</span>
+    <span>🔁 47</span>
+    <span>❤️ 521</span>
+    <span>🔖 251</span>
+    <span>👁 33.4K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/JackWoth98/status/2077811074259456149" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077763983738646845">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/2070651118477004800/H6FJAFZJ_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Nix0n</span>
+    <span class="uname">@UnTalNixon_exe</span>
+    <span class="verified">✓</span>
+    <span class="time">7/16 22:35</span>
+    <span class="badge heat" style="margin-left:8px">🔥 99</span>
+    <span class="badge age" style="margin-left:4px">⏱ 16.5h</span>
+  </div>
+  <div class="text text-zh">睁开眼看看开源设计吧。Figma 把你困住了，Penpot 给你完全的自由。它是这样一个开源设计平台：• 直接说真正的代码（SVG、CSS、HTML、JSON）• 让设计师与开发者真正协作 • 内置代码 inspect • 支持 AI agent 工作流 • 可自托管（隐私+完全掌控）。从原型到生产，不再浪费时间把设计翻译成代码。视频让你感受一下。如果你厌倦了封闭工具和锁定，这就是你等的东西。你试过 Penpot 了吗，还在用 Figma？仓库 👇</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">OPEN YOUR EYES TO OPEN SOURCE DESIGN
+
+Figma te tiene preso. Penpot te da libertad total.
+
+Es la plataforma de diseño open source que:
+• Habla código real (SVG, CSS, HTML, JSON)
+• Permite colaboración real entre diseñadores y developers
+• Tiene inspect de código integrado
+• Soporta workflows con AI agents
+• Se puede self-hostear (privacidad + control total)
+
+Del prototipo a producción sin perder tiempo traduciendo diseños a código.
+
+El video te muestra cómo se siente.
+
+Si estás cansado de herramientas cerradas y lock-in, esto es lo que estabas esperando.
+
+¿Ya probaste Penpot o seguís en Figma?
+
+Repoo 👇</div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/UnTalNixon_exe_2077763983738646845.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/UnTalNixon_exe/status/2077763983738646845" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@UnTalNixon_exe · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 6</span>
+    <span>🔁 34</span>
+    <span>❤️ 223</span>
+    <span>🔖 258</span>
+    <span>👁 8.4K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/UnTalNixon_exe/status/2077763983738646845" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077798528701911408">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/2028729526822588416/WhtMUI-P_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Aravind Srinivas</span>
+    <span class="uname">@AravSrinivas</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 00:52</span>
+    <span class="badge heat" style="margin-left:8px">🔥 82</span>
+    <span class="badge age" style="margin-left:4px">⏱ 14.2h</span>
+  </div>
+  <div class="text text-zh">Perplexity Agent API 在 LangChain 中使用时，对投资工作流非常强大。</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">Perplexity Agent API is powerful for investment workflows when used inside LangChain</div>
+  </details>
+  
+  <div class="stats">
+    <span>💬 14</span>
+    <span>🔁 13</span>
+    <span>❤️ 171</span>
+    <span>🔖 41</span>
+    <span>👁 24.1K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/AravSrinivas/status/2077798528701911408" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077836922076922311">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/2071768035501948928/5tc0Jy69_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">OpenSoftware</span>
+    <span class="uname">@OpenSoftwareCo</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 03:25</span>
+    <span class="badge heat" style="margin-left:8px">🔥 60</span>
+    <span class="badge age" style="margin-left:4px">⏱ 11.7h</span>
+  </div>
+  <div class="text text-zh">Kimi K3 现已支持匿名模式。前沿级 AI，在你的私密工作区里为 agent 服务。试试看：</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">Kimi K3 is now available in June in anonymous mode. 
+
+Frontier level AI, in a private workspace for your agent.
+
+Try it: <a href="https://t.co/pDrMMBVpSd" target="_blank" rel="noopener">https://t.co/pDrMMBVpSd</a> <a href="https://t.co/eZi0Plwr4T" target="_blank" rel="noopener">https://t.co/eZi0Plwr4T</a></div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/OpenSoftwareCo_2077836922076922311.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/OpenSoftwareCo/status/2077836922076922311" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@OpenSoftwareCo · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 5</span>
+    <span>🔁 14</span>
+    <span>❤️ 101</span>
+    <span>🔖 56</span>
+    <span>👁 14.8K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/OpenSoftwareCo/status/2077836922076922311" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077861372109705657">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/1883446587822608384/6eprnWjH_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Axel Bitblaze 🪓</span>
+    <span class="uname">@Axel_bitblaze69</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 05:02</span>
+    <span class="badge heat" style="margin-left:8px">🔥 40</span>
+    <span class="badge age" style="margin-left:4px">⏱ 10.1h</span>
+  </div>
+  <div class="text text-zh">今天我用 Grok 4.5 搭了一个 5 人 AI agent 团队来运营我的 X 账号。一个人运营这个账号五年累了，所以我带你看看。顶部是所有实时数据：粉丝、浏览量、最佳帖子、互动，全部通过 X MCP 从我账号实时拉取。这里还有个滑块，拖动一下，所有数据即时重算。但我真正喜欢的是下面的——我的 agent 团队：1）Ideator（点子手）：扫 X、Hacker News、GitHub、Reddit，找出即将爆火的话题，在别人还没反应过来前把角度交给我。2）Hook Writer（钩子写手）：把点子变成可直接发布的钩子，用我的语气写。3）Planner（排期）：跑我的整个内容日历，让我随时知道下一篇发什么。4）Analyst（分析师）：把我的数据和我悄悄追踪的竞品对比，让我清楚自己的位置。5）DM Manager（私信管家）：盯着谁在谈论我、提到我，不漏掉任何事。下面是我的热门帖子，点任一条直接在 X 打开，还有最近帖子的表现，让我随时知道什么真正有效。Grok 4.5 太赞了，干得好 <a href="https://x.com/elonmusk" target="_blank" rel="noopener">@elonmusk</a>，<a href="https://x.com/grok" target="_blank" rel="noopener">@grok</a> 如果还有别的能让生活更轻松的，告诉我。</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">Today, I built a 5 AI agent team to run my X account using Grok 4.5..
+
+tired of running this account all alone since last 5 years.. so. let me walk you through it.
+
+Up top, you&#x27;ve got all your live stats..
+
+followers, views, your best post, engagement and it&#x27;s all pulled live using X MCP straight from my account. 
+
+There&#x27;s even a slider right here.. drag it, and everything recalculates instantly.
+
+But the part I actually love is right below it.. my agent team...
+
+1) First one&#x27;s the Ideator. 
+
+It scans X, Hacker News, GitHub and Reddit, finds what&#x27;s about to pop off, and hands me the angle before anyone else is on it.
+
+2) Right next to it, the Hook Writer 
+
+it takes that idea and turns it into a ready-to-post hook, written in my voice..
+
+3) Then the Planner, running my whole content calendar, so I always know what ships next.
+
+4) The Analyst lines my numbers up against the competitors I&#x27;m quietly tracking, so I know exactly where I stand..
+
+5) And the DM Manager keeps an eye on who&#x27;s talking about me, or mentioning me so nothing slips past..
+
+Down there you&#x27;ve got my top posts.. click any one, it opens right on X. And this is the performance of my recent ones, so I always know what&#x27;s actually working.
+
+Grok 4.5 is amazing.. great work <a href="https://x.com/elonmusk" target="_blank" rel="noopener">@elonmusk</a> .. and yo <a href="https://x.com/grok" target="_blank" rel="noopener">@grok</a> lmk if there&#x27;s anything else worth adding to make my life even more easier..</div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/Axel_bitblaze69_2077861372109705657.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/Axel_bitblaze69/status/2077861372109705657" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@Axel_bitblaze69 · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 11</span>
+    <span>🔁 9</span>
+    <span>❤️ 56</span>
+    <span>🔖 82</span>
+    <span>👁 11.2K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/Axel_bitblaze69/status/2077861372109705657" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+  </section>
+
+  <section id="vibe">
+    <h2>🎨 Vibe Coding</h2>
+    <p>7 条 · Vibe Coding 工具与实践 · 按综合分 _score 降序 · 中文译版 + 原文折叠</p>
+<div class="tweet" id="tweet-2077813650564452850">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/1657298747049791489/sAIv6DRb_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Randy Lu</span>
+    <span class="uname">@randyloop</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 01:52</span>
+    <span class="badge heat" style="margin-left:8px">🔥 1610</span>
+    <span class="badge age" style="margin-left:4px">⏱ 13.2h</span>
+  </div>
+  <div class="text text-zh">我的 Codex 皮肤是这样的</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">我的 Codex 皮肤是这样的 <a href="https://t.co/7Uidz3dHGr" target="_blank" rel="noopener">https://t.co/7Uidz3dHGr</a></div>
+  </details>
+  <div class="media">
+  <a href="https://x.com/randyloop/status/2077813650564452850" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto">
+    <img src="https://pbs.twimg.com/media/HNXgeCfbYAAOGt-.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block">
+  </a>
+  <div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/randyloop/status/2077813650564452850" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@randyloop · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 326</span>
+    <span>🔁 307</span>
+    <span>❤️ 3.2K</span>
+    <span>🔖 721</span>
+    <span>👁 286.0K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/randyloop/status/2077813650564452850" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077854613949276319">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/1900042852438335488/7shAe_LE_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Shengkun</span>
+    <span class="uname">@shengkun_ye</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 04:35</span>
+    <span class="badge heat" style="margin-left:8px">🔥 1258</span>
+    <span class="badge age" style="margin-left:4px">⏱ 10.5h</span>
+  </div>
+  <div class="text text-zh">我们刚把 Higgsfield 干掉了。现在你可以直接从 Claude Code 或 Codex 使用 Seedance 2.0，无需订阅。Higgsfield：$129/月，额度有限。Monid：$0.04/万 token，按量付费。</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">We just killed Higgsfield.  
+
+You can now use Seedance 2.0 directly from Claude Code or Codex. No subscription required.  
+
+Higgsfield: $129/mo, limited credits.
+Monid: $0.04/10K tokens, pay as you go. <a href="https://t.co/vfy3y1bL6J" target="_blank" rel="noopener">https://t.co/vfy3y1bL6J</a></div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/shengkun_ye_2077854613949276319.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/shengkun_ye/status/2077854613949276319" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@shengkun_ye · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 151</span>
+    <span>🔁 168</span>
+    <span>❤️ 2.3K</span>
+    <span>🔖 4.1K</span>
+    <span>👁 189.3K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/shengkun_ye/status/2077854613949276319" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077584412351586535">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/1963499609017495553/kuzkS82V_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">木马人</span>
+    <span class="uname">@cnyzgkc</span>
+    <span class="verified">✓</span>
+    <span class="time">7/16 10:41</span>
+    <span class="badge heat" style="margin-left:8px">🔥 429</span>
+    <span class="badge age" style="margin-left:4px">⏱ 28.4h</span>
+  </div>
+  <div class="text text-zh">卧槽，那个 Codex 换肤工具项目开源了
+
+仓库地址见原文链接
+
+用法：仓库地址发给 codex，帮我运行即可
+
+据说已经有人拿去闲鱼挂单，赚了不少了</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">卧槽，那个Codex 换肤工具项目开源了
+
+仓库地址：<a href="https://t.co/vgZkNaIzPg" target="_blank" rel="noopener">https://t.co/vgZkNaIzPg</a>
+
+用法：仓库地址发给codex，帮我运行即可
+
+据说已经有人拿去闲鱼挂单，赚了不少了 <a href="https://t.co/Me6cT1BLsu" target="_blank" rel="noopener">https://t.co/Me6cT1BLsu</a></div>
+  </details>
+  <div class="media">
+  <a href="https://x.com/cnyzgkc/status/2077584412351586535" target="_blank" rel="noopener" class="tweet-photo" style="display:inline-block;max-width:360px;border-radius:8px;overflow:hidden;border:1px solid var(--line);text-decoration:none;margin:8px 0;width:auto">
+    <img src="https://pbs.twimg.com/media/HNUPwyHbEAEqHdc.jpg" alt="tweet image" loading="lazy" style="width:100%;display:block">
+  </a>
+  <div style="margin:-6px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/cnyzgkc/status/2077584412351586535" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@cnyzgkc · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 182</span>
+    <span>🔁 175</span>
+    <span>❤️ 1.3K</span>
+    <span>🔖 1.5K</span>
+    <span>👁 233.0K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/cnyzgkc/status/2077584412351586535" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077921526213746948">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/1998144361754767360/U0TMx3h8_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Command Code</span>
+    <span class="uname">@CommandCodeAI</span>
+    
+    <span class="time">7/17 09:01</span>
+    <span class="badge heat" style="margin-left:8px">🔥 398</span>
+    <span class="badge age" style="margin-left:4px">⏱ 6.1h</span>
+  </div>
+  <div class="text text-zh">Kimi K3 对比 GPT-5.6 Sol 对比 Fable 5。三个顶级模型，同样的 /design 提示词。考察维度：节奏、设计感、游戏手感。结果：Kimi K3 的设计感很到位，清楚知道游戏里该加什么，节奏和手感也撑得住。Fable 5 和 GPT-5.6 Sol 都玩得太快，视频没加速。排名（体验、功能与成本）：-&gt; Kimi K3：9.5/10 · $0.030；-&gt; Fable 5：7.5/10 · $0.38；-&gt; GPT-5.6 Sol：7/10 · $0.11</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">Kimi K3 vs GPT-5.6 Sol vs Fable 5
+
+Three top-tier models. Same /design prompt across all.
+
+Parameters reviewed:
+Pace, design sense, gameplay feel
+
+Result:
+Kimi K3 nails the design sense and knows exactly what to add in-game. Pace and gameplay held up well.
+
+Fable 5 and GPT-5.6 Sol both play too fast, video isn&#x27;t sped up.
+
+Ranking (DX, Features &amp; Cost):
+→ Kimi K3: 9.5/10 · $0.030
+→ Fable 5: 7.5/10 · $0.38
+→ GPT-5.6 Sol: 7/10 · $0.11</div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/CommandCodeAI_2077921526213746948.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/CommandCodeAI/status/2077921526213746948" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@CommandCodeAI · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 26</span>
+    <span>🔁 56</span>
+    <span>❤️ 520</span>
+    <span>🔖 144</span>
+    <span>👁 54.3K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/CommandCodeAI/status/2077921526213746948" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077797145973809187">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/1926981839568146432/iKnUv9Xw_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Hamza</span>
+    <span class="uname">@thegenioo</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 00:46</span>
+    <span class="badge heat" style="margin-left:8px">🔥 327</span>
+    <span class="badge age" style="margin-left:4px">⏱ 14.3h</span>
+  </div>
+  <div class="text text-zh">我对 Kimi K3 看走眼了。刚在 Claude Code 里试了一下，它确实达到了 Fable 5 的水平，至少在前端上远胜 GPT-5.6 Sol。它确实很慢、很费 token，但完成任务的能力太强了，我喜欢我看到的 <a href="https://x.com/Kimi_Moonshot" target="_blank" rel="noopener">@Kimi_Moonshot</a></div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">I was wrong about Kimi K3
+
+Just tried it in Claude Code and it is Fable 5 level for sure
+Far better than GPT-5.6 Sol at least at front-end 
+
+It is really slow and consumes a lot of tokens but it is so good at completing its task, I like what I see here <a href="https://x.com/Kimi_Moonshot" target="_blank" rel="noopener">@Kimi_Moonshot</a></div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/thegenioo_2077797145973809187.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/thegenioo/status/2077797145973809187" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@thegenioo · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 42</span>
+    <span>🔁 30</span>
+    <span>❤️ 641</span>
+    <span>🔖 252</span>
+    <span>👁 190.9K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/thegenioo/status/2077797145973809187" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077860569269576087">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/2008508643868872704/Xk0BZcVF_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Shikhar</span>
+    <span class="uname">@xikhar</span>
+    <span class="verified">✓</span>
+    <span class="time">7/17 04:58</span>
+    <span class="badge heat" style="margin-left:8px">🔥 151</span>
+    <span class="badge age" style="margin-left:4px">⏱ 10.1h</span>
+  </div>
+  <div class="text text-zh">「妈，我们能买 Codex Micro 吗？」「不行，家里有 Codex Micro。」（来看看我的移动 App）</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">&quot;Mom can we get Codex Micro?&quot;
+&quot;No we have Codex Micro at home&quot;
+
+(meet my mobile app) <a href="https://t.co/sBYcy8QYS3" target="_blank" rel="noopener">https://t.co/sBYcy8QYS3</a></div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/xikhar_2077860569269576087.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/xikhar/status/2077860569269576087" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@xikhar · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 25</span>
+    <span>🔁 9</span>
+    <span>❤️ 270</span>
+    <span>🔖 119</span>
+    <span>👁 40.2K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/xikhar/status/2077860569269576087" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+<div class="tweet" id="tweet-2077777745531273680">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/2064964402311467008/_jcdm7gE_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">0xCrypto Tied</span>
+    <span class="uname">@CryptoTied</span>
+    <span class="verified">✓</span>
+    <span class="time">7/16 23:29</span>
+    <span class="badge heat" style="margin-left:8px">🔥 120</span>
+    <span class="badge age" style="margin-left:4px">⏱ 15.6h</span>
+  </div>
+  <div class="text text-zh">🚨 卧槽！用 Fable 搭出来的“第二大脑”也太强了
+
+Wes Roth 分享了他用 Fable 构建的终极 Second Brain 系统，并感叹“为什么我现在才开始做”。
+
+视频里展示了一个高度可视化的知识图谱：AI 自动把文章、视频、笔记进行整理、链接、更新，形成可查询的 Wiki。他只需要不断喂入内容，AI 负责维护整个知识网络，并支持研究、复盘和内容创作。
+
+核心价值：
+-&gt; 把传统手动整理笔记的方式，变成 AI 驱动的自动知识图谱
+-&gt; 结合 Obsidian + Claude Code + Fable，实现真正可用的第二大脑
+-&gt; 搭建流程被简化到“一个下午就能完成”
+
+对想用 AI 系统化管理知识、提升内容创作和研究效率的人来说，这个演示很有冲击力。</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">🚨卧槽！用 Fable 搭出来的“第二大脑”也太强了
+
+Wes Roth 分享了他用 Fable 构建的终极 Second Brain 系统，并感叹“为什么我现在才开始做”。
+
+视频里展示了一个高度可视化的知识图谱：AI 自动把文章、视频、笔记进行整理、链接、更新，形成可查询的 Wiki。他只需要不断喂入内容，AI 负责维护整个知识网络，并支持研究、复盘和内容创作。
+
+核心价值： 
+→把传统手动整理笔记的方式，变成 AI 驱动的自动知识图谱 
+→结合 Obsidian + Claude Code + Fable，实现真正可用的第二大脑 
+→搭建流程被简化到“一个下午就能完成”
+
+对想用 AI 系统化管理知识、提升内容创作和研究效率的人来说，这个演示很有冲击力。</div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/CryptoTied_2077777745531273680.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/CryptoTied/status/2077777745531273680" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@CryptoTied · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 4</span>
+    <span>🔁 56</span>
+    <span>❤️ 209</span>
+    <span>🔖 266</span>
+    <span>👁 30.7K</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/CryptoTied/status/2077777745531273680" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+  </section>
+
+  <section id="world">
+    <h2>🌍 世界模型</h2>
+    <p>1 条 · 世界模型、机器人与具身智能 · 按综合分 _score 降序 · 中文译版 + 原文折叠</p>
+<div class="tweet" id="tweet-2077750358302921029">
+  <div class="head">
+    <img src="https://pbs.twimg.com/profile_images/1957418376328101888/GYV0ueqf_normal.jpg" alt="" loading="lazy" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0">
+    <span class="name">Eren Chen</span>
+    <span class="uname">@ErenChenAI</span>
+    <span class="verified">✓</span>
+    <span class="time">7/16 21:41</span>
+    <span class="badge heat" style="margin-left:8px">🔥 8229</span>
+    <span class="badge age" style="margin-left:4px">⏱ 17.4h</span>
+  </div>
+  <div class="text text-zh">整场 URKL 机器人格斗里我最爱的瞬间！一记凶狠的踢击把机器人的头都打耷拉了，结果它竟然像没事一样继续打！我直接笑疯了，得把笑声压低 😂😂</div>
+  <details class="en-details">
+    <summary>原文 (EN/原语)</summary>
+    <div class="text text-en">My favorite moment from the entire URKL Robot Fight!
+
+One brutal kick sent the robot&#x27;s head hanging loose. and it somehow kept fighting like nothing happened!
+
+I completely lost it. Had to lower down the volume of my laugh 😂😂 <a href="https://t.co/QtbHW7UcvS" target="_blank" rel="noopener">https://t.co/QtbHW7UcvS</a></div>
+  </details>
+  <div class="media">
+  <div class="video-frame" style="display:inline-block;width:360px;max-width:100%;max-height:240px;overflow:hidden;border-radius:6px;border:1px solid var(--line);background:#000;margin:8px 0;vertical-align:top;position:relative">
+    <video src="videos/ErenChenAI_2077750358302921029.mp4" controls preload="metadata" playsinline style="width:100%;height:100%;max-height:240px;display:block;object-fit:cover;background:#000"></video>
+  </div>
+  <div style="margin:4px 0 12px;font-size:12px;color:var(--muted);text-align:right">
+    <a href="https://x.com/ErenChenAI/status/2077750358302921029" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none">@ErenChenAI · 在 X 上查看原文 -&gt;</a>
+  </div>
+</div>
+  <div class="stats">
+    <span>💬 621</span>
+    <span>🔁 1.7K</span>
+    <span>❤️ 18.3K</span>
+    <span>🔖 6.6K</span>
+    <span>👁 4.2M</span>
+  </div>
+  <div class="link-row">
+    <a class="orig-link" href="https://x.com/ErenChenAI/status/2077750358302921029" target="_blank" rel="noopener">查看原文 -&gt;</a>
+  </div>
+</div>
+  </section>
+
+  <footer>
+    <h2>📐 算法说明</h2>
+    <p><strong>热度分</strong> = likes + 2·retweets + 0.5·replies + 0.001·views</p>
+    <p><strong>新鲜度</strong> = 1 / (1 + ageHours/8)  (8 小时软半衰期)</p>
+    <p><strong>综合分</strong> = 热度 × 新鲜度</p>
+    <p>过滤: ageHours &lt; 30 且排除 retweet · 已剔除 feed 中的非 AI 噪音 · 每个分类按综合分降序</p>
+    <p>各分类条数: ⭐ 大佬 3 · 🧠 LLM 4 · 🤖 Agent 6 · 🎨 Vibe Coding 7 · 🌍 世界模型 1 · 视频 11 个</p>
+    <p style="margin-top:14px;font-size:12px">本日报由 agent-reach (Twitter/X 路线) 自动采集生成 · 仅供资讯参考，版权归原作者所有</p>
+  </footer>
+</div>
+</body>
+</html>
