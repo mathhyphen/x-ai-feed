@@ -787,17 +787,17 @@ body {{
   font-size: 15px;
 }}
 .cards-grid {{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 24px;
+  column-count: 2;
+  column-gap: 24px;
 }}
 .tweet-card {{
-  width: calc(50% - 12px);
-  flex: 0 0 auto;
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 24px;
+  transform: translateZ(0); /* fix column clipping on some browsers */
 }}
 @media (max-width: 820px) {{
-  .cards-grid {{ display: flex; }}
+  .cards-grid {{ column-count: 1; }}
   .tweet-card {{ width: 100%; }}
 }}
 
