@@ -10,8 +10,13 @@ from pathlib import Path
 
 DATA = Path(r"D:/project/papers/neurovfm/x-feed-data.json")
 VIDEOS = Path(r"D:/project/papers/neurovfm/videos")
-OUT = Path(r"D:/project/papers/neurovfm/x-ai-feed-2026-07-20.html")
-TODAY = "2026-07-20"
+# TODAY: set to "YYYY-MM-DD" for a specific date; leave as None to auto-detect from data.generatedAt (UTC -> Beijing).
+TODAY = None
+if not TODAY:
+    _data = json.loads(DATA.read_text(encoding="utf-8"))
+    _gen = datetime.fromisoformat(_data["generatedAt"]).astimezone(timezone(timedelta(hours=8)))
+    TODAY = _gen.strftime("%Y-%m-%d")
+OUT = Path(rf"D:/project/papers/neurovfm/x-ai-feed-{TODAY}.html")
 BJ = timezone(timedelta(hours=8))
 
 CATS = ["⭐ AI 大佬动态", "🧠 LLM", "🤖 AI Agent", "🎨 Vibe Coding", "🌍 世界模型"]
