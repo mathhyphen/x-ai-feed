@@ -10,8 +10,8 @@ from pathlib import Path
 
 DATA = Path(r"D:/project/papers/neurovfm/x-feed-data.json")
 VIDEOS = Path(r"D:/project/papers/neurovfm/videos")
-OUT = Path(r"D:/project/papers/neurovfm/x-ai-feed-2026-07-17.html")
-TODAY = "2026-07-17"
+OUT = Path(r"D:/project/papers/neurovfm/x-ai-feed-2026-07-20.html")
+TODAY = "2026-07-20"
 BJ = timezone(timedelta(hours=8))
 
 CATS = ["⭐ AI 大佬动态", "🧠 LLM", "🤖 AI Agent", "🎨 Vibe Coding", "🌍 世界模型"]
