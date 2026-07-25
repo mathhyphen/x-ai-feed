@@ -1,0 +1,53 @@
+name: X AI Daily Feed
+
+on:
+  schedule:
+    - cron: '0 22 * * *'   # UTC 22:00 = 北京时间 6:00
+  workflow_dispatch:        # 也可以手动触发
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install twitter-cli
+        run: pip install twitter-cli
+
+      - name: Collect tweets
+        run: python neurovfm/collect_x_feed.py
+        env:
+          TWITTER_AUTH_TOKEN: ${{ secrets.TWITTER_AUTH_TOKEN }}
+          TWITTER_CT0: ${{ secrets.TWITTER_CT0 }}
+
+      - name: Translate (GLM-5.2)
+        run: python neurovfm/translate_ci.py
+        env:
+          GLM_API_KEY: ${{ secrets.GLM_API_KEY }}
+          HTTP_PROXY: ''
+          HTTPS_PROXY: ''
+
+      - name: Build HTML
+        run: python neurovfm/x-ai-feed-repo/scripts/build_x_feed_html.py
+
+      - name: Copy to repo
+        run: |
+          DATE=$(date -u -d '+8 hours' +%Y-%m-%d)
+          cp neurovfm/x-ai-feed-$DATE.html neurovfm/x-ai-feed-repo/reports/$DATE.html
+          cp neurovfm/x-ai-feed-$DATE.html neurovfm/x-ai-feed-repo/$DATE.html
+          cp neurovfm/x-ai-feed-$DATE.html neurovfm/x-ai-feed-repo/index.html
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: neurovfm/x-ai-feed-repo
+          publish_branch: gh-pages
