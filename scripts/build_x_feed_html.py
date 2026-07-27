@@ -8,10 +8,10 @@ import re
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-OUT_DIR = Path(r"D:/project/papers/neurovfm")
-DATA = OUT_DIR / "x-feed-data.json"
+X_AI_DIR = Path(r"D:/project/x-ai-daily")
+DATA = X_AI_DIR / "data" / "x-feed-data.json"
 TODAY = datetime.now().strftime("%Y-%m-%d")
-HTML_OUT = OUT_DIR / f"x-ai-feed-{TODAY}.html"
+HTML_OUT = X_AI_DIR / "html" / f"x-ai-feed-{TODAY}.html"
 CATEGORIES = ["⭐ AI 大佬动态", "🧠 LLM", "🤖 AI Agent", "🎨 Vibe Coding", "🌍 世界模型"]
 
 
