@@ -1,0 +1,3466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="X AI 24h 热门动态 - AI HORIZON">
+<meta name="theme-color" content="#0a0a0f">
+<title>AI HORIZON · X AI 24h 热门动态 · 2026-07-18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+<style>
+/* === Design tokens === */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --glow-x {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}
+:root {
+  --bg: #050508;
+  --bg-2: #0a0a10;
+  --panel: rgba(15, 15, 22, 0.72);
+  --panel-strong: rgba(20, 20, 30, 0.88);
+  --text: #f5f7ff;
+  --text-dim: #a0a8c0;
+  --text-muted: #6b7290;
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.16);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --shadow: 0 24px 80px rgba(0,0,0,0.45);
+  --shadow-sm: 0 8px 30px rgba(0,0,0,0.25);
+  --amber: #f59e0b;
+  --cyan: #06b6d4;
+  --violet: #8b5cf6;
+  --rose: #ec4899;
+  --emerald: #10b981;
+  --font: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+  --mono: "SF Mono", ui-monospace, "Cascadia Code", monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.28); }
+
+/* === WebGL canvas === */
+#neural-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* === Hero === */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 6vw;
+  z-index: 1;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(139,92,246,0.18) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(236,72,153,0.08) 0%, transparent 50%);
+  z-index: -1;
+  animation: nebula 18s ease-in-out infinite alternate;
+}
+@keyframes nebula {
+  from { filter: hue-rotate(0deg) scale(1); }
+  to { filter: hue-rotate(25deg) scale(1.08); }
+}
+.hero-content {
+  text-align: center;
+  max-width: 900px;
+  perspective: 1000px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.hero-eyebrow .pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 12px var(--emerald);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+.hero-title {
+  font-size: clamp(48px, 10vw, 112px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0 0 22px;
+  background: linear-gradient(var(--gradient-angle), #fff 0%, #a5b4fc 35%, #67e8f9 65%, #c084fc 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-rotate 8s linear infinite;
+  filter: drop-shadow(0 0 40px rgba(139,92,246,0.25));
+}
+@keyframes gradient-rotate {
+  from { --gradient-angle: 0deg; }
+  to { --gradient-angle: 360deg; }
+}
+.hero-subtitle {
+  font-size: clamp(18px, 2.6vw, 28px);
+  color: var(--text-dim);
+  font-weight: 400;
+  margin: 0 0 40px;
+}
+.hero-subtitle strong {
+  color: var(--text);
+  font-weight: 700;
+}
+.hero-date {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--text-muted);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+}
+.scroll-hint::after {
+  content: "↓";
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+/* === Navigation === */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 4vw;
+  background: rgba(5,5,8,0.78);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-brand .brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  box-shadow: 0 0 18px rgba(6,182,212,0.5);
+}
+.nav-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px;
+  scrollbar-width: none;
+}
+.nav-pills::-webkit-scrollbar { display: none; }
+.nav-pill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.nav-pill:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  border-color: var(--pill-color);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--pill-color) 25%, transparent);
+}
+.nav-pill[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--pill-color) 18%, transparent);
+  border-color: var(--pill-color);
+  color: var(--text);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--pill-color) 30%, transparent);
+}
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+.pill-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  font-size: 11px;
+  font-weight: 700;
+}
+.search-wrap {
+  position: relative;
+  width: 220px;
+  flex-shrink: 0;
+}
+.search-wrap input {
+  width: 100%;
+  padding: 9px 14px 9px 36px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s;
+}
+.search-wrap input:focus {
+  border-color: var(--cyan);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 0 20px rgba(6,182,212,0.15);
+}
+.search-wrap::before {
+  content: "🔍";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* === Main layout === */
+.page-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4vw 8vw;
+}
+.main {
+  min-width: 0;
+}
+
+/* === Sidebar === */
+.sidebar {
+  position: sticky;
+  top: 84px;
+  height: calc(100vh - 104px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-sm);
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.sidebar-icon {
+  font-size: 14px;
+}
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.date-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  font-family: var(--mono);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.date-link:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border-color: var(--line);
+}
+.date-link.current {
+  background: rgba(6,182,212,0.12);
+  color: var(--cyan);
+  border-color: rgba(6,182,212,0.35);
+  font-weight: 700;
+}
+.date-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--cyan);
+  color: #000;
+  font-weight: 800;
+  font-family: var(--font);
+}
+
+/* === Mobile dates === */
+.mobile-dates {
+  display: none;
+  margin-bottom: 20px;
+}
+.mobile-dates-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.mobile-dates-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+  scrollbar-width: none;
+}
+.mobile-dates-nav::-webkit-scrollbar { display: none; }
+.mobile-dates-nav .date-link {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+}
+
+/* === Dashboard === */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 64px;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-sm);
+}
+.panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 18px;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.kpi {
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+}
+.kpi-value {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.kpi-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+.dist-bar {
+  display: grid;
+  grid-template-columns: auto 1fr 28px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.dist-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  min-width: 120px;
+}
+.dist-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dist-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.dist-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  box-shadow: 0 0 12px currentColor;
+  animation: fill-bar 1.2s ease-out 0.3s forwards;
+}
+@keyframes fill-bar {
+  to { width: var(--fill-pct); }
+}
+.dist-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: right;
+}
+.contrib-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.contrib-row:last-child { border-bottom: none; }
+.contrib-row img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+.contrib-name {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.c-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.c-uname {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.contrib-heat {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+/* === Feed sections === */
+.feed-section {
+  margin-bottom: 80px;
+  animation: fade-in-up 0.8s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-header {
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.section-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--section-color);
+  box-shadow: 0 0 20px var(--section-color);
+}
+.section-header h2 {
+  font-size: clamp(24px, 3.4vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--text);
+}
+.section-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--section-color) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--section-color) 40%, transparent);
+  color: var(--section-color);
+  font-size: 14px;
+  font-weight: 800;
+}
+.section-desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.cards-grid {
+  column-count: 2;
+  column-gap: 24px;
+}
+.tweet-card {
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 24px;
+  transform: translateZ(0); /* fix column clipping on some browsers */
+}
+@media (max-width: 820px) {
+  .cards-grid { column-count: 1; }
+  .tweet-card { width: 100%; }
+}
+
+/* === Tweet cards === */
+.tweet-card {
+  position: relative;
+  border-radius: var(--radius);
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.3s, box-shadow 0.3s;
+  animation: card-enter 0.7s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 15%;
+}
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.tweet-card.hidden {
+  display: none;
+}
+.tweet-card.dim {
+  opacity: 0.25;
+  filter: grayscale(0.6);
+}
+.card-border {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(var(--gradient-angle), rgba(255,255,255,0.25), var(--card-glow), rgba(255,255,255,0.15), var(--card-glow));
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradient-rotate 6s linear infinite;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.tweet-card:hover .card-border {
+  opacity: 1;
+}
+.card-inner {
+  position: relative;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 22px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow: hidden;
+}
+.card-inner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at var(--glow-x, 0%) 50%, color-mix(in srgb, var(--card-glow) 18%, transparent), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  animation: glow-move 5s ease-in-out infinite;
+}
+.tweet-card:hover .card-inner::before {
+  opacity: 1;
+}
+@keyframes glow-move {
+  0%, 100% { --glow-x: 0%; }
+  50% { --glow-x: 100%; }
+}
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.avatar-wrap img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.12);
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+.avatar-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0.5;
+  z-index: 0;
+  transition: opacity 0.3s;
+}
+.tweet-card:hover .avatar-glow {
+  opacity: 0.9;
+}
+.meta-text {
+  flex: 1;
+  min-width: 0;
+}
+.name-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.name {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 15px;
+}
+.uname {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.verified {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 700;
+}
+.time-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.age-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 600;
+}
+.score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+  padding-left: 12px;
+}
+.score-val {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--amber);
+  line-height: 1;
+}
+.score-label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.text-zh {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 14px;
+  white-space: pre-wrap;
+}
+.text-zh a, .text-en a {
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(6,182,212,0.3);
+  transition: border-color 0.2s;
+}
+.text-zh a:hover, .text-en a:hover {
+  border-color: var(--cyan);
+}
+.media {
+  margin: 14px 0;
+}
+.video-frame {
+  display: inline-block;
+  width: 100%;
+  max-width: 420px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;
+  position: relative;
+}
+.video-frame video {
+  width: 100%;
+  max-height: 420px;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+.video-fallback {
+  padding: 18px;
+  text-align: center;
+  background: rgba(0,0,0,0.55);
+  border-radius: var(--radius-sm);
+}
+.video-fallback p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.video-fallback a {
+  display: inline-block;
+  margin: 4px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.video-fallback a:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--cyan);
+}
+.video-thumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.video-thumb:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--cyan);
+}
+.tweet-photo {
+  display: block;
+  max-width: 420px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.tweet-photo img {
+  width: 100%;
+  display: block;
+}
+.media-meta {
+  margin-top: 8px;
+  font-size: 12px;
+  text-align: right;
+}
+.media-meta a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.media-meta a:hover {
+  color: var(--cyan);
+}
+.en-details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  margin: 14px 0;
+  overflow: hidden;
+}
+.en-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  list-style: none;
+}
+.en-details summary::-webkit-details-marker { display: none; }
+.en-details .summary-icon {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+.en-details[open] .summary-icon {
+  transform: rotate(-135deg);
+}
+.text-en {
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  background: rgba(0,0,0,0.15);
+  border-top: 1px solid var(--line);
+  white-space: pre-wrap;
+}
+.card-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.stat-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.stat {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+}
+.orig-link {
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.orig-link:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* === Footer === */
+.footer {
+  text-align: center;
+  padding: 60px 4vw;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid var(--line);
+  background: rgba(0,0,0,0.2);
+}
+.footer a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+/* === Utility === */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--panel-strong);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 90;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 24px rgba(6,182,212,0.25);
+}
+
+/* === Mobile === */
+@media (max-width: 640px) {
+  .top-nav {
+    flex-wrap: wrap;
+    padding: 10px 3vw;
+  }
+  .search-wrap {
+    width: 100%;
+    order: 3;
+  }
+  .nav-pills {
+    order: 2;
+    width: 100%;
+  }
+  .hero-title { font-size: 56px; }
+  .hero-subtitle { font-size: 18px; }
+  .kpi-grid { grid-template-columns: 1fr; }
+  .panel { padding: 18px; }
+  .card-head { flex-wrap: wrap; }
+  .score-badge { width: 100%; flex-direction: row; justify-content: space-between; padding-top: 12px; margin-left: 0; }
+  .page-layout { grid-template-columns: 1fr; padding: 0 3vw 8vw; gap: 16px; }
+  .sidebar { display: none; }
+  .mobile-dates { display: block; }
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<canvas id="neural-canvas"></canvas>
+
+<header class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="pulse"></span> X AI 24h 热门动态</div>
+    <h1 class="hero-title">AI HORIZON</h1>
+    <p class="hero-subtitle">过去 <strong>24 小时</strong>，X 上最热门的 AI 信号。<br>中文精选 + 原文对照 + 热度排序。</p>
+    <div class="hero-date">📅 2026-07-18 · 30 条 · 14 个视频 · 数据来源: twitter search</div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</header>
+
+<nav class="top-nav">
+  <a class="nav-brand" href="#top">
+    <span class="brand-dot"></span>
+    AI HORIZON
+  </a>
+  <div class="nav-pills">
+    <button class="nav-pill" data-filter="all" style="--pill-color:#fff" aria-pressed="true">
+      <span class="pill-dot" style="background:#fff"></span>
+      全部
+      <span class="pill-count">30</span>
+    </button>
+<button class="nav-pill" data-filter="leaders" style="--pill-color:#f59e0b" aria-pressed="false">
+  <span class="pill-dot" style="background:#f59e0b"></span>
+  ⭐ AI 大佬动态
+  <span class="pill-count">5</span>
+</button>
+<button class="nav-pill" data-filter="llm" style="--pill-color:#06b6d4" aria-pressed="false">
+  <span class="pill-dot" style="background:#06b6d4"></span>
+  🧠 LLM
+  <span class="pill-count">8</span>
+</button>
+<button class="nav-pill" data-filter="agent" style="--pill-color:#8b5cf6" aria-pressed="false">
+  <span class="pill-dot" style="background:#8b5cf6"></span>
+  🤖 AI Agent
+  <span class="pill-count">8</span>
+</button>
+<button class="nav-pill" data-filter="vibe" style="--pill-color:#ec4899" aria-pressed="false">
+  <span class="pill-dot" style="background:#ec4899"></span>
+  🎨 Vibe Coding
+  <span class="pill-count">6</span>
+</button>
+<button class="nav-pill" data-filter="world" style="--pill-color:#10b981" aria-pressed="false">
+  <span class="pill-dot" style="background:#10b981"></span>
+  🌍 世界模型
+  <span class="pill-count">3</span>
+</button>
+  </div>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="搜索推文、作者、关键词…" aria-label="搜索">
+  </div>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="sidebar" aria-label="历史日报">
+    <div class="sidebar-header">
+      <span class="sidebar-icon" aria-hidden="true">☰</span>
+      <span>历史日报</span>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="/reports/2026-07-25.html" class="date-link">2026-07-25</a>
+        <a href="/reports/2026-07-24.html" class="date-link">2026-07-24</a>
+        <a href="/reports/2026-07-23.html" class="date-link">2026-07-23</a>
+        <a href="/reports/2026-07-22.html" class="date-link">2026-07-22</a>
+        <a href="/reports/2026-07-20.html" class="date-link">2026-07-20</a>
+        <a href="/reports/2026-07-19.html" class="date-link">2026-07-19</a>
+        <a href="/reports/2026-07-18.html" class="date-link current">2026-07-18 <span class="date-badge">今日</span></a>
+        <a href="/reports/2026-07-17.html" class="date-link">2026-07-17</a>
+        <a href="/reports/2026-07-16.html" class="date-link">2026-07-16</a>
+        <a href="/reports/2026-07-15.html" class="date-link">2026-07-15</a>
+        <a href="/reports/2026-07-14.html" class="date-link">2026-07-14</a>
+        <a href="/reports/2026-07-13.html" class="date-link">2026-07-13</a>
+        <a href="/reports/2026-07-12.html" class="date-link">2026-07-12</a>
+        <a href="/reports/2026-07-11.html" class="date-link">2026-07-11</a>
+        <a href="/reports/2026-07-10.html" class="date-link">2026-07-10</a>
+        <a href="/reports/2026-07-09.html" class="date-link">2026-07-09</a>
+        <a href="/reports/2026-07-08.html" class="date-link">2026-07-08</a>
+    </nav>
+  </aside>
+  <div class="mobile-dates" aria-label="历史日报">
+    <span class="mobile-dates-label">历史日报</span>
+    <nav class="mobile-dates-nav">
+      <a href="/reports/2026-07-25.html" class="date-link">2026-07-25</a>
+<a href="/reports/2026-07-24.html" class="date-link">2026-07-24</a>
+<a href="/reports/2026-07-23.html" class="date-link">2026-07-23</a>
+<a href="/reports/2026-07-22.html" class="date-link">2026-07-22</a>
+<a href="/reports/2026-07-20.html" class="date-link">2026-07-20</a>
+<a href="/reports/2026-07-19.html" class="date-link">2026-07-19</a>
+<a href="/reports/2026-07-18.html" class="date-link current">2026-07-18 <span class="date-badge">今日</span></a>
+<a href="/reports/2026-07-17.html" class="date-link">2026-07-17</a>
+<a href="/reports/2026-07-16.html" class="date-link">2026-07-16</a>
+<a href="/reports/2026-07-15.html" class="date-link">2026-07-15</a>
+<a href="/reports/2026-07-14.html" class="date-link">2026-07-14</a>
+<a href="/reports/2026-07-13.html" class="date-link">2026-07-13</a>
+<a href="/reports/2026-07-12.html" class="date-link">2026-07-12</a>
+<a href="/reports/2026-07-11.html" class="date-link">2026-07-11</a>
+<a href="/reports/2026-07-10.html" class="date-link">2026-07-10</a>
+<a href="/reports/2026-07-09.html" class="date-link">2026-07-09</a>
+<a href="/reports/2026-07-08.html" class="date-link">2026-07-08</a>
+    </nav>
+  </div>
+  <main class="main">
+  <section class="dashboard" aria-label="数据概览">
+    <div class="panel">
+      <div class="panel-title">今日概览</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-value">30</div><div class="kpi-label">精选推文</div></div>
+        <div class="kpi"><div class="kpi-value">14</div><div class="kpi-label">内嵌视频</div></div>
+        <div class="kpi"><div class="kpi-value">168.7K</div><div class="kpi-label">总热度</div></div>
+        <div class="kpi"><div class="kpi-value">20.5M</div><div class="kpi-label">总曝光</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">分类分布</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#f59e0b"></span>⭐ AI 大佬动态</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:62.5%;background:#f59e0b"></div></div>
+  <div class="dist-num">5</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#06b6d4"></span>🧠 LLM</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:100.0%;background:#06b6d4"></div></div>
+  <div class="dist-num">8</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#8b5cf6"></span>🤖 AI Agent</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:100.0%;background:#8b5cf6"></div></div>
+  <div class="dist-num">8</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#ec4899"></span>🎨 Vibe Coding</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:75.0%;background:#ec4899"></div></div>
+  <div class="dist-num">6</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#10b981"></span>🌍 世界模型</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:37.5%;background:#10b981"></div></div>
+  <div class="dist-num">3</div>
+</div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">热门发声账号</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1950950107937185792/QOfEjFoJ_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Claude</span>
+    <span class="c-uname">@claudeai</span>
+  </div>
+  <div class="contrib-heat">70.8K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/2075819673263001600/pj1vyX6I_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Tibo</span>
+    <span class="c-uname">@thsottiaux</span>
+  </div>
+  <div class="contrib-heat">35.9K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1879600809693917185/GkBxdTd9_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">David Sacks</span>
+    <span class="c-uname">@DavidSacks</span>
+  </div>
+  <div class="contrib-heat">24.4K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">ClaudeDevs</span>
+    <span class="c-uname">@ClaudeDevs</span>
+  </div>
+  <div class="contrib-heat">8.5K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1885410181409820672/ztsaR0JW_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">OpenAI</span>
+    <span class="c-uname">@OpenAI</span>
+  </div>
+  <div class="contrib-heat">6.1K</div>
+</div>
+    </div>
+  </section>
+
+  <section class="feed-section" id="leaders" data-cat="leaders" style="--section-color:#f59e0b">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>⭐ AI 大佬动态</h2>
+        <span class="section-count">5</span>
+      </div>
+      <p class="section-desc">AI 领袖与资深从业者的发声</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2078133895766114412" data-category="leaders" data-score="1356.86" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1997065021491130368/X76ALSbp_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Dean W. Ball</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@deanwball</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 23:05</span>
+          <span class="age-badge">22.0h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1357</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">关于 Kimi 的一些观察：
+
+1. 这是一个非常优秀的模型！我认为它的表现没法用蒸馏之类的说法来解释。在 agentic 编程会话中，它看起来基本与 2026 年第一季度最强的公开模型不相上下。在我相当有限的使用中，它似乎也非常耗 token。所以这个模型实际运行起来是否真的那么便宜，对我来说并不明显。
+
+2. 考虑到潜在风险，我个人很惊讶中国政府仍然允许开源这么强的模型。需要说明的是，*我自己*或许可以接受这种边际风险水平的模型开放权重，但让我惊讶的是中国居然能接受。我猜测他们能接受的原因，75% 可以用战略盲区/缺乏 AGI 信仰（AGI-pilledness）来解释（中共在 AI 问题上的看法非常 Yann Lecun 风）。另外 25% 左右则是他们缺乏用于客户推理的算力（这使得中国的开放权重战略成为美国出口管制的意外副产品），以及中国惯常的激进……</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Some observations on Kimi: 
+
+1. It&#x27;s a very good model! I don&#x27;t think its performance can be explained away by distillation or anything like that. In agentic coding sessions, it seems pretty much on par with the best public models of Q1 2026. In my fairly limited use, it also seemed very token hungry. It&#x27;s not obvious to me that this model is actually that cheap to run. 
+
+2. I am personally surprised the Chinese state continues to allow the open sourcing of models this good, given potential risks. To be clear, I *myself* might be fine with models presenting this level of marginal risk being open weight, but I am surprised that China is fine with it. I suspect the reason they are is 75% explained by strategic blindness/lack of AGI-pilledness (the CCP is very Yann Lecun-y in its views of AI). The other 25% or so is their lack of compute for customer inference (making China&#x27;s open-weight strategy an unintended byproduct of US export controls) and the normal Chinese strategy of aggressive exports. For the companies, as opposed to the government, the decision to open source is partially ideological and partially because they are behind, and they know that very few people would pay for sub-frontier models from China. 
+
+3. Open-weight models are inherently decelerationist, and I&#x27;m continually surprised to see the so-called &quot;accelerationists&quot; so excited about open-weight models. I suspect the reason they are is that they know open-weight models are effectively ungovernable, and they simply like the overall cloak of ungovernability open-weight models create over the whole of AI. It&#x27;s not a bad strategy; it reminds me of James Scott&#x27;s recounting of the hill people in &quot;the art of not being governed.&quot; Still, in the end, open-weight models deter further AI capex. 
+
+4. One probable outcome of an open-weight-model-dominant world is full AI communism, which is precisely what China proposes: rather than a market product, AI is a &quot;public good&quot; which will ultimately be provided by the state as a kind of &quot;digital public infrastructure.&quot; This future strikes me as a dystopian hellscape, but I&#x27;ve never met an open-weight models advocate who doesn&#x27;t ultimately concede this is where things end. You&#x27;d be surprised how many &#x27;accelerationists&#x27; lobbied me, while I was in government, to support an eleven or twelve-figure federally funded data center so that startups could train models at a subsidy and then give them away for free. There was no other way for AI to progress, they said. Perhaps this is the logical end state of things. Nonetheless, I find myself surprised to see supposed accelerationists excited about such an outcome. I think many of them just don&#x27;t know what they&#x27;re doing. Many accelerationists do not view the creation and serving of frontier models as a legitimate business. 
+
+5. I would guess that the Trump Administration will at some point realize that their best strategy here would be to create large amounts of regulatory risk around the use of open-weight Chinese models. You don&#x27;t need to &quot;ban open source&quot; (one of the dumber motifs of AI policy discussion). You just need to direct every agency to issue soft law that creates FUD. &quot;A Federal Reserve Advisory Bulletin found that there may be backdoors in Chinese AI models.&quot; It needn&#x27;t be that well justified. You just create enough regulatory risk that every regulated enterprise backs off. You probably don&#x27;t want to create so much regulatory risk that you scare off the hyperscalers from serving Chinese models; this will just drive startups to sketchier providers. There&#x27;s a happy middle ground here. I&#x27;d assume they will do some version of this. 
+
+6. It&#x27;s probably true that open-weight models of this capability make the world a bit more dangerous, but not so much more that you&#x27;ll really notice. At some point the models will be capable enough that you will notice. &quot;A nonliving, invisible, dangerous, and infinitely self-replicating agent escaped from a Chinese lab,&quot; you say? Color me shocked.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 5.1K</span>
+        <span class="stat">💬 476</span>
+        <span class="stat">🔁 311</span>
+        <span class="stat">❤️ 3.0K</span>
+        <span class="stat">🔖 2.8K</span>
+        <span class="stat">👁 1.3M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/deanwball/status/2078133895766114412" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078165665278730490" data-category="leaders" data-score="378.62" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2042402069320290304/A8C1lP07_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Artificial Analysis</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ArtificialAnlys</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 01:11</span>
+          <span class="age-badge">19.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">379</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">前沿格局已经打开：八天内四款前沿模型发布——Grok 4.5、GPT-5.6、Muse Spark 1.1，以及昨天的 Kimi K3；目前已有六家实验室拥有在 Artificial Analysis 智能指数上得分 &gt;50 的模型，而六月初还只有两家。
+
+<a href="https://x.com/SpaceXAI" target="_blank" rel="noopener">@SpaceXAI</a> 的 Grok 4.5（high，Artificial Analysis 智能指数得分：54）于 7 月 8 日落地，<a href="https://x.com/OpenAI" target="_blank" rel="noopener">@OpenAI</a> 的 GPT-5.6 Sol、Terra 和 Luna（max：59、55、51）以及 <a href="https://x.com/AIatMeta" target="_blank" rel="noopener">@AIatMeta</a> 的 Muse Spark 1.1（xhigh，51）在一天后跟进，<a href="https://x.com/Kimi_Moonshot" target="_blank" rel="noopener">@Kimi_Moonshot</a> 的 Kimi K3 昨天以 57 分发布——总排名第三，领先于 Claude Opus 4.8（max，56）。
+
+该指数前三名模型现在来自三家不同的实验室，分差仅三分。得分最高的十个模型中，有四个是 7 月 8 日以来发布的，十个中有六个是六月初以来发布的。
+
+唯一没有变动的是第一名：Claude Fable 5（max，60）自 6 月 9 日以来一直占据榜首，但其领先优势已从四分缩小到一分，而它之下的智能价格已经崩盘。
+
+祝贺 <a href="https://x.com/elonmusk" target="_blank" rel="noopener">@elonmusk</a>、<a href="https://x.com/sama" target="_blank" rel="noopener">@sama</a>、<a href="https://x.com/f" target="_blank" rel="noopener">@f</a>...</div>
+    <div class="media">
+  <a href="https://x.com/ArtificialAnlys/status/2078165665278730490" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNcf2upbMAALvLu.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/ArtificialAnlys/status/2078165665278730490" target="_blank" rel="noopener">@ArtificialAnlys · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">The frontier has opened up: four frontier launches in eight days - Grok 4.5, GPT-5.6, Muse Spark 1.1, and yesterday Kimi K3; six labs now have a model scoring &gt;50 on the Artificial Analysis Intelligence Index, up from two in early June
+
+<a href="https://x.com/SpaceXAI" target="_blank" rel="noopener">@SpaceXAI</a>&#x27;s Grok 4.5 (high, Artificial Analysis Intelligence Index Score: 54) landed July 8, <a href="https://x.com/OpenAI" target="_blank" rel="noopener">@OpenAI</a>&#x27;s GPT-5.6 Sol, Terra, and Luna (max: 59, 55, 51) and <a href="https://x.com/AIatMeta" target="_blank" rel="noopener">@AIatMeta</a>&#x27;s Muse Spark 1.1 (xhigh, 51) followed a day later, and <a href="https://x.com/Kimi_Moonshot" target="_blank" rel="noopener">@Kimi_Moonshot</a>&#x27;s Kimi K3 launched yesterday at 57 - third overall, ahead of Claude Opus 4.8 (max, 56).
+
+The top three models on the Index now come from three different labs and span just three points. Four of the ten highest-scoring models launched since July 8, and six of ten since early June.
+
+The one thing that did not move is #1: Claude Fable 5 (max, 60) has held the top spot since June 9, but its lead has narrowed from four points to one, and the price of the intelligence beneath it collapsed.
+
+Congratulations to <a href="https://x.com/elonmusk" target="_blank" rel="noopener">@elonmusk</a>, <a href="https://x.com/sama" target="_blank" rel="noopener">@sama</a>, <a href="https://x.com/finkd" target="_blank" rel="noopener">@finkd</a>, and the teams at all four labs on a remarkable eight days.
+
+Key Takeaways:
+
+➤ The frontier went from two labs to six in six weeks. Until June, only Anthropic and OpenAI had fielded a model at 51 or above. GLM-5.2 (max) brought Z AI in mid-June; last week added SpaceXAI and Meta; today Kimi K3 makes Moonshot AI the sixth as they enter at 57
+
+➤ Kimi K3 debuts at #3 with agentic and knowledge work scores behind only the top two. K3 scores 1668 Elo on GDPval-AA v2, third behind Claude Fable 5 (max, 1760) and GPT-5.6 Sol (max, 1748). On AA-Briefcase, our benchmark of long-horizon knowledge work, it enters at #2 with 1547 Elo - behind only Claude Fable 5 (max, 1583) and ahead of GPT-5.6 Sol (max, 1495) - with an Analytical Quality Elo (1760) effectively tied with Fable 5 (1764). At $0.94 per Intelligence Index task on its $3/$15 pricing, it delivers comparable intelligence to Claude Opus 4.8 (max, $1.80) at roughly half the cost per task
+
+➤ Near-frontier intelligence got 2-3x cheaper in eight days. GPT-5.6 Sol (max) delivers one point below Claude Fable 5 (max) at $1.04 per Intelligence Index task vs $2.75. Grok 4.5 (high) delivers 54 at $0.31, under a third of GPT-5.5 (xhigh, $0.99). At 51, GPT-5.6 Luna (max, $0.21) and Muse Spark 1.1 (xhigh, $0.26) undercut GLM-5.2 (max, $0.32), the cheapest at that level a week earlier</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.3K</span>
+        <span class="stat">💬 54</span>
+        <span class="stat">🔁 92</span>
+        <span class="stat">❤️ 1.0K</span>
+        <span class="stat">🔖 141</span>
+        <span class="stat">👁 91.8K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ArtificialAnlys/status/2078165665278730490" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078115704184926554" data-category="leaders" data-score="239.73" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1492616506/Brian-Med-Green-Fin_normal.png" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Brian Roemmele</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@BrianRoemmele</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 21:52</span>
+          <span class="age-badge">23.2h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">240</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Kimi K3 给了 Anthropic 一记重拳。一切都结束了。
+
+一个 2.8T、承诺开放权重的中国模型，一发布就摘下 WebDev 人类偏好榜桂冠：在真正能交付产品的任务上，真实智能体终端和长周期编码的成绩都强过 Claude Fable 5，而价格只有约三分之一——并且很快将免费，承诺十天内放出完整权重。
+
+那套靠恐惧营销说服无数人接受闭源模型、天价&quot;租金&quot;、并以&quot;安全&quot;为借口把前沿能力锁起来的话术，如今看来就像一场昂贵的表演。
+
+最抓狂的莫过于那些政客和学者——他们听信了 Dario 那番挥手作态、自诩道德高人一等的证词：&quot;我们必须阻止 AI&quot;。Kimi 就这么发布了，世界没有毁灭。天没有塌下来，Dario。
+
+开发者们再也不必假装唯一负责任的道路必须经过 Anthropic 的高级收费站；开放前沿刚刚证明了它能在关键之处追平甚至击败他们，并把权重交到任何拥有集群的人手中。
+
+那套叙事……</div>
+    <div class="media">
+  <a href="https://x.com/BrianRoemmele/status/2078115704184926554" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNbzNWDaoAAVRrC.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/BrianRoemmele/status/2078115704184926554" target="_blank" rel="noopener">@BrianRoemmele · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Kimi K3 is a gut punch to Anthropic. Its over.
+
+A 2.8T open-weight-bound Chinese model just took the WebDev human-preference crown at launch, posted stronger real agentic terminal and long-horizon coding numbers than Claude Fable 5 on the tasks that actually ship products, and did it at roughly one-third the price while soon to be FREE promising full weights in ten days. 
+
+The fear-based marketing that convinced so many to accept closed models, sky-high rents, and “safety” as justification for locking away frontier capability now looks like expensive theater. 
+
+Mad are the politicians and academics that fell for Dario hand waving holier than tho testimony that “we must stop AI”. Kimi just drops and the world did not end. The sky did not fall Dario. 
+
+Builders no longer have to pretend the only responsible path runs through Anthropic’s premium tollbooth; the open frontier just proved it can match or beat them where it counts and hand the weights to anyone with a cluster. 
+
+That narrative is dead.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 934</span>
+        <span class="stat">💬 49</span>
+        <span class="stat">🔁 126</span>
+        <span class="stat">❤️ 559</span>
+        <span class="stat">🔖 121</span>
+        <span class="stat">👁 98.7K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/BrianRoemmele/status/2078115704184926554" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078313818627907773" data-category="leaders" data-score="59.22" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1852016049463480320/cdT5RGE7_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Ajit kumar</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ajitcodes</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 11:00</span>
+          <span class="age-badge">10.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">59</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Andrej Karpathy 在 OpenAI 和 Tesla 待了 8 年。
+
+上周，他把自己知道的一切浓缩成了一场免费的 2 小时讲座。
+
+人们花 $15k 上的训练营，教的内容只有这里的一半。
+
+你现在可能抽不出 2 小时。别让这条淹没在信息流里。
+
+去看吧。然后读下面的指南，搭建你的第一个 loop。</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/ajitcodes/status/2078313818627907773">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/ajitcodes_2078313818627907773.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/ajitcodes_2078313818627907773.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/ajitcodes/status/2078313818627907773" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/ajitcodes/status/2078313818627907773" target="_blank" rel="noopener">@ajitcodes · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Andrej Karpathy spent 8 years at OpenAI and Tesla.  
+
+Last week he put everything he knows into one free 2-hour lecture.  
+
+People pay $15k for bootcamps that teach half of this.  
+
+You probably don&#x27;t have 2 hours right now. Don&#x27;t lose this in the feed.  
+
+Watch it. Then read the guide below and build your first loop.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 133</span>
+        <span class="stat">💬 6</span>
+        <span class="stat">🔁 28</span>
+        <span class="stat">❤️ 72</span>
+        <span class="stat">🔖 53</span>
+        <span class="stat">👁 2.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ajitcodes/status/2078313818627907773" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078072270044676339" data-category="leaders" data-score="11.46" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1826009355742789632/TSSCTAxX_normal.png" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Big Brain AI</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@realBigBrainAI</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 19:00</span>
+          <span class="age-badge">26.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">11</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">「vibe coding」之父 Andrej Karpathy 坦言，在 Twitter 上混了 15 年，完全没想到那条推文会突然爆红：<a href="https://t.co/eXEYDL9ojD" target="_blank" rel="noopener">https://t.co/eXEYDL9ojD</a></div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/realBigBrainAI/status/2078072270044676339">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/realBigBrainAI_2078072270044676339.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/realBigBrainAI_2078072270044676339.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/realBigBrainAI/status/2078072270044676339" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/realBigBrainAI/status/2078072270044676339" target="_blank" rel="noopener">@realBigBrainAI · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Andrej Karpathy, the man behind &quot;vibe coding,&quot; admits he had no idea the tweet would go viral after 15 years on Twitter: <a href="https://t.co/eXEYDL9ojD" target="_blank" rel="noopener">https://t.co/eXEYDL9ojD</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 48</span>
+        <span class="stat">💬 3</span>
+        <span class="stat">🔁 12</span>
+        <span class="stat">❤️ 21</span>
+        <span class="stat">🔖 3</span>
+        <span class="stat">👁 2.3K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/realBigBrainAI/status/2078072270044676339" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="llm" data-cat="llm" style="--section-color:#06b6d4">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🧠 LLM</h2>
+        <span class="section-count">8</span>
+      </div>
+      <p class="section-desc">大模型发布、能力与评测</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2078302415804379218" data-category="llm" data-score="26738.85" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1950950107937185792/QOfEjFoJ_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Claude</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@claudeai</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 10:14</span>
+          <span class="age-badge">10.8h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">26739</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">从 7 月 20 日起，Claude Fable 5 将包含在所有 Max 和 Team Premium 套餐中，额度为 50%。
+
+Pro 和 Team Standard 用户将继续通过用量点数使用 Fable，并将获得一次性的 $100 点数。
+
+Fable 的需求一直难以预测，这也是为什么我们分阶段将其推向订阅套餐，并在获得额外算力后多次扩大开放范围。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Beginning July 20, Claude Fable 5 will be included in all Max and Team Premium plans, at 50% of limits.
+
+Pro and Team Standard users will continue to have access to Fable via usage credits, and will receive a one-time $100 credit.
+
+Demand for Fable has been challenging to predict, which is why we rolled it out to subscription plans in stages, extending access several times as we secured additional capacity.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 62.9K</span>
+        <span class="stat">💬 3.6K</span>
+        <span class="stat">🔁 5.1K</span>
+        <span class="stat">❤️ 40.3K</span>
+        <span class="stat">🔖 5.5K</span>
+        <span class="stat">👁 10.5M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/claudeai/status/2078302415804379218" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078310751878647932" data-category="llm" data-score="8516.26" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2075819673263001600/pj1vyX6I_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Tibo</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@thsottiaux</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 10:47</span>
+          <span class="age-badge">10.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">8516</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">GPT-5.6 Sol 已被证实是一个极其出色的模型</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">GPT-5.6 Sol confirmed to be an extremely good model</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 19.4K</span>
+        <span class="stat">💬 930</span>
+        <span class="stat">🔁 616</span>
+        <span class="stat">❤️ 16.5K</span>
+        <span class="stat">🔖 552</span>
+        <span class="stat">👁 1.3M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/thsottiaux/status/2078310751878647932" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078302417100394737" data-category="llm" data-score="2390.73" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1950950107937185792/QOfEjFoJ_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Claude</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@claudeai</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 10:14</span>
+          <span class="age-badge">10.8h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">2391</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我们知道这确实很令人沮丧，我们想让你更清楚地了解自己的套餐包含什么。对于 Fable 使用强度最高的套餐，我们将在用量达到 50% 时提供标准访问权限。
+
+感谢大家过去几周以来的耐心等待。我们正在持续投入新的容量，并会随时向大家同步最新进展。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">We know this has been frustrating, and we want to give you more certainty about what your plan includes. We are making access standard at 50% usage for the plans that use Fable most intensively.
+
+Thank you for your patience over the past several weeks. We&#x27;re continuing to invest in new capacity and will keep everyone updated as we do.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 5.6K</span>
+        <span class="stat">💬 261</span>
+        <span class="stat">🔁 151</span>
+        <span class="stat">❤️ 4.5K</span>
+        <span class="stat">🔖 211</span>
+        <span class="stat">👁 691.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/claudeai/status/2078302417100394737" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078223217773474134" data-category="llm" data-score="874.64" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1885410181409820672/ztsaR0JW_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">OpenAI</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@OpenAI</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 05:00</span>
+          <span class="age-badge">16.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">875</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">人们热爱 GPT-5.6 Sol 的 10,000 个理由
+<a href="https://t.co/Mu6PBPkrop" target="_blank" rel="noopener">https://t.co/Mu6PBPkrop</a> <a href="https://t.co/1jJ7ZNCY26" target="_blank" rel="noopener">https://t.co/1jJ7ZNCY26</a></div>
+    <div class="media">
+  <a href="https://x.com/OpenAI/status/2078223217773474134" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNdUS5caIAA9pnF.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/OpenAI/status/2078223217773474134" target="_blank" rel="noopener">@OpenAI · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">10,000 reasons people love GPT-5.6 Sol 
+<a href="https://t.co/Mu6PBPkrop" target="_blank" rel="noopener">https://t.co/Mu6PBPkrop</a> <a href="https://t.co/1jJ7ZNCY26" target="_blank" rel="noopener">https://t.co/1jJ7ZNCY26</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.6K</span>
+        <span class="stat">💬 221</span>
+        <span class="stat">🔁 128</span>
+        <span class="stat">❤️ 1.8K</span>
+        <span class="stat">🔖 284</span>
+        <span class="stat">👁 426.3K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/OpenAI/status/2078223217773474134" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078427059127545913" data-category="llm" data-score="307.43" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2056719506785927168/ol1lqm8b_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Pi</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@pidotdev</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 18:30</span>
+          <span class="age-badge">2.6h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">307</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">没有开源贡献者，Pi 将一无是处！
+
+感谢 <a href="https://x.com/Jaaneek" target="_blank" rel="noopener">@Jaaneek</a> 和 <a href="https://x.com/SpaceXAI" target="_blank" rel="noopener">@SpaceXAI</a> 团队的努力，你现在可以正式在 Pi 中使用你的 xAI 订阅了。
+
+最新模型 grok 4.5 以极低的价格带来前沿级智能，让你的工作流一飞冲天👽🛸 <a href="https://t.co/E0GrbVqAxj" target="_blank" rel="noopener">https://t.co/E0GrbVqAxj</a></div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Pi is nothing without its open source contributors! 
+
+Thanks to the work of <a href="https://x.com/Jaaneek" target="_blank" rel="noopener">@Jaaneek</a> and the <a href="https://x.com/SpaceXAI" target="_blank" rel="noopener">@SpaceXAI</a> team, you can now officially use your xAI sub in Pi. 
+
+The latest model grok 4.5 sky rockets your workflows with frontier level intelligence at a fraction of the cost👽🛸 <a href="https://t.co/E0GrbVqAxj" target="_blank" rel="noopener">https://t.co/E0GrbVqAxj</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 405</span>
+        <span class="stat">💬 20</span>
+        <span class="stat">🔁 16</span>
+        <span class="stat">❤️ 351</span>
+        <span class="stat">🔖 38</span>
+        <span class="stat">👁 12.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/pidotdev/status/2078427059127545913" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078383414139568248" data-category="llm" data-score="162.22" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1747252669897691136/wS_-7gEt_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">AB Kuai.Dong</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@_FORAB</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 15:36</span>
+          <span class="age-badge">5.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">162</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">面对 GPT 5.6 SOL 和 Grok 4.5 的持续重置额度补贴，以及中国开源大模型的追击下。
+
+Claude 告诉大家，我们不涨价，但是额度今后要减少一半。 <a href="https://t.co/b1tE17cGYa" target="_blank" rel="noopener">https://t.co/b1tE17cGYa</a></div>
+    <div class="media">
+  <a href="https://x.com/_FORAB/status/2078383414139568248" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNfmsWoaAAA4k3a.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/_FORAB/status/2078383414139568248" target="_blank" rel="noopener">@_FORAB · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">面对 GPT 5.6 SOL 和 Grok 4.5 的持续重置额度补贴，以及中国开源大模型的追击下。
+
+Claude 告诉大家，我们不涨价，但是额度今后要减少一半。 <a href="https://t.co/b1tE17cGYa" target="_blank" rel="noopener">https://t.co/b1tE17cGYa</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 272</span>
+        <span class="stat">💬 75</span>
+        <span class="stat">🔁 6</span>
+        <span class="stat">❤️ 166</span>
+        <span class="stat">🔖 24</span>
+        <span class="stat">👁 57.1K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/_FORAB/status/2078383414139568248" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078042985007067147" data-category="llm" data-score="48.76" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2077669806975664128/xaXbyDJS_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Kevin Degila👨🏾‍💻</span>
+          
+          <span class="uname">@kevindegila</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 17:03</span>
+          <span class="age-badge">28.0h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">49</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">《从零构建 LLM》是一本互动式图书，而这正是它最大的优势。我来告诉你为什么。<a href="https://t.co/yarTP9IVuh" target="_blank" rel="noopener">https://t.co/yarTP9IVuh</a></div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/kevindegila/status/2078042985007067147">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/kevindegila_2078042985007067147.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/kevindegila_2078042985007067147.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/kevindegila/status/2078042985007067147" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/kevindegila/status/2078042985007067147" target="_blank" rel="noopener">@kevindegila · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">&quot;Construire un LLM de Zéro&quot; est un livre interactif et c&#x27;est son meilleur atout. Je vous montre pourquoi. <a href="https://t.co/yarTP9IVuh" target="_blank" rel="noopener">https://t.co/yarTP9IVuh</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 219</span>
+        <span class="stat">💬 13</span>
+        <span class="stat">🔁 31</span>
+        <span class="stat">❤️ 142</span>
+        <span class="stat">🔖 159</span>
+        <span class="stat">👁 8.9K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/kevindegila/status/2078042985007067147" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078352829866189077" data-category="llm" data-score="29.38" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1887492440531345412/nDxrI7j2_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Swati Gupta</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@hrswatigupta</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 13:35</span>
+          <span class="age-badge">7.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">29</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Anthropic 为能从零构建 LLM 架构的工程师开出 $750,000+ 的年薪。斯坦福用一场 1 小时的讲座讲完了全部内容，还免费放了出来。
+
+今天就赶紧收藏观看，免得被人下架，也别忘了读读下面这篇文章 <a href="https://t.co/mj8YKOiZcM" target="_blank" rel="noopener">https://t.co/mj8YKOiZcM</a></div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/hrswatigupta/status/2078352829866189077">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/hrswatigupta_2078352829866189077.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/hrswatigupta_2078352829866189077.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/hrswatigupta/status/2078352829866189077" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/hrswatigupta/status/2078352829866189077" target="_blank" rel="noopener">@hrswatigupta · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Anthropic pays $750,000+ a year for engineers who can build LLM architectures from scratch. Stanford taught the entire thing in 1 hour lecture &amp;amp; released it for free. 
+
+Bookmark &amp;amp; watch this today before someone takes it down and read this article below <a href="https://t.co/mj8YKOiZcM" target="_blank" rel="noopener">https://t.co/mj8YKOiZcM</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 56</span>
+        <span class="stat">💬 5</span>
+        <span class="stat">🔁 4</span>
+        <span class="stat">❤️ 39</span>
+        <span class="stat">🔖 61</span>
+        <span class="stat">👁 7.3K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/hrswatigupta/status/2078352829866189077" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="agent" data-cat="agent" style="--section-color:#8b5cf6">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🤖 AI Agent</h2>
+        <span class="section-count">8</span>
+      </div>
+      <p class="section-desc">Agent 框架、工具调用与自动化</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2078111197212414447" data-category="agent" data-score="1123.27" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1992175587159642112/nnlQKUO8_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Edward Luo</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@edwardluox</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 21:34</span>
+          <span class="age-badge">23.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1123</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我开发了一个应用，可以在 Mac 刘海屏里并排运行 Claude Code、Codex、Cursor、Grok、Antigravity、OpenCode 和 Pi。
+
+Agent 完成任务 → 刘海弹出。
+需要批准 → 刘海弹出。
+一键跳回那个确切的会话。
+
+再也不用在应用之间来回切换了。<a href="https://t.co/GoYxRDzsBL" target="_blank" rel="noopener">https://t.co/GoYxRDzsBL</a></div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/edwardluox/status/2078111197212414447">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/edwardluox_2078111197212414447.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/edwardluox_2078111197212414447.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/edwardluox/status/2078111197212414447" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/edwardluox/status/2078111197212414447" target="_blank" rel="noopener">@edwardluox · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">I built an app that runs Claude Code, Codex, Cursor, Grok, Antigravity, OpenCode, and Pi side by side in my Mac notch.  
+
+Agent finishes → notch pops. 
+Needs approval → notch pops. 
+One click back to that exact session.
+
+no more switching between apps. <a href="https://t.co/GoYxRDzsBL" target="_blank" rel="noopener">https://t.co/GoYxRDzsBL</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 4.4K</span>
+        <span class="stat">💬 176</span>
+        <span class="stat">🔁 172</span>
+        <span class="stat">❤️ 3.7K</span>
+        <span class="stat">🔖 3.0K</span>
+        <span class="stat">👁 302.1K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/edwardluox/status/2078111197212414447" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078168128693977291" data-category="agent" data-score="632.87" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1816254738234761216/TX7TW-Mp_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Nous Research</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@NousResearch</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 01:21</span>
+          <span class="age-badge">19.7h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">633</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">借助 Hermes Agent 和 <a href="https://x.com/UnrealEngine" target="_blank" rel="noopener">@UnrealEngine</a> 加速你的创造力。
+
+我们为官方 <a href="https://x.com/EpicGames" target="_blank" rel="noopener">@EpicGames</a> MCP 推出的全新可选配套技能，帮助 Hermes 发现工具、安全地编排调用顺序、把大白话英文提示词变成精致场景，并以可视化方式验证结果。
+
+演示来自 <a href="https://x.com/macbethAI" target="_blank" rel="noopener">@macbethAI</a> <a href="https://t.co/y1cGKEi6Y1" target="_blank" rel="noopener">https://t.co/y1cGKEi6Y1</a></div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/NousResearch/status/2078168128693977291">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/NousResearch_2078168128693977291.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/NousResearch_2078168128693977291.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/NousResearch/status/2078168128693977291" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/NousResearch/status/2078168128693977291" target="_blank" rel="noopener">@NousResearch · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Accelerate your creativity with Hermes Agent and <a href="https://x.com/UnrealEngine" target="_blank" rel="noopener">@UnrealEngine</a>.
+
+Our new optional companion skill for the official <a href="https://x.com/EpicGames" target="_blank" rel="noopener">@EpicGames</a> MCP helps Hermes discover tools, sequence calls safely, turn plain-English prompts into polished scenes, and verify results visually.
+
+Demo by <a href="https://x.com/macbethAI" target="_blank" rel="noopener">@macbethAI</a> <a href="https://t.co/y1cGKEi6Y1" target="_blank" rel="noopener">https://t.co/y1cGKEi6Y1</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.2K</span>
+        <span class="stat">💬 75</span>
+        <span class="stat">🔁 161</span>
+        <span class="stat">❤️ 1.7K</span>
+        <span class="stat">🔖 805</span>
+        <span class="stat">👁 115.0K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/NousResearch/status/2078168128693977291" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078156045835251991" data-category="agent" data-score="523.91" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2002497274752991232/C_NZ4y_9_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Mathias</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@MathiasChu</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 00:33</span>
+          <span class="age-badge">20.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">524</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">今天 Meta 官方宣布，其 MCP 已面向所有想要开发的人开放。
+
+理念是你可以用自然语言与平台对话，并且能够：
+- 创建/编辑广告系列、广告组和广告
+- 生成详细的数据报告
+- 管理商品目录和 feeds
+- 运行 A/B 测试
+- 查看活动日志
+
+价值不再在于在平台上点击操作，而在于理解哪些问题是值得问的。</div>
+    <div class="media">
+  <a href="https://x.com/MathiasChu/status/2078156045835251991" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNcUJXSXAAAqDpK.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/MathiasChu/status/2078156045835251991" target="_blank" rel="noopener">@MathiasChu · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Hoy Meta comunicó oficialmente que su MCP ya está disponible para cualquiera que quiera desarrollar.
+
+La idea es que puedas hablarle con lenguaje natural a la plataforma y puedas:
+- crear/editar campañas, ad sets y ads
+- hacer reporting detallado
+- gestionar catálogos y feeds
+- correr A/B tests 
+- revisar logs de actividad
+
+El valor deja de estar en hacer clicks en la plataforma y pasa a entender qué preguntas tiene sentido hacerse.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.9K</span>
+        <span class="stat">💬 31</span>
+        <span class="stat">🔁 84</span>
+        <span class="stat">❤️ 1.6K</span>
+        <span class="stat">🔖 1.5K</span>
+        <span class="stat">👁 118.1K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/MathiasChu/status/2078156045835251991" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078127724476936420" data-category="agent" data-score="507.00" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2006789544851709952/px-aHwyt_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">OptimAI Network</span>
+          
+          <span class="uname">@OptimaiNetwork</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 22:40</span>
+          <span class="age-badge">22.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">507</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">最优秀的构建者不会什么都自己造。
+他们站在彼此的成果之上。
+AI 也应该如此。
+
+发布一个 Agent。
+发现一个 Agent。
+扩展一个 Agent。
+构建更宏大的作品。
+
+欢迎来到 OptimAI Agent Marketplace。
+👉<a href="https://t.co/tdfybSV0Is" target="_blank" rel="noopener">https://t.co/tdfybSV0Is</a> <a href="https://t.co/2lq0zRfmA2" target="_blank" rel="noopener">https://t.co/2lq0zRfmA2</a></div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/OptimaiNetwork/status/2078127724476936420">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/OptimaiNetwork_2078127724476936420.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/OptimaiNetwork_2078127724476936420.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/OptimaiNetwork/status/2078127724476936420" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/OptimaiNetwork/status/2078127724476936420" target="_blank" rel="noopener">@OptimaiNetwork · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">The best builders don&#x27;t build everything.
+They build on each other&#x27;s work.
+AI should work the same way.
+
+Publish an agent.
+Discover an agent.
+Extend an agent.
+Build something bigger.
+
+Welcome to OptimAI Agent Marketplace.
+👉<a href="https://t.co/tdfybSV0Is" target="_blank" rel="noopener">https://t.co/tdfybSV0Is</a> <a href="https://t.co/2lq0zRfmA2" target="_blank" rel="noopener">https://t.co/2lq0zRfmA2</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.9K</span>
+        <span class="stat">💬 109</span>
+        <span class="stat">🔁 537</span>
+        <span class="stat">❤️ 785</span>
+        <span class="stat">🔖 21</span>
+        <span class="stat">👁 11.8K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/OptimaiNetwork/status/2078127724476936420" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078251675308240973" data-category="agent" data-score="472.81" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">ClaudeDevs</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ClaudeDevs</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 06:53</span>
+          <span class="age-badge">14.2h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">473</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">过去 6 个月，Claude Platform 新增了一系列 API，帮助开发者快速构建和部署 Agent。
+
+平台负责人 Katelyn Lesse、Angela Jiang 和 Jess Yan 坐在一起聊了聊已经上线的功能，以及我们在生产环境中观察到的模式。 <a href="https://t.co/wCWzYqBZQ9" target="_blank" rel="noopener">https://t.co/wCWzYqBZQ9</a></div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/ClaudeDevs/status/2078251675308240973">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/ClaudeDevs_2078251675308240973.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/ClaudeDevs_2078251675308240973.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/ClaudeDevs/status/2078251675308240973" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/ClaudeDevs/status/2078251675308240973" target="_blank" rel="noopener">@ClaudeDevs · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Over the past 6 months, Claude Platform has added new APIs to help developers quickly build and deploy agents.
+
+Platform leads Katelyn Lesse, Angela Jiang, and Jess Yan sat down to talk about what has shipped and the patterns we&#x27;re seeing in production. <a href="https://t.co/wCWzYqBZQ9" target="_blank" rel="noopener">https://t.co/wCWzYqBZQ9</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.3K</span>
+        <span class="stat">💬 88</span>
+        <span class="stat">🔁 45</span>
+        <span class="stat">❤️ 1.0K</span>
+        <span class="stat">🔖 295</span>
+        <span class="stat">👁 141.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ClaudeDevs/status/2078251675308240973" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078222648539271430" data-category="agent" data-score="462.89" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1999509933302124544/ABxY9N7S_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">darkzodchi</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@zodchiii</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 04:57</span>
+          <span class="age-badge">16.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">463</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">MOONSHOT 刚刚复刻了 CLAUDE CODE，还把它做成了免费。
+
+它叫 Kimi Code CLI。开源、MIT 协议，由昨天刚发布 K3 的实验室维护。
+
+而且它能做到 Claude Code 做不到的事：
+
+→ 直接把屏幕录像拖进对话作为输入
+→ 内置 coder、explore 和 plan 子 Agent，各自拥有独立上下文
+→ 在改动任何文件之前，先进入 plan 模式
+→ Agent 可通过 /mcp-config 自行配置 MCP 服务器
+→ 可接入 Zed、JetBrains 和 VS Code
+→ 单个二进制文件，无需安装 Node，毫秒级启动
+
+CLI 售价 $0。背后的 K3 起价为每百万 token $3。
+
+免费获取👇</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/zodchiii/status/2078222648539271430">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/zodchiii_2078222648539271430.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/zodchiii_2078222648539271430.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/zodchiii/status/2078222648539271430" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/zodchiii/status/2078222648539271430" target="_blank" rel="noopener">@zodchiii · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">MOONSHOT JUST CLONED CLAUDE CODE AND MADE IT FREE.
+
+It&#x27;s called Kimi Code CLI. Open source, MIT license, maintained by the lab that shipped K3 yesterday.
+
+And it does things Claude Code doesn&#x27;t:
+
+→ drop a screen recording into the chat as input
+→ built-in coder, explore, and plan subagents, each in its own context
+→ plan mode before it touches a single file
+→ MCP servers configured by the agent itself via /mcp-config
+→ plugs into Zed, JetBrains, and VS Code
+→ one binary, no Node setup, starts in milliseconds
+
+The CLI costs $0. K3 behind it starts at $3 per million tokens.
+ 
+Grab it for free👇</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.4K</span>
+        <span class="stat">💬 42</span>
+        <span class="stat">🔁 140</span>
+        <span class="stat">❤️ 976</span>
+        <span class="stat">🔖 1.7K</span>
+        <span class="stat">👁 117.0K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/zodchiii/status/2078222648539271430" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078144569594761591" data-category="agent" data-score="317.64" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/733174243714682880/oyG30NEH_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Andrew Ng</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@AndrewYNg</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 23:47</span>
+          <span class="age-badge">21.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">318</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">新课上线：构建能快速响应用户请求的 LLM 应用——让它们运行在专为快速推理设计的硬件上。这门短课程与 <a href="https://x.com/Cerebras" target="_blank" rel="noopener">@Cerebras</a> 联合打造，由 <a href="https://x.com/zhennydez" target="_blank" rel="noopener">@zhennydez</a>、<a href="https://x.com/duerr_seb" target="_blank" rel="noopener">@duerr_seb</a> 和 <a href="https://x.com/MilksandMatcha" target="_blank" rel="noopener">@MilksandMatcha</a> 授课。
+
+模型生成文本时，大部分时间都耗费在把权重从内存搬运到计算单元上。为推理优化的硬件将这种搬运降到最低，使 token 生成速度比典型的 GPU 方案快上数倍。在本课程中，你将使用的硬件是 Cerebras 的 Wafer-Scale Engine，它通过让模型权重紧贴计算单元来实现快速推理。
+
+快速推理不仅能让冗长的 Agent 工作流跑得更快，还能解锁对延迟高度敏感的实时应用，比如实时翻译和语音 Agent。
+
+你将收获的技能：
+- 对比 GPU、TPU 与 Cerebras 的 Wafer-Scale Engine 各自如何应对内存到计算的瓶颈
+- 构建由快速推理驱动的实时应用，包括 person…</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/AndrewYNg/status/2078144569594761591">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/AndrewYNg_2078144569594761591.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/AndrewYNg_2078144569594761591.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/AndrewYNg/status/2078144569594761591" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/AndrewYNg/status/2078144569594761591" target="_blank" rel="noopener">@AndrewYNg · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">New course: Build LLM applications that respond to user requests quickly by running on hardware designed for fast inference. This short course was built with  <a href="https://x.com/Cerebras" target="_blank" rel="noopener">@Cerebras</a> and taught by <a href="https://x.com/zhennydez" target="_blank" rel="noopener">@zhennydez</a>, <a href="https://x.com/duerr_seb" target="_blank" rel="noopener">@duerr_seb</a>, and  <a href="https://x.com/MilksandMatcha" target="_blank" rel="noopener">@MilksandMatcha</a>.
+
+When a model generates text, much of the time is spent moving its weights out of memory and into the compute units. Inference-optimized hardware minimizes that movement, making token generation several times faster than on a typical GPU setup. In this course, the hardware you&#x27;ll use is Cerebras&#x27; Wafer-Scale Engine, which is designed for fast inference by keeping the model&#x27;s weights close to the compute units.
+
+Fast inference makes lengthy agentic workflows go faster, and also unlocks latency-sensitive, real-time applications like live translation and voice agents.
+
+Skills you&#x27;ll gain:
+- Compare how GPUs, TPUs, and Cerebras&#x27; Wafer-Scale Engine each handle the memory-to-compute bottleneck
+- Build real-time applications powered by fast inference, including personalizing a webpage and running a multi-step workflow to analyze market signals
+- Adopt concrete habits for agentic coding with fast inference, keeping your sessions focused and steering the model more effectively
+
+My teams use Cerebras for several applications that are latency sensitive. Join and build LLM applications that respond quickly:
+<a href="https://t.co/P8vchGAr22" target="_blank" rel="noopener">https://t.co/P8vchGAr22</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.2K</span>
+        <span class="stat">💬 59</span>
+        <span class="stat">🔁 89</span>
+        <span class="stat">❤️ 866</span>
+        <span class="stat">🔖 587</span>
+        <span class="stat">👁 88.4K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/AndrewYNg/status/2078144569594761591" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078174342316437606" data-category="agent" data-score="182.49" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1988117046995873792/-5ps0VAO_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Simplifying AI</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@simplifyinAI</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 01:45</span>
+          <span class="age-badge">19.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">182</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Anthropic 和 OpenAI 都看走眼了。
+
+有人刚刚开源了一个 SDK，让 AI 智能体在 macOS、Linux 和 Windows 上都能拥有鼠标、键盘和屏幕。
+
+它叫 CUA。
+
+同一套代码，不管是什么操作系统，都能驱动本地虚拟机或云端沙箱。你的智能体可以像真实用户一样看屏幕、点击、输入，还能运行 shell 命令。
+
+&gt; 基于 OSWorld 和 ScreenSpot 跑基准测试
+&gt; 导出轨迹数据用于模型训练
+&gt; 在 Apple Silicon 上实现接近原生的性能
+
+不用为每个操作系统各搞一套 SDK。也没有基础设施的头疼事。
+
+100% 免费。开源。</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/simplifyinAI/status/2078174342316437606">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/simplifyinAI_2078174342316437606.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/simplifyinAI_2078174342316437606.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/simplifyinAI/status/2078174342316437606" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/simplifyinAI/status/2078174342316437606" target="_blank" rel="noopener">@simplifyinAI · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">ANTHROPIC AND OPENAI BOTH MISSED THIS.
+
+Someone just open-sourced one SDK that gives AI agents a mouse, keyboard, and screen across macOS, Linux, and Windows.
+
+It&#x27;s called CUA. 
+
+Same code drives a local VM or a cloud sandbox regardless of the OS. Your agent sees the screen, clicks, types, and runs shell commands like a real user.
+
+&gt; Benchmark against OSWorld and ScreenSpot
+&gt; Export trajectories for model training
+&gt; Near-native performance on Apple Silicon
+
+No separate SDK per OS. No infrastructure headache. 
+
+100% Free. Open Source.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 622</span>
+        <span class="stat">💬 18</span>
+        <span class="stat">🔁 55</span>
+        <span class="stat">❤️ 478</span>
+        <span class="stat">🔖 753</span>
+        <span class="stat">👁 25.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/simplifyinAI/status/2078174342316437606" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="vibe" data-cat="vibe" style="--section-color:#ec4899">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🎨 Vibe Coding</h2>
+        <span class="section-count">6</span>
+      </div>
+      <p class="section-desc">Vibe Coding 工具与实践</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2078320950488297917" data-category="vibe" data-score="7510.21" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2075819673263001600/pj1vyX6I_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Tibo</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@thsottiaux</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 11:28</span>
+          <span class="age-badge">9.6h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">7510</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">哎呀……我又来了。
+
+Codex 和 ChatGPT Work 所有付费用户的用量限制已重置，尽情享用吧。超级感谢我们了不起的团队，他们以光速迭代，在我们以前所未有的速度扩张的同时，依然保持基础设施稳定运行。
+
+周末愉快！<a href="https://t.co/WIuS07doKA" target="_blank" rel="noopener">https://t.co/WIuS07doKA</a></div>
+    <div class="media">
+  <a href="https://x.com/thsottiaux/status/2078320950488297917" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNetqdibQAA0L_c.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/thsottiaux/status/2078320950488297917" target="_blank" rel="noopener">@thsottiaux · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Oops... I did it again. 
+
+Enjoy reset usage limits for all paid users for Codex and ChatGPT Work. Super grateful for an incredible team who is iterating at lightspeed and keeping the infra up as we scale faster than ever.
+
+Enjoy the weekend! <a href="https://t.co/WIuS07doKA" target="_blank" rel="noopener">https://t.co/WIuS07doKA</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 16.5K</span>
+        <span class="stat">💬 2.2K</span>
+        <span class="stat">🔁 758</span>
+        <span class="stat">❤️ 13.2K</span>
+        <span class="stat">🔖 383</span>
+        <span class="stat">👁 704.8K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/thsottiaux/status/2078320950488297917" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078092271296143593" data-category="vibe" data-score="5970.11" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1879600809693917185/GkBxdTd9_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">David Sacks</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@DavidSacks</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 20:19</span>
+          <span class="age-badge">24.7h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">5970</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">这令人担忧。中国模型 Kimi K3 首次在 Frontend Code Arena 上拿下 #1，并且在其他基准测试中的得分也达到或接近前沿水平。
+
+与此同时，美国却在作茧自缚：政客和官僚们禁止新建数据中心，各州监管层层加码，还推动设立新的联邦机构对前沿模型进行事前审批。
+
+这就是输掉 AI 竞赛的方式。如果我们把自己拖入泥潭，世界其他国家可不会按我们的规则行事。无需许可的创新正是美国赢得互联网、成为令全世界艳羡的技术强国的原因。我们可以在 AI 上再赢一次——同时以有针对性的方式应对风险——否则就只能眼睁睁看着我们的领先优势蒸发殆尽。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">This is concerning. For the first time, a Chinese model Kimi K3 has taken #1 on the Frontend Code Arena and is scoring at or near the frontier on other benchmarks.  
+
+Meanwhile America is tying itself in knots: politicians and bureaucrats are banning new data centers, piling on state regulations, and pushing for new federal agencies to pre-approve frontier models. 
+
+This is how you lose the AI race. The rest of the world won’t play by our rules if we bog ourselves down. Permissionless innovation is how America won the internet and became the technological envy of the world. We can do it again with AI -- while addressing risks in a targeted way -- or we’ll watch our lead evaporate.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 24.4K</span>
+        <span class="stat">💬 1.7K</span>
+        <span class="stat">🔁 2.2K</span>
+        <span class="stat">❤️ 16.2K</span>
+        <span class="stat">🔖 2.5K</span>
+        <span class="stat">👁 2.9M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/DavidSacks/status/2078092271296143593" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078211065868091768" data-category="vibe" data-score="2299.57" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">ClaudeDevs</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ClaudeDevs</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 04:11</span>
+          <span class="age-badge">16.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">2300</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我们已修复一个问题：此前有 30 分钟的时间，Fable 无法在 <a href="https://t.co/FiDD5WA3ik" target="_blank" rel="noopener">https://t.co/FiDD5WA3ik</a> 或 Claude Code 中被选为模型。
+
+你可能需要重启 Claude Code。如果重启后 Fable 不是你的默认模型，请使用 /model 重新选择它。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">We&#x27;ve resolved an issue where Fable was not selectable as a model within <a href="https://t.co/FiDD5WA3ik" target="_blank" rel="noopener">https://t.co/FiDD5WA3ik</a> or Claude Code for a 30 minute period.
+
+You may need to restart Claude Code. If Fable is not your default model afterwards, you should reselect it with /model.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 7.1K</span>
+        <span class="stat">💬 568</span>
+        <span class="stat">🔁 207</span>
+        <span class="stat">❤️ 5.8K</span>
+        <span class="stat">🔖 309</span>
+        <span class="stat">👁 617.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ClaudeDevs/status/2078211065868091768" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078243667081617826" data-category="vibe" data-score="1214.28" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1885410181409820672/ztsaR0JW_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">OpenAI</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@OpenAI</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 06:21</span>
+          <span class="age-badge">14.7h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1214</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">GPT-5.6 Sol 在“The Last Ones”网络靶场上刷新了网络安全领域的最先进水平。
+
+我们已经看到这一能力正在转化为实际的防御成果：帮助团队在真实世界的代码中发现、验证并修复漏洞。
+
+通过 Codex Security 让它为你所用：<a href="https://t.co/Fvz9wpLjrt" target="_blank" rel="noopener">https://t.co/Fvz9wpLjrt</a></div>
+    <div class="media">
+  <a href="https://x.com/OpenAI/status/2078243667081617826" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNdnMCnbcAAfe6D.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/OpenAI/status/2078243667081617826" target="_blank" rel="noopener">@OpenAI · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">GPT-5.6 Sol sets a new state of the art in cybersecurity on “The Last Ones” cyber range.
+
+We’re already seeing that capability translate into defensive outcomes: helping teams find, validate, and fix vulnerabilities in real-world code.
+
+Put it to work with Codex Security: <a href="https://t.co/Fvz9wpLjrt" target="_blank" rel="noopener">https://t.co/Fvz9wpLjrt</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 3.4K</span>
+        <span class="stat">💬 154</span>
+        <span class="stat">🔁 216</span>
+        <span class="stat">❤️ 2.6K</span>
+        <span class="stat">🔖 387</span>
+        <span class="stat">👁 305.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/OpenAI/status/2078243667081617826" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078189433992495429" data-category="vibe" data-score="693.68" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1950950107937185792/QOfEjFoJ_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Claude</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@claudeai</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 02:45</span>
+          <span class="age-badge">18.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">694</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Built with Claude：生命科学黑客松圆满落幕。
+
+感谢每一位花了一周时间用 Claude Science 和 Claude Code 进行构建的开发者，也感谢 <a href="https://x.com/gladstoneinst" target="_blank" rel="noopener">@gladstoneinst</a> 和 <a href="https://x.com/cerebral_valley" target="_blank" rel="noopener">@cerebral_valley</a> 联合主办。
+
+获奖名单揭晓：<a href="https://t.co/VTDup1yz9Z" target="_blank" rel="noopener">https://t.co/VTDup1yz9Z</a></div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/claudeai/status/2078189433992495429">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/claudeai_2078189433992495429.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/claudeai_2078189433992495429.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/claudeai/status/2078189433992495429" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/claudeai/status/2078189433992495429" target="_blank" rel="noopener">@claudeai · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">The Built with Claude: Life Sciences hackathon comes to an end.
+
+Thank you to everyone who spent a week building with Claude Science and Claude Code, and to <a href="https://x.com/gladstoneinst" target="_blank" rel="noopener">@gladstoneinst</a> and <a href="https://x.com/cerebral_valley" target="_blank" rel="noopener">@cerebral_valley</a> for co-hosting.
+
+Introducing the winners: <a href="https://t.co/VTDup1yz9Z" target="_blank" rel="noopener">https://t.co/VTDup1yz9Z</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.3K</span>
+        <span class="stat">💬 258</span>
+        <span class="stat">🔁 112</span>
+        <span class="stat">❤️ 1.7K</span>
+        <span class="stat">🔖 334</span>
+        <span class="stat">👁 268.8K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/claudeai/status/2078189433992495429" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078132394394108381" data-category="vibe" data-score="209.31" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2012242313796259840/Q2fxc9nv_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Shensi Ding</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@shensi</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 22:59</span>
+          <span class="age-badge">22.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">209</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">今天正式发布：全球首个完全优化的 LLM 路由栈，可直接嵌入你的产品——Merge Embedded Routing Stack。
+
+模型主权如今已成为任何 AI 产品的基本门槛。
+
+用户和企业正在要求对运行在你产品中的 AI 模型拥有完全的控制权。
+
+目前，没有一家公司能在不承担巨大开销的情况下做到这一点。
+
+直到今天。
+
+Merge 让你的客户可以轻松地完全按照自己想要的方式使用你的产品。
+
+只需一个 API，你就可以：
+
+1. 允许客户自带密钥、管理自己的预算，并设置回退规则、模型白名单等策略
+
+2. 让每个客户直接在你的产品内连接和切换自己的模型
+
+3. 针对成本、性能或能力，为每位客户进行优化
+
+如果没有 Merge，你将不得不：
+
+- 自行构建路由策略、提供商集成和 LLM 密钥管理
+
+- 让你的用户完全没有模型自主权
+
+- 收到没完没了的客户支持工单，询问“我能用 5.6 吗……</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/shensi/status/2078132394394108381">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/shensi_2078132394394108381.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/shensi_2078132394394108381.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/shensi/status/2078132394394108381" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/shensi/status/2078132394394108381" target="_blank" rel="noopener">@shensi · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Launching today: the world’s first fully optimized LLM routing stack that can be embedded directly into your product, Merge Embedded Routing Stack.
+
+Model sovereignty is now table stakes for any AI product.
+
+Users and companies are demanding full control over the AI models running in your product.
+
+Right now, no company is able to do this without massive overhead.
+
+Until today.
+
+Merge makes it easy for your customers to use your product exactly the way they want to.
+
+With a single API, you can:
+
+1. Allow customers to bring their own keys, manage their own budgets, and set policies like fallback rules, model allowlists, and more
+
+2. Let each customer connect and switch their own models, right inside your product
+
+3. Optimize each customer for cost, performance, or capability
+
+Without Merge, you’d be:
+
+- Building routing policies, provider integrations, and LLM key management
+
+- Giving your users zero model independence
+
+- Receiving endless customer support tickets asking “can I use 5.6 Sol?”
+
+Products that fight their customers&#x27; model strategy will lose to products that fit it.
+
+Merge is the only place that allows your users to produce the exact results they want, with the models they have access to.
+
+Give your customers the advantage, without the massive overhead costs.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 786</span>
+        <span class="stat">💬 49</span>
+        <span class="stat">🔁 28</span>
+        <span class="stat">❤️ 413</span>
+        <span class="stat">🔖 213</span>
+        <span class="stat">👁 293.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/shensi/status/2078132394394108381" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="world" data-cat="world" style="--section-color:#10b981">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🌍 世界模型</h2>
+        <span class="section-count">3</span>
+      </div>
+      <p class="section-desc">世界模型、机器人与具身智能</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2078210379339931951" data-category="world" data-score="29.07" style="--card-glow:#10b981">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1909167499427356673/XF46Ydsh_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#10b981"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Sasha Malysheva</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@aimalysheva</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 04:09</span>
+          <span class="age-badge">16.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">29</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">CW-VAE（Saxena、Ba、<a href="https://x.com/danijarh" target="_blank" rel="noopener">@danijarh</a>，NeurIPS 2021，<a href="https://t.co/jcHUPY9BEx）基本上就是" target="_blank" rel="noopener">https://t.co/jcHUPY9BEx）基本上就是</a> H-JEPA 的思路，比 <a href="https://x.com/ylecun" target="_blank" rel="noopener">@ylecun</a> 的立场论文提出它还早一年，只是用 VAE 来实现，而不是联合嵌入预测器
+
+这个模型堆叠了多个潜变量序列，每一层都按自己的时钟速度运转，层级越高更新越慢，而且是指数级地变慢
+
+视频中变化缓慢的内容最终被编码进慢速层，变化快的内容则进入快速层，正是这种分工让它能在 1000 帧的长度上依然保持连贯，远超扁平的单时间尺度模型通常开始跑偏的位置
+
+现在重读这篇论文，有意思的地方在于：这些年来整个领域一直在争论，相比扁平的目标函数，显式的层级堆叠到底能不能带来实际收益（参见本周早些时候 data2vec 的样本复杂度结果）
+
+CW-VAE 早在 2021 年就在视频上跑过这个消融实验：结果表明层级结构和每层的时钟速度都很关键，去掉任何一个都会损害长程……</div>
+    <div class="media">
+  <a href="https://x.com/aimalysheva/status/2078210379339931951" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNV2XecXUAAA6JA.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/aimalysheva/status/2078210379339931951" target="_blank" rel="noopener">@aimalysheva · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">CW-VAE (Saxena, Ba, <a href="https://x.com/danijarh" target="_blank" rel="noopener">@danijarh</a>, NeurIPS 2021, <a href="https://t.co/jcHUPY9BEx)" target="_blank" rel="noopener">https://t.co/jcHUPY9BEx)</a> is basically the H-JEPA idea a year before <a href="https://x.com/ylecun" target="_blank" rel="noopener">@ylecun</a>&#x27;s position paper proposed it, just built as a VAE instead of a joint-embedding predictor
+
+the model stacks several latent sequences, and each level ticks at its own clock speed, the higher you go the slower it updates, exponentially so
+
+slow-changing things in the video end up encoded in the slow levels, fast-changing things end up in the fast levels, and this split is what lets it stay coherent out to 1000 frames, well past where flat single-timescale models typically drift off track
+
+what&#x27;s interesting reading it now: the field has spent the years since arguing over whether explicit hierarchical stacking buys you anything over a flat objective (see the data2vec sample-complexity result from earlier this week)
+
+CW-VAE ran that ablation back in 2021, on video: both the hierarchy and the per-level clock speeds turned out to matter, dropping either one hurt long-horizon prediction
+
+<a href="https://t.co/jcHUPY9BEx" target="_blank" rel="noopener">https://t.co/jcHUPY9BEx</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 90</span>
+        <span class="stat">💬 1</span>
+        <span class="stat">🔁 9</span>
+        <span class="stat">❤️ 67</span>
+        <span class="stat">🔖 53</span>
+        <span class="stat">👁 5.0K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/aimalysheva/status/2078210379339931951" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078464874519372207" data-category="world" data-score="18.76" style="--card-glow:#10b981">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1687676533119602689/sHG_2q0U_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#10b981"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Karl Mehta</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@karlmehta</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/18 21:00</span>
+          <span class="age-badge">0.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">19</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">AI 教父 Yann LeCun 揭露了人形机器人行业的秘密：制造机器人的公司根本不知道如何让它们聪明到真正有用。
+
+「大家对机器人寄予厚望，认为它最终会掀起一场革命，本质上会形成一个巨大的市场。」
+
+「但这个行业的秘密在于：目前所有在制造机器人（比如人形机器人）的公司，没有一家知道如何让这些机器人聪明到足以派上用场。」
+
+「现在有一股强大的推动力，要推动 AI 朝着……理解物理世界的方向取得进展。这正是这些投资背后的动因。」
+
+「投资 LLM 并没有什么错。LLM 很有用。只不过它们解决的完全是另一套应用场景，真的。」
+
+LeCun 说的并不是别人的问题。他在世界模型上深耕了 15 年，为 AMI Labs 筹集了超过 10 亿美元，来构建那层缺失的智能，并且在同一次采访中，他把 2026 年称为……之年</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/karlmehta/status/2078464874519372207">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/karlmehta_2078464874519372207.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/karlmehta_2078464874519372207.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/karlmehta/status/2078464874519372207" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/karlmehta/status/2078464874519372207" target="_blank" rel="noopener">@karlmehta · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Godfather of AI Yann LeCun reveals the humanoid robot industry&#x27;s secret: the companies building the robots have no idea how to make them smart enough to be useful.
+
+&quot;There is a lot of expectations that robotics is going to be a revolution, essentially, in a big market, eventually.&quot;
+
+&quot;But the secret of the industry is that none of the companies at the moment that are building robots, like humanoid robots, none of those companies has any idea how to make those robots smart enough to be useful.&quot;
+
+&quot;There&#x27;s a big push for AI to make progress towards... understanding the physical world. That&#x27;s what is prompting this investment.&quot;
+
+&quot;There&#x27;s nothing wrong with investing in LLMs. LLMs are useful. They&#x27;re just addressing a completely different set of applications, really.&quot;
+
+LeCun is not describing someone else&#x27;s problem. He has spent 15 years on world models, raised more than $1 billion for AMI Labs to build that missing intelligence layer, and in the same interview he calls 2026 the year of the world model and puts consumer robots 3 to 5 years out.
+
+Every humanoid robot demo you have seen is a body waiting for a brain. The winner in robotics will not be the company that shipped the body; it will be the one that ships the intelligence.
+
+- Yann LeCun (<a href="https://x.com/ylecun" target="_blank" rel="noopener">@ylecun</a>), Turing Award winner and founder of AMI Labs, on Bloomberg Television.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 18</span>
+        <span class="stat">💬 1</span>
+        <span class="stat">🔁 6</span>
+        <span class="stat">❤️ 6</span>
+        <span class="stat">🔖 0</span>
+        <span class="stat">👁 378</span>
+      </div>
+      <a class="orig-link" href="https://x.com/karlmehta/status/2078464874519372207" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2078107335700947338" data-category="world" data-score="13.49" style="--card-glow:#10b981">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1673900473190088704/ZKYHtzBs_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#10b981"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Remi Cadene</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@RemiCadene</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 21:19</span>
+          <span class="age-badge">23.7h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">13</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">加入我们的团队，与 <a href="https://x.com/MustafaShukor1" target="_blank" rel="noopener">@MustafaShukor1</a> 一起研究具身世界模型（Embodied World-Models）（他是 VL-JEPA 的共同作者，与 <a href="https://x.com/ylecun" target="_blank" rel="noopener">@ylecun</a> 合作）
+
+申请链接在评论区 😇</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Join our team to work on Embodied World-Models with <a href="https://x.com/MustafaShukor1" target="_blank" rel="noopener">@MustafaShukor1</a> (co-author VL-JEPA with <a href="https://x.com/ylecun" target="_blank" rel="noopener">@ylecun</a> )
+
+Link to apply in comments 😇</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 53</span>
+        <span class="stat">💬 4</span>
+        <span class="stat">🔁 5</span>
+        <span class="stat">❤️ 32</span>
+        <span class="stat">🔖 5</span>
+        <span class="stat">👁 9.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/RemiCadene/status/2078107335700947338" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+  </main>
+</div>
+
+<footer class="footer">
+  <p>AI HORIZON · X AI 日报 · 2026-07-18 · 生成于 2026-07-18 21:35 北京时间</p>
+  <p>数据来自公开 X 推文，按热度 × 时效排序。部署于 <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>。</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+
+<script>
+// === Embedded data ===
+const FEED_DATA = [{"id":"2078133895766114412","text":"Some observations on Kimi: \n\n1. It's a very good model! I don't think its performance can be explained away by distillation or anything like that. In agentic coding sessions, it seems pretty much on par with the best public models of Q1 2026. In my fairly limited use, it also seemed very token hungry. It's not obvious to me that this model is actually that cheap to run. \n\n2. I am personally surprised the Chinese state continues to allow the open sourcing of models this good, given potential risks. To be clear, I *myself* might be fine with models presenting this level of marginal risk being open weight, but I am surprised that China is fine with it. I suspect the reason they are is 75% explained by strategic blindness/lack of AGI-pilledness (the CCP is very Yann Lecun-y in its views of AI). The other 25% or so is their lack of compute for customer inference (making China's open-weight strategy an unintended byproduct of US export controls) and the normal Chinese strategy of aggressive exports. For the companies, as opposed to the government, the decision to open source is partially ideological and partially because they are behind, and they know that very few people would pay for sub-frontier models from China. \n\n3. Open-weight models are inherently decelerationist, and I'm continually surprised to see the so-called \"accelerationists\" so excited about open-weight models. I suspect the reason they are is that they know open-weight models are effectively ungovernable, and they simply like the overall cloak of ungovernability open-weight models create over the whole of AI. It's not a bad strategy; it reminds me of James Scott's recounting of the hill people in \"the art of not being governed.\" Still, in the end, open-weight models deter further AI capex. \n\n4. One probable outcome of an open-weight-model-dominant world is full AI communism, which is precisely what China proposes: rather than a market product, AI is a \"public good\" which will ultimately be provided by the state as a kind of \"digital public infrastructure.\" This future strikes me as a dystopian hellscape, but I've never met an open-weight models advocate who doesn't ultimately concede this is where things end. You'd be surprised how many 'accelerationists' lobbied me, while I was in government, to support an eleven or twelve-figure federally funded data center so that startups could train models at a subsidy and then give them away for free. There was no other way for AI to progress, they said. Perhaps this is the logical end state of things. Nonetheless, I find myself surprised to see supposed accelerationists excited about such an outcome. I think many of them just don't know what they're doing. Many accelerationists do not view the creation and serving of frontier models as a legitimate business. \n\n5. I would guess that the Trump Administration will at some point realize that their best strategy here would be to create large amounts of regulatory risk around the use of open-weight Chinese models. You don't need to \"ban open source\" (one of the dumber motifs of AI policy discussion). You just need to direct every agency to issue soft law that creates FUD. \"A Federal Reserve Advisory Bulletin found that there may be backdoors in Chinese AI models.\" It needn't be that well justified. You just create enough regulatory risk that every regulated enterprise backs off. You probably don't want to create so much regulatory risk that you scare off the hyperscalers from serving Chinese models; this will just drive startups to sketchier providers. There's a happy middle ground here. I'd assume they will do some version of this. \n\n6. It's probably true that open-weight models of this capability make the world a bit more dangerous, but not so much more that you'll really notice. At some point the models will be capable enough that you will notice. \"A nonliving, invisible, dangerous, and infinitely self-replicating agent escaped from a Chinese lab,\" you say? Color me shocked.","author":{"id":"30557408","name":"Dean W. Ball","screenName":"deanwball","profileImageUrl":"https://pbs.twimg.com/profile_images/1997065021491130368/X76ALSbp_normal.jpg","verified":true},"metrics":{"likes":2973,"retweets":311,"replies":476,"quotes":327,"views":1250104,"bookmarks":2775},"createdAtISO":"2026-07-17T15:05:05+00:00","createdAtLocal":"2026-07-17 23:05","ageHours":21.969804373333336,"heat":5083.104,"recency":0.2669353426650417,"score":1356.8601080420442,"category":"⭐ AI 大佬动态","media":[],"urls":[],"source":"search:world model","url":"https://x.com/deanwball/status/2078133895766114412","textZh":"关于 Kimi 的一些观察：\n\n1. 这是一个非常优秀的模型！我认为它的表现没法用蒸馏之类的说法来解释。在 agentic 编程会话中，它看起来基本与 2026 年第一季度最强的公开模型不相上下。在我相当有限的使用中，它似乎也非常耗 token。所以这个模型实际运行起来是否真的那么便宜，对我来说并不明显。\n\n2. 考虑到潜在风险，我个人很惊讶中国政府仍然允许开源这么强的模型。需要说明的是，*我自己*或许可以接受这种边际风险水平的模型开放权重，但让我惊讶的是中国居然能接受。我猜测他们能接受的原因，75% 可以用战略盲区/缺乏 AGI 信仰（AGI-pilledness）来解释（中共在 AI 问题上的看法非常 Yann Lecun 风）。另外 25% 左右则是他们缺乏用于客户推理的算力（这使得中国的开放权重战略成为美国出口管制的意外副产品），以及中国惯常的激进……"},{"id":"2078165665278730490","text":"The frontier has opened up: four frontier launches in eight days - Grok 4.5, GPT-5.6, Muse Spark 1.1, and yesterday Kimi K3; six labs now have a model scoring >50 on the Artificial Analysis Intelligence Index, up from two in early June\n\n@SpaceXAI's Grok 4.5 (high, Artificial Analysis Intelligence Index Score: 54) landed July 8, @OpenAI's GPT-5.6 Sol, Terra, and Luna (max: 59, 55, 51) and @AIatMeta's Muse Spark 1.1 (xhigh, 51) followed a day later, and @Kimi_Moonshot's Kimi K3 launched yesterday at 57 - third overall, ahead of Claude Opus 4.8 (max, 56).\n\nThe top three models on the Index now come from three different labs and span just three points. Four of the ten highest-scoring models launched since July 8, and six of ten since early June.\n\nThe one thing that did not move is #1: Claude Fable 5 (max, 60) has held the top spot since June 9, but its lead has narrowed from four points to one, and the price of the intelligence beneath it collapsed.\n\nCongratulations to @elonmusk, @sama, @finkd, and the teams at all four labs on a remarkable eight days.\n\nKey Takeaways:\n\n➤ The frontier went from two labs to six in six weeks. Until June, only Anthropic and OpenAI had fielded a model at 51 or above. GLM-5.2 (max) brought Z AI in mid-June; last week added SpaceXAI and Meta; today Kimi K3 makes Moonshot AI the sixth as they enter at 57\n\n➤ Kimi K3 debuts at #3 with agentic and knowledge work scores behind only the top two. K3 scores 1668 Elo on GDPval-AA v2, third behind Claude Fable 5 (max, 1760) and GPT-5.6 Sol (max, 1748). On AA-Briefcase, our benchmark of long-horizon knowledge work, it enters at #2 with 1547 Elo - behind only Claude Fable 5 (max, 1583) and ahead of GPT-5.6 Sol (max, 1495) - with an Analytical Quality Elo (1760) effectively tied with Fable 5 (1764). At $0.94 per Intelligence Index task on its $3/$15 pricing, it delivers comparable intelligence to Claude Opus 4.8 (max, $1.80) at roughly half the cost per task\n\n➤ Near-frontier intelligence got 2-3x cheaper in eight days. GPT-5.6 Sol (max) delivers one point below Claude Fable 5 (max) at $1.04 per Intelligence Index task vs $2.75. Grok 4.5 (high) delivers 54 at $0.31, under a third of GPT-5.5 (xhigh, $0.99). At 51, GPT-5.6 Luna (max, $0.21) and Muse Spark 1.1 (xhigh, $0.26) undercut GLM-5.2 (max, $0.32), the cheapest at that level a week earlier","author":{"id":"1743487864934162432","name":"Artificial Analysis","screenName":"ArtificialAnlys","profileImageUrl":"https://pbs.twimg.com/profile_images/2042402069320290304/A8C1lP07_normal.jpg","verified":true},"metrics":{"likes":1016,"retweets":92,"replies":54,"quotes":17,"views":91815,"bookmarks":141},"createdAtISO":"2026-07-17T17:11:19+00:00","createdAtLocal":"2026-07-18 01:11","ageHours":19.865915484444447,"heat":1318.815,"recency":0.28708907857220156,"score":378.617383157198,"category":"⭐ AI 大佬动态","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNcf2upbMAALvLu.jpg","width":2323,"height":4096}],"urls":[],"source":"search:OpenAI","url":"https://x.com/ArtificialAnlys/status/2078165665278730490","textZh":"前沿格局已经打开：八天内四款前沿模型发布——Grok 4.5、GPT-5.6、Muse Spark 1.1，以及昨天的 Kimi K3；目前已有六家实验室拥有在 Artificial Analysis 智能指数上得分 >50 的模型，而六月初还只有两家。\n\n@SpaceXAI 的 Grok 4.5（high，Artificial Analysis 智能指数得分：54）于 7 月 8 日落地，@OpenAI 的 GPT-5.6 Sol、Terra 和 Luna（max：59、55、51）以及 @AIatMeta 的 Muse Spark 1.1（xhigh，51）在一天后跟进，@Kimi_Moonshot 的 Kimi K3 昨天以 57 分发布——总排名第三，领先于 Claude Opus 4.8（max，56）。\n\n该指数前三名模型现在来自三家不同的实验室，分差仅三分。得分最高的十个模型中，有四个是 7 月 8 日以来发布的，十个中有六个是六月初以来发布的。\n\n唯一没有变动的是第一名：Claude Fable 5（max，60）自 6 月 9 日以来一直占据榜首，但其领先优势已从四分缩小到一分，而它之下的智能价格已经崩盘。\n\n祝贺 @elonmusk、@sama、@f..."},{"id":"2078115704184926554","text":"Kimi K3 is a gut punch to Anthropic. Its over.\n\nA 2.8T open-weight-bound Chinese model just took the WebDev human-preference crown at launch, posted stronger real agentic terminal and long-horizon coding numbers than Claude Fable 5 on the tasks that actually ship products, and did it at roughly one-third the price while soon to be FREE promising full weights in ten days. \n\nThe fear-based marketing that convinced so many to accept closed models, sky-high rents, and “safety” as justification for locking away frontier capability now looks like expensive theater. \n\nMad are the politicians and academics that fell for Dario hand waving holier than tho testimony that “we must stop AI”. Kimi just drops and the world did not end. The sky did not fall Dario. \n\nBuilders no longer have to pretend the only responsible path runs through Anthropic’s premium tollbooth; the open frontier just proved it can match or beat them where it counts and hand the weights to anyone with a cluster. \n\nThat narrative is dead.","author":{"id":"101584084","name":"Brian Roemmele","screenName":"BrianRoemmele","profileImageUrl":"https://pbs.twimg.com/profile_images/1492616506/Brian-Med-Green-Fin_normal.png","verified":true},"metrics":{"likes":559,"retweets":126,"replies":49,"quotes":20,"views":98688,"bookmarks":121},"createdAtISO":"2026-07-17T13:52:48+00:00","createdAtLocal":"2026-07-17 21:52","ageHours":23.174526595555555,"heat":934.188,"recency":0.25661977497809163,"score":239.73111434723347,"category":"⭐ AI 大佬动态","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNbzNWDaoAAVRrC.jpg","width":1168,"height":784}],"urls":[],"source":"search:world model","url":"https://x.com/BrianRoemmele/status/2078115704184926554","textZh":"Kimi K3 给了 Anthropic 一记重拳。一切都结束了。\n\n一个 2.8T、承诺开放权重的中国模型，一发布就摘下 WebDev 人类偏好榜桂冠：在真正能交付产品的任务上，真实智能体终端和长周期编码的成绩都强过 Claude Fable 5，而价格只有约三分之一——并且很快将免费，承诺十天内放出完整权重。\n\n那套靠恐惧营销说服无数人接受闭源模型、天价\"租金\"、并以\"安全\"为借口把前沿能力锁起来的话术，如今看来就像一场昂贵的表演。\n\n最抓狂的莫过于那些政客和学者——他们听信了 Dario 那番挥手作态、自诩道德高人一等的证词：\"我们必须阻止 AI\"。Kimi 就这么发布了，世界没有毁灭。天没有塌下来，Dario。\n\n开发者们再也不必假装唯一负责任的道路必须经过 Anthropic 的高级收费站；开放前沿刚刚证明了它能在关键之处追平甚至击败他们，并把权重交到任何拥有集群的人手中。\n\n那套叙事……"},{"id":"2078313818627907773","text":"Andrej Karpathy spent 8 years at OpenAI and Tesla.  \n\nLast week he put everything he knows into one free 2-hour lecture.  \n\nPeople pay $15k for bootcamps that teach half of this.  \n\nYou probably don't have 2 hours right now. Don't lose this in the feed.  \n\nWatch it. Then read the guide below and build your first loop.","author":{"id":"1183425127695835137","name":"Ajit kumar","screenName":"ajitcodes","profileImageUrl":"https://pbs.twimg.com/profile_images/1852016049463480320/cdT5RGE7_normal.jpg","verified":true},"metrics":{"likes":72,"retweets":28,"replies":6,"quotes":0,"views":2645,"bookmarks":53},"createdAtISO":"2026-07-18T03:00:02+00:00","createdAtLocal":"2026-07-18 11:00","ageHours":10.05397104,"heat":133.645,"recency":0.44311580993873134,"score":59.220212419261756,"category":"⭐ AI 大佬动态","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078296315545751552/vid/avc1/1920x1080/VE6y2E9k2FH2JMij.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"search:OpenAI","url":"https://x.com/ajitcodes/status/2078313818627907773","textZh":"Andrej Karpathy 在 OpenAI 和 Tesla 待了 8 年。\n\n上周，他把自己知道的一切浓缩成了一场免费的 2 小时讲座。\n\n人们花 $15k 上的训练营，教的内容只有这里的一半。\n\n你现在可能抽不出 2 小时。别让这条淹没在信息流里。\n\n去看吧。然后读下面的指南，搭建你的第一个 loop。"},{"id":"2078210379339931951","text":"CW-VAE (Saxena, Ba, @danijarh, NeurIPS 2021, https://t.co/jcHUPY9BEx) is basically the H-JEPA idea a year before @ylecun's position paper proposed it, just built as a VAE instead of a joint-embedding predictor\n\nthe model stacks several latent sequences, and each level ticks at its own clock speed, the higher you go the slower it updates, exponentially so\n\nslow-changing things in the video end up encoded in the slow levels, fast-changing things end up in the fast levels, and this split is what lets it stay coherent out to 1000 frames, well past where flat single-timescale models typically drift off track\n\nwhat's interesting reading it now: the field has spent the years since arguing over whether explicit hierarchical stacking buys you anything over a flat objective (see the data2vec sample-complexity result from earlier this week)\n\nCW-VAE ran that ablation back in 2021, on video: both the hierarchy and the per-level clock speeds turned out to matter, dropping either one hurt long-horizon prediction\n\nhttps://t.co/jcHUPY9BEx","author":{"id":"1704999297643913216","name":"Sasha Malysheva","screenName":"aimalysheva","profileImageUrl":"https://pbs.twimg.com/profile_images/1909167499427356673/XF46Ydsh_normal.jpg","verified":true},"metrics":{"likes":67,"retweets":9,"replies":1,"quotes":0,"views":4996,"bookmarks":53},"createdAtISO":"2026-07-17T20:09:00+00:00","createdAtLocal":"2026-07-18 04:09","ageHours":16.904526595555556,"heat":90.496,"recency":0.32122674443559485,"score":29.06973546444359,"category":"🌍 世界模型","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNV2XecXUAAA6JA.jpg","width":2220,"height":1410}],"urls":["http://arxiv.org/abs/2102.09532"],"source":"search:JEPA","url":"https://x.com/aimalysheva/status/2078210379339931951","textZh":"CW-VAE（Saxena、Ba、@danijarh，NeurIPS 2021，https://t.co/jcHUPY9BEx）基本上就是 H-JEPA 的思路，比 @ylecun 的立场论文提出它还早一年，只是用 VAE 来实现，而不是联合嵌入预测器\n\n这个模型堆叠了多个潜变量序列，每一层都按自己的时钟速度运转，层级越高更新越慢，而且是指数级地变慢\n\n视频中变化缓慢的内容最终被编码进慢速层，变化快的内容则进入快速层，正是这种分工让它能在 1000 帧的长度上依然保持连贯，远超扁平的单时间尺度模型通常开始跑偏的位置\n\n现在重读这篇论文，有意思的地方在于：这些年来整个领域一直在争论，相比扁平的目标函数，显式的层级堆叠到底能不能带来实际收益（参见本周早些时候 data2vec 的样本复杂度结果）\n\nCW-VAE 早在 2021 年就在视频上跑过这个消融实验：结果表明层级结构和每层的时钟速度都很关键，去掉任何一个都会损害长程……"},{"id":"2078464874519372207","text":"Godfather of AI Yann LeCun reveals the humanoid robot industry's secret: the companies building the robots have no idea how to make them smart enough to be useful.\n\n\"There is a lot of expectations that robotics is going to be a revolution, essentially, in a big market, eventually.\"\n\n\"But the secret of the industry is that none of the companies at the moment that are building robots, like humanoid robots, none of those companies has any idea how to make those robots smart enough to be useful.\"\n\n\"There's a big push for AI to make progress towards... understanding the physical world. That's what is prompting this investment.\"\n\n\"There's nothing wrong with investing in LLMs. LLMs are useful. They're just addressing a completely different set of applications, really.\"\n\nLeCun is not describing someone else's problem. He has spent 15 years on world models, raised more than $1 billion for AMI Labs to build that missing intelligence layer, and in the same interview he calls 2026 the year of the world model and puts consumer robots 3 to 5 years out.\n\nEvery humanoid robot demo you have seen is a body waiting for a brain. The winner in robotics will not be the company that shipped the body; it will be the one that ships the intelligence.\n\n- Yann LeCun (@ylecun), Turing Award winner and founder of AMI Labs, on Bloomberg Television.","author":{"id":"20891198","name":"Karl Mehta","screenName":"karlmehta","profileImageUrl":"https://pbs.twimg.com/profile_images/1687676533119602689/sHG_2q0U_normal.jpg","verified":true},"metrics":{"likes":6,"retweets":6,"replies":1,"quotes":0,"views":378,"bookmarks":0},"createdAtISO":"2026-07-18T13:00:16+00:00","createdAtLocal":"2026-07-18 21:00","ageHours":0.05008215111111111,"heat":18.878,"recency":0.99377867825806,"score":18.760553888155655,"category":"🌍 世界模型","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078464848082657280/vid/avc1/1280x720/mbuPqNHXnYiFXwhX.mp4?tag=14","width":1920,"height":1080}],"urls":[],"source":"search:world model","url":"https://x.com/karlmehta/status/2078464874519372207","textZh":"AI 教父 Yann LeCun 揭露了人形机器人行业的秘密：制造机器人的公司根本不知道如何让它们聪明到真正有用。\n\n「大家对机器人寄予厚望，认为它最终会掀起一场革命，本质上会形成一个巨大的市场。」\n\n「但这个行业的秘密在于：目前所有在制造机器人（比如人形机器人）的公司，没有一家知道如何让这些机器人聪明到足以派上用场。」\n\n「现在有一股强大的推动力，要推动 AI 朝着……理解物理世界的方向取得进展。这正是这些投资背后的动因。」\n\n「投资 LLM 并没有什么错。LLM 很有用。只不过它们解决的完全是另一套应用场景，真的。」\n\nLeCun 说的并不是别人的问题。他在世界模型上深耕了 15 年，为 AMI Labs 筹集了超过 10 亿美元，来构建那层缺失的智能，并且在同一次采访中，他把 2026 年称为……之年"},{"id":"2078107335700947338","text":"Join our team to work on Embodied World-Models with @MustafaShukor1 (co-author VL-JEPA with @ylecun )\n\nLink to apply in comments 😇","author":{"id":"2329475887","name":"Remi Cadene","screenName":"RemiCadene","profileImageUrl":"https://pbs.twimg.com/profile_images/1673900473190088704/ZKYHtzBs_normal.jpg","verified":true},"metrics":{"likes":32,"retweets":5,"replies":4,"quotes":2,"views":9489,"bookmarks":5},"createdAtISO":"2026-07-17T13:19:32+00:00","createdAtLocal":"2026-07-17 21:19","ageHours":23.72897104,"heat":53.489000000000004,"recency":0.252135500704217,"score":13.486475797167863,"category":"🌍 世界模型","media":[],"urls":[],"source":"search:JEPA","url":"https://x.com/RemiCadene/status/2078107335700947338","textZh":"加入我们的团队，与 @MustafaShukor1 一起研究具身世界模型（Embodied World-Models）（他是 VL-JEPA 的共同作者，与 @ylecun 合作）\n\n申请链接在评论区 😇"},{"id":"2078072270044676339","text":"Andrej Karpathy, the man behind \"vibe coding,\" admits he had no idea the tweet would go viral after 15 years on Twitter: https://t.co/eXEYDL9ojD","author":{"id":"1826009205918117889","name":"Big Brain AI","screenName":"realBigBrainAI","profileImageUrl":"https://pbs.twimg.com/profile_images/1826009355742789632/TSSCTAxX_normal.png","verified":true},"metrics":{"likes":21,"retweets":12,"replies":3,"quotes":0,"views":2285,"bookmarks":3},"createdAtISO":"2026-07-17T11:00:12+00:00","createdAtLocal":"2026-07-17 19:00","ageHours":26.051193262222224,"heat":48.785,"recency":0.23494037164552245,"score":11.461566030726813,"category":"⭐ AI 大佬动态","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078072241171091456/vid/avc1/1280x720/aC9vg-skYRQ08PjR.mp4?tag=14","width":1920,"height":1080}],"urls":[],"source":"search:vibe coding","url":"https://x.com/realBigBrainAI/status/2078072270044676339","textZh":"「vibe coding」之父 Andrej Karpathy 坦言，在 Twitter 上混了 15 年，完全没想到那条推文会突然爆红：https://t.co/eXEYDL9ojD"},{"id":"2078302415804379218","text":"Beginning July 20, Claude Fable 5 will be included in all Max and Team Premium plans, at 50% of limits.\n\nPro and Team Standard users will continue to have access to Fable via usage credits, and will receive a one-time $100 credit.\n\nDemand for Fable has been challenging to predict, which is why we rolled it out to subscription plans in stages, extending access several times as we secured additional capacity.","author":{"id":"1943306828697550848","name":"Claude","screenName":"claudeai","profileImageUrl":"https://pbs.twimg.com/profile_images/1950950107937185792/QOfEjFoJ_normal.jpg","verified":true},"metrics":{"likes":40290,"retweets":5136,"replies":3590,"quotes":5347,"views":10510215,"bookmarks":5510},"createdAtISO":"2026-07-18T02:14:43+00:00","createdAtLocal":"2026-07-18 10:14","ageHours":10.809248817777778,"heat":62867.215,"recency":0.4253226738347311,"score":26738.85198034291,"category":"🧠 LLM","media":[],"urls":[],"source":"search:OpenAI","url":"https://x.com/claudeai/status/2078302415804379218","textZh":"从 7 月 20 日起，Claude Fable 5 将包含在所有 Max 和 Team Premium 套餐中，额度为 50%。\n\nPro 和 Team Standard 用户将继续通过用量点数使用 Fable，并将获得一次性的 $100 点数。\n\nFable 的需求一直难以预测，这也是为什么我们分阶段将其推向订阅套餐，并在获得额外算力后多次扩大开放范围。"},{"id":"2078310751878647932","text":"GPT-5.6 Sol confirmed to be an extremely good model","author":{"id":"1953337039510003712","name":"Tibo","screenName":"thsottiaux","profileImageUrl":"https://pbs.twimg.com/profile_images/2075819673263001600/pj1vyX6I_normal.jpg","verified":true},"metrics":{"likes":16464,"retweets":616,"replies":930,"quotes":203,"views":1274197,"bookmarks":552},"createdAtISO":"2026-07-18T02:47:51+00:00","createdAtLocal":"2026-07-18 10:47","ageHours":10.257026595555557,"heat":19435.197,"recency":0.4381874539169209,"score":8516.259489803779,"category":"🧠 LLM","media":[],"urls":[],"source":"search:OpenAI","url":"https://x.com/thsottiaux/status/2078310751878647932","textZh":"GPT-5.6 Sol 已被证实是一个极其出色的模型"},{"id":"2078302417100394737","text":"We know this has been frustrating, and we want to give you more certainty about what your plan includes. We are making access standard at 50% usage for the plans that use Fable most intensively.\n\nThank you for your patience over the past several weeks. We're continuing to invest in new capacity and will keep everyone updated as we do.","author":{"id":"1943306828697550848","name":"Claude","screenName":"claudeai","profileImageUrl":"https://pbs.twimg.com/profile_images/1950950107937185792/QOfEjFoJ_normal.jpg","verified":true},"metrics":{"likes":4497,"retweets":151,"replies":261,"quotes":69,"views":691468,"bookmarks":211},"createdAtISO":"2026-07-18T02:14:43+00:00","createdAtLocal":"2026-07-18 10:14","ageHours":10.809248817777778,"heat":5620.968,"recency":0.4253226738347311,"score":2390.725139299461,"category":"🧠 LLM","media":[],"urls":[],"source":"search:Claude","url":"https://x.com/claudeai/status/2078302417100394737","textZh":"我们知道这确实很令人沮丧，我们想让你更清楚地了解自己的套餐包含什么。对于 Fable 使用强度最高的套餐，我们将在用量达到 50% 时提供标准访问权限。\n\n感谢大家过去几周以来的耐心等待。我们正在持续投入新的容量，并会随时向大家同步最新进展。"},{"id":"2078223217773474134","text":"10,000 reasons people love GPT-5.6 Sol \nhttps://t.co/Mu6PBPkrop https://t.co/1jJ7ZNCY26","author":{"id":"4398626122","name":"OpenAI","screenName":"OpenAI","profileImageUrl":"https://pbs.twimg.com/profile_images/1885410181409820672/ztsaR0JW_normal.jpg","verified":true},"metrics":{"likes":1837,"retweets":128,"replies":221,"quotes":43,"views":426348,"bookmarks":284},"createdAtISO":"2026-07-17T21:00:01+00:00","createdAtLocal":"2026-07-18 05:00","ageHours":16.05424881777778,"heat":2629.848,"recency":0.33258157677688266,"score":874.6389945235313,"category":"🧠 LLM","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNdUS5caIAA9pnF.jpg","width":1200,"height":630}],"urls":["https://switch-to-codex.openai.chatgpt.site/"],"source":"search:OpenAI","url":"https://x.com/OpenAI/status/2078223217773474134","textZh":"人们热爱 GPT-5.6 Sol 的 10,000 个理由\nhttps://t.co/Mu6PBPkrop https://t.co/1jJ7ZNCY26"},{"id":"2078427059127545913","text":"Pi is nothing without its open source contributors! \n\nThanks to the work of @Jaaneek and the @SpaceXAI team, you can now officially use your xAI sub in Pi. \n\nThe latest model grok 4.5 sky rockets your workflows with frontier level intelligence at a fraction of the cost👽🛸 https://t.co/E0GrbVqAxj","author":{"id":"2056719344202141696","name":"Pi","screenName":"pidotdev","profileImageUrl":"https://pbs.twimg.com/profile_images/2056719506785927168/ol1lqm8b_normal.jpg","verified":true},"metrics":{"likes":351,"retweets":16,"replies":20,"quotes":9,"views":12603,"bookmarks":38},"createdAtISO":"2026-07-18T10:30:00+00:00","createdAtLocal":"2026-07-18 18:30","ageHours":2.554526595555555,"heat":405.603,"recency":0.757968623942712,"score":307.43434777703584,"category":"🧠 LLM","media":[{"type":"animated_gif","url":"https://video.twimg.com/tweet_video/HNf51zsX0AAQZIq.mp4","width":978,"height":822}],"urls":[],"source":"search:AI","url":"https://x.com/pidotdev/status/2078427059127545913","textZh":"没有开源贡献者，Pi 将一无是处！\n\n感谢 @Jaaneek 和 @SpaceXAI 团队的努力，你现在可以正式在 Pi 中使用你的 xAI 订阅了。\n\n最新模型 grok 4.5 以极低的价格带来前沿级智能，让你的工作流一飞冲天👽🛸 https://t.co/E0GrbVqAxj"},{"id":"2078383414139568248","text":"面对 GPT 5.6 SOL 和 Grok 4.5 的持续重置额度补贴，以及中国开源大模型的追击下。\n\nClaude 告诉大家，我们不涨价，但是额度今后要减少一半。 https://t.co/b1tE17cGYa","author":{"id":"4848269835","name":"AB Kuai.Dong","screenName":"_FORAB","profileImageUrl":"https://pbs.twimg.com/profile_images/1747252669897691136/wS_-7gEt_normal.jpg","verified":true},"metrics":{"likes":166,"retweets":6,"replies":75,"quotes":4,"views":57123,"bookmarks":24},"createdAtISO":"2026-07-18T07:36:35+00:00","createdAtLocal":"2026-07-18 15:36","ageHours":5.444804373333333,"heat":272.623,"recency":0.5950253925499536,"score":162.217607593146,"category":"🧠 LLM","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNfmsWoaAAA4k3a.jpg","width":1248,"height":832}],"urls":[],"source":"search:Claude","url":"https://x.com/_FORAB/status/2078383414139568248","textZh":"面对 GPT 5.6 SOL 和 Grok 4.5 的持续重置额度补贴，以及中国开源大模型的追击下。\n\nClaude 告诉大家，我们不涨价，但是额度今后要减少一半。 https://t.co/b1tE17cGYa"},{"id":"2078042985007067147","text":"\"Construire un LLM de Zéro\" est un livre interactif et c'est son meilleur atout. Je vous montre pourquoi. https://t.co/yarTP9IVuh","author":{"id":"3508397722","name":"Kevin Degila👨🏾‍💻","screenName":"kevindegila","profileImageUrl":"https://pbs.twimg.com/profile_images/2077669806975664128/xaXbyDJS_normal.jpg","verified":false},"metrics":{"likes":142,"retweets":31,"replies":13,"quotes":1,"views":8869,"bookmarks":159},"createdAtISO":"2026-07-17T09:03:50+00:00","createdAtLocal":"2026-07-17 17:03","ageHours":27.990637706666668,"heat":219.369,"recency":0.2222800291898727,"score":48.76134772335318,"category":"🧠 LLM","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078042192543625217/vid/avc1/1268x720/1ePDTFkDj1Qdjxo7.mp4?tag=14","width":1904,"height":1080}],"urls":[],"source":"search:LLM","url":"https://x.com/kevindegila/status/2078042985007067147","textZh":"《从零构建 LLM》是一本互动式图书，而这正是它最大的优势。我来告诉你为什么。https://t.co/yarTP9IVuh"},{"id":"2078352829866189077","text":"Anthropic pays $750,000+ a year for engineers who can build LLM architectures from scratch. Stanford taught the entire thing in 1 hour lecture &amp; released it for free. \n\nBookmark &amp; watch this today before someone takes it down and read this article below https://t.co/mj8YKOiZcM","author":{"id":"1886748851572498434","name":"Swati Gupta","screenName":"hrswatigupta","profileImageUrl":"https://pbs.twimg.com/profile_images/1887492440531345412/nDxrI7j2_normal.jpg","verified":true},"metrics":{"likes":39,"retweets":4,"replies":5,"quotes":0,"views":7319,"bookmarks":61},"createdAtISO":"2026-07-18T05:35:03+00:00","createdAtLocal":"2026-07-18 13:35","ageHours":7.470359928888889,"heat":56.819,"recency":0.5171178975003056,"score":29.382121818069862,"category":"🧠 LLM","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078349583646879744/vid/avc1/1920x1080/Gt3Bs8CZ0rAb7kY6.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"search:LLM","url":"https://x.com/hrswatigupta/status/2078352829866189077","textZh":"Anthropic 为能从零构建 LLM 架构的工程师开出 $750,000+ 的年薪。斯坦福用一场 1 小时的讲座讲完了全部内容，还免费放了出来。\n\n今天就赶紧收藏观看，免得被人下架，也别忘了读读下面这篇文章 https://t.co/mj8YKOiZcM"},{"id":"2078111197212414447","text":"I built an app that runs Claude Code, Codex, Cursor, Grok, Antigravity, OpenCode, and Pi side by side in my Mac notch.  \n\nAgent finishes → notch pops. \nNeeds approval → notch pops. \nOne click back to that exact session.\n\nno more switching between apps. https://t.co/GoYxRDzsBL","author":{"id":"1992172179526651904","name":"Edward Luo","screenName":"edwardluox","profileImageUrl":"https://pbs.twimg.com/profile_images/1992175587159642112/nnlQKUO8_normal.jpg","verified":true},"metrics":{"likes":3685,"retweets":172,"replies":176,"quotes":36,"views":302119,"bookmarks":2992},"createdAtISO":"2026-07-17T13:34:53+00:00","createdAtLocal":"2026-07-17 21:34","ageHours":23.473137706666666,"heat":4419.119,"recency":0.2541850156333613,"score":1123.2738321006839,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078109288258818048/vid/avc1/1440x1440/BLcZFp9U8zG9Nio_.mp4?tag=29","width":1440,"height":1440}],"urls":[],"source":"search:Cursor","url":"https://x.com/edwardluox/status/2078111197212414447","textZh":"我开发了一个应用，可以在 Mac 刘海屏里并排运行 Claude Code、Codex、Cursor、Grok、Antigravity、OpenCode 和 Pi。\n\nAgent 完成任务 → 刘海弹出。\n需要批准 → 刘海弹出。\n一键跳回那个确切的会话。\n\n再也不用在应用之间来回切换了。https://t.co/GoYxRDzsBL"},{"id":"2078168128693977291","text":"Accelerate your creativity with Hermes Agent and @UnrealEngine.\n\nOur new optional companion skill for the official @EpicGames MCP helps Hermes discover tools, sequence calls safely, turn plain-English prompts into polished scenes, and verify results visually.\n\nDemo by @macbethAI https://t.co/y1cGKEi6Y1","author":{"id":"1318419526132862976","name":"Nous Research","screenName":"NousResearch","profileImageUrl":"https://pbs.twimg.com/profile_images/1816254738234761216/TX7TW-Mp_normal.jpg","verified":true},"metrics":{"likes":1717,"retweets":161,"replies":75,"quotes":46,"views":115003,"bookmarks":805},"createdAtISO":"2026-07-17T17:21:07+00:00","createdAtLocal":"2026-07-18 01:21","ageHours":19.702582151111113,"heat":2191.503,"recency":0.288781744472839,"score":632.8660593574601,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078167350361124864/vid/avc1/1920x1080/tPJSAvjLOOjKP5rx.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"search:MCP","url":"https://x.com/NousResearch/status/2078168128693977291","textZh":"借助 Hermes Agent 和 @UnrealEngine 加速你的创造力。\n\n我们为官方 @EpicGames MCP 推出的全新可选配套技能，帮助 Hermes 发现工具、安全地编排调用顺序、把大白话英文提示词变成精致场景，并以可视化方式验证结果。\n\n演示来自 @macbethAI https://t.co/y1cGKEi6Y1"},{"id":"2078156045835251991","text":"Hoy Meta comunicó oficialmente que su MCP ya está disponible para cualquiera que quiera desarrollar.\n\nLa idea es que puedas hablarle con lenguaje natural a la plataforma y puedas:\n- crear/editar campañas, ad sets y ads\n- hacer reporting detallado\n- gestionar catálogos y feeds\n- correr A/B tests \n- revisar logs de actividad\n\nEl valor deja de estar en hacer clicks en la plataforma y pasa a entender qué preguntas tiene sentido hacerse.","author":{"id":"202035850","name":"Mathias","screenName":"MathiasChu","profileImageUrl":"https://pbs.twimg.com/profile_images/2002497274752991232/C_NZ4y_9_normal.jpg","verified":true},"metrics":{"likes":1565,"retweets":84,"replies":31,"quotes":13,"views":118101,"bookmarks":1507},"createdAtISO":"2026-07-17T16:33:06+00:00","createdAtLocal":"2026-07-18 00:33","ageHours":20.50285992888889,"heat":1866.601,"recency":0.2806735892453954,"score":523.9056023590443,"category":"🤖 AI Agent","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNcUJXSXAAAqDpK.jpg","width":1496,"height":930}],"urls":[],"source":"search:MCP","url":"https://x.com/MathiasChu/status/2078156045835251991","textZh":"今天 Meta 官方宣布，其 MCP 已面向所有想要开发的人开放。\n\n理念是你可以用自然语言与平台对话，并且能够：\n- 创建/编辑广告系列、广告组和广告\n- 生成详细的数据报告\n- 管理商品目录和 feeds\n- 运行 A/B 测试\n- 查看活动日志\n\n价值不再在于在平台上点击操作，而在于理解哪些问题是值得问的。"},{"id":"2078127724476936420","text":"The best builders don't build everything.\nThey build on each other's work.\nAI should work the same way.\n\nPublish an agent.\nDiscover an agent.\nExtend an agent.\nBuild something bigger.\n\nWelcome to OptimAI Agent Marketplace.\n👉https://t.co/tdfybSV0Is https://t.co/2lq0zRfmA2","author":{"id":"1813247020397924352","name":"OptimAI Network","screenName":"OptimaiNetwork","profileImageUrl":"https://pbs.twimg.com/profile_images/2006789544851709952/px-aHwyt_normal.jpg","verified":false},"metrics":{"likes":785,"retweets":537,"replies":109,"quotes":33,"views":11766,"bookmarks":21},"createdAtISO":"2026-07-17T14:40:33+00:00","createdAtLocal":"2026-07-17 22:40","ageHours":22.378693262222225,"heat":1925.266,"recency":0.263342466081268,"score":507.00429630241854,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078126842427453441/vid/avc1/1920x1080/v_acVxLoBg36uOMU.mp4?tag=29","width":1920,"height":1080}],"urls":["http://search.optimai.network"],"source":"search:AI agent","url":"https://x.com/OptimaiNetwork/status/2078127724476936420","textZh":"最优秀的构建者不会什么都自己造。\n他们站在彼此的成果之上。\nAI 也应该如此。\n\n发布一个 Agent。\n发现一个 Agent。\n扩展一个 Agent。\n构建更宏大的作品。\n\n欢迎来到 OptimAI Agent Marketplace。\n👉https://t.co/tdfybSV0Is https://t.co/2lq0zRfmA2"},{"id":"2078251675308240973","text":"Over the past 6 months, Claude Platform has added new APIs to help developers quickly build and deploy agents.\n\nPlatform leads Katelyn Lesse, Angela Jiang, and Jess Yan sat down to talk about what has shipped and the patterns we're seeing in production. https://t.co/wCWzYqBZQ9","author":{"id":"2024518793679294464","name":"ClaudeDevs","screenName":"ClaudeDevs","profileImageUrl":"https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png","verified":true},"metrics":{"likes":1035,"retweets":45,"replies":88,"quotes":12,"views":141242,"bookmarks":295},"createdAtISO":"2026-07-17T22:53:06+00:00","createdAtLocal":"2026-07-18 06:53","ageHours":14.169526595555556,"heat":1310.242,"recency":0.3608556982720507,"score":472.80829181536825,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078247336338415616/vid/avc1/3840x2160/W6Rm1mPTp4W0gS9m.mp4?tag=29","width":3840,"height":2160}],"urls":[],"source":"search:Claude","url":"https://x.com/ClaudeDevs/status/2078251675308240973","textZh":"过去 6 个月，Claude Platform 新增了一系列 API，帮助开发者快速构建和部署 Agent。\n\n平台负责人 Katelyn Lesse、Angela Jiang 和 Jess Yan 坐在一起聊了聊已经上线的功能，以及我们在生产环境中观察到的模式。 https://t.co/wCWzYqBZQ9"},{"id":"2078222648539271430","text":"MOONSHOT JUST CLONED CLAUDE CODE AND MADE IT FREE.\n\nIt's called Kimi Code CLI. Open source, MIT license, maintained by the lab that shipped K3 yesterday.\n\nAnd it does things Claude Code doesn't:\n\n→ drop a screen recording into the chat as input\n→ built-in coder, explore, and plan subagents, each in its own context\n→ plan mode before it touches a single file\n→ MCP servers configured by the agent itself via /mcp-config\n→ plugs into Zed, JetBrains, and VS Code\n→ one binary, no Node setup, starts in milliseconds\n\nThe CLI costs $0. K3 behind it starts at $3 per million tokens.\n \nGrab it for free👇","author":{"id":"1226636978256564226","name":"darkzodchi","screenName":"zodchiii","profileImageUrl":"https://pbs.twimg.com/profile_images/1999509933302124544/ABxY9N7S_normal.jpg","verified":true},"metrics":{"likes":976,"retweets":140,"replies":42,"quotes":5,"views":117009,"bookmarks":1720},"createdAtISO":"2026-07-17T20:57:45+00:00","createdAtLocal":"2026-07-18 04:57","ageHours":16.092026595555556,"heat":1394.009,"recency":0.33206006843259184,"score":462.8947239356489,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078222280790855680/vid/avc1/1224x720/9MxGZXi8tJAbWbNs.mp4?tag=29","width":1224,"height":720}],"urls":[],"source":"search:MCP","url":"https://x.com/zodchiii/status/2078222648539271430","textZh":"MOONSHOT 刚刚复刻了 CLAUDE CODE，还把它做成了免费。\n\n它叫 Kimi Code CLI。开源、MIT 协议，由昨天刚发布 K3 的实验室维护。\n\n而且它能做到 Claude Code 做不到的事：\n\n→ 直接把屏幕录像拖进对话作为输入\n→ 内置 coder、explore 和 plan 子 Agent，各自拥有独立上下文\n→ 在改动任何文件之前，先进入 plan 模式\n→ Agent 可通过 /mcp-config 自行配置 MCP 服务器\n→ 可接入 Zed、JetBrains 和 VS Code\n→ 单个二进制文件，无需安装 Node，毫秒级启动\n\nCLI 售价 $0。背后的 K3 起价为每百万 token $3。\n\n免费获取👇"},{"id":"2078144569594761591","text":"New course: Build LLM applications that respond to user requests quickly by running on hardware designed for fast inference. This short course was built with  @Cerebras and taught by @zhennydez, @duerr_seb, and  @MilksandMatcha.\n\nWhen a model generates text, much of the time is spent moving its weights out of memory and into the compute units. Inference-optimized hardware minimizes that movement, making token generation several times faster than on a typical GPU setup. In this course, the hardware you'll use is Cerebras' Wafer-Scale Engine, which is designed for fast inference by keeping the model's weights close to the compute units.\n\nFast inference makes lengthy agentic workflows go faster, and also unlocks latency-sensitive, real-time applications like live translation and voice agents.\n\nSkills you'll gain:\n- Compare how GPUs, TPUs, and Cerebras' Wafer-Scale Engine each handle the memory-to-compute bottleneck\n- Build real-time applications powered by fast inference, including personalizing a webpage and running a multi-step workflow to analyze market signals\n- Adopt concrete habits for agentic coding with fast inference, keeping your sessions focused and steering the model more effectively\n\nMy teams use Cerebras for several applications that are latency sensitive. Join and build LLM applications that respond quickly:\nhttps://t.co/P8vchGAr22","author":{"id":"216939636","name":"Andrew Ng","screenName":"AndrewYNg","profileImageUrl":"https://pbs.twimg.com/profile_images/733174243714682880/oyG30NEH_normal.jpg","verified":true},"metrics":{"likes":866,"retweets":89,"replies":59,"quotes":7,"views":88398,"bookmarks":587},"createdAtISO":"2026-07-17T15:47:30+00:00","createdAtLocal":"2026-07-17 23:47","ageHours":21.26285992888889,"heat":1161.898,"recency":0.2733840786389521,"score":317.6444142024411,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078144281685233664/vid/avc1/1920x1080/-jrErZb3PYjGtzPj.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"search:LLM","url":"https://x.com/AndrewYNg/status/2078144569594761591","textZh":"新课上线：构建能快速响应用户请求的 LLM 应用——让它们运行在专为快速推理设计的硬件上。这门短课程与 @Cerebras 联合打造，由 @zhennydez、@duerr_seb 和 @MilksandMatcha 授课。\n\n模型生成文本时，大部分时间都耗费在把权重从内存搬运到计算单元上。为推理优化的硬件将这种搬运降到最低，使 token 生成速度比典型的 GPU 方案快上数倍。在本课程中，你将使用的硬件是 Cerebras 的 Wafer-Scale Engine，它通过让模型权重紧贴计算单元来实现快速推理。\n\n快速推理不仅能让冗长的 Agent 工作流跑得更快，还能解锁对延迟高度敏感的实时应用，比如实时翻译和语音 Agent。\n\n你将收获的技能：\n- 对比 GPU、TPU 与 Cerebras 的 Wafer-Scale Engine 各自如何应对内存到计算的瓶颈\n- 构建由快速推理驱动的实时应用，包括 person…"},{"id":"2078174342316437606","text":"ANTHROPIC AND OPENAI BOTH MISSED THIS.\n\nSomeone just open-sourced one SDK that gives AI agents a mouse, keyboard, and screen across macOS, Linux, and Windows.\n\nIt's called CUA. \n\nSame code drives a local VM or a cloud sandbox regardless of the OS. Your agent sees the screen, clicks, types, and runs shell commands like a real user.\n\n> Benchmark against OSWorld and ScreenSpot\n> Export trajectories for model training\n> Near-native performance on Apple Silicon\n\nNo separate SDK per OS. No infrastructure headache. \n\n100% Free. Open Source.","author":{"id":"1963821944668876800","name":"Simplifying AI","screenName":"simplifyinAI","profileImageUrl":"https://pbs.twimg.com/profile_images/1988117046995873792/-5ps0VAO_normal.jpg","verified":true},"metrics":{"likes":478,"retweets":55,"replies":18,"quotes":1,"views":25539,"bookmarks":753},"createdAtISO":"2026-07-17T17:45:48+00:00","createdAtLocal":"2026-07-18 01:45","ageHours":19.291193262222222,"heat":622.539,"recency":0.2931348557438851,"score":182.4878799599425,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078174240185159680/vid/avc1/1832x2160/lGF4WKwjRW6Z12fZ.mp4?tag=29","width":1832,"height":2160}],"urls":[],"source":"search:AI agent","url":"https://x.com/simplifyinAI/status/2078174342316437606","textZh":"Anthropic 和 OpenAI 都看走眼了。\n\n有人刚刚开源了一个 SDK，让 AI 智能体在 macOS、Linux 和 Windows 上都能拥有鼠标、键盘和屏幕。\n\n它叫 CUA。\n\n同一套代码，不管是什么操作系统，都能驱动本地虚拟机或云端沙箱。你的智能体可以像真实用户一样看屏幕、点击、输入，还能运行 shell 命令。\n\n> 基于 OSWorld 和 ScreenSpot 跑基准测试\n> 导出轨迹数据用于模型训练\n> 在 Apple Silicon 上实现接近原生的性能\n\n不用为每个操作系统各搞一套 SDK。也没有基础设施的头疼事。\n\n100% 免费。开源。"},{"id":"2078320950488297917","text":"Oops... I did it again. \n\nEnjoy reset usage limits for all paid users for Codex and ChatGPT Work. Super grateful for an incredible team who is iterating at lightspeed and keeping the infra up as we scale faster than ever.\n\nEnjoy the weekend! https://t.co/WIuS07doKA","author":{"id":"1953337039510003712","name":"Tibo","screenName":"thsottiaux","profileImageUrl":"https://pbs.twimg.com/profile_images/2075819673263001600/pj1vyX6I_normal.jpg","verified":true},"metrics":{"likes":13169,"retweets":758,"replies":2231,"quotes":732,"views":704827,"bookmarks":383},"createdAtISO":"2026-07-18T03:28:22+00:00","createdAtLocal":"2026-07-18 11:28","ageHours":9.581748817777779,"heat":16505.327,"recency":0.45501730703323456,"score":7510.209443242937,"category":"🎨 Vibe Coding","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNetqdibQAA0L_c.jpg","width":1254,"height":1254}],"urls":[],"source":"search:OpenAI","url":"https://x.com/thsottiaux/status/2078320950488297917","textZh":"哎呀……我又来了。\n\nCodex 和 ChatGPT Work 所有付费用户的用量限制已重置，尽情享用吧。超级感谢我们了不起的团队，他们以光速迭代，在我们以前所未有的速度扩张的同时，依然保持基础设施稳定运行。\n\n周末愉快！https://t.co/WIuS07doKA"},{"id":"2078092271296143593","text":"This is concerning. For the first time, a Chinese model Kimi K3 has taken #1 on the Frontend Code Arena and is scoring at or near the frontier on other benchmarks.  \n\nMeanwhile America is tying itself in knots: politicians and bureaucrats are banning new data centers, piling on state regulations, and pushing for new federal agencies to pre-approve frontier models. \n\nThis is how you lose the AI race. The rest of the world won’t play by our rules if we bog ourselves down. Permissionless innovation is how America won the internet and became the technological envy of the world. We can do it again with AI -- while addressing risks in a targeted way -- or we’ll watch our lead evaporate.","author":{"id":"1137701","name":"David Sacks","screenName":"DavidSacks","profileImageUrl":"https://pbs.twimg.com/profile_images/1879600809693917185/GkBxdTd9_normal.jpg","verified":true},"metrics":{"likes":16224,"retweets":2214,"replies":1656,"quotes":519,"views":2942565,"bookmarks":2522},"createdAtISO":"2026-07-17T12:19:41+00:00","createdAtLocal":"2026-07-17 20:19","ageHours":24.72647104,"heat":24422.565,"recency":0.24445043250223902,"score":5970.106577064045,"category":"🎨 Vibe Coding","media":[],"urls":[],"source":"search:world model","url":"https://x.com/DavidSacks/status/2078092271296143593","textZh":"这令人担忧。中国模型 Kimi K3 首次在 Frontend Code Arena 上拿下 #1，并且在其他基准测试中的得分也达到或接近前沿水平。\n\n与此同时，美国却在作茧自缚：政客和官僚们禁止新建数据中心，各州监管层层加码，还推动设立新的联邦机构对前沿模型进行事前审批。\n\n这就是输掉 AI 竞赛的方式。如果我们把自己拖入泥潭，世界其他国家可不会按我们的规则行事。无需许可的创新正是美国赢得互联网、成为令全世界艳羡的技术强国的原因。我们可以在 AI 上再赢一次——同时以有针对性的方式应对风险——否则就只能眼睁睁看着我们的领先优势蒸发殆尽。"},{"id":"2078211065868091768","text":"We've resolved an issue where Fable was not selectable as a model within https://t.co/FiDD5WA3ik or Claude Code for a 30 minute period.\n\nYou may need to restart Claude Code. If Fable is not your default model afterwards, you should reselect it with /model.","author":{"id":"2024518793679294464","name":"ClaudeDevs","screenName":"ClaudeDevs","profileImageUrl":"https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png","verified":true},"metrics":{"likes":5830,"retweets":207,"replies":568,"quotes":165,"views":617625,"bookmarks":309},"createdAtISO":"2026-07-17T20:11:44+00:00","createdAtLocal":"2026-07-18 04:11","ageHours":16.85897104,"heat":7145.625,"recency":0.32181541171303446,"score":2299.572251321952,"category":"🎨 Vibe Coding","media":[],"urls":["http://Claude.ai"],"source":"search:AI","url":"https://x.com/ClaudeDevs/status/2078211065868091768","textZh":"我们已修复一个问题：此前有 30 分钟的时间，Fable 无法在 https://t.co/FiDD5WA3ik 或 Claude Code 中被选为模型。\n\n你可能需要重启 Claude Code。如果重启后 Fable 不是你的默认模型，请使用 /model 重新选择它。"},{"id":"2078243667081617826","text":"GPT-5.6 Sol sets a new state of the art in cybersecurity on “The Last Ones” cyber range.\n\nWe’re already seeing that capability translate into defensive outcomes: helping teams find, validate, and fix vulnerabilities in real-world code.\n\nPut it to work with Codex Security: https://t.co/Fvz9wpLjrt","author":{"id":"4398626122","name":"OpenAI","screenName":"OpenAI","profileImageUrl":"https://pbs.twimg.com/profile_images/1885410181409820672/ztsaR0JW_normal.jpg","verified":true},"metrics":{"likes":2631,"retweets":216,"replies":154,"quotes":38,"views":305523,"bookmarks":387},"createdAtISO":"2026-07-17T22:21:16+00:00","createdAtLocal":"2026-07-18 06:21","ageHours":14.700082151111111,"heat":3445.523,"recency":0.35242163207803284,"score":1214.2768390224,"category":"🎨 Vibe Coding","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNdnMCnbcAAfe6D.jpg","width":3500,"height":2160}],"urls":[],"source":"search:OpenAI","url":"https://x.com/OpenAI/status/2078243667081617826","textZh":"GPT-5.6 Sol 在“The Last Ones”网络靶场上刷新了网络安全领域的最先进水平。\n\n我们已经看到这一能力正在转化为实际的防御成果：帮助团队在真实世界的代码中发现、验证并修复漏洞。\n\n通过 Codex Security 让它为你所用：https://t.co/Fvz9wpLjrt"},{"id":"2078189433992495429","text":"The Built with Claude: Life Sciences hackathon comes to an end.\n\nThank you to everyone who spent a week building with Claude Science and Claude Code, and to @gladstoneinst and @cerebral_valley for co-hosting.\n\nIntroducing the winners: https://t.co/VTDup1yz9Z","author":{"id":"1943306828697550848","name":"Claude","screenName":"claudeai","profileImageUrl":"https://pbs.twimg.com/profile_images/1950950107937185792/QOfEjFoJ_normal.jpg","verified":true},"metrics":{"likes":1658,"retweets":112,"replies":258,"quotes":33,"views":268756,"bookmarks":334},"createdAtISO":"2026-07-17T18:45:46+00:00","createdAtLocal":"2026-07-18 02:45","ageHours":18.29174881777778,"heat":2279.756,"recency":0.30427797159657227,"score":693.6795314151152,"category":"🎨 Vibe Coding","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078181136736354304/vid/avc1/1080x1350/63JFOJj6c9GZtCAr.mp4?tag=29","width":1080,"height":1350}],"urls":[],"source":"search:Claude","url":"https://x.com/claudeai/status/2078189433992495429","textZh":"Built with Claude：生命科学黑客松圆满落幕。\n\n感谢每一位花了一周时间用 Claude Science 和 Claude Code 进行构建的开发者，也感谢 @gladstoneinst 和 @cerebral_valley 联合主办。\n\n获奖名单揭晓：https://t.co/VTDup1yz9Z"},{"id":"2078132394394108381","text":"Launching today: the world’s first fully optimized LLM routing stack that can be embedded directly into your product, Merge Embedded Routing Stack.\n\nModel sovereignty is now table stakes for any AI product.\n\nUsers and companies are demanding full control over the AI models running in your product.\n\nRight now, no company is able to do this without massive overhead.\n\nUntil today.\n\nMerge makes it easy for your customers to use your product exactly the way they want to.\n\nWith a single API, you can:\n\n1. Allow customers to bring their own keys, manage their own budgets, and set policies like fallback rules, model allowlists, and more\n\n2. Let each customer connect and switch their own models, right inside your product\n\n3. Optimize each customer for cost, performance, or capability\n\nWithout Merge, you’d be:\n\n- Building routing policies, provider integrations, and LLM key management\n\n- Giving your users zero model independence\n\n- Receiving endless customer support tickets asking “can I use 5.6 Sol?”\n\nProducts that fight their customers' model strategy will lose to products that fit it.\n\nMerge is the only place that allows your users to produce the exact results they want, with the models they have access to.\n\nGive your customers the advantage, without the massive overhead costs.","author":{"id":"1018513992321417221","name":"Shensi Ding","screenName":"shensi","profileImageUrl":"https://pbs.twimg.com/profile_images/2012242313796259840/Q2fxc9nv_normal.jpg","verified":true},"metrics":{"likes":413,"retweets":28,"replies":49,"quotes":19,"views":293214,"bookmarks":213},"createdAtISO":"2026-07-17T14:59:07+00:00","createdAtLocal":"2026-07-17 22:59","ageHours":22.06924881777778,"heat":786.7139999999999,"recency":0.26605253920643923,"score":209.3072573292546,"category":"🎨 Vibe Coding","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2078129003680993280/vid/avc1/1920x1080/1LO3useiPNRAYJSa.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"search:LLM","url":"https://x.com/shensi/status/2078132394394108381","textZh":"今天正式发布：全球首个完全优化的 LLM 路由栈，可直接嵌入你的产品——Merge Embedded Routing Stack。\n\n模型主权如今已成为任何 AI 产品的基本门槛。\n\n用户和企业正在要求对运行在你产品中的 AI 模型拥有完全的控制权。\n\n目前，没有一家公司能在不承担巨大开销的情况下做到这一点。\n\n直到今天。\n\nMerge 让你的客户可以轻松地完全按照自己想要的方式使用你的产品。\n\n只需一个 API，你就可以：\n\n1. 允许客户自带密钥、管理自己的预算，并设置回退规则、模型白名单等策略\n\n2. 让每个客户直接在你的产品内连接和切换自己的模型\n\n3. 针对成本、性能或能力，为每位客户进行优化\n\n如果没有 Merge，你将不得不：\n\n- 自行构建路由策略、提供商集成和 LLM 密钥管理\n\n- 让你的用户完全没有模型自主权\n\n- 收到没完没了的客户支持工单，询问“我能用 5.6 吗……"}];
+
+// === WebGL neural network background ===
+(function() {
+  const canvas = document.getElementById('neural-canvas');
+  if (!window.THREE || !canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 35;
+
+  const count = window.matchMedia('(pointer: coarse)').matches ? 60 : 120;
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const palette = [new THREE.Color('#8b5cf6'), new THREE.Color('#06b6d4'), new THREE.Color('#ec4899'), new THREE.Color('#f59e0b')];
+
+  for (let i = 0; i < count; i++) {
+    positions[i*3] = (Math.random() - 0.5) * 70;
+    positions[i*3+1] = (Math.random() - 0.5) * 50;
+    positions[i*3+2] = (Math.random() - 0.5) * 30;
+    const c = palette[Math.floor(Math.random() * palette.length)];
+    colors[i*3] = c.r; colors[i*3+1] = c.g; colors[i*3+2] = c.b;
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  const material = new THREE.PointsMaterial({
+    size: 0.35,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending
+  });
+  const points = new THREE.Points(geometry, material);
+  scene.add(points);
+
+  const lineGeo = new THREE.BufferGeometry();
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x4f46e5, transparent: true, opacity: 0.12, blending: THREE.AdditiveBlending });
+  const lines = new THREE.LineSegments(lineGeo, lineMat);
+  scene.add(lines);
+
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  }, { passive: true });
+
+  let frame = 0;
+  function animate() {
+    frame = requestAnimationFrame(animate);
+    const t = performance.now() * 0.0001;
+    camera.position.x += (mouseX * 6 - camera.position.x) * 0.02;
+    camera.position.y += (-mouseY * 4 - camera.position.y) * 0.02;
+    camera.lookAt(0, 0, 0);
+
+    const pos = geometry.attributes.position.array;
+    for (let i = 0; i < count; i++) {
+      const idx = i * 3;
+      pos[idx+1] += Math.sin(t + i) * 0.015;
+      pos[idx] += Math.cos(t * 0.7 + i * 0.1) * 0.01;
+    }
+    geometry.attributes.position.needsUpdate = true;
+    points.rotation.y = t * 0.15;
+
+    const linePos = [];
+    const threshold = 9;
+    for (let i = 0; i < count; i++) {
+      for (let j = i + 1; j < count; j++) {
+        const dx = pos[i*3] - pos[j*3];
+        const dy = pos[i*3+1] - pos[j*3+1];
+        const dz = pos[i*3+2] - pos[j*3+2];
+        const d2 = dx*dx + dy*dy + dz*dz;
+        if (d2 < threshold * threshold) {
+          linePos.push(pos[i*3], pos[i*3+1], pos[i*3+2], pos[j*3], pos[j*3+1], pos[j*3+2]);
+        }
+      }
+    }
+    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+    lines.rotation.y = t * 0.15;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(frame);
+    else animate();
+  });
+})();
+
+// === Video error fallback ===
+function handleVideoError(video) {
+  const frame = video.closest('.video-frame');
+  if (!frame) return;
+  video.style.display = 'none';
+  const fallback = frame.querySelector('.video-fallback');
+  if (fallback) fallback.style.display = 'block';
+}
+
+// === 3D tilt cards ===
+document.querySelectorAll('.tweet-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateZ(20px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+  });
+});
+
+// === Category filtering ===
+const filterButtons = document.querySelectorAll('.nav-pill');
+const sections = document.querySelectorAll('.feed-section');
+const cards = document.querySelectorAll('.tweet-card');
+let activeFilter = 'all';
+
+function setFilter(key) {
+  activeFilter = key;
+  filterButtons.forEach(btn => {
+    const pressed = btn.dataset.filter === key;
+    btn.setAttribute('aria-pressed', String(pressed));
+  });
+
+  const update = () => {
+    sections.forEach(sec => {
+      sec.classList.toggle('hidden', key !== 'all' && sec.dataset.cat !== key);
+    });
+    cards.forEach(card => {
+      const match = key === 'all' || card.dataset.category === key;
+      card.classList.toggle('hidden', !match);
+    });
+  };
+
+  if (document.startViewTransition) {
+    document.startViewTransition(update);
+  } else {
+    update();
+  }
+}
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+});
+
+// === Search ===
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) {
+    setFilter(activeFilter);
+    return;
+  }
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    card.classList.toggle('hidden', !text.includes(q));
+  });
+  sections.forEach(sec => {
+    const visible = sec.querySelectorAll('.tweet-card:not(.hidden)').length > 0;
+    sec.classList.toggle('hidden', !visible);
+  });
+});
+
+// === Back to top ===
+const backTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('visible', window.scrollY > 600);
+}, { passive: true });
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>

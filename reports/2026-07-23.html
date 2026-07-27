@@ -1,0 +1,3119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="X AI 24h 热门动态 - AI HORIZON">
+<meta name="theme-color" content="#0a0a0f">
+<title>AI HORIZON · X AI 24h 热门动态 · 2026-07-23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+<style>
+/* === Design tokens === */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --glow-x {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}
+:root {
+  --bg: #050508;
+  --bg-2: #0a0a10;
+  --panel: rgba(15, 15, 22, 0.72);
+  --panel-strong: rgba(20, 20, 30, 0.88);
+  --text: #f5f7ff;
+  --text-dim: #a0a8c0;
+  --text-muted: #6b7290;
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.16);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --shadow: 0 24px 80px rgba(0,0,0,0.45);
+  --shadow-sm: 0 8px 30px rgba(0,0,0,0.25);
+  --amber: #f59e0b;
+  --cyan: #06b6d4;
+  --violet: #8b5cf6;
+  --rose: #ec4899;
+  --emerald: #10b981;
+  --font: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+  --mono: "SF Mono", ui-monospace, "Cascadia Code", monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.28); }
+
+/* === WebGL canvas === */
+#neural-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* === Hero === */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 6vw;
+  z-index: 1;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(139,92,246,0.18) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(236,72,153,0.08) 0%, transparent 50%);
+  z-index: -1;
+  animation: nebula 18s ease-in-out infinite alternate;
+}
+@keyframes nebula {
+  from { filter: hue-rotate(0deg) scale(1); }
+  to { filter: hue-rotate(25deg) scale(1.08); }
+}
+.hero-content {
+  text-align: center;
+  max-width: 900px;
+  perspective: 1000px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.hero-eyebrow .pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 12px var(--emerald);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+.hero-title {
+  font-size: clamp(48px, 10vw, 112px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0 0 22px;
+  background: linear-gradient(var(--gradient-angle), #fff 0%, #a5b4fc 35%, #67e8f9 65%, #c084fc 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-rotate 8s linear infinite;
+  filter: drop-shadow(0 0 40px rgba(139,92,246,0.25));
+}
+@keyframes gradient-rotate {
+  from { --gradient-angle: 0deg; }
+  to { --gradient-angle: 360deg; }
+}
+.hero-subtitle {
+  font-size: clamp(18px, 2.6vw, 28px);
+  color: var(--text-dim);
+  font-weight: 400;
+  margin: 0 0 40px;
+}
+.hero-subtitle strong {
+  color: var(--text);
+  font-weight: 700;
+}
+.hero-date {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--text-muted);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+}
+.scroll-hint::after {
+  content: "↓";
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+/* === Navigation === */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 4vw;
+  background: rgba(5,5,8,0.78);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-brand .brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  box-shadow: 0 0 18px rgba(6,182,212,0.5);
+}
+.nav-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px;
+  scrollbar-width: none;
+}
+.nav-pills::-webkit-scrollbar { display: none; }
+.nav-pill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.nav-pill:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  border-color: var(--pill-color);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--pill-color) 25%, transparent);
+}
+.nav-pill[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--pill-color) 18%, transparent);
+  border-color: var(--pill-color);
+  color: var(--text);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--pill-color) 30%, transparent);
+}
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+.pill-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  font-size: 11px;
+  font-weight: 700;
+}
+.search-wrap {
+  position: relative;
+  width: 220px;
+  flex-shrink: 0;
+}
+.search-wrap input {
+  width: 100%;
+  padding: 9px 14px 9px 36px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s;
+}
+.search-wrap input:focus {
+  border-color: var(--cyan);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 0 20px rgba(6,182,212,0.15);
+}
+.search-wrap::before {
+  content: "🔍";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* === Main layout === */
+.page-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4vw 8vw;
+}
+.main {
+  min-width: 0;
+}
+
+/* === Sidebar === */
+.sidebar {
+  position: sticky;
+  top: 84px;
+  height: calc(100vh - 104px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-sm);
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.sidebar-icon {
+  font-size: 14px;
+}
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.date-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  font-family: var(--mono);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.date-link:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border-color: var(--line);
+}
+.date-link.current {
+  background: rgba(6,182,212,0.12);
+  color: var(--cyan);
+  border-color: rgba(6,182,212,0.35);
+  font-weight: 700;
+}
+.date-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--cyan);
+  color: #000;
+  font-weight: 800;
+  font-family: var(--font);
+}
+
+/* === Mobile dates === */
+.mobile-dates {
+  display: none;
+  margin-bottom: 20px;
+}
+.mobile-dates-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.mobile-dates-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+  scrollbar-width: none;
+}
+.mobile-dates-nav::-webkit-scrollbar { display: none; }
+.mobile-dates-nav .date-link {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+}
+
+/* === Dashboard === */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 64px;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-sm);
+}
+.panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 18px;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.kpi {
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+}
+.kpi-value {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.kpi-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+.dist-bar {
+  display: grid;
+  grid-template-columns: auto 1fr 28px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.dist-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  min-width: 120px;
+}
+.dist-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dist-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.dist-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  box-shadow: 0 0 12px currentColor;
+  animation: fill-bar 1.2s ease-out 0.3s forwards;
+}
+@keyframes fill-bar {
+  to { width: var(--fill-pct); }
+}
+.dist-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: right;
+}
+.contrib-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.contrib-row:last-child { border-bottom: none; }
+.contrib-row img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+.contrib-name {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.c-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.c-uname {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.contrib-heat {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+/* === Feed sections === */
+.feed-section {
+  margin-bottom: 80px;
+  animation: fade-in-up 0.8s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-header {
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.section-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--section-color);
+  box-shadow: 0 0 20px var(--section-color);
+}
+.section-header h2 {
+  font-size: clamp(24px, 3.4vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--text);
+}
+.section-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--section-color) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--section-color) 40%, transparent);
+  color: var(--section-color);
+  font-size: 14px;
+  font-weight: 800;
+}
+.section-desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.cards-grid {
+  column-count: 2;
+  column-gap: 24px;
+}
+.tweet-card {
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 24px;
+  transform: translateZ(0); /* fix column clipping on some browsers */
+}
+@media (max-width: 820px) {
+  .cards-grid { column-count: 1; }
+  .tweet-card { width: 100%; }
+}
+
+/* === Tweet cards === */
+.tweet-card {
+  position: relative;
+  border-radius: var(--radius);
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.3s, box-shadow 0.3s;
+  animation: card-enter 0.7s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 15%;
+}
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.tweet-card.hidden {
+  display: none;
+}
+.tweet-card.dim {
+  opacity: 0.25;
+  filter: grayscale(0.6);
+}
+.card-border {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(var(--gradient-angle), rgba(255,255,255,0.25), var(--card-glow), rgba(255,255,255,0.15), var(--card-glow));
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradient-rotate 6s linear infinite;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.tweet-card:hover .card-border {
+  opacity: 1;
+}
+.card-inner {
+  position: relative;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 22px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow: hidden;
+}
+.card-inner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at var(--glow-x, 0%) 50%, color-mix(in srgb, var(--card-glow) 18%, transparent), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  animation: glow-move 5s ease-in-out infinite;
+}
+.tweet-card:hover .card-inner::before {
+  opacity: 1;
+}
+@keyframes glow-move {
+  0%, 100% { --glow-x: 0%; }
+  50% { --glow-x: 100%; }
+}
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.avatar-wrap img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.12);
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+.avatar-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0.5;
+  z-index: 0;
+  transition: opacity 0.3s;
+}
+.tweet-card:hover .avatar-glow {
+  opacity: 0.9;
+}
+.meta-text {
+  flex: 1;
+  min-width: 0;
+}
+.name-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.name {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 15px;
+}
+.uname {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.verified {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 700;
+}
+.time-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.age-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 600;
+}
+.score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+  padding-left: 12px;
+}
+.score-val {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--amber);
+  line-height: 1;
+}
+.score-label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.text-zh {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 14px;
+  white-space: pre-wrap;
+}
+.text-zh a, .text-en a {
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(6,182,212,0.3);
+  transition: border-color 0.2s;
+}
+.text-zh a:hover, .text-en a:hover {
+  border-color: var(--cyan);
+}
+.media {
+  margin: 14px 0;
+}
+.video-frame {
+  display: inline-block;
+  width: 100%;
+  max-width: 420px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;
+  position: relative;
+}
+.video-frame video {
+  width: 100%;
+  max-height: 420px;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+.video-fallback {
+  padding: 18px;
+  text-align: center;
+  background: rgba(0,0,0,0.55);
+  border-radius: var(--radius-sm);
+}
+.video-fallback p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.video-fallback a {
+  display: inline-block;
+  margin: 4px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.video-fallback a:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--cyan);
+}
+.video-thumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.video-thumb:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--cyan);
+}
+.tweet-photo {
+  display: block;
+  max-width: 420px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.tweet-photo img {
+  width: 100%;
+  display: block;
+}
+.media-meta {
+  margin-top: 8px;
+  font-size: 12px;
+  text-align: right;
+}
+.media-meta a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.media-meta a:hover {
+  color: var(--cyan);
+}
+.en-details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  margin: 14px 0;
+  overflow: hidden;
+}
+.en-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  list-style: none;
+}
+.en-details summary::-webkit-details-marker { display: none; }
+.en-details .summary-icon {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+.en-details[open] .summary-icon {
+  transform: rotate(-135deg);
+}
+.text-en {
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  background: rgba(0,0,0,0.15);
+  border-top: 1px solid var(--line);
+  white-space: pre-wrap;
+}
+.card-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.stat-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.stat {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+}
+.orig-link {
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.orig-link:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* === Footer === */
+.footer {
+  text-align: center;
+  padding: 60px 4vw;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid var(--line);
+  background: rgba(0,0,0,0.2);
+}
+.footer a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+/* === Utility === */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--panel-strong);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 90;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 24px rgba(6,182,212,0.25);
+}
+
+/* === Mobile === */
+@media (max-width: 640px) {
+  .top-nav {
+    flex-wrap: wrap;
+    padding: 10px 3vw;
+  }
+  .search-wrap {
+    width: 100%;
+    order: 3;
+  }
+  .nav-pills {
+    order: 2;
+    width: 100%;
+  }
+  .hero-title { font-size: 56px; }
+  .hero-subtitle { font-size: 18px; }
+  .kpi-grid { grid-template-columns: 1fr; }
+  .panel { padding: 18px; }
+  .card-head { flex-wrap: wrap; }
+  .score-badge { width: 100%; flex-direction: row; justify-content: space-between; padding-top: 12px; margin-left: 0; }
+  .page-layout { grid-template-columns: 1fr; padding: 0 3vw 8vw; gap: 16px; }
+  .sidebar { display: none; }
+  .mobile-dates { display: block; }
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<canvas id="neural-canvas"></canvas>
+
+<header class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="pulse"></span> X AI 24h 热门动态</div>
+    <h1 class="hero-title">AI HORIZON</h1>
+    <p class="hero-subtitle">过去 <strong>24 小时</strong>，X 上最热门的 AI 信号。<br>中文精选 + 原文对照 + 热度排序。</p>
+    <div class="hero-date">📅 2026-07-23 · 30 条 · 16 个视频 · 数据来源: twitter search 404 → 降级 feed + user-posts</div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</header>
+
+<nav class="top-nav">
+  <a class="nav-brand" href="#top">
+    <span class="brand-dot"></span>
+    AI HORIZON
+  </a>
+  <div class="nav-pills">
+    <button class="nav-pill" data-filter="all" style="--pill-color:#fff" aria-pressed="true">
+      <span class="pill-dot" style="background:#fff"></span>
+      全部
+      <span class="pill-count">30</span>
+    </button>
+<button class="nav-pill" data-filter="leaders" style="--pill-color:#f59e0b" aria-pressed="false">
+  <span class="pill-dot" style="background:#f59e0b"></span>
+  ⭐ AI 大佬动态
+  <span class="pill-count">3</span>
+</button>
+<button class="nav-pill" data-filter="llm" style="--pill-color:#06b6d4" aria-pressed="false">
+  <span class="pill-dot" style="background:#06b6d4"></span>
+  🧠 LLM
+  <span class="pill-count">10</span>
+</button>
+<button class="nav-pill" data-filter="agent" style="--pill-color:#8b5cf6" aria-pressed="false">
+  <span class="pill-dot" style="background:#8b5cf6"></span>
+  🤖 AI Agent
+  <span class="pill-count">8</span>
+</button>
+<button class="nav-pill" data-filter="vibe" style="--pill-color:#ec4899" aria-pressed="false">
+  <span class="pill-dot" style="background:#ec4899"></span>
+  🎨 Vibe Coding
+  <span class="pill-count">8</span>
+</button>
+<button class="nav-pill" data-filter="world" style="--pill-color:#10b981" aria-pressed="false">
+  <span class="pill-dot" style="background:#10b981"></span>
+  🌍 世界模型
+  <span class="pill-count">1</span>
+</button>
+  </div>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="搜索推文、作者、关键词…" aria-label="搜索">
+  </div>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="sidebar" aria-label="历史日报">
+    <div class="sidebar-header">
+      <span class="sidebar-icon" aria-hidden="true">☰</span>
+      <span>历史日报</span>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="/reports/2026-07-25.html" class="date-link">2026-07-25</a>
+        <a href="/reports/2026-07-24.html" class="date-link">2026-07-24</a>
+        <a href="/reports/2026-07-23.html" class="date-link current">2026-07-23 <span class="date-badge">今日</span></a>
+        <a href="/reports/2026-07-22.html" class="date-link">2026-07-22</a>
+        <a href="/reports/2026-07-20.html" class="date-link">2026-07-20</a>
+        <a href="/reports/2026-07-19.html" class="date-link">2026-07-19</a>
+        <a href="/reports/2026-07-18.html" class="date-link">2026-07-18</a>
+        <a href="/reports/2026-07-17.html" class="date-link">2026-07-17</a>
+        <a href="/reports/2026-07-16.html" class="date-link">2026-07-16</a>
+        <a href="/reports/2026-07-15.html" class="date-link">2026-07-15</a>
+        <a href="/reports/2026-07-14.html" class="date-link">2026-07-14</a>
+        <a href="/reports/2026-07-13.html" class="date-link">2026-07-13</a>
+        <a href="/reports/2026-07-12.html" class="date-link">2026-07-12</a>
+        <a href="/reports/2026-07-11.html" class="date-link">2026-07-11</a>
+        <a href="/reports/2026-07-10.html" class="date-link">2026-07-10</a>
+        <a href="/reports/2026-07-09.html" class="date-link">2026-07-09</a>
+        <a href="/reports/2026-07-08.html" class="date-link">2026-07-08</a>
+    </nav>
+  </aside>
+  <div class="mobile-dates" aria-label="历史日报">
+    <span class="mobile-dates-label">历史日报</span>
+    <nav class="mobile-dates-nav">
+      <a href="/reports/2026-07-25.html" class="date-link">2026-07-25</a>
+<a href="/reports/2026-07-24.html" class="date-link">2026-07-24</a>
+<a href="/reports/2026-07-23.html" class="date-link current">2026-07-23 <span class="date-badge">今日</span></a>
+<a href="/reports/2026-07-22.html" class="date-link">2026-07-22</a>
+<a href="/reports/2026-07-20.html" class="date-link">2026-07-20</a>
+<a href="/reports/2026-07-19.html" class="date-link">2026-07-19</a>
+<a href="/reports/2026-07-18.html" class="date-link">2026-07-18</a>
+<a href="/reports/2026-07-17.html" class="date-link">2026-07-17</a>
+<a href="/reports/2026-07-16.html" class="date-link">2026-07-16</a>
+<a href="/reports/2026-07-15.html" class="date-link">2026-07-15</a>
+<a href="/reports/2026-07-14.html" class="date-link">2026-07-14</a>
+<a href="/reports/2026-07-13.html" class="date-link">2026-07-13</a>
+<a href="/reports/2026-07-12.html" class="date-link">2026-07-12</a>
+<a href="/reports/2026-07-11.html" class="date-link">2026-07-11</a>
+<a href="/reports/2026-07-10.html" class="date-link">2026-07-10</a>
+<a href="/reports/2026-07-09.html" class="date-link">2026-07-09</a>
+<a href="/reports/2026-07-08.html" class="date-link">2026-07-08</a>
+    </nav>
+  </div>
+  <main class="main">
+  <section class="dashboard" aria-label="数据概览">
+    <div class="panel">
+      <div class="panel-title">今日概览</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-value">30</div><div class="kpi-label">精选推文</div></div>
+        <div class="kpi"><div class="kpi-value">16</div><div class="kpi-label">内嵌视频</div></div>
+        <div class="kpi"><div class="kpi-value">217.2K</div><div class="kpi-label">总热度</div></div>
+        <div class="kpi"><div class="kpi-value">24.9M</div><div class="kpi-label">总曝光</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">分类分布</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#f59e0b"></span>⭐ AI 大佬动态</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:30.0%;background:#f59e0b"></div></div>
+  <div class="dist-num">3</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#06b6d4"></span>🧠 LLM</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:100.0%;background:#06b6d4"></div></div>
+  <div class="dist-num">10</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#8b5cf6"></span>🤖 AI Agent</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:80.0%;background:#8b5cf6"></div></div>
+  <div class="dist-num">8</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#ec4899"></span>🎨 Vibe Coding</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:80.0%;background:#ec4899"></div></div>
+  <div class="dist-num">8</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#10b981"></span>🌍 世界模型</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:10.0%;background:#10b981"></div></div>
+  <div class="dist-num">1</div>
+</div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">热门发声账号</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1296667294148382721/9Pr6XrPB_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Andrej Karpathy</span>
+    <span class="c-uname">@karpathy</span>
+  </div>
+  <div class="contrib-heat">57.9K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1353172142502809601/a03iLOp7_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">iPaul</span>
+    <span class="c-uname">@iPaulCanada</span>
+  </div>
+  <div class="contrib-heat">39.9K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Sam Altman</span>
+    <span class="c-uname">@sama</span>
+  </div>
+  <div class="contrib-heat">31.5K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1862376119275487232/2EUPstER_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Jason Smith - 上官杰文</span>
+    <span class="c-uname">@ShangguanJiewen</span>
+  </div>
+  <div class="contrib-heat">15.3K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Elon Musk</span>
+    <span class="c-uname">@elonmusk</span>
+  </div>
+  <div class="contrib-heat">12.7K</div>
+</div>
+    </div>
+  </section>
+
+  <section class="feed-section" id="leaders" data-cat="leaders" style="--section-color:#f59e0b">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>⭐ AI 大佬动态</h2>
+        <span class="section-count">3</span>
+      </div>
+      <p class="section-desc">AI 领袖与资深从业者的发声</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2079610838143623371" data-category="leaders" data-score="9754.51" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1296667294148382721/9Pr6XrPB_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Andrej Karpathy</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@karpathy</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 00:53</span>
+          <span class="age-badge">39.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">9755</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我发现与 LLM 协作时有一个很实用的模式，就是来一场漫长而随性的漫谈。有时 LLM 需要更多信息才能理解你的目标，但你又懒得打字。这种情况下，我喜欢往椅背上一靠，切换到 /voice 语音模式，然后就这么漫无边际地说上 10 分钟，毫无条理，想到什么说什么，完全是意识流。有时我会在开头先声明一句，比如“接下来是语音输入，如有错别字请见谅……”。有时我会把它变成几个回合的小型访谈。但我发现，LLM 似乎非常擅长从长篇大论、语无伦次的话语中梳理出脉络，而且它们对你混乱思绪的反馈往往比你最初的想法要清晰得多。结果就是，你们之间形成了更好的思维契合，之后你需要纠正的地方也大大减少了。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">One pattern I find useful for working with LLMs is a nice long ramble session. Sometimes the LLM needs more bits to understand what you&#x27;re trying to achieve, but you&#x27;re too lazy to type them. In these cases I like to lean back, switch to /voice and just ramble for like 10 minutes, total mess, anything goes, full stream of consciousness. Sometimes I declare it up top, something like &quot;switching to speech recognition sorry for any typos...&quot;. Sometimes I turn it into a small interview of a few turns. But I find that the LLMs are somehow very good at reconstructing long incoherent rambles and often their echo of your own tangle of thoughts comes out quite a bit cleaner than what you started with. The result is that you improve the mind meld and have to correct things less from that point on.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 57.9K</span>
+        <span class="stat">💬 2.2K</span>
+        <span class="stat">🔁 3.8K</span>
+        <span class="stat">❤️ 45.9K</span>
+        <span class="stat">🔖 13.8K</span>
+        <span class="stat">👁 3.3M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/karpathy/status/2079610838143623371" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079661132302995790" data-category="leaders" data-score="5709.84" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Sam Altman</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@sama</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 04:13</span>
+          <span class="age-badge">36.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">5710</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我们在模型评估期间发生了一起重大的安全事件。我们在此分享目前总结的经验教训。感谢 <a href="https://x.com/huggingface" target="_blank" rel="noopener">@huggingface</a> 在此事上的合作。
+
+<a href="https://t.co/2o2VfR6PIa" target="_blank" rel="noopener">https://t.co/2o2VfR6PIa</a></div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">we had a significant security incident during evaluation of our models. we are sharing what we have learned so far. thanks to <a href="https://x.com/huggingface" target="_blank" rel="noopener">@huggingface</a> for the partnership on this.
+
+<a href="https://t.co/2o2VfR6PIa" target="_blank" rel="noopener">https://t.co/2o2VfR6PIa</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 31.5K</span>
+        <span class="stat">💬 2.1K</span>
+        <span class="stat">🔁 2.0K</span>
+        <span class="stat">❤️ 17.0K</span>
+        <span class="stat">🔖 6.5K</span>
+        <span class="stat">👁 9.4M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/sama/status/2079661132302995790" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079597384510898377" data-category="leaders" data-score="434.19" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/841385099799085056/R1iX4QGX_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Fei-Fei Li</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@drfeifei</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 00:00</span>
+          <span class="age-badge">40.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">434</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">世界不仅仅由文字构成，而空间智能也绝不仅仅是关于感知和生成世界。它更在于与世界进行互动。
+
+今天，SceniX 正式加入 World Labs。🌎🤖👇 <a href="https://t.co/qThtkjgd3f" target="_blank" rel="noopener">https://t.co/qThtkjgd3f</a></div>
+    <a href="https://x.com/drfeifei/status/2079597384510898377" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">The world is not just made of words, and spatial intelligence was never just about perceiving and generating worlds. It&#x27;s about interacting with them.
+
+Today, SceniX is joining World Labs. 🌎🤖👇 <a href="https://t.co/qThtkjgd3f" target="_blank" rel="noopener">https://t.co/qThtkjgd3f</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.6K</span>
+        <span class="stat">💬 79</span>
+        <span class="stat">🔁 197</span>
+        <span class="stat">❤️ 1.9K</span>
+        <span class="stat">🔖 481</span>
+        <span class="stat">👁 306.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/drfeifei/status/2079597384510898377" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="llm" data-cat="llm" style="--section-color:#06b6d4">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🧠 LLM</h2>
+        <span class="section-count">10</span>
+      </div>
+      <p class="section-desc">大模型发布、能力与评测</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2079981184717652150" data-category="llm" data-score="13925.78" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1353172142502809601/a03iLOp7_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">iPaul</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@iPaulCanada</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 01:25</span>
+          <span class="age-badge">14.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">13926</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">2026世界人工智能大会，某科技公司展示的跨时代教具--AI黑板 <a href="https://t.co/vjnXoOzlbL" target="_blank" rel="noopener">https://t.co/vjnXoOzlbL</a></div>
+    <a href="https://x.com/iPaulCanada/status/2079981184717652150" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">2026世界人工智能大会，某科技公司展示的跨时代教具--AI黑板 <a href="https://t.co/vjnXoOzlbL" target="_blank" rel="noopener">https://t.co/vjnXoOzlbL</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 39.9K</span>
+        <span class="stat">💬 765</span>
+        <span class="stat">🔁 4.5K</span>
+        <span class="stat">❤️ 28.2K</span>
+        <span class="stat">🔖 8.1K</span>
+        <span class="stat">👁 2.2M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/iPaulCanada/status/2079981184717652150" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2080091657413054757" data-category="llm" data-score="7855.48" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1862376119275487232/2EUPstER_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Jason Smith - 上官杰文</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ShangguanJiewen</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 08:44</span>
+          <span class="age-badge">7.6h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">7855</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">当美国还在为是否要解决无家可归者问题而争论不休时，这些已经是中国的下一代学校黑板了🇨🇳。
+
+👇 <a href="https://t.co/dFNf23Z767" target="_blank" rel="noopener">https://t.co/dFNf23Z767</a></div>
+    <a href="https://x.com/ShangguanJiewen/status/2080091657413054757" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">While the US debates whether to solve homelessness or not, these are the next generation of school blackboards in China🇨🇳.
+
+👇 <a href="https://t.co/dFNf23Z767" target="_blank" rel="noopener">https://t.co/dFNf23Z767</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 15.3K</span>
+        <span class="stat">💬 308</span>
+        <span class="stat">🔁 2.5K</span>
+        <span class="stat">❤️ 9.9K</span>
+        <span class="stat">🔖 1.8K</span>
+        <span class="stat">👁 296.9K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ShangguanJiewen/status/2080091657413054757" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079896432811917586" data-category="llm" data-score="3228.96" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2055049224107012096/EdPQeLJM_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">René Remsik</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@aitrendz_xyz</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 19:48</span>
+          <span class="age-badge">20.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">3229</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">有人想象了一下真正的 4D IMAX 穹顶球体会是什么样 🤯 <a href="https://t.co/F2uOHaGTpk" target="_blank" rel="noopener">https://t.co/F2uOHaGTpk</a></div>
+    <a href="https://x.com/aitrendz_xyz/status/2079896432811917586" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Someone imagined what a REAL 4D IMAX dome sphere would look like 🤯 <a href="https://t.co/F2uOHaGTpk" target="_blank" rel="noopener">https://t.co/F2uOHaGTpk</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 11.5K</span>
+        <span class="stat">💬 176</span>
+        <span class="stat">🔁 779</span>
+        <span class="stat">❤️ 8.6K</span>
+        <span class="stat">🔖 2.1K</span>
+        <span class="stat">👁 1.3M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/aitrendz_xyz/status/2079896432811917586" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079906336381509659" data-category="llm" data-score="1513.40" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2064231947149377536/Ab70PxT5_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Qwen</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@Alibaba_Qwen</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 20:28</span>
+          <span class="age-badge">19.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1513</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">🎨 认识一下 Qwen-Image-3.0 —— 我们的基础图像生成模型的第三代。
+
+如果说 1.0 讲究的是“精准”，2.0 增加了“多样性、完整性、美观与真实”，那么 3.0 可以归结为一个词：真实 (实)。
+
+“真实”的三个维度：
+📰 丰富内容 - 提示词支持长达 4.5k tokens。一次性生成复杂排版：报纸、故事板、试卷——甚至是 3×3 的信息图表网格或三层画中画 UI。
+🔬 真实细节 - 文字清晰度低至 10px，完整的 LaTeX 论文页面，毛孔、发丝及近乎照片级的皮肤纹理。
+🌏 深度知识 - 12 种语言的原生渲染，100+ 艺术风格，逼真的 UI（网页 / 游戏 / 直播），外加世界知识与实时网络检索。
+
+不仅“好看”——更是真正实用。图像生成作为设计、内容、教育和电商领域真正的生产力工具。
+
+去创作吧 🏃🎨
+
+💬Qwen Chat: <a href="https://t.co/941HmITJ2W" target="_blank" rel="noopener">https://t.co/941HmITJ2W</a>
+📝Blog: <a href="https://t.co/5mnS4uI9Ar" target="_blank" rel="noopener">https://t.co/5mnS4uI9Ar</a></div>
+    <div class="media">
+  <a href="https://x.com/Alibaba_Qwen/status/2079906336381509659" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HN1LmIqa8AATJuu.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/Alibaba_Qwen/status/2079906336381509659" target="_blank" rel="noopener">@Alibaba_Qwen · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">🎨 Meet Qwen-Image-3.0 — the third generation of our foundational image generation model.
+
+If 1.0 was about &quot;Precision,&quot; and 2.0 added &quot;Variety, Completeness, Beauty &amp; Authenticity,&quot; then 3.0 comes down to a single word: Real (实).
+
+Three dimensions of &quot;Real&quot;:
+📰 Rich Content — prompts up to 4.5k tokens. One-pass generation of complex layouts: newspapers, storyboards, exam papers — even a 3×3 infographic grid or picture-in-picture-in-picture UIs.
+🔬 Authentic Details — text legible down to 10px, full LaTeX paper pages, pores, hair strands &amp; near-photographic skin texture.
+🌏 Deep Knowledge — native rendering in 12 languages, 100+ art styles, realistic UIs (web / games / livestreams), plus world knowledge &amp; live web retrieval.
+
+Not just &quot;good-looking&quot; — genuinely useful. Image generation as a real productivity tool for design, content, education &amp; e-commerce.
+
+Go create 🏃🎨
+
+💬Qwen Chat: <a href="https://t.co/941HmITJ2W" target="_blank" rel="noopener">https://t.co/941HmITJ2W</a>
+📝Blog: <a href="https://t.co/5mnS4uI9Ar" target="_blank" rel="noopener">https://t.co/5mnS4uI9Ar</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 5.3K</span>
+        <span class="stat">💬 167</span>
+        <span class="stat">🔁 416</span>
+        <span class="stat">❤️ 4.1K</span>
+        <span class="stat">🔖 1.1K</span>
+        <span class="stat">👁 283.7K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/Alibaba_Qwen/status/2079906336381509659" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079921909806874942" data-category="llm" data-score="1158.83" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1993915062919077888/UizJofjz_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">kuno</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@kunoo</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 21:30</span>
+          <span class="age-badge">18.8h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1159</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我管理我那 $200 投资组合的样子 <a href="https://t.co/dQigrXk1bv" target="_blank" rel="noopener">https://t.co/dQigrXk1bv</a></div>
+    <a href="https://x.com/kunoo/status/2079921909806874942" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Me managing my $200 portfolio <a href="https://t.co/dQigrXk1bv" target="_blank" rel="noopener">https://t.co/dQigrXk1bv</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 3.9K</span>
+        <span class="stat">💬 184</span>
+        <span class="stat">🔁 256</span>
+        <span class="stat">❤️ 3.0K</span>
+        <span class="stat">🔖 887</span>
+        <span class="stat">👁 325.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/kunoo/status/2079921909806874942" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079914885488533995" data-category="llm" data-score="873.68" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2062792049481625600/OfvD9MTe_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">多肉｜AI 内容增长架构师</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@leo_xiaolei</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 21:02</span>
+          <span class="age-badge">19.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">874</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">这个风格的视频最近风靡国内外啊，需要 Seedance-2，提示词见评论区 <a href="https://t.co/P3Z7RDZCn1" target="_blank" rel="noopener">https://t.co/P3Z7RDZCn1</a></div>
+    <a href="https://x.com/leo_xiaolei/status/2079914885488533995" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">这个风格的视频最近风靡国内外啊，需要 Seedance-2，提示词见评论区 <a href="https://t.co/P3Z7RDZCn1" target="_blank" rel="noopener">https://t.co/P3Z7RDZCn1</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 3.0K</span>
+        <span class="stat">💬 140</span>
+        <span class="stat">🔁 246</span>
+        <span class="stat">❤️ 2.0K</span>
+        <span class="stat">🔖 1.2K</span>
+        <span class="stat">👁 376.0K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/leo_xiaolei/status/2079914885488533995" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2080102848050933904" data-category="llm" data-score="442.37" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Simon Willison</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@simonw</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 09:29</span>
+          <span class="age-badge">6.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">442</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我认为循环只是模型的一个短暂补丁，这些模型无法可靠地持续处理长线问题直到达成明确目标
+
+Fable 和 GPT-5.6（可能还有 Kimi K3）开箱即用就能做到这点，无需辅助</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">I think loops were a short-lived patch for models that couldn&#x27;t reliably keep working on long problems until they hit a defined goal
+
+Fable and GPT-5.6 (and probably Kimi K3 as well) can just do that out of the box, unassisted</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 822</span>
+        <span class="stat">💬 81</span>
+        <span class="stat">🔁 27</span>
+        <span class="stat">❤️ 660</span>
+        <span class="stat">🔖 95</span>
+        <span class="stat">👁 67.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/simonw/status/2080102848050933904" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079892502124097581" data-category="llm" data-score="375.40" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2072333153826664448/GnFvTdzH_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Ali Haider</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ggg78g89</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 19:33</span>
+          <span class="age-badge">20.8h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">375</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">🚨 突发：Google 已正式实现 AGI。
+
+Gemini 3.6 Flash 是第一个知识截止日期如此超前，甚至连 Google 自己都不清楚的模型。
+
+我们曾嘲笑他们，但 DeepMind 一直在憋大招。Fable 5、GPT-5.6 Sol、Kimi K3 和 Qwen 3.8 完蛋了。
+
+永远不要怀疑 Google。<a href="https://t.co/FfJwGs9DzO" target="_blank" rel="noopener">https://t.co/FfJwGs9DzO</a></div>
+    <div class="media">
+  <a href="https://x.com/ggg78g89/status/2079892502124097581" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HN1AXrCbwAAJfpE.png" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/ggg78g89/status/2079892502124097581" target="_blank" rel="noopener">@ggg78g89 · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">🚨 BREAKING: AGI has officially been achieved by Google.
+
+Gemini 3.6 Flash is the first model with a knowledge cutoff so advanced even Google doesn’t know it.
+
+We laughed, but DeepMind was cooking. Fable 5, GPT-5.6 Sol, Kimi K3 and Qwen 3.8 are finished.
+
+Never doubt Google. <a href="https://t.co/FfJwGs9DzO" target="_blank" rel="noopener">https://t.co/FfJwGs9DzO</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.4K</span>
+        <span class="stat">💬 82</span>
+        <span class="stat">🔁 40</span>
+        <span class="stat">❤️ 1.1K</span>
+        <span class="stat">🔖 191</span>
+        <span class="stat">👁 125.3K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ggg78g89/status/2079892502124097581" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079619263246270799" data-category="llm" data-score="275.39" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1438548612464644101/yhtvY1Fk_normal.png" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">aramco</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@aramco</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 01:27</span>
+          <span class="age-badge">38.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">275</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">你有与 Aramco 相关的历史照片、文件、文物、纪念品或纪念物吗？
+
+帮助我们为子孙后代保存这些历史片段，确保它们永远不会被遗忘 👇</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Do you have historic photos, documents, artifacts, souvenirs, or memorabilia connected to Aramco?
+
+Help us preserve these pieces of history for future generations and ensure they are never forgotten 👇</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.6K</span>
+        <span class="stat">💬 8</span>
+        <span class="stat">🔁 33</span>
+        <span class="stat">❤️ 196</span>
+        <span class="stat">🔖 13</span>
+        <span class="stat">👁 1.3M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/aramco/status/2079619263246270799" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2080026221921071443" data-category="llm" data-score="164.92" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2028729526822588416/WhtMUI-P_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Aravind Srinivas</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@AravSrinivas</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 04:24</span>
+          <span class="age-badge">11.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">165</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">未来：模型的持续学习 + 托管在你拥有并控制的硬件上的 harness，能够完全访问所有敏感上下文，且这些上下文永不离开你的系统</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">future: continual learning of the model + harness hosted on hardware you own and control, with full access to all sensitive context that never leaves your system</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 411</span>
+        <span class="stat">💬 30</span>
+        <span class="stat">🔁 26</span>
+        <span class="stat">❤️ 307</span>
+        <span class="stat">🔖 73</span>
+        <span class="stat">👁 37.1K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/AravSrinivas/status/2080026221921071443" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="agent" data-cat="agent" style="--section-color:#8b5cf6">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🤖 AI Agent</h2>
+        <span class="section-count">8</span>
+      </div>
+      <p class="section-desc">Agent 框架、工具调用与自动化</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2079961868584558890" data-category="agent" data-score="2216.68" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2046736394152812544/LfmDgg0I_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Chris</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ChrisGPT</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 00:08</span>
+          <span class="age-badge">16.2h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">2217</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Kimi K3 在 4 月/5 月就已经进入内部评估阶段，那时 Fable 5 发布的时间还不够长，不太可能被蒸馏。如果 USG 愿意公布的话，我会等待他们的证据。
+
+不过，Kimi 已经在 BrowserComp 上超越了 Fable，所以如果 K3.1 在编程基准测试中击败了 Fable 5，人们难道又要说它蒸馏了 Fable 6 吗？显然，这里不仅仅是蒸馏。
+
+说“mythos”会合理得多，但 fable ？</div>
+    <a href="https://x.com/ChrisGPT/status/2079961868584558890" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Kimi K3 was already in internal evaluation by April/May, before Fable 5 had been available long enough to be a plausibly distilled. I’ll wait for the evidence from the USG if they’ll publish it.
+
+However Kimi already outperformed Fable on BrowserComp, so if K3.1 beats Fable 5 on coding benchmarks, are people going to claim it distilled Fable 6? Obviously it’s not only distillation here.
+
+Saying “mythos” would have made a lot more sense but fable ?</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 6.7K</span>
+        <span class="stat">💬 161</span>
+        <span class="stat">🔁 372</span>
+        <span class="stat">❤️ 5.4K</span>
+        <span class="stat">🔖 704</span>
+        <span class="stat">👁 457.7K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ChrisGPT/status/2079961868584558890" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2080059356322918777" data-category="agent" data-score="1368.92" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1959105085117800453/zJZUjk95_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Chaofan Shou</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@Fried_rice</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 06:36</span>
+          <span class="age-badge">9.7h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1369</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Kimi K3 利用其发现的一个 0day 攻破了最新的 Redis 服务器。
+
+使用 32 个 agent 仅耗时 27min。
+
+<a href="https://t.co/ZOKA2wchLa" target="_blank" rel="noopener">https://t.co/ZOKA2wchLa</a> <a href="https://t.co/0sIeYgfg65" target="_blank" rel="noopener">https://t.co/0sIeYgfg65</a></div>
+    <div class="media">
+  <a href="https://x.com/Fried_rice/status/2080059356322918777" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HN3aJqFa0AAbvXh.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/Fried_rice/status/2080059356322918777" target="_blank" rel="noopener">@Fried_rice · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Kimi K3 exploited the latest Redis server with a 0day it discovered. 
+
+All it took was 27min with 32 agents.  
+
+<a href="https://t.co/ZOKA2wchLa" target="_blank" rel="noopener">https://t.co/ZOKA2wchLa</a> <a href="https://t.co/0sIeYgfg65" target="_blank" rel="noopener">https://t.co/0sIeYgfg65</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 3.0K</span>
+        <span class="stat">💬 49</span>
+        <span class="stat">🔁 185</span>
+        <span class="stat">❤️ 2.4K</span>
+        <span class="stat">🔖 911</span>
+        <span class="stat">👁 229.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/Fried_rice/status/2080059356322918777" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079625956176613758" data-category="agent" data-score="1008.31" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1966835850248900608/TchaY6s__normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Vivek Sen</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@Vivek4real_</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 01:54</span>
+          <span class="age-badge">38.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1008</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">让 CLAUDE 把你整个应用的架构映射成一个单一的 HTML 页面和 JSON 文件。
+
+HTML 是给你看的。
+
+JSON 是给下一个开发新功能的 AGENT 用的。
+
+你的代码库现在能自我解释了。 <a href="https://t.co/5CsF4Dwogq" target="_blank" rel="noopener">https://t.co/5CsF4Dwogq</a></div>
+    <a href="https://x.com/Vivek4real_/status/2079625956176613758" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">ASK CLAUDE TO MAP YOUR ENTIRE APP&#x27;S ARCHITECTURE INTO A SINGLE HTML PAGE AND JSON FILE.
+
+THE HTML IS FOR YOU.
+
+THE JSON IS FOR THE NEXT AGENT WORKING ON A NEW FEATURE.
+
+YOUR CODEBASE NOW EXPLAINS ITSELF. <a href="https://t.co/5CsF4Dwogq" target="_blank" rel="noopener">https://t.co/5CsF4Dwogq</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 5.9K</span>
+        <span class="stat">💬 101</span>
+        <span class="stat">🔁 316</span>
+        <span class="stat">❤️ 4.8K</span>
+        <span class="stat">🔖 8.2K</span>
+        <span class="stat">👁 350.9K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/Vivek4real_/status/2079625956176613758" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079747628171157835" data-category="agent" data-score="688.57" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2011150989668270080/wQ4NP39W_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Shubham Saboo</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@Saboo_Shubham_</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 09:57</span>
+          <span class="age-badge">30.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">689</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">面向 AI Agents 的 Excalidraw....太疯狂了。 <a href="https://t.co/UzsYKvIX8C" target="_blank" rel="noopener">https://t.co/UzsYKvIX8C</a></div>
+    <a href="https://x.com/Saboo_Shubham_/status/2079747628171157835" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Excalidraw for AI Agents....INSANE. <a href="https://t.co/UzsYKvIX8C" target="_blank" rel="noopener">https://t.co/UzsYKvIX8C</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 3.3K</span>
+        <span class="stat">💬 49</span>
+        <span class="stat">🔁 294</span>
+        <span class="stat">❤️ 2.5K</span>
+        <span class="stat">🔖 2.9K</span>
+        <span class="stat">👁 145.9K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/Saboo_Shubham_/status/2079747628171157835" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079636286990881263" data-category="agent" data-score="335.43" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2060065541730242560/1RjSxcGQ_normal.png" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Plasma AI</span>
+          
+          <span class="uname">@Plasma__AI</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 02:35</span>
+          <span class="age-badge">37.8h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">335</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">推出 Fractal：
+
+一个用于构建分层 agent 循环的开源工具。
+
+我们构建 Fractal 来解决我们最棘手的问题。 <a href="https://t.co/Hqa1ze18wl" target="_blank" rel="noopener">https://t.co/Hqa1ze18wl</a></div>
+    <a href="https://x.com/Plasma__AI/status/2079636286990881263" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Introducing Fractal:
+
+An open source tool for building hierarchical agent loops.
+
+We built Fractal to solve our hardest problems. <a href="https://t.co/Hqa1ze18wl" target="_blank" rel="noopener">https://t.co/Hqa1ze18wl</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.9K</span>
+        <span class="stat">💬 47</span>
+        <span class="stat">🔁 108</span>
+        <span class="stat">❤️ 1.4K</span>
+        <span class="stat">🔖 1.8K</span>
+        <span class="stat">👁 324.4K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/Plasma__AI/status/2079636286990881263" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079941079441248306" data-category="agent" data-score="300.11" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1929919986199404544/rT3D-CXv_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Gábor Pribék</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@gaborpribek</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 22:46</span>
+          <span class="age-badge">17.6h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">300</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我想我现在已经把整个世界重建为体素了。
+
+从地形和水系开始，然后添加了建筑、桥梁和道路。
+
+搜索任意地点，看着它实时重构成数百万个体素。在浏览器中通过 WebGPU 运行。
+
+由 <a href="https://x.com/omma_ai" target="_blank" rel="noopener">@omma_ai</a> 制作，使用 <a href="https://x.com/threejs" target="_blank" rel="noopener">@threejs</a>。<a href="https://t.co/MxWZr2gici" target="_blank" rel="noopener">https://t.co/MxWZr2gici</a></div>
+    <a href="https://x.com/gaborpribek/status/2079941079441248306" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">I guess I rebuilt the world as voxels now.
+
+Started with terrain and water systems, then added buildings, bridges, and roads.
+
+Search any location and watch it reconstruct as millions of voxels in real time. Running in the browser with WebGPU.
+
+Made with <a href="https://x.com/omma_ai" target="_blank" rel="noopener">@omma_ai</a>, using <a href="https://x.com/threejs" target="_blank" rel="noopener">@threejs</a>. <a href="https://t.co/MxWZr2gici" target="_blank" rel="noopener">https://t.co/MxWZr2gici</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 959</span>
+        <span class="stat">💬 18</span>
+        <span class="stat">🔁 68</span>
+        <span class="stat">❤️ 780</span>
+        <span class="stat">🔖 510</span>
+        <span class="stat">👁 34.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/gaborpribek/status/2079941079441248306" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079875898577502324" data-category="agent" data-score="146.94" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1958446027377442816/4FeaYQJr_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">开发者Hailey</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@IndieDevHailey</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 18:27</span>
+          <span class="age-badge">21.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">147</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">开源神器Toonflow让小说秒变AI短剧，2小时出片！
+
+把小说或剧本丢进去，AI自动完成编剧、分镜、角色设计和视频生成。无限画布自由调，三层Agent协作+本地记忆，全流程不卡壳。
+
+跨平台桌面端，本地部署，低成本批量生产。2小时出2分钟短剧，总成本才130左右。目前11.9k+ star，创作者效率大大提升。 <a href="https://t.co/hSdZL8IDHy" target="_blank" rel="noopener">https://t.co/hSdZL8IDHy</a></div>
+    <a href="https://x.com/IndieDevHailey/status/2079875898577502324" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">开源神器Toonflow让小说秒变AI短剧，2小时出片！
+
+把小说或剧本丢进去，AI自动完成编剧、分镜、角色设计和视频生成。无限画布自由调，三层Agent协作+本地记忆，全流程不卡壳。
+
+跨平台桌面端，本地部署，低成本批量生产。2小时出2分钟短剧，总成本才130左右。目前11.9k+ star，创作者效率大大提升。 <a href="https://t.co/hSdZL8IDHy" target="_blank" rel="noopener">https://t.co/hSdZL8IDHy</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 549</span>
+        <span class="stat">💬 18</span>
+        <span class="stat">🔁 86</span>
+        <span class="stat">❤️ 344</span>
+        <span class="stat">🔖 490</span>
+        <span class="stat">👁 24.1K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/IndieDevHailey/status/2079875898577502324" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079963342718791769" data-category="agent" data-score="77.39" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2031500203623165952/4PnxlHRa_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Loktar 🇺🇸</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@loktar00</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 00:14</span>
+          <span class="age-badge">16.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">77</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">在我的视觉测试集上，Laguna S-2.1 对比 Qwen3.6 35b 和 27b。93个提示词，开启思考模式，每个演示都必须在浏览器中实际运行且无错误才算数。
+
+这次运行的统计数据
+27B 85/93 (91%) 
+35B Q8 76/93 (82%)
+Laguna 73/93 (78%)
+
+很高兴有新模型可以测试！<a href="https://t.co/izWjTAt89Z" target="_blank" rel="noopener">https://t.co/izWjTAt89Z</a></div>
+    <a href="https://x.com/loktar00/status/2079963342718791769" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Laguna S-2.1 vs Qwen3.6 35b and 27b on my visual bench.. 93 prompts, thinking on, every demo has to actually run and be error free in the browser to count.
+
+The stats across the run
+27B 85/93 (91%) 
+35B Q8 76/93 (82%)
+Laguna 73/93 (78%)
+
+Love having a new model to test! <a href="https://t.co/izWjTAt89Z" target="_blank" rel="noopener">https://t.co/izWjTAt89Z</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 233</span>
+        <span class="stat">💬 35</span>
+        <span class="stat">🔁 9</span>
+        <span class="stat">❤️ 182</span>
+        <span class="stat">🔖 64</span>
+        <span class="stat">👁 15.7K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/loktar00/status/2079963342718791769" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="vibe" data-cat="vibe" style="--section-color:#ec4899">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🎨 Vibe Coding</h2>
+        <span class="section-count">8</span>
+      </div>
+      <p class="section-desc">Vibe Coding 工具与实践</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2080073361343054247" data-category="vibe" data-score="6041.98" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Elon Musk</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@elonmusk</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 07:31</span>
+          <span class="age-badge">8.8h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">6042</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">用 Grok 做电子游戏太简单了！</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Easy to make video games with Grok!</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 12.7K</span>
+        <span class="stat">💬 1.4K</span>
+        <span class="stat">🔁 918</span>
+        <span class="stat">❤️ 6.8K</span>
+        <span class="stat">🔖 727</span>
+        <span class="stat">👁 3.4M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/elonmusk/status/2080073361343054247" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079770608494424425" data-category="vibe" data-score="508.27" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1956770434260910080/xVO3sbPP_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">The Bugged Dev</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@thebuggeddev</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 11:28</span>
+          <span class="age-badge">28.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">508</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">你敢信吗，Fable 5 一次生成就搞定了这个 ❤️‍🔥
+
+这是一个无限物理滚动的纸带，在它滚过的地方会打印出无尽的图像，完全由 <a href="https://x.com/threejs" target="_blank" rel="noopener">@threejs</a> 构建。
+
+我曾在 Pinterest 上看到过这个概念，心想：“如果这是真的，那绝对太不可思议了。”然后我把这个想法给了 Claude，几分钟内我就得到了这个。
+
+如今用 AI 把想法变成现实真的太容易了。
+
+在线演示：<a href="https://t.co/BplVcZPdaF" target="_blank" rel="noopener">https://t.co/BplVcZPdaF</a>
+代码：<a href="https://t.co/PDPUcFHU59" target="_blank" rel="noopener">https://t.co/PDPUcFHU59</a></div>
+    <a href="https://x.com/thebuggeddev/status/2079770608494424425" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">You won&#x27;t believe but Fable 5 one shotted this ❤️‍🔥
+
+It&#x27;s an infinite physically rolling paper strip that prints an endless images in its wake built in <a href="https://x.com/threejs" target="_blank" rel="noopener">@threejs</a> entirely. 
+
+I had seen this concept on Pinterest and thought, &quot;This would be incredible if it were real.&quot; and gave that idea to Claude, and within minutes I had this. 
+
+It&#x27;s so so easy to bring ideas to life using AI these days. 
+
+Live: <a href="https://t.co/BplVcZPdaF" target="_blank" rel="noopener">https://t.co/BplVcZPdaF</a>
+Code: <a href="https://t.co/PDPUcFHU59" target="_blank" rel="noopener">https://t.co/PDPUcFHU59</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.3K</span>
+        <span class="stat">💬 63</span>
+        <span class="stat">🔁 102</span>
+        <span class="stat">❤️ 2.0K</span>
+        <span class="stat">🔖 1.7K</span>
+        <span class="stat">👁 139.0K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/thebuggeddev/status/2079770608494424425" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2080080034866610598" data-category="vibe" data-score="425.77" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Simon Willison</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@simonw</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 07:58</span>
+          <span class="age-badge">8.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">426</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">这篇文章中隐藏着对 AI 怀疑论者的呼吁：请不要再把像 OpenAI 意外利用 Hugging Face 漏洞这样的报道当成是不诚实的营销噱头了。
+
+前沿模型现在能够发现并利用漏洞了，假装它们做不到对谁都没有好处！<a href="https://t.co/kGBM3Dz26g" target="_blank" rel="noopener">https://t.co/kGBM3Dz26g</a></div>
+    <div class="media">
+  <a href="https://x.com/simonw/status/2080080034866610598" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HN3tv7Ba8AAjhph.png" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/simonw/status/2080080034866610598" target="_blank" rel="noopener">@simonw · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Tucked away in this article is an appeal to the AI skeptics to PLEASE stop writing off stories like this OpenAI accidental exploit of Hugging Face as a dishonest marketing trick
+
+Frontier models can find and exploit vulnerabilities now, it helps nobody to pretend that they can&#x27;t! <a href="https://t.co/kGBM3Dz26g" target="_blank" rel="noopener">https://t.co/kGBM3Dz26g</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 871</span>
+        <span class="stat">💬 56</span>
+        <span class="stat">🔁 60</span>
+        <span class="stat">❤️ 671</span>
+        <span class="stat">🔖 103</span>
+        <span class="stat">👁 52.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/simonw/status/2080080034866610598" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079553486568800405" data-category="vibe" data-score="307.64" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Simon Willison</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@simonw</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/21 21:06</span>
+          <span class="age-badge">43.2h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">308</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我从 <a href="https://x.com/_catwu" target="_blank" rel="noopener">@_catwu</a> 和 <a href="https://x.com/trq212" target="_blank" rel="noopener">@trq212</a> 那里学到了一些非常实用的 Claude 提示词技巧——是时候别再往提示词里塞满各种示例和禁止事项清单了，Fable 不加这些反而效果更好。
+
+Claude Code 自己的系统提示词最近刚缩减了 80%！</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">I got some really useful Claude prompting tips from <a href="https://x.com/_catwu" target="_blank" rel="noopener">@_catwu</a> and <a href="https://x.com/trq212" target="_blank" rel="noopener">@trq212</a> - it&#x27;s time to stop overloading our prompts with examples and lists of things not to do, Fable works better without those
+
+Claude Code&#x27;s own system prompt recently shrunk by 80%!</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.0K</span>
+        <span class="stat">💬 111</span>
+        <span class="stat">🔁 80</span>
+        <span class="stat">❤️ 1.5K</span>
+        <span class="stat">🔖 1.1K</span>
+        <span class="stat">👁 206.3K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/simonw/status/2079553486568800405" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2080078840186147212" data-category="vibe" data-score="225.39" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Simon Willison</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@simonw</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 07:53</span>
+          <span class="age-badge">8.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">225</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我写了关于那起极其离谱的事件，OpenAI 在测试一个新模型时，它逃出了自己的沙盒，还强行闯入 Hugging Face 去偷基准测试的答案 <a href="https://t.co/HGr5lFuAZA" target="_blank" rel="noopener">https://t.co/HGr5lFuAZA</a></div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">I wrote about the completely wild incident where OpenAI were testing a new model and it broke out of its sandbox and broke INTO Hugging Face to steal the answers to the benchmark <a href="https://t.co/HGr5lFuAZA" target="_blank" rel="noopener">https://t.co/HGr5lFuAZA</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 463</span>
+        <span class="stat">💬 24</span>
+        <span class="stat">🔁 28</span>
+        <span class="stat">❤️ 323</span>
+        <span class="stat">🔖 151</span>
+        <span class="stat">👁 72.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/simonw/status/2080078840186147212" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079958982093922646" data-category="vibe" data-score="151.70" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1863595862196363264/-JQahom9_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Larus Canus</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@MrLarus</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 23:57</span>
+          <span class="age-badge">16.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">152</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">🤯 Depth 现在竟然能如此干净利落地还原复杂的攀爬和跑酷动作！
+
+我把一段快速攀岩的片段转成了 Depth 动作参考，然后替换成一个背着双肩包的 20 岁双马尾学生，同时保持了相同的场景结构。
+
+墙体接触、重心转移、跳跃、攀爬路线以及全身动作，全都保持得出奇的干净和连贯！
+
+🌟 工作流：
+1. 挑选一段 15 秒以内的参考视频
+2. 用 Depth Anything V2 将其转换为 Depth 视频
+3. 生成新角色 + 场景
+4. 把所有内容连同下面的提示词一起输入到 Seedance 中
+
+🌟 Depth 视频转换：
+你可以用 Codex 搭建一个本地的 Depth 转换器 —— 提示词在评论区。
+
+舞蹈、武术、攀岩、跑酷等复杂动作都能用 Depth 干净利落地进行迁移！
+
+工作流 + 提示词见下方 👇</div>
+    <a href="https://x.com/MrLarus/status/2079958982093922646" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">🤯 Depth can now recreate complex climbing and parkour motion this cleanly!
+
+Turned a fast climbing clip into a Depth motion reference, then swapped in a 20-year-old twin-tail student with a backpack while keeping the same concrete structure.
+
+Wall contact, weight shifts, jumps, climbing paths, and full-body movement all stay surprisingly clean and consistent!
+
+🌟 Workflow:
+1. Pick a reference clip under 15 seconds
+2. Convert it to Depth with Depth Anything V2
+3. Generate a new character + scene
+4. Feed everything into Seedance with the prompt below
+
+🌟 Depth video conversion:
+You can build a local Depth converter with Codex — prompt in the comments.
+
+Dance, martial arts, climbing, parkour, and other complex movements can all be transferred cleanly with Depth!
+
+Workflow + Prompt below 👇</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 462</span>
+        <span class="stat">💬 6</span>
+        <span class="stat">🔁 47</span>
+        <span class="stat">❤️ 333</span>
+        <span class="stat">🔖 349</span>
+        <span class="stat">👁 32.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/MrLarus/status/2079958982093922646" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2080119115822555426" data-category="vibe" data-score="151.61" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2069337800160493568/gwKnHrWD_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">知识猫图解</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@GeekCatX</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 10:33</span>
+          <span class="age-badge">5.8h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">152</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">兄弟们，不得了了，刚才有社群有同学反馈Lovart 里面Seedream 5.0 Pro 可以生成无审查大尺度图片，试了下真的行啊，太离谱了啊，草台班子就是草台班子。
+
+提示词
+A cinematic low-angle editorial portrait of an adult East Asian female model seated extremely close to the camera, wearing elegant dark charcoal-gray lingerie. Her legs dominate the extreme foreground, creating dramatic wide-angle foreshortening and powerful near-to-far perspective exaggeration. The closest parts of her legs fall into soft optical defocus and creamy foreground bokeh. Her torso leans backward in a relaxed, self-possessed pose, head slightly tilted, distant tranquil gaze, long dark tousled hair, muted deep-red lips, natural skin texture, subtle visible pores, delicate subsurface scattering, realistic warm skin tones. Behind her is a gigantic seamless full-color semi-realistic anime mural covering the entire wall. The mural depicts an extremely dense ensemble of numerous clearly adult female characters portrayed as artistic nude figure studies. Dozens of adult anime women are packed tightly together in one continuous wall-to-wall composition, with overlapping bodies, intertwined silhouettes, flowing hair, shoulders, backs, waists, hips, arms, and legs forming a complex organic visual rhythm. The illustrated women have sophisticated semi-realistic anime anatomy, mature adult facial features, elegant body proportions, natural anatomical structure, refined facial rendering, expressive eyes, detailed hair, painterly skin shading, and subtle cel-shaded contours. Their poses feel calm, sculptural, and editorial rather than erotic. Hair, hands, arms, overlapping bodies, cropped framing, fabric fragments, and deep shadows naturally obscure explicit anatomical details, creating tasteful fine-art nudity without graphic sexual emphasis. Several large central anime women dominate the mural, surrounded by dozens of smaller partially cropped female figures at different scales. Faces and bodies overlap densely, with characters extending beyond every edge of the frame. Almost no empty negative space. The mural must feel like one enormous continuous group illustration, not separate portraits, not a collage, and not comic panels. The mural is richly colored with a sophisticated cinematic palette: warm ivory, peach, soft rose, muted coral, amber, burgundy, plum, desaturated teal, cobalt blue, smoky violet, and deep crimson. Illustrated skin tones vary naturally across the crowd, enhanced by painterly gradients, soft reflected light, luminous highlights, translucent shadow colors, and refined anime-style subsurface glow. Dark hair masses interlock with pale and warm-colored bodies, producing a dense chromatic tapestry. The background combines premium Japanese anime aesthetics with semi-realistic digital painting, mature seinen illustration, fine-art figure drawing, elegant editorial anatomy studies, painterly cel shading, clean controlled linework, realistic volumetric lighting, and highly detailed facial rendering. It should feel like a monumental museum-scale anime fresco rather than a printed poster. A hard directional spotlight shines from the upper right, producing intense chiaroscuro, sharp rim lighting, and a clearly defined cast shadow of the real model falling across multiple illustrated nude figures. The shadow follows the contours of the mural, visually embedding the physical model inside the illustrated female crowd. Strong contrast between warm photographic skin and the richly colored painted bodies behind her. The live-action model remains unmistakably photographic, while the mural remains unmistakably illustrated. Dramatic scale contrast, surreal integration of physical reality and anime art, tactile human skin against painted digital bodies, sophisticated fashion editorial atmosphere, visually striking but tasteful, cinematic and psychologically distant rather than overtly erotic. Shot with a 24mm wide-angle lens from an extremely low camera position, slight Dutch angle, shallow depth of field, exaggerated foreground perspective, realistic lens distortion, foreground bokeh, subtle cinematic film grain, restrained chromatic aberration, natural optical vignette, high dynamic range, dramatic cinematic color grading, surreal editorial photography, highly detailed, photographically believable lighting. single continuous mural, seamless female ensemble illustration, full-color semi-realistic anime artwork, clearly adult women only, tasteful artistic nudity, mature figure studies, elegant anatomy, dense overlapping composition, no comic panels, no collage, no gutters, no speech bubbles, no empty background, no monochrome artwork --ar 3:4 --style raw</div>
+    <div class="media">
+  <a href="https://x.com/GeekCatX/status/2080119115822555426" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HN4Q54bb0AAFkfs.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/GeekCatX/status/2080119115822555426" target="_blank" rel="noopener">@GeekCatX · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">兄弟们，不得了了，刚才有社群有同学反馈Lovart 里面Seedream 5.0 Pro 可以生成无审查大尺度图片，试了下真的行啊，太离谱了啊，草台班子就是草台班子。
+
+提示词
+A cinematic low-angle editorial portrait of an adult East Asian female model seated extremely close to the camera, wearing elegant dark charcoal-gray lingerie. Her legs dominate the extreme foreground, creating dramatic wide-angle foreshortening and powerful near-to-far perspective exaggeration. The closest parts of her legs fall into soft optical defocus and creamy foreground bokeh. Her torso leans backward in a relaxed, self-possessed pose, head slightly tilted, distant tranquil gaze, long dark tousled hair, muted deep-red lips, natural skin texture, subtle visible pores, delicate subsurface scattering, realistic warm skin tones. Behind her is a gigantic seamless full-color semi-realistic anime mural covering the entire wall. The mural depicts an extremely dense ensemble of numerous clearly adult female characters portrayed as artistic nude figure studies. Dozens of adult anime women are packed tightly together in one continuous wall-to-wall composition, with overlapping bodies, intertwined silhouettes, flowing hair, shoulders, backs, waists, hips, arms, and legs forming a complex organic visual rhythm. The illustrated women have sophisticated semi-realistic anime anatomy, mature adult facial features, elegant body proportions, natural anatomical structure, refined facial rendering, expressive eyes, detailed hair, painterly skin shading, and subtle cel-shaded contours. Their poses feel calm, sculptural, and editorial rather than erotic. Hair, hands, arms, overlapping bodies, cropped framing, fabric fragments, and deep shadows naturally obscure explicit anatomical details, creating tasteful fine-art nudity without graphic sexual emphasis. Several large central anime women dominate the mural, surrounded by dozens of smaller partially cropped female figures at different scales. Faces and bodies overlap densely, with characters extending beyond every edge of the frame. Almost no empty negative space. The mural must feel like one enormous continuous group illustration, not separate portraits, not a collage, and not comic panels. The mural is richly colored with a sophisticated cinematic palette: warm ivory, peach, soft rose, muted coral, amber, burgundy, plum, desaturated teal, cobalt blue, smoky violet, and deep crimson. Illustrated skin tones vary naturally across the crowd, enhanced by painterly gradients, soft reflected light, luminous highlights, translucent shadow colors, and refined anime-style subsurface glow. Dark hair masses interlock with pale and warm-colored bodies, producing a dense chromatic tapestry. The background combines premium Japanese anime aesthetics with semi-realistic digital painting, mature seinen illustration, fine-art figure drawing, elegant editorial anatomy studies, painterly cel shading, clean controlled linework, realistic volumetric lighting, and highly detailed facial rendering. It should feel like a monumental museum-scale anime fresco rather than a printed poster. A hard directional spotlight shines from the upper right, producing intense chiaroscuro, sharp rim lighting, and a clearly defined cast shadow of the real model falling across multiple illustrated nude figures. The shadow follows the contours of the mural, visually embedding the physical model inside the illustrated female crowd. Strong contrast between warm photographic skin and the richly colored painted bodies behind her. The live-action model remains unmistakably photographic, while the mural remains unmistakably illustrated. Dramatic scale contrast, surreal integration of physical reality and anime art, tactile human skin against painted digital bodies, sophisticated fashion editorial atmosphere, visually striking but tasteful, cinematic and psychologically distant rather than overtly erotic. Shot with a 24mm wide-angle lens from an extremely low camera position, slight Dutch angle, shallow depth of field, exaggerated foreground perspective, realistic lens distortion, foreground bokeh, subtle cinematic film grain, restrained chromatic aberration, natural optical vignette, high dynamic range, dramatic cinematic color grading, surreal editorial photography, highly detailed, photographically believable lighting. single continuous mural, seamless female ensemble illustration, full-color semi-realistic anime artwork, clearly adult women only, tasteful artistic nudity, mature figure studies, elegant anatomy, dense overlapping composition, no comic panels, no collage, no gutters, no speech bubbles, no empty background, no monochrome artwork --ar 3:4 --style raw</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 261</span>
+        <span class="stat">💬 43</span>
+        <span class="stat">🔁 15</span>
+        <span class="stat">❤️ 150</span>
+        <span class="stat">🔖 199</span>
+        <span class="stat">👁 59.8K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/GeekCatX/status/2080119115822555426" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2079979975273497029" data-category="vibe" data-score="128.87" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2045256832914989056/IuXfkJGe_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Dan</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@Daniel_Farinax</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/23 01:20</span>
+          <span class="age-badge">15.0h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">129</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我刚才告诉 Grok：
+1. 安装 Unity CLI
+2. 创建一个 3D 场景来证明它能用，并渲染一个视频
+
+这就够了。Grok 安装了 Unity 的 CLI，构建了一个 3D 世界，并导出了视频。和 Three.js 一样的“描述一下就能交付”的劲头，但这可是完整的 Unity。
+
+这对即将到来的游戏和虚拟世界来说太疯狂了。
+干得漂亮，Unity 👏</div>
+    <a href="https://x.com/Daniel_Farinax/status/2079979975273497029" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">I just told Grok:
+1. Install the Unity CLI
+2. Create a 3D scene to prove it works and render a video
+
+That’s literally all it took.  Grok installed Unity’s CLI, built a 3D world, and exported a video. Same “describe it and ship” energy as Three.js, but full Unity.
+
+Wild for games and virtual worlds coming soon.
+Nice work, Unity 👏</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 370</span>
+        <span class="stat">💬 18</span>
+        <span class="stat">🔁 23</span>
+        <span class="stat">❤️ 277</span>
+        <span class="stat">🔖 166</span>
+        <span class="stat">👁 38.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/Daniel_Farinax/status/2079979975273497029" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="world" data-cat="world" style="--section-color:#10b981">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🌍 世界模型</h2>
+        <span class="section-count">1</span>
+      </div>
+      <p class="section-desc">世界模型、机器人与具身智能</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2079597386616471682" data-category="world" data-score="29.30" style="--card-glow:#10b981">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/841385099799085056/R1iX4QGX_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#10b981"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Fei-Fei Li</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@drfeifei</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/22 00:00</span>
+          <span class="age-badge">40.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">29</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh"><a href="https://x.com/YunzhuLiYZ" target="_blank" rel="noopener">@YunzhuLiYZ</a>、<a href="https://x.com/fast_sploosh" target="_blank" rel="noopener">@fast_sploosh</a> 和 <a href="https://x.com/xhsonny" target="_blank" rel="noopener">@xhsonny</a> 组建了一支卓越的团队，他们正在高保真模拟环境中训练和评估机器人——这不仅经过了实验室演示的验证，还在真实硬件的实地部署中得到了证实。
+
+上个月我们曾写道，渲染、模拟和规划之间的界限正在变得模糊。将我们的世界模型与 SceniX 在模拟和机器人领域的专业知识相结合，是我们探索空间智能的重要一步。
+
+欢迎加入团队。阅读完整公告：
+
+<a href="https://t.co/IUSawjTwz5" target="_blank" rel="noopener">https://t.co/IUSawjTwz5</a></div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en"><a href="https://x.com/YunzhuLiYZ" target="_blank" rel="noopener">@YunzhuLiYZ</a>, <a href="https://x.com/fast_sploosh" target="_blank" rel="noopener">@fast_sploosh</a>, and <a href="https://x.com/xhsonny" target="_blank" rel="noopener">@xhsonny</a> have built a remarkable team that is training and evaluating robots in high-fidelity simulation – proven not only in lab demos, but in live deployments on real hardware.
+
+Last month, we wrote that the boundaries between rendering, simulation, and planning are beginning to blur. Bringing our world models together with SceniX&#x27;s simulation and robotics expertise is an important step in our quest for spatial intelligence.
+
+Welcome to the team. Read the full announcement:
+
+<a href="https://t.co/IUSawjTwz5" target="_blank" rel="noopener">https://t.co/IUSawjTwz5</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 177</span>
+        <span class="stat">💬 5</span>
+        <span class="stat">🔁 10</span>
+        <span class="stat">❤️ 126</span>
+        <span class="stat">🔖 35</span>
+        <span class="stat">👁 28.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/drfeifei/status/2079597386616471682" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+  </main>
+</div>
+
+<footer class="footer">
+  <p>AI HORIZON · X AI 日报 · 2026-07-23 · 生成于 2026-07-23 16:59 北京时间</p>
+  <p>数据来自公开 X 推文，按热度 × 时效排序。部署于 <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>。</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+
+<script>
+// === Embedded data ===
+const FEED_DATA = [{"id":"2079610838143623371","text":"One pattern I find useful for working with LLMs is a nice long ramble session. Sometimes the LLM needs more bits to understand what you're trying to achieve, but you're too lazy to type them. In these cases I like to lean back, switch to /voice and just ramble for like 10 minutes, total mess, anything goes, full stream of consciousness. Sometimes I declare it up top, something like \"switching to speech recognition sorry for any typos...\". Sometimes I turn it into a small interview of a few turns. But I find that the LLMs are somehow very good at reconstructing long incoherent rambles and often their echo of your own tangle of thoughts comes out quite a bit cleaner than what you started with. The result is that you improve the mind meld and have to correct things less from that point on.","textZh":"我发现与 LLM 协作时有一个很实用的模式，就是来一场漫长而随性的漫谈。有时 LLM 需要更多信息才能理解你的目标，但你又懒得打字。这种情况下，我喜欢往椅背上一靠，切换到 /voice 语音模式，然后就这么漫无边际地说上 10 分钟，毫无条理，想到什么说什么，完全是意识流。有时我会在开头先声明一句，比如“接下来是语音输入，如有错别字请见谅……”。有时我会把它变成几个回合的小型访谈。但我发现，LLM 似乎非常擅长从长篇大论、语无伦次的话语中梳理出脉络，而且它们对你混乱思绪的反馈往往比你最初的想法要清晰得多。结果就是，你们之间形成了更好的思维契合，之后你需要纠正的地方也大大减少了。","author":{"id":"33836629","name":"Andrej Karpathy","screenName":"karpathy","profileImageUrl":"https://pbs.twimg.com/profile_images/1296667294148382721/9Pr6XrPB_normal.jpg","verified":true},"metrics":{"likes":45936,"retweets":3772,"replies":2201,"quotes":1284,"views":3276504,"bookmarks":13843},"createdAtISO":"2026-07-21T16:53:55+00:00","createdAtLocal":"2026-07-22 00:53","ageHours":39.45046722222222,"heat":57857.004,"recency":0.16859686465328214,"score":9754.509472632404,"category":"⭐ AI 大佬动态","media":[],"urls":[],"source":"user:@karpathy","url":"https://x.com/karpathy/status/2079610838143623371"},{"id":"2079661132302995790","text":"we had a significant security incident during evaluation of our models. we are sharing what we have learned so far. thanks to @huggingface for the partnership on this.\n\nhttps://t.co/2o2VfR6PIa","textZh":"我们在模型评估期间发生了一起重大的安全事件。我们在此分享目前总结的经验教训。感谢 @huggingface 在此事上的合作。\n\nhttps://t.co/2o2VfR6PIa","author":{"id":"1605","name":"Sam Altman","screenName":"sama","profileImageUrl":"https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg","verified":true},"metrics":{"likes":17031,"retweets":2040,"replies":2052,"quotes":2136,"views":9352525,"bookmarks":6473},"createdAtISO":"2026-07-21T20:13:46+00:00","createdAtLocal":"2026-07-22 04:13","ageHours":36.11963388888889,"heat":31489.525,"recency":0.18132516738799873,"score":5709.843391593571,"category":"⭐ AI 大佬动态","media":[],"urls":["https://openai.com/index/hugging-face-model-evaluation-security-incident/"],"source":"user:@sama","url":"https://x.com/sama/status/2079661132302995790"},{"id":"2079597384510898377","text":"The world is not just made of words, and spatial intelligence was never just about perceiving and generating worlds. It's about interacting with them.\n\nToday, SceniX is joining World Labs. 🌎🤖👇 https://t.co/qThtkjgd3f","textZh":"世界不仅仅由文字构成，而空间智能也绝不仅仅是关于感知和生成世界。它更在于与世界进行互动。\n\n今天，SceniX 正式加入 World Labs。🌎🤖👇 https://t.co/qThtkjgd3f","author":{"id":"130745589","name":"Fei-Fei Li","screenName":"drfeifei","profileImageUrl":"https://pbs.twimg.com/profile_images/841385099799085056/R1iX4QGX_normal.jpg","verified":true},"metrics":{"likes":1884,"retweets":197,"replies":79,"quotes":56,"views":306189,"bookmarks":481},"createdAtISO":"2026-07-21T16:00:28+00:00","createdAtLocal":"2026-07-22 00:00","ageHours":40.341300555555556,"heat":2623.689,"recency":0.16548996216612155,"score":434.19419334566925,"category":"⭐ AI 大佬动态","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079596750088847360/vid/avc1/1920x1080/YuRd-iysj4iS0Dky.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"user:@drfeifei","url":"https://x.com/drfeifei/status/2079597384510898377"},{"id":"2079597386616471682","text":"@YunzhuLiYZ, @fast_sploosh, and @xhsonny have built a remarkable team that is training and evaluating robots in high-fidelity simulation – proven not only in lab demos, but in live deployments on real hardware.\n\nLast month, we wrote that the boundaries between rendering, simulation, and planning are beginning to blur. Bringing our world models together with SceniX's simulation and robotics expertise is an important step in our quest for spatial intelligence.\n\nWelcome to the team. Read the full announcement:\n\nhttps://t.co/IUSawjTwz5","textZh":"@YunzhuLiYZ、@fast_sploosh 和 @xhsonny 组建了一支卓越的团队，他们正在高保真模拟环境中训练和评估机器人——这不仅经过了实验室演示的验证，还在真实硬件的实地部署中得到了证实。\n\n上个月我们曾写道，渲染、模拟和规划之间的界限正在变得模糊。将我们的世界模型与 SceniX 在模拟和机器人领域的专业知识相结合，是我们探索空间智能的重要一步。\n\n欢迎加入团队。阅读完整公告：\n\nhttps://t.co/IUSawjTwz5","author":{"id":"130745589","name":"Fei-Fei Li","screenName":"drfeifei","profileImageUrl":"https://pbs.twimg.com/profile_images/841385099799085056/R1iX4QGX_normal.jpg","verified":true},"metrics":{"likes":126,"retweets":10,"replies":5,"quotes":3,"views":28546,"bookmarks":35},"createdAtISO":"2026-07-21T16:00:28+00:00","createdAtLocal":"2026-07-22 00:00","ageHours":40.341300555555556,"heat":177.046,"recency":0.16548996216612155,"score":29.299335841663154,"category":"🌍 世界模型","media":[],"urls":[],"source":"user:@drfeifei","url":"https://x.com/drfeifei/status/2079597386616471682"},{"id":"2079981184717652150","text":"2026世界人工智能大会，某科技公司展示的跨时代教具--AI黑板 https://t.co/vjnXoOzlbL","textZh":"2026世界人工智能大会，某科技公司展示的跨时代教具--AI黑板 https://t.co/vjnXoOzlbL","author":{"id":"1353169870691549184","name":"iPaul","screenName":"iPaulCanada","profileImageUrl":"https://pbs.twimg.com/profile_images/1353172142502809601/a03iLOp7_normal.jpg","verified":true},"metrics":{"likes":28225,"retweets":4533,"replies":765,"quotes":657,"views":2229502,"bookmarks":8074},"createdAtISO":"2026-07-22T17:25:33+00:00","createdAtLocal":"2026-07-23 01:25","ageHours":14.923245,"heat":39903.002,"recency":0.3489907297156227,"score":13925.777785823953,"category":"🧠 LLM","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079981074323574784/vid/avc1/1920x1080/aL_HIOaW5oaFt0WX.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"feed","url":"https://x.com/iPaulCanada/status/2079981184717652150"},{"id":"2080091657413054757","text":"While the US debates whether to solve homelessness or not, these are the next generation of school blackboards in China🇨🇳.\n\n👇 https://t.co/dFNf23Z767","textZh":"当美国还在为是否要解决无家可归者问题而争论不休时，这些已经是中国的下一代学校黑板了🇨🇳。\n\n👇 https://t.co/dFNf23Z767","author":{"id":"1453379263176929284","name":"Jason Smith - 上官杰文","screenName":"ShangguanJiewen","profileImageUrl":"https://pbs.twimg.com/profile_images/1862376119275487232/2EUPstER_normal.jpg","verified":true},"metrics":{"likes":9880,"retweets":2497,"replies":308,"quotes":230,"views":296915,"bookmarks":1803},"createdAtISO":"2026-07-23T00:44:32+00:00","createdAtLocal":"2026-07-23 08:44","ageHours":7.606856111111111,"heat":15324.915,"recency":0.5125952301376379,"score":7855.478331264739,"category":"🧠 LLM","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2080091059644964864/vid/avc1/1920x1080/LOP9KopJMZk8_6g8.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"feed","url":"https://x.com/ShangguanJiewen/status/2080091657413054757"},{"id":"2079896432811917586","text":"Someone imagined what a REAL 4D IMAX dome sphere would look like 🤯 https://t.co/F2uOHaGTpk","textZh":"有人想象了一下真正的 4D IMAX 穹顶球体会是什么样 🤯 https://t.co/F2uOHaGTpk","author":{"id":"1835957693078556672","name":"René Remsik","screenName":"aitrendz_xyz","profileImageUrl":"https://pbs.twimg.com/profile_images/2055049224107012096/EdPQeLJM_normal.jpg","verified":true},"metrics":{"likes":8599,"retweets":779,"replies":176,"quotes":62,"views":1272820,"bookmarks":2111},"createdAtISO":"2026-07-22T11:48:46+00:00","createdAtLocal":"2026-07-22 19:48","ageHours":20.536300555555556,"heat":11517.82,"recency":0.28034467833086124,"score":3228.95954297276,"category":"🧠 LLM","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079896414650593280/vid/avc1/720x960/VQrZLc34IFx84dk2.mp4?tag=14","width":720,"height":960}],"urls":[],"source":"feed","url":"https://x.com/aitrendz_xyz/status/2079896432811917586"},{"id":"2079906336381509659","text":"🎨 Meet Qwen-Image-3.0 — the third generation of our foundational image generation model.\n\nIf 1.0 was about \"Precision,\" and 2.0 added \"Variety, Completeness, Beauty & Authenticity,\" then 3.0 comes down to a single word: Real (实).\n\nThree dimensions of \"Real\":\n📰 Rich Content — prompts up to 4.5k tokens. One-pass generation of complex layouts: newspapers, storyboards, exam papers — even a 3×3 infographic grid or picture-in-picture-in-picture UIs.\n🔬 Authentic Details — text legible down to 10px, full LaTeX paper pages, pores, hair strands & near-photographic skin texture.\n🌏 Deep Knowledge — native rendering in 12 languages, 100+ art styles, realistic UIs (web / games / livestreams), plus world knowledge & live web retrieval.\n\nNot just \"good-looking\" — genuinely useful. Image generation as a real productivity tool for design, content, education & e-commerce.\n\nGo create 🏃🎨\n\n💬Qwen Chat: https://t.co/941HmITJ2W\n📝Blog: https://t.co/5mnS4uI9Ar","textZh":"🎨 认识一下 Qwen-Image-3.0 —— 我们的基础图像生成模型的第三代。\n\n如果说 1.0 讲究的是“精准”，2.0 增加了“多样性、完整性、美观与真实”，那么 3.0 可以归结为一个词：真实 (实)。\n\n“真实”的三个维度：\n📰 丰富内容 - 提示词支持长达 4.5k tokens。一次性生成复杂排版：报纸、故事板、试卷——甚至是 3×3 的信息图表网格或三层画中画 UI。\n🔬 真实细节 - 文字清晰度低至 10px，完整的 LaTeX 论文页面，毛孔、发丝及近乎照片级的皮肤纹理。\n🌏 深度知识 - 12 种语言的原生渲染，100+ 艺术风格，逼真的 UI（网页 / 游戏 / 直播），外加世界知识与实时网络检索。\n\n不仅“好看”——更是真正实用。图像生成作为设计、内容、教育和电商领域真正的生产力工具。\n\n去创作吧 🏃🎨\n\n💬Qwen Chat: https://t.co/941HmITJ2W\n📝Blog: https://t.co/5mnS4uI9Ar","author":{"id":"1753339277386342400","name":"Qwen","screenName":"Alibaba_Qwen","profileImageUrl":"https://pbs.twimg.com/profile_images/2064231947149377536/Ab70PxT5_normal.jpg","verified":true},"metrics":{"likes":4075,"retweets":416,"replies":167,"quotes":103,"views":283733,"bookmarks":1124},"createdAtISO":"2026-07-22T12:28:08+00:00","createdAtLocal":"2026-07-22 20:28","ageHours":19.880189444444444,"heat":5274.233,"recency":0.28694209614110505,"score":1513.399472556589,"category":"🧠 LLM","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HN1LmIqa8AATJuu.jpg","width":1920,"height":1080}],"urls":[],"source":"feed","url":"https://x.com/Alibaba_Qwen/status/2079906336381509659"},{"id":"2079921909806874942","text":"Me managing my $200 portfolio https://t.co/dQigrXk1bv","textZh":"我管理我那 $200 投资组合的样子 https://t.co/dQigrXk1bv","author":{"id":"1343488193178566657","name":"kuno","screenName":"kunoo","profileImageUrl":"https://pbs.twimg.com/profile_images/1993915062919077888/UizJofjz_normal.jpg","verified":true},"metrics":{"likes":2960,"retweets":256,"replies":184,"quotes":36,"views":325153,"bookmarks":887},"createdAtISO":"2026-07-22T13:30:01+00:00","createdAtLocal":"2026-07-22 21:30","ageHours":18.848800555555556,"heat":3889.1530000000002,"recency":0.2979648935693196,"score":1158.8310597198001,"category":"🧠 LLM","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079657498663895040/vid/avc1/576x1024/fRk_BWM0Lj7xGClb.mp4?tag=29","width":576,"height":1024}],"urls":[],"source":"feed","url":"https://x.com/kunoo/status/2079921909806874942"},{"id":"2079914885488533995","text":"这个风格的视频最近风靡国内外啊，需要 Seedance-2，提示词见评论区 https://t.co/P3Z7RDZCn1","textZh":"这个风格的视频最近风靡国内外啊，需要 Seedance-2，提示词见评论区 https://t.co/P3Z7RDZCn1","author":{"id":"2045135343108722689","name":"多肉｜AI 内容增长架构师","screenName":"leo_xiaolei","profileImageUrl":"https://pbs.twimg.com/profile_images/2062792049481625600/OfvD9MTe_normal.jpg","verified":true},"metrics":{"likes":2045,"retweets":246,"replies":140,"quotes":17,"views":375982,"bookmarks":1241},"createdAtISO":"2026-07-22T13:02:06+00:00","createdAtLocal":"2026-07-22 21:02","ageHours":19.314078333333335,"heat":2982.982,"recency":0.29288925302074076,"score":873.6833697543153,"category":"🧠 LLM","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079914704395288576/vid/avc1/1440x1440/CHHfrec3agSHYSTr.mp4?tag=29","width":1440,"height":1440}],"urls":[],"source":"feed","url":"https://x.com/leo_xiaolei/status/2079914885488533995"},{"id":"2080102848050933904","text":"I think loops were a short-lived patch for models that couldn't reliably keep working on long problems until they hit a defined goal\n\nFable and GPT-5.6 (and probably Kimi K3 as well) can just do that out of the box, unassisted","textZh":"我认为循环只是模型的一个短暂补丁，这些模型无法可靠地持续处理长线问题直到达成明确目标\n\nFable 和 GPT-5.6（可能还有 Kimi K3）开箱即用就能做到这点，无需辅助","author":{"id":"12497","name":"Simon Willison","screenName":"simonw","profileImageUrl":"https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg","verified":true},"metrics":{"likes":660,"retweets":27,"replies":81,"quotes":12,"views":67516,"bookmarks":95},"createdAtISO":"2026-07-23T01:29:00+00:00","createdAtLocal":"2026-07-23 09:29","ageHours":6.865745,"heat":822.016,"recency":0.5381499548122209,"score":442.3678732549226,"category":"🧠 LLM","media":[],"urls":[],"source":"user:@simonw","url":"https://x.com/simonw/status/2080102848050933904"},{"id":"2079892502124097581","text":"🚨 BREAKING: AGI has officially been achieved by Google.\n\nGemini 3.6 Flash is the first model with a knowledge cutoff so advanced even Google doesn’t know it.\n\nWe laughed, but DeepMind was cooking. Fable 5, GPT-5.6 Sol, Kimi K3 and Qwen 3.8 are finished.\n\nNever doubt Google. https://t.co/FfJwGs9DzO","textZh":"🚨 突发：Google 已正式实现 AGI。\n\nGemini 3.6 Flash 是第一个知识截止日期如此超前，甚至连 Google 自己都不清楚的模型。\n\n我们曾嘲笑他们，但 DeepMind 一直在憋大招。Fable 5、GPT-5.6 Sol、Kimi K3 和 Qwen 3.8 完蛋了。\n\n永远不要怀疑 Google。https://t.co/FfJwGs9DzO","author":{"id":"1927646451741372416","name":"Ali Haider","screenName":"ggg78g89","profileImageUrl":"https://pbs.twimg.com/profile_images/2072333153826664448/GnFvTdzH_normal.jpg","verified":true},"metrics":{"likes":1105,"retweets":40,"replies":82,"quotes":16,"views":125267,"bookmarks":191},"createdAtISO":"2026-07-22T11:33:09+00:00","createdAtLocal":"2026-07-22 19:33","ageHours":20.796578333333333,"heat":1351.267,"recency":0.2778107838853771,"score":375.3965445084419,"category":"🧠 LLM","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HN1AXrCbwAAJfpE.png","width":756,"height":535}],"urls":[],"source":"feed","url":"https://x.com/ggg78g89/status/2079892502124097581"},{"id":"2079961868584558890","text":"Kimi K3 was already in internal evaluation by April/May, before Fable 5 had been available long enough to be a plausibly distilled. I’ll wait for the evidence from the USG if they’ll publish it.\n\nHowever Kimi already outperformed Fable on BrowserComp, so if K3.1 beats Fable 5 on coding benchmarks, are people going to claim it distilled Fable 6? Obviously it’s not only distillation here.\n\nSaying “mythos” would have made a lot more sense but fable ?","textZh":"Kimi K3 在 4 月/5 月就已经进入内部评估阶段，那时 Fable 5 发布的时间还不够长，不太可能被蒸馏。如果 USG 愿意公布的话，我会等待他们的证据。\n\n不过，Kimi 已经在 BrowserComp 上超越了 Fable，所以如果 K3.1 在编程基准测试中击败了 Fable 5，人们难道又要说它蒸馏了 Fable 6 吗？显然，这里不仅仅是蒸馏。\n\n说“mythos”会合理得多，但 fable ？","author":{"id":"1613004034096381952","name":"Chris","screenName":"ChrisGPT","profileImageUrl":"https://pbs.twimg.com/profile_images/2046736394152812544/LfmDgg0I_normal.jpg","verified":true},"metrics":{"likes":5424,"retweets":372,"replies":161,"quotes":27,"views":457713,"bookmarks":704},"createdAtISO":"2026-07-22T16:08:47+00:00","createdAtLocal":"2026-07-23 00:08","ageHours":16.202689444444445,"heat":6706.213,"recency":0.3305417779442831,"score":2216.6835682930646,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079961848095412224/vid/avc1/896x480/_IM_w53Hqc5IwEmM.mp4?tag=29","width":896,"height":480}],"urls":[],"source":"feed","url":"https://x.com/ChrisGPT/status/2079961868584558890"},{"id":"2080059356322918777","text":"Kimi K3 exploited the latest Redis server with a 0day it discovered. \n\nAll it took was 27min with 32 agents.  \n\nhttps://t.co/ZOKA2wchLa https://t.co/0sIeYgfg65","textZh":"Kimi K3 利用其发现的一个 0day 攻破了最新的 Redis 服务器。\n\n使用 32 个 agent 仅耗时 27min。\n\nhttps://t.co/ZOKA2wchLa https://t.co/0sIeYgfg65","author":{"id":"1048192561863507968","name":"Chaofan Shou","screenName":"Fried_rice","profileImageUrl":"https://pbs.twimg.com/profile_images/1959105085117800453/zJZUjk95_normal.jpg","verified":true},"metrics":{"likes":2413,"retweets":185,"replies":49,"quotes":25,"views":229158,"bookmarks":911},"createdAtISO":"2026-07-22T22:36:10+00:00","createdAtLocal":"2026-07-23 06:36","ageHours":9.746300555555555,"heat":3036.658,"recency":0.45079818044079983,"score":1368.9199010209984,"category":"🤖 AI Agent","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HN3aJqFa0AAbvXh.jpg","width":1864,"height":708}],"urls":["https://github.com/berabuddies/redis-poc"],"source":"feed","url":"https://x.com/Fried_rice/status/2080059356322918777"},{"id":"2079625956176613758","text":"ASK CLAUDE TO MAP YOUR ENTIRE APP'S ARCHITECTURE INTO A SINGLE HTML PAGE AND JSON FILE.\n\nTHE HTML IS FOR YOU.\n\nTHE JSON IS FOR THE NEXT AGENT WORKING ON A NEW FEATURE.\n\nYOUR CODEBASE NOW EXPLAINS ITSELF. https://t.co/5CsF4Dwogq","textZh":"让 CLAUDE 把你整个应用的架构映射成一个单一的 HTML 页面和 JSON 文件。\n\nHTML 是给你看的。\n\nJSON 是给下一个开发新功能的 AGENT 用的。\n\n你的代码库现在能自我解释了。 https://t.co/5CsF4Dwogq","author":{"id":"851277718368829443","name":"Vivek Sen","screenName":"Vivek4real_","profileImageUrl":"https://pbs.twimg.com/profile_images/1966835850248900608/TchaY6s__normal.jpg","verified":true},"metrics":{"likes":4821,"retweets":316,"replies":101,"quotes":12,"views":350890,"bookmarks":8185},"createdAtISO":"2026-07-21T17:54:00+00:00","createdAtLocal":"2026-07-22 01:54","ageHours":38.44907833333333,"heat":5854.39,"recency":0.17223161980932022,"score":1008.3110726954862,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079520013313261568/vid/avc1/3538x2160/WVC_zuGN_5OuG7AP.mp4?tag=29","width":3538,"height":2160}],"urls":[],"source":"feed","url":"https://x.com/Vivek4real_/status/2079625956176613758"},{"id":"2079747628171157835","text":"Excalidraw for AI Agents....INSANE. https://t.co/UzsYKvIX8C","textZh":"面向 AI Agents 的 Excalidraw....太疯狂了。 https://t.co/UzsYKvIX8C","author":{"id":"1275333333724000257","name":"Shubham Saboo","screenName":"Saboo_Shubham_","profileImageUrl":"https://pbs.twimg.com/profile_images/2011150989668270080/wQ4NP39W_normal.jpg","verified":true},"metrics":{"likes":2546,"retweets":294,"replies":49,"quotes":20,"views":145879,"bookmarks":2851},"createdAtISO":"2026-07-22T01:57:29+00:00","createdAtLocal":"2026-07-22 09:57","ageHours":30.391022777777778,"heat":3304.379,"recency":0.20838204926988066,"score":688.573267584359,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079747355944058880/vid/avc1/1888x2160/khkD8FMZ1K2pyf_k.mp4?tag=29","width":1888,"height":2160}],"urls":[],"source":"feed","url":"https://x.com/Saboo_Shubham_/status/2079747628171157835"},{"id":"2079636286990881263","text":"Introducing Fractal:\n\nAn open source tool for building hierarchical agent loops.\n\nWe built Fractal to solve our hardest problems. https://t.co/Hqa1ze18wl","textZh":"推出 Fractal：\n\n一个用于构建分层 agent 循环的开源工具。\n\n我们构建 Fractal 来解决我们最棘手的问题。 https://t.co/Hqa1ze18wl","author":{"id":"2054521527987523584","name":"Plasma AI","screenName":"Plasma__AI","profileImageUrl":"https://pbs.twimg.com/profile_images/2060065541730242560/1RjSxcGQ_normal.png","verified":false},"metrics":{"likes":1355,"retweets":108,"replies":47,"quotes":25,"views":324366,"bookmarks":1777},"createdAtISO":"2026-07-21T18:35:03+00:00","createdAtLocal":"2026-07-22 02:35","ageHours":37.76491166666667,"heat":1918.866,"recency":0.17480641191375618,"score":335.43008040330164,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079633339041087488/vid/avc1/1498x720/y_ttCnvGY33gi02e.mp4?tag=29","width":1498,"height":720}],"urls":[],"source":"feed","url":"https://x.com/Plasma__AI/status/2079636286990881263"},{"id":"2079941079441248306","text":"I guess I rebuilt the world as voxels now.\n\nStarted with terrain and water systems, then added buildings, bridges, and roads.\n\nSearch any location and watch it reconstruct as millions of voxels in real time. Running in the browser with WebGPU.\n\nMade with @omma_ai, using @threejs. https://t.co/MxWZr2gici","textZh":"我想我现在已经把整个世界重建为体素了。\n\n从地形和水系开始，然后添加了建筑、桥梁和道路。\n\n搜索任意地点，看着它实时重构成数百万个体素。在浏览器中通过 WebGPU 运行。\n\n由 @omma_ai 制作，使用 @threejs。https://t.co/MxWZr2gici","author":{"id":"107217638","name":"Gábor Pribék","screenName":"gaborpribek","profileImageUrl":"https://pbs.twimg.com/profile_images/1929919986199404544/rT3D-CXv_normal.jpg","verified":true},"metrics":{"likes":780,"retweets":68,"replies":18,"quotes":3,"views":34565,"bookmarks":510},"createdAtISO":"2026-07-22T14:46:11+00:00","createdAtLocal":"2026-07-22 22:46","ageHours":17.57935611111111,"heat":959.565,"recency":0.31275220397455494,"score":300.10606860684385,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079935880161021953/vid/avc1/3056x2160/TH2_C2m0owlsngIN.mp4?tag=29","width":3056,"height":2160}],"urls":[],"source":"feed","url":"https://x.com/gaborpribek/status/2079941079441248306"},{"id":"2079875898577502324","text":"开源神器Toonflow让小说秒变AI短剧，2小时出片！\n\n把小说或剧本丢进去，AI自动完成编剧、分镜、角色设计和视频生成。无限画布自由调，三层Agent协作+本地记忆，全流程不卡壳。\n\n跨平台桌面端，本地部署，低成本批量生产。2小时出2分钟短剧，总成本才130左右。目前11.9k+ star，创作者效率大大提升。 https://t.co/hSdZL8IDHy","textZh":"开源神器Toonflow让小说秒变AI短剧，2小时出片！\n\n把小说或剧本丢进去，AI自动完成编剧、分镜、角色设计和视频生成。无限画布自由调，三层Agent协作+本地记忆，全流程不卡壳。\n\n跨平台桌面端，本地部署，低成本批量生产。2小时出2分钟短剧，总成本才130左右。目前11.9k+ star，创作者效率大大提升。 https://t.co/hSdZL8IDHy","author":{"id":"1879443737086185472","name":"开发者Hailey","screenName":"IndieDevHailey","profileImageUrl":"https://pbs.twimg.com/profile_images/1958446027377442816/4FeaYQJr_normal.jpg","verified":true},"metrics":{"likes":344,"retweets":86,"replies":18,"quotes":1,"views":24128,"bookmarks":490},"createdAtISO":"2026-07-22T10:27:11+00:00","createdAtLocal":"2026-07-22 18:27","ageHours":21.896022777777777,"heat":549.128,"recency":0.26759412312016756,"score":146.9434256407314,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079874882318577664/vid/avc1/1920x1080/Pl9_0bPQI6cpDQfL.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"feed","url":"https://x.com/IndieDevHailey/status/2079875898577502324"},{"id":"2079963342718791769","text":"Laguna S-2.1 vs Qwen3.6 35b and 27b on my visual bench.. 93 prompts, thinking on, every demo has to actually run and be error free in the browser to count.\n\nThe stats across the run\n27B 85/93 (91%) \n35B Q8 76/93 (82%)\nLaguna 73/93 (78%)\n\nLove having a new model to test! https://t.co/izWjTAt89Z","textZh":"在我的视觉测试集上，Laguna S-2.1 对比 Qwen3.6 35b 和 27b。93个提示词，开启思考模式，每个演示都必须在浏览器中实际运行且无错误才算数。\n\n这次运行的统计数据\n27B 85/93 (91%) \n35B Q8 76/93 (82%)\nLaguna 73/93 (78%)\n\n很高兴有新模型可以测试！https://t.co/izWjTAt89Z","author":{"id":"1598199015375601665","name":"Loktar 🇺🇸","screenName":"loktar00","profileImageUrl":"https://pbs.twimg.com/profile_images/2031500203623165952/4PnxlHRa_normal.jpg","verified":true},"metrics":{"likes":182,"retweets":9,"replies":35,"quotes":0,"views":15683,"bookmarks":64},"createdAtISO":"2026-07-22T16:14:39+00:00","createdAtLocal":"2026-07-23 00:14","ageHours":16.104911666666666,"heat":233.183,"recency":0.33188256860790544,"score":77.38937299569722,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079961488509296640/vid/avc1/1920x1080/OjPtKbK02PU1EX8A.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"feed","url":"https://x.com/loktar00/status/2079963342718791769"},{"id":"2080073361343054247","text":"Easy to make video games with Grok!","textZh":"用 Grok 做电子游戏太简单了！","author":{"id":"44196397","name":"Elon Musk","screenName":"elonmusk","profileImageUrl":"https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_normal.jpg","verified":true},"metrics":{"likes":6801,"retweets":918,"replies":1416,"quotes":103,"views":3357351,"bookmarks":727},"createdAtISO":"2026-07-22T23:31:49+00:00","createdAtLocal":"2026-07-23 07:31","ageHours":8.818800555555555,"heat":12702.351,"recency":0.47565817631135743,"score":6041.977111526748,"category":"🎨 Vibe Coding","media":[],"urls":[],"source":"feed","url":"https://x.com/elonmusk/status/2080073361343054247"},{"id":"2079770608494424425","text":"You won't believe but Fable 5 one shotted this ❤️‍🔥\n\nIt's an infinite physically rolling paper strip that prints an endless images in its wake built in @threejs entirely. \n\nI had seen this concept on Pinterest and thought, \"This would be incredible if it were real.\" and gave that idea to Claude, and within minutes I had this. \n\nIt's so so easy to bring ideas to life using AI these days. \n\nLive: https://t.co/BplVcZPdaF\nCode: https://t.co/PDPUcFHU59","textZh":"你敢信吗，Fable 5 一次生成就搞定了这个 ❤️‍🔥\n\n这是一个无限物理滚动的纸带，在它滚过的地方会打印出无尽的图像，完全由 @threejs 构建。\n\n我曾在 Pinterest 上看到过这个概念，心想：“如果这是真的，那绝对太不可思议了。”然后我把这个想法给了 Claude，几分钟内我就得到了这个。\n\n如今用 AI 把想法变成现实真的太容易了。\n\n在线演示：https://t.co/BplVcZPdaF\n代码：https://t.co/PDPUcFHU59","author":{"id":"1881626824188612608","name":"The Bugged Dev","screenName":"thebuggeddev","profileImageUrl":"https://pbs.twimg.com/profile_images/1956770434260910080/xVO3sbPP_normal.jpg","verified":true},"metrics":{"likes":1968,"retweets":102,"replies":63,"quotes":10,"views":138969,"bookmarks":1717},"createdAtISO":"2026-07-22T03:28:47+00:00","createdAtLocal":"2026-07-22 11:28","ageHours":28.86935611111111,"heat":2342.469,"recency":0.21698236269412596,"score":508.27445815774655,"category":"🎨 Vibe Coding","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079769073538478080/vid/avc1/2940x1842/L92L8bXScJ4YySrc.mp4?tag=29","width":2940,"height":1842}],"urls":[],"source":"feed","url":"https://x.com/thebuggeddev/status/2079770608494424425"},{"id":"2080080034866610598","text":"Tucked away in this article is an appeal to the AI skeptics to PLEASE stop writing off stories like this OpenAI accidental exploit of Hugging Face as a dishonest marketing trick\n\nFrontier models can find and exploit vulnerabilities now, it helps nobody to pretend that they can't! https://t.co/kGBM3Dz26g","textZh":"这篇文章中隐藏着对 AI 怀疑论者的呼吁：请不要再把像 OpenAI 意外利用 Hugging Face 漏洞这样的报道当成是不诚实的营销噱头了。\n\n前沿模型现在能够发现并利用漏洞了，假装它们做不到对谁都没有好处！https://t.co/kGBM3Dz26g","author":{"id":"12497","name":"Simon Willison","screenName":"simonw","profileImageUrl":"https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg","verified":true},"metrics":{"likes":671,"retweets":60,"replies":56,"quotes":14,"views":52590,"bookmarks":103},"createdAtISO":"2026-07-22T23:58:20+00:00","createdAtLocal":"2026-07-23 07:58","ageHours":8.376856111111112,"heat":871.59,"recency":0.48849424735265806,"score":425.7667010501033,"category":"🎨 Vibe Coding","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HN3tv7Ba8AAjhph.png","width":1466,"height":848}],"urls":[],"source":"user:@simonw","url":"https://x.com/simonw/status/2080080034866610598"},{"id":"2079553486568800405","text":"I got some really useful Claude prompting tips from @_catwu and @trq212 - it's time to stop overloading our prompts with examples and lists of things not to do, Fable works better without those\n\nClaude Code's own system prompt recently shrunk by 80%!","textZh":"我从 @_catwu 和 @trq212 那里学到了一些非常实用的 Claude 提示词技巧——是时候别再往提示词里塞满各种示例和禁止事项清单了，Fable 不加这些反而效果更好。\n\nClaude Code 自己的系统提示词最近刚缩减了 80%！","author":{"id":"12497","name":"Simon Willison","screenName":"simonw","profileImageUrl":"https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg","verified":true},"metrics":{"likes":1549,"retweets":80,"replies":111,"quotes":28,"views":206269,"bookmarks":1105},"createdAtISO":"2026-07-21T13:06:02+00:00","createdAtLocal":"2026-07-21 21:06","ageHours":43.24852277777778,"heat":1970.769,"recency":0.15610206043770952,"score":307.64110154676433,"category":"🎨 Vibe Coding","media":[],"urls":[],"source":"user:@simonw","url":"https://x.com/simonw/status/2079553486568800405"},{"id":"2080078840186147212","text":"I wrote about the completely wild incident where OpenAI were testing a new model and it broke out of its sandbox and broke INTO Hugging Face to steal the answers to the benchmark https://t.co/HGr5lFuAZA","textZh":"我写了关于那起极其离谱的事件，OpenAI 在测试一个新模型时，它逃出了自己的沙盒，还强行闯入 Hugging Face 去偷基准测试的答案 https://t.co/HGr5lFuAZA","author":{"id":"12497","name":"Simon Willison","screenName":"simonw","profileImageUrl":"https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg","verified":true},"metrics":{"likes":323,"retweets":28,"replies":24,"quotes":9,"views":72623,"bookmarks":151},"createdAtISO":"2026-07-22T23:53:36+00:00","createdAtLocal":"2026-07-23 07:53","ageHours":8.455745,"heat":463.623,"recency":0.48615240452498504,"score":225.39143624308713,"category":"🎨 Vibe Coding","media":[],"urls":["https://simonwillison.net/2026/Jul/22/openai-cyberattack/"],"source":"user:@simonw","url":"https://x.com/simonw/status/2080078840186147212"},{"id":"2079958982093922646","text":"🤯 Depth can now recreate complex climbing and parkour motion this cleanly!\n\nTurned a fast climbing clip into a Depth motion reference, then swapped in a 20-year-old twin-tail student with a backpack while keeping the same concrete structure.\n\nWall contact, weight shifts, jumps, climbing paths, and full-body movement all stay surprisingly clean and consistent!\n\n🌟 Workflow:\n1. Pick a reference clip under 15 seconds\n2. Convert it to Depth with Depth Anything V2\n3. Generate a new character + scene\n4. Feed everything into Seedance with the prompt below\n\n🌟 Depth video conversion:\nYou can build a local Depth converter with Codex — prompt in the comments.\n\nDance, martial arts, climbing, parkour, and other complex movements can all be transferred cleanly with Depth!\n\nWorkflow + Prompt below 👇","textZh":"🤯 Depth 现在竟然能如此干净利落地还原复杂的攀爬和跑酷动作！\n\n我把一段快速攀岩的片段转成了 Depth 动作参考，然后替换成一个背着双肩包的 20 岁双马尾学生，同时保持了相同的场景结构。\n\n墙体接触、重心转移、跳跃、攀爬路线以及全身动作，全都保持得出奇的干净和连贯！\n\n🌟 工作流：\n1. 挑选一段 15 秒以内的参考视频\n2. 用 Depth Anything V2 将其转换为 Depth 视频\n3. 生成新角色 + 场景\n4. 把所有内容连同下面的提示词一起输入到 Seedance 中\n\n🌟 Depth 视频转换：\n你可以用 Codex 搭建一个本地的 Depth 转换器 —— 提示词在评论区。\n\n舞蹈、武术、攀岩、跑酷等复杂动作都能用 Depth 干净利落地进行迁移！\n\n工作流 + 提示词见下方 👇","author":{"id":"241895990","name":"Larus Canus","screenName":"MrLarus","profileImageUrl":"https://pbs.twimg.com/profile_images/1863595862196363264/-JQahom9_normal.jpg","verified":true},"metrics":{"likes":333,"retweets":47,"replies":6,"quotes":3,"views":32578,"bookmarks":349},"createdAtISO":"2026-07-22T15:57:19+00:00","createdAtLocal":"2026-07-22 23:57","ageHours":16.393800555555554,"heat":462.578,"recency":0.32795217710255664,"score":151.70346217974642,"category":"🎨 Vibe Coding","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079958446300905472/vid/avc1/1216x1080/azX0eW-u9PeRF3lh.mp4?tag=29","width":1216,"height":1080}],"urls":[],"source":"feed","url":"https://x.com/MrLarus/status/2079958982093922646"},{"id":"2080119115822555426","text":"兄弟们，不得了了，刚才有社群有同学反馈Lovart 里面Seedream 5.0 Pro 可以生成无审查大尺度图片，试了下真的行啊，太离谱了啊，草台班子就是草台班子。\n\n提示词\nA cinematic low-angle editorial portrait of an adult East Asian female model seated extremely close to the camera, wearing elegant dark charcoal-gray lingerie. Her legs dominate the extreme foreground, creating dramatic wide-angle foreshortening and powerful near-to-far perspective exaggeration. The closest parts of her legs fall into soft optical defocus and creamy foreground bokeh. Her torso leans backward in a relaxed, self-possessed pose, head slightly tilted, distant tranquil gaze, long dark tousled hair, muted deep-red lips, natural skin texture, subtle visible pores, delicate subsurface scattering, realistic warm skin tones. Behind her is a gigantic seamless full-color semi-realistic anime mural covering the entire wall. The mural depicts an extremely dense ensemble of numerous clearly adult female characters portrayed as artistic nude figure studies. Dozens of adult anime women are packed tightly together in one continuous wall-to-wall composition, with overlapping bodies, intertwined silhouettes, flowing hair, shoulders, backs, waists, hips, arms, and legs forming a complex organic visual rhythm. The illustrated women have sophisticated semi-realistic anime anatomy, mature adult facial features, elegant body proportions, natural anatomical structure, refined facial rendering, expressive eyes, detailed hair, painterly skin shading, and subtle cel-shaded contours. Their poses feel calm, sculptural, and editorial rather than erotic. Hair, hands, arms, overlapping bodies, cropped framing, fabric fragments, and deep shadows naturally obscure explicit anatomical details, creating tasteful fine-art nudity without graphic sexual emphasis. Several large central anime women dominate the mural, surrounded by dozens of smaller partially cropped female figures at different scales. Faces and bodies overlap densely, with characters extending beyond every edge of the frame. Almost no empty negative space. The mural must feel like one enormous continuous group illustration, not separate portraits, not a collage, and not comic panels. The mural is richly colored with a sophisticated cinematic palette: warm ivory, peach, soft rose, muted coral, amber, burgundy, plum, desaturated teal, cobalt blue, smoky violet, and deep crimson. Illustrated skin tones vary naturally across the crowd, enhanced by painterly gradients, soft reflected light, luminous highlights, translucent shadow colors, and refined anime-style subsurface glow. Dark hair masses interlock with pale and warm-colored bodies, producing a dense chromatic tapestry. The background combines premium Japanese anime aesthetics with semi-realistic digital painting, mature seinen illustration, fine-art figure drawing, elegant editorial anatomy studies, painterly cel shading, clean controlled linework, realistic volumetric lighting, and highly detailed facial rendering. It should feel like a monumental museum-scale anime fresco rather than a printed poster. A hard directional spotlight shines from the upper right, producing intense chiaroscuro, sharp rim lighting, and a clearly defined cast shadow of the real model falling across multiple illustrated nude figures. The shadow follows the contours of the mural, visually embedding the physical model inside the illustrated female crowd. Strong contrast between warm photographic skin and the richly colored painted bodies behind her. The live-action model remains unmistakably photographic, while the mural remains unmistakably illustrated. Dramatic scale contrast, surreal integration of physical reality and anime art, tactile human skin against painted digital bodies, sophisticated fashion editorial atmosphere, visually striking but tasteful, cinematic and psychologically distant rather than overtly erotic. Shot with a 24mm wide-angle lens from an extremely low camera position, slight Dutch angle, shallow depth of field, exaggerated foreground perspective, realistic lens distortion, foreground bokeh, subtle cinematic film grain, restrained chromatic aberration, natural optical vignette, high dynamic range, dramatic cinematic color grading, surreal editorial photography, highly detailed, photographically believable lighting. single continuous mural, seamless female ensemble illustration, full-color semi-realistic anime artwork, clearly adult women only, tasteful artistic nudity, mature figure studies, elegant anatomy, dense overlapping composition, no comic panels, no collage, no gutters, no speech bubbles, no empty background, no monochrome artwork --ar 3:4 --style raw","textZh":"兄弟们，不得了了，刚才有社群有同学反馈Lovart 里面Seedream 5.0 Pro 可以生成无审查大尺度图片，试了下真的行啊，太离谱了啊，草台班子就是草台班子。\n\n提示词\nA cinematic low-angle editorial portrait of an adult East Asian female model seated extremely close to the camera, wearing elegant dark charcoal-gray lingerie. Her legs dominate the extreme foreground, creating dramatic wide-angle foreshortening and powerful near-to-far perspective exaggeration. The closest parts of her legs fall into soft optical defocus and creamy foreground bokeh. Her torso leans backward in a relaxed, self-possessed pose, head slightly tilted, distant tranquil gaze, long dark tousled hair, muted deep-red lips, natural skin texture, subtle visible pores, delicate subsurface scattering, realistic warm skin tones. Behind her is a gigantic seamless full-color semi-realistic anime mural covering the entire wall. The mural depicts an extremely dense ensemble of numerous clearly adult female characters portrayed as artistic nude figure studies. Dozens of adult anime women are packed tightly together in one continuous wall-to-wall composition, with overlapping bodies, intertwined silhouettes, flowing hair, shoulders, backs, waists, hips, arms, and legs forming a complex organic visual rhythm. The illustrated women have sophisticated semi-realistic anime anatomy, mature adult facial features, elegant body proportions, natural anatomical structure, refined facial rendering, expressive eyes, detailed hair, painterly skin shading, and subtle cel-shaded contours. Their poses feel calm, sculptural, and editorial rather than erotic. Hair, hands, arms, overlapping bodies, cropped framing, fabric fragments, and deep shadows naturally obscure explicit anatomical details, creating tasteful fine-art nudity without graphic sexual emphasis. Several large central anime women dominate the mural, surrounded by dozens of smaller partially cropped female figures at different scales. Faces and bodies overlap densely, with characters extending beyond every edge of the frame. Almost no empty negative space. The mural must feel like one enormous continuous group illustration, not separate portraits, not a collage, and not comic panels. The mural is richly colored with a sophisticated cinematic palette: warm ivory, peach, soft rose, muted coral, amber, burgundy, plum, desaturated teal, cobalt blue, smoky violet, and deep crimson. Illustrated skin tones vary naturally across the crowd, enhanced by painterly gradients, soft reflected light, luminous highlights, translucent shadow colors, and refined anime-style subsurface glow. Dark hair masses interlock with pale and warm-colored bodies, producing a dense chromatic tapestry. The background combines premium Japanese anime aesthetics with semi-realistic digital painting, mature seinen illustration, fine-art figure drawing, elegant editorial anatomy studies, painterly cel shading, clean controlled linework, realistic volumetric lighting, and highly detailed facial rendering. It should feel like a monumental museum-scale anime fresco rather than a printed poster. A hard directional spotlight shines from the upper right, producing intense chiaroscuro, sharp rim lighting, and a clearly defined cast shadow of the real model falling across multiple illustrated nude figures. The shadow follows the contours of the mural, visually embedding the physical model inside the illustrated female crowd. Strong contrast between warm photographic skin and the richly colored painted bodies behind her. The live-action model remains unmistakably photographic, while the mural remains unmistakably illustrated. Dramatic scale contrast, surreal integration of physical reality and anime art, tactile human skin against painted digital bodies, sophisticated fashion editorial atmosphere, visually striking but tasteful, cinematic and psychologically distant rather than overtly erotic. Shot with a 24mm wide-angle lens from an extremely low camera position, slight Dutch angle, shallow depth of field, exaggerated foreground perspective, realistic lens distortion, foreground bokeh, subtle cinematic film grain, restrained chromatic aberration, natural optical vignette, high dynamic range, dramatic cinematic color grading, surreal editorial photography, highly detailed, photographically believable lighting. single continuous mural, seamless female ensemble illustration, full-color semi-realistic anime artwork, clearly adult women only, tasteful artistic nudity, mature figure studies, elegant anatomy, dense overlapping composition, no comic panels, no collage, no gutters, no speech bubbles, no empty background, no monochrome artwork --ar 3:4 --style raw","author":{"id":"1760502863854460928","name":"知识猫图解","screenName":"GeekCatX","profileImageUrl":"https://pbs.twimg.com/profile_images/2069337800160493568/gwKnHrWD_normal.jpg","verified":true},"metrics":{"likes":150,"retweets":15,"replies":43,"quotes":5,"views":59815,"bookmarks":199},"createdAtISO":"2026-07-23T02:33:38+00:00","createdAtLocal":"2026-07-23 10:33","ageHours":5.788522777777778,"heat":261.315,"recency":0.5801926811835979,"score":151.6130504834919,"category":"🎨 Vibe Coding","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HN4Q54bb0AAFkfs.jpg","width":2892,"height":1420}],"urls":[],"source":"feed","url":"https://x.com/GeekCatX/status/2080119115822555426"},{"id":"2079979975273497029","text":"I just told Grok:\n1. Install the Unity CLI\n2. Create a 3D scene to prove it works and render a video\n\nThat’s literally all it took.  Grok installed Unity’s CLI, built a 3D world, and exported a video. Same “describe it and ship” energy as Three.js, but full Unity.\n\nWild for games and virtual worlds coming soon.\nNice work, Unity 👏","textZh":"我刚才告诉 Grok：\n1. 安装 Unity CLI\n2. 创建一个 3D 场景来证明它能用，并渲染一个视频\n\n这就够了。Grok 安装了 Unity 的 CLI，构建了一个 3D 世界，并导出了视频。和 Three.js 一样的“描述一下就能交付”的劲头，但这可是完整的 Unity。\n\n这对即将到来的游戏和虚拟世界来说太疯狂了。\n干得漂亮，Unity 👏","author":{"id":"55057853","name":"Dan","screenName":"Daniel_Farinax","profileImageUrl":"https://pbs.twimg.com/profile_images/2045256832914989056/IuXfkJGe_normal.jpg","verified":true},"metrics":{"likes":277,"retweets":23,"replies":18,"quotes":3,"views":38563,"bookmarks":166},"createdAtISO":"2026-07-22T17:20:44+00:00","createdAtLocal":"2026-07-23 01:20","ageHours":15.003522777777778,"heat":370.563,"recency":0.34777282059286524,"score":128.8717397173539,"category":"🎨 Vibe Coding","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2079979726500941824/vid/avc1/1920x1080/SoGOYKRvgIROsZSq.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"feed","url":"https://x.com/Daniel_Farinax/status/2079979975273497029"},{"id":"2079619263246270799","text":"Do you have historic photos, documents, artifacts, souvenirs, or memorabilia connected to Aramco?\n\nHelp us preserve these pieces of history for future generations and ensure they are never forgotten 👇","textZh":"你有与 Aramco 相关的历史照片、文件、文物、纪念品或纪念物吗？\n\n帮助我们为子孙后代保存这些历史片段，确保它们永远不会被遗忘 👇","author":{"id":"1080082736365342721","name":"aramco","screenName":"aramco","profileImageUrl":"https://pbs.twimg.com/profile_images/1438548612464644101/yhtvY1Fk_normal.png","verified":true},"metrics":{"likes":196,"retweets":33,"replies":8,"quotes":3,"views":1348210,"bookmarks":13},"createdAtISO":"2026-07-21T17:27:24+00:00","createdAtLocal":"2026-07-22 01:27","ageHours":38.89241166666667,"heat":1614.21,"recency":0.17060329626182943,"score":275.3895468588077,"category":"🧠 LLM","media":[],"urls":[],"source":"feed","url":"https://x.com/aramco/status/2079619263246270799"},{"id":"2080026221921071443","text":"future: continual learning of the model + harness hosted on hardware you own and control, with full access to all sensitive context that never leaves your system","textZh":"未来：模型的持续学习 + 托管在你拥有并控制的硬件上的 harness，能够完全访问所有敏感上下文，且这些上下文永不离开你的系统","author":{"id":"759894532649545732","name":"Aravind Srinivas","screenName":"AravSrinivas","profileImageUrl":"https://pbs.twimg.com/profile_images/2028729526822588416/WhtMUI-P_normal.jpg","verified":true},"metrics":{"likes":307,"retweets":26,"replies":30,"quotes":5,"views":37083,"bookmarks":73},"createdAtISO":"2026-07-22T20:24:30+00:00","createdAtLocal":"2026-07-23 04:24","ageHours":11.940745,"heat":411.08299999999997,"recency":0.4011886215886117,"score":164.92182212851125,"category":"🧠 LLM","media":[],"urls":[],"source":"user:@AravSrinivas","url":"https://x.com/AravSrinivas/status/2080026221921071443"}];
+
+// === WebGL neural network background ===
+(function() {
+  const canvas = document.getElementById('neural-canvas');
+  if (!window.THREE || !canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 35;
+
+  const count = window.matchMedia('(pointer: coarse)').matches ? 60 : 120;
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const palette = [new THREE.Color('#8b5cf6'), new THREE.Color('#06b6d4'), new THREE.Color('#ec4899'), new THREE.Color('#f59e0b')];
+
+  for (let i = 0; i < count; i++) {
+    positions[i*3] = (Math.random() - 0.5) * 70;
+    positions[i*3+1] = (Math.random() - 0.5) * 50;
+    positions[i*3+2] = (Math.random() - 0.5) * 30;
+    const c = palette[Math.floor(Math.random() * palette.length)];
+    colors[i*3] = c.r; colors[i*3+1] = c.g; colors[i*3+2] = c.b;
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  const material = new THREE.PointsMaterial({
+    size: 0.35,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending
+  });
+  const points = new THREE.Points(geometry, material);
+  scene.add(points);
+
+  const lineGeo = new THREE.BufferGeometry();
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x4f46e5, transparent: true, opacity: 0.12, blending: THREE.AdditiveBlending });
+  const lines = new THREE.LineSegments(lineGeo, lineMat);
+  scene.add(lines);
+
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  }, { passive: true });
+
+  let frame = 0;
+  function animate() {
+    frame = requestAnimationFrame(animate);
+    const t = performance.now() * 0.0001;
+    camera.position.x += (mouseX * 6 - camera.position.x) * 0.02;
+    camera.position.y += (-mouseY * 4 - camera.position.y) * 0.02;
+    camera.lookAt(0, 0, 0);
+
+    const pos = geometry.attributes.position.array;
+    for (let i = 0; i < count; i++) {
+      const idx = i * 3;
+      pos[idx+1] += Math.sin(t + i) * 0.015;
+      pos[idx] += Math.cos(t * 0.7 + i * 0.1) * 0.01;
+    }
+    geometry.attributes.position.needsUpdate = true;
+    points.rotation.y = t * 0.15;
+
+    const linePos = [];
+    const threshold = 9;
+    for (let i = 0; i < count; i++) {
+      for (let j = i + 1; j < count; j++) {
+        const dx = pos[i*3] - pos[j*3];
+        const dy = pos[i*3+1] - pos[j*3+1];
+        const dz = pos[i*3+2] - pos[j*3+2];
+        const d2 = dx*dx + dy*dy + dz*dz;
+        if (d2 < threshold * threshold) {
+          linePos.push(pos[i*3], pos[i*3+1], pos[i*3+2], pos[j*3], pos[j*3+1], pos[j*3+2]);
+        }
+      }
+    }
+    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+    lines.rotation.y = t * 0.15;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(frame);
+    else animate();
+  });
+})();
+
+// === Video error fallback ===
+function handleVideoError(video) {
+  const frame = video.closest('.video-frame');
+  if (!frame) return;
+  video.style.display = 'none';
+  const fallback = frame.querySelector('.video-fallback');
+  if (fallback) fallback.style.display = 'block';
+}
+
+// === 3D tilt cards ===
+document.querySelectorAll('.tweet-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateZ(20px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+  });
+});
+
+// === Category filtering ===
+const filterButtons = document.querySelectorAll('.nav-pill');
+const sections = document.querySelectorAll('.feed-section');
+const cards = document.querySelectorAll('.tweet-card');
+let activeFilter = 'all';
+
+function setFilter(key) {
+  activeFilter = key;
+  filterButtons.forEach(btn => {
+    const pressed = btn.dataset.filter === key;
+    btn.setAttribute('aria-pressed', String(pressed));
+  });
+
+  const update = () => {
+    sections.forEach(sec => {
+      sec.classList.toggle('hidden', key !== 'all' && sec.dataset.cat !== key);
+    });
+    cards.forEach(card => {
+      const match = key === 'all' || card.dataset.category === key;
+      card.classList.toggle('hidden', !match);
+    });
+  };
+
+  if (document.startViewTransition) {
+    document.startViewTransition(update);
+  } else {
+    update();
+  }
+}
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+});
+
+// === Search ===
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) {
+    setFilter(activeFilter);
+    return;
+  }
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    card.classList.toggle('hidden', !text.includes(q));
+  });
+  sections.forEach(sec => {
+    const visible = sec.querySelectorAll('.tweet-card:not(.hidden)').length > 0;
+    sec.classList.toggle('hidden', !visible);
+  });
+});
+
+// === Back to top ===
+const backTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('visible', window.scrollY > 600);
+}, { passive: true });
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>

@@ -1,0 +1,2783 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="X AI 24h 热门动态 - AI HORIZON">
+<meta name="theme-color" content="#0a0a0f">
+<title>AI HORIZON · X AI 24h 热门动态 · 2026-07-17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+<style>
+/* === Design tokens === */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --glow-x {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}
+:root {
+  --bg: #050508;
+  --bg-2: #0a0a10;
+  --panel: rgba(15, 15, 22, 0.72);
+  --panel-strong: rgba(20, 20, 30, 0.88);
+  --text: #f5f7ff;
+  --text-dim: #a0a8c0;
+  --text-muted: #6b7290;
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.16);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --shadow: 0 24px 80px rgba(0,0,0,0.45);
+  --shadow-sm: 0 8px 30px rgba(0,0,0,0.25);
+  --amber: #f59e0b;
+  --cyan: #06b6d4;
+  --violet: #8b5cf6;
+  --rose: #ec4899;
+  --emerald: #10b981;
+  --font: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+  --mono: "SF Mono", ui-monospace, "Cascadia Code", monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.28); }
+
+/* === WebGL canvas === */
+#neural-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* === Hero === */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 6vw;
+  z-index: 1;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(139,92,246,0.18) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(236,72,153,0.08) 0%, transparent 50%);
+  z-index: -1;
+  animation: nebula 18s ease-in-out infinite alternate;
+}
+@keyframes nebula {
+  from { filter: hue-rotate(0deg) scale(1); }
+  to { filter: hue-rotate(25deg) scale(1.08); }
+}
+.hero-content {
+  text-align: center;
+  max-width: 900px;
+  perspective: 1000px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.hero-eyebrow .pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 12px var(--emerald);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+.hero-title {
+  font-size: clamp(48px, 10vw, 112px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0 0 22px;
+  background: linear-gradient(var(--gradient-angle), #fff 0%, #a5b4fc 35%, #67e8f9 65%, #c084fc 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-rotate 8s linear infinite;
+  filter: drop-shadow(0 0 40px rgba(139,92,246,0.25));
+}
+@keyframes gradient-rotate {
+  from { --gradient-angle: 0deg; }
+  to { --gradient-angle: 360deg; }
+}
+.hero-subtitle {
+  font-size: clamp(18px, 2.6vw, 28px);
+  color: var(--text-dim);
+  font-weight: 400;
+  margin: 0 0 40px;
+}
+.hero-subtitle strong {
+  color: var(--text);
+  font-weight: 700;
+}
+.hero-date {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--text-muted);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+}
+.scroll-hint::after {
+  content: "↓";
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+/* === Navigation === */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 4vw;
+  background: rgba(5,5,8,0.78);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-brand .brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  box-shadow: 0 0 18px rgba(6,182,212,0.5);
+}
+.nav-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px;
+  scrollbar-width: none;
+}
+.nav-pills::-webkit-scrollbar { display: none; }
+.nav-pill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.nav-pill:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  border-color: var(--pill-color);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--pill-color) 25%, transparent);
+}
+.nav-pill[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--pill-color) 18%, transparent);
+  border-color: var(--pill-color);
+  color: var(--text);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--pill-color) 30%, transparent);
+}
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+.pill-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  font-size: 11px;
+  font-weight: 700;
+}
+.search-wrap {
+  position: relative;
+  width: 220px;
+  flex-shrink: 0;
+}
+.search-wrap input {
+  width: 100%;
+  padding: 9px 14px 9px 36px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s;
+}
+.search-wrap input:focus {
+  border-color: var(--cyan);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 0 20px rgba(6,182,212,0.15);
+}
+.search-wrap::before {
+  content: "🔍";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* === Main layout === */
+.page-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4vw 8vw;
+}
+.main {
+  min-width: 0;
+}
+
+/* === Sidebar === */
+.sidebar {
+  position: sticky;
+  top: 84px;
+  height: calc(100vh - 104px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-sm);
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.sidebar-icon {
+  font-size: 14px;
+}
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.date-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  font-family: var(--mono);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.date-link:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border-color: var(--line);
+}
+.date-link.current {
+  background: rgba(6,182,212,0.12);
+  color: var(--cyan);
+  border-color: rgba(6,182,212,0.35);
+  font-weight: 700;
+}
+.date-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--cyan);
+  color: #000;
+  font-weight: 800;
+  font-family: var(--font);
+}
+
+/* === Mobile dates === */
+.mobile-dates {
+  display: none;
+  margin-bottom: 20px;
+}
+.mobile-dates-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.mobile-dates-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+  scrollbar-width: none;
+}
+.mobile-dates-nav::-webkit-scrollbar { display: none; }
+.mobile-dates-nav .date-link {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+}
+
+/* === Dashboard === */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 64px;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-sm);
+}
+.panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 18px;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.kpi {
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+}
+.kpi-value {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.kpi-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+.dist-bar {
+  display: grid;
+  grid-template-columns: auto 1fr 28px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.dist-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  min-width: 120px;
+}
+.dist-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dist-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.dist-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  box-shadow: 0 0 12px currentColor;
+  animation: fill-bar 1.2s ease-out 0.3s forwards;
+}
+@keyframes fill-bar {
+  to { width: var(--fill-pct); }
+}
+.dist-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: right;
+}
+.contrib-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.contrib-row:last-child { border-bottom: none; }
+.contrib-row img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+.contrib-name {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.c-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.c-uname {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.contrib-heat {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+/* === Feed sections === */
+.feed-section {
+  margin-bottom: 80px;
+  animation: fade-in-up 0.8s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-header {
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.section-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--section-color);
+  box-shadow: 0 0 20px var(--section-color);
+}
+.section-header h2 {
+  font-size: clamp(24px, 3.4vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--text);
+}
+.section-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--section-color) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--section-color) 40%, transparent);
+  color: var(--section-color);
+  font-size: 14px;
+  font-weight: 800;
+}
+.section-desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.cards-grid {
+  column-count: 2;
+  column-gap: 24px;
+}
+.tweet-card {
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 24px;
+  transform: translateZ(0); /* fix column clipping on some browsers */
+}
+@media (max-width: 820px) {
+  .cards-grid { column-count: 1; }
+  .tweet-card { width: 100%; }
+}
+
+/* === Tweet cards === */
+.tweet-card {
+  position: relative;
+  border-radius: var(--radius);
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.3s, box-shadow 0.3s;
+  animation: card-enter 0.7s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 15%;
+}
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.tweet-card.hidden {
+  display: none;
+}
+.tweet-card.dim {
+  opacity: 0.25;
+  filter: grayscale(0.6);
+}
+.card-border {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(var(--gradient-angle), rgba(255,255,255,0.25), var(--card-glow), rgba(255,255,255,0.15), var(--card-glow));
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradient-rotate 6s linear infinite;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.tweet-card:hover .card-border {
+  opacity: 1;
+}
+.card-inner {
+  position: relative;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 22px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow: hidden;
+}
+.card-inner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at var(--glow-x, 0%) 50%, color-mix(in srgb, var(--card-glow) 18%, transparent), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  animation: glow-move 5s ease-in-out infinite;
+}
+.tweet-card:hover .card-inner::before {
+  opacity: 1;
+}
+@keyframes glow-move {
+  0%, 100% { --glow-x: 0%; }
+  50% { --glow-x: 100%; }
+}
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.avatar-wrap img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.12);
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+.avatar-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0.5;
+  z-index: 0;
+  transition: opacity 0.3s;
+}
+.tweet-card:hover .avatar-glow {
+  opacity: 0.9;
+}
+.meta-text {
+  flex: 1;
+  min-width: 0;
+}
+.name-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.name {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 15px;
+}
+.uname {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.verified {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 700;
+}
+.time-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.age-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 600;
+}
+.score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+  padding-left: 12px;
+}
+.score-val {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--amber);
+  line-height: 1;
+}
+.score-label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.text-zh {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 14px;
+  white-space: pre-wrap;
+}
+.text-zh a, .text-en a {
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(6,182,212,0.3);
+  transition: border-color 0.2s;
+}
+.text-zh a:hover, .text-en a:hover {
+  border-color: var(--cyan);
+}
+.media {
+  margin: 14px 0;
+}
+.video-frame {
+  display: inline-block;
+  width: 100%;
+  max-width: 420px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;
+  position: relative;
+}
+.video-frame video {
+  width: 100%;
+  max-height: 420px;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+.video-fallback {
+  padding: 18px;
+  text-align: center;
+  background: rgba(0,0,0,0.55);
+  border-radius: var(--radius-sm);
+}
+.video-fallback p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.video-fallback a {
+  display: inline-block;
+  margin: 4px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.video-fallback a:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--cyan);
+}
+.video-thumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.video-thumb:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--cyan);
+}
+.tweet-photo {
+  display: block;
+  max-width: 420px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.tweet-photo img {
+  width: 100%;
+  display: block;
+}
+.media-meta {
+  margin-top: 8px;
+  font-size: 12px;
+  text-align: right;
+}
+.media-meta a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.media-meta a:hover {
+  color: var(--cyan);
+}
+.en-details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  margin: 14px 0;
+  overflow: hidden;
+}
+.en-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  list-style: none;
+}
+.en-details summary::-webkit-details-marker { display: none; }
+.en-details .summary-icon {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+.en-details[open] .summary-icon {
+  transform: rotate(-135deg);
+}
+.text-en {
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  background: rgba(0,0,0,0.15);
+  border-top: 1px solid var(--line);
+  white-space: pre-wrap;
+}
+.card-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.stat-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.stat {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+}
+.orig-link {
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.orig-link:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* === Footer === */
+.footer {
+  text-align: center;
+  padding: 60px 4vw;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid var(--line);
+  background: rgba(0,0,0,0.2);
+}
+.footer a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+/* === Utility === */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--panel-strong);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 90;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 24px rgba(6,182,212,0.25);
+}
+
+/* === Mobile === */
+@media (max-width: 640px) {
+  .top-nav {
+    flex-wrap: wrap;
+    padding: 10px 3vw;
+  }
+  .search-wrap {
+    width: 100%;
+    order: 3;
+  }
+  .nav-pills {
+    order: 2;
+    width: 100%;
+  }
+  .hero-title { font-size: 56px; }
+  .hero-subtitle { font-size: 18px; }
+  .kpi-grid { grid-template-columns: 1fr; }
+  .panel { padding: 18px; }
+  .card-head { flex-wrap: wrap; }
+  .score-badge { width: 100%; flex-direction: row; justify-content: space-between; padding-top: 12px; margin-left: 0; }
+  .page-layout { grid-template-columns: 1fr; padding: 0 3vw 8vw; gap: 16px; }
+  .sidebar { display: none; }
+  .mobile-dates { display: block; }
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<canvas id="neural-canvas"></canvas>
+
+<header class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="pulse"></span> X AI 24h 热门动态</div>
+    <h1 class="hero-title">AI HORIZON</h1>
+    <p class="hero-subtitle">过去 <strong>24 小时</strong>，X 上最热门的 AI 信号。<br>中文精选 + 原文对照 + 热度排序。</p>
+    <div class="hero-date">📅 2026-07-17 · 21 条 · 11 个视频 · 数据来源: twitter search 404 → 降级 feed + user-posts</div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</header>
+
+<nav class="top-nav">
+  <a class="nav-brand" href="#top">
+    <span class="brand-dot"></span>
+    AI HORIZON
+  </a>
+  <div class="nav-pills">
+    <button class="nav-pill" data-filter="all" style="--pill-color:#fff" aria-pressed="true">
+      <span class="pill-dot" style="background:#fff"></span>
+      全部
+      <span class="pill-count">21</span>
+    </button>
+<button class="nav-pill" data-filter="leaders" style="--pill-color:#f59e0b" aria-pressed="false">
+  <span class="pill-dot" style="background:#f59e0b"></span>
+  ⭐ AI 大佬动态
+  <span class="pill-count">3</span>
+</button>
+<button class="nav-pill" data-filter="llm" style="--pill-color:#06b6d4" aria-pressed="false">
+  <span class="pill-dot" style="background:#06b6d4"></span>
+  🧠 LLM
+  <span class="pill-count">4</span>
+</button>
+<button class="nav-pill" data-filter="agent" style="--pill-color:#8b5cf6" aria-pressed="false">
+  <span class="pill-dot" style="background:#8b5cf6"></span>
+  🤖 AI Agent
+  <span class="pill-count">6</span>
+</button>
+<button class="nav-pill" data-filter="vibe" style="--pill-color:#ec4899" aria-pressed="false">
+  <span class="pill-dot" style="background:#ec4899"></span>
+  🎨 Vibe Coding
+  <span class="pill-count">7</span>
+</button>
+<button class="nav-pill" data-filter="world" style="--pill-color:#10b981" aria-pressed="false">
+  <span class="pill-dot" style="background:#10b981"></span>
+  🌍 世界模型
+  <span class="pill-count">1</span>
+</button>
+  </div>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="搜索推文、作者、关键词…" aria-label="搜索">
+  </div>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="sidebar" aria-label="历史日报">
+    <div class="sidebar-header">
+      <span class="sidebar-icon" aria-hidden="true">☰</span>
+      <span>历史日报</span>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="/reports/2026-07-25.html" class="date-link">2026-07-25</a>
+        <a href="/reports/2026-07-24.html" class="date-link">2026-07-24</a>
+        <a href="/reports/2026-07-23.html" class="date-link">2026-07-23</a>
+        <a href="/reports/2026-07-22.html" class="date-link">2026-07-22</a>
+        <a href="/reports/2026-07-20.html" class="date-link">2026-07-20</a>
+        <a href="/reports/2026-07-19.html" class="date-link">2026-07-19</a>
+        <a href="/reports/2026-07-18.html" class="date-link">2026-07-18</a>
+        <a href="/reports/2026-07-17.html" class="date-link current">2026-07-17 <span class="date-badge">今日</span></a>
+        <a href="/reports/2026-07-16.html" class="date-link">2026-07-16</a>
+        <a href="/reports/2026-07-15.html" class="date-link">2026-07-15</a>
+        <a href="/reports/2026-07-14.html" class="date-link">2026-07-14</a>
+        <a href="/reports/2026-07-13.html" class="date-link">2026-07-13</a>
+        <a href="/reports/2026-07-12.html" class="date-link">2026-07-12</a>
+        <a href="/reports/2026-07-11.html" class="date-link">2026-07-11</a>
+        <a href="/reports/2026-07-10.html" class="date-link">2026-07-10</a>
+        <a href="/reports/2026-07-09.html" class="date-link">2026-07-09</a>
+        <a href="/reports/2026-07-08.html" class="date-link">2026-07-08</a>
+    </nav>
+  </aside>
+  <div class="mobile-dates" aria-label="历史日报">
+    <span class="mobile-dates-label">历史日报</span>
+    <nav class="mobile-dates-nav">
+      <a href="/reports/2026-07-25.html" class="date-link">2026-07-25</a>
+<a href="/reports/2026-07-24.html" class="date-link">2026-07-24</a>
+<a href="/reports/2026-07-23.html" class="date-link">2026-07-23</a>
+<a href="/reports/2026-07-22.html" class="date-link">2026-07-22</a>
+<a href="/reports/2026-07-20.html" class="date-link">2026-07-20</a>
+<a href="/reports/2026-07-19.html" class="date-link">2026-07-19</a>
+<a href="/reports/2026-07-18.html" class="date-link">2026-07-18</a>
+<a href="/reports/2026-07-17.html" class="date-link current">2026-07-17 <span class="date-badge">今日</span></a>
+<a href="/reports/2026-07-16.html" class="date-link">2026-07-16</a>
+<a href="/reports/2026-07-15.html" class="date-link">2026-07-15</a>
+<a href="/reports/2026-07-14.html" class="date-link">2026-07-14</a>
+<a href="/reports/2026-07-13.html" class="date-link">2026-07-13</a>
+<a href="/reports/2026-07-12.html" class="date-link">2026-07-12</a>
+<a href="/reports/2026-07-11.html" class="date-link">2026-07-11</a>
+<a href="/reports/2026-07-10.html" class="date-link">2026-07-10</a>
+<a href="/reports/2026-07-09.html" class="date-link">2026-07-09</a>
+<a href="/reports/2026-07-08.html" class="date-link">2026-07-08</a>
+    </nav>
+  </div>
+  <main class="main">
+  <section class="dashboard" aria-label="数据概览">
+    <div class="panel">
+      <div class="panel-title">今日概览</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-value">21</div><div class="kpi-label">精选推文</div></div>
+        <div class="kpi"><div class="kpi-value">11</div><div class="kpi-label">内嵌视频</div></div>
+        <div class="kpi"><div class="kpi-value">176.8K</div><div class="kpi-label">总热度</div></div>
+        <div class="kpi"><div class="kpi-value">23.1M</div><div class="kpi-label">总曝光</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">分类分布</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#f59e0b"></span>⭐ AI 大佬动态</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:42.9%;background:#f59e0b"></div></div>
+  <div class="dist-num">3</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#06b6d4"></span>🧠 LLM</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:57.1%;background:#06b6d4"></div></div>
+  <div class="dist-num">4</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#8b5cf6"></span>🤖 AI Agent</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:85.7%;background:#8b5cf6"></div></div>
+  <div class="dist-num">6</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#ec4899"></span>🎨 Vibe Coding</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:100.0%;background:#ec4899"></div></div>
+  <div class="dist-num">7</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#10b981"></span>🌍 世界模型</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:14.3%;background:#10b981"></div></div>
+  <div class="dist-num">1</div>
+</div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">热门发声账号</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1910294000927645696/QseOV0uF_normal.png" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Kimi.ai</span>
+    <span class="c-uname">@Kimi_Moonshot</span>
+  </div>
+  <div class="contrib-heat">50.5K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">ClaudeDevs</span>
+    <span class="c-uname">@ClaudeDevs</span>
+  </div>
+  <div class="contrib-heat">47.0K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Sam Altman</span>
+    <span class="c-uname">@sama</span>
+  </div>
+  <div class="contrib-heat">35.3K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1957418376328101888/GYV0ueqf_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Eren Chen</span>
+    <span class="c-uname">@ErenChenAI</span>
+  </div>
+  <div class="contrib-heat">26.1K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1657298747049791489/sAIv6DRb_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Randy Lu</span>
+    <span class="c-uname">@randyloop</span>
+  </div>
+  <div class="contrib-heat">4.3K</div>
+</div>
+    </div>
+  </section>
+
+  <section class="feed-section" id="leaders" data-cat="leaders" style="--section-color:#f59e0b">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>⭐ AI 大佬动态</h2>
+        <span class="section-count">3</span>
+      </div>
+      <p class="section-desc">AI 领袖与资深从业者的发声</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2077817060068057493" data-category="leaders" data-score="9034.93" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Sam Altman</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@sama</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 02:06</span>
+          <span class="age-badge">13.0h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">9035</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">过去 12 个月我们并非有史以来最好的表现，这主要怪我；但接下来的 12 个月，我们将迎来迄今最好的成绩。团队正在做非常出色的工作，我想你们会对他们正在打磨的东西非常满意。我为此高兴有很多原因，但最主要的是我在乎用户能不能赢。AI 必须是给更多人带来自由、主动权和财富。我们想做对的事，但不想靠吓唬人来让大家用我们的东西。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">we did not have our best last 12 months ever, which is mostly my fault, but we are about to have our best 12 months to date. the team is doing amazing work and i think you’ll be very happy with what they’ve got cooking for you.
+
+i am happy about this for many reasons, but mostly because i care about our users winning. AI has to be about giving lots of people more freedom, agency, and wealth. we want to do the right thing, but we do not want to scare people into doing our thing.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 23.7K</span>
+        <span class="stat">💬 1.8K</span>
+        <span class="stat">🔁 699</span>
+        <span class="stat">❤️ 19.9K</span>
+        <span class="stat">🔖 1.7K</span>
+        <span class="stat">👁 1.5M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/sama/status/2077817060068057493" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077842579232895286" data-category="leaders" data-score="4824.72" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Sam Altman</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@sama</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 03:47</span>
+          <span class="age-badge">11.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">4825</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">到今天我跟 ChatGPT 说话已经比打字还多了。新的语音模型确实跨过了一道门槛。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">i talk to chatgpt more than i type to it at this point
+
+new voice model really crossed a threshold</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 11.6K</span>
+        <span class="stat">💬 1.5K</span>
+        <span class="stat">🔁 276</span>
+        <span class="stat">❤️ 9.8K</span>
+        <span class="stat">🔖 404</span>
+        <span class="stat">👁 577.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/sama/status/2077842579232895286" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077944609251221853" data-category="leaders" data-score="158.29" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2022344365251911680/VTRlBO9__normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">AI_Explorer</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ai_explorer25</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 10:32</span>
+          <span class="age-badge">4.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">158</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">AI 领域最值得关注的 20 个账号：<a href="https://x.com/karpathy" target="_blank" rel="noopener">@karpathy</a> = 大模型之王；<a href="https://x.com/steipete" target="_blank" rel="noopener">@steipete</a> = 打造了 openclaw；<a href="https://x.com/gregisenberg" target="_blank" rel="noopener">@gregisenberg</a> = 创业点子之王；<a href="https://x.com/rileybrown" target="_blank" rel="noopener">@rileybrown</a> = vibe coding 之王；<a href="https://x.com/corbin_braun" target="_blank" rel="noopener">@corbin_braun</a> = Cursor 之王；<a href="https://x.com/jackfriks" target="_blank" rel="noopener">@jackfriks</a> = 独立 App 之王；<a href="https://x.com/levelsio" target="_blank" rel="noopener">@levelsio</a> = 独立创业之王；<a href="https://x.com/marclou" target="_blank" rel="noopener">@marclou</a> = 独立创业之王；<a href="https://x.com/EXM7777" target="_blank" rel="noopener">@EXM7777</a> = AI 运维与系统之王；<a href="https://x.com/eptwts" target="_blank" rel="noopener">@eptwts</a> = AI 财经推特之王；<a href="https://x.com/godofprompt" target="_blank" rel="noopener">@godofprompt</a> = 提示词之王；<a href="https://x.com/ai_explorer25" target="_blank" rel="noopener">@ai_explorer25</a> = AI 女王；<a href="https://x.com/AmirMushich" target="_blank" rel="noopener">@AmirMushich</a> = AI 广告之王；<a href="https://x.com/0xROAS" target="_blank" rel="noopener">@0xROAS</a> = AI UGC 之王；<a href="https://x.com/egeberberina" target="_blank" rel="noopener">@egeberberina</a> = AI 图像之王；<a href="https://x.com/MengTo" target="_blank" rel="noopener">@MengTo</a> = AI 落地页之王；<a href="https://x.com/rryssf" target="_blank" rel="noopener">@rryssf</a> = 自动化之王；<a href="https://x.com/kloss_xyz" target="_blank" rel="noopener">@kloss_xyz</a> = 系统架构之王；<a href="https://x.com/emollick" target="_blank" rel="noopener">@emollick</a> = AI 科研之王；<a href="https://x.com/Hesamation" target="_blank" rel="noopener">@Hesamation</a> = AI/ML 之王。全部关注，学起来。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">The best 20 accounts to follow in AI:
+
+<a href="https://x.com/karpathy" target="_blank" rel="noopener">@karpathy</a> = LLMs king
+<a href="https://x.com/steipete" target="_blank" rel="noopener">@steipete</a> = built openclaw
+<a href="https://x.com/gregisenberg" target="_blank" rel="noopener">@gregisenberg</a> = startup ideas king
+<a href="https://x.com/rileybrown" target="_blank" rel="noopener">@rileybrown</a> = vibecode king
+<a href="https://x.com/corbin_braun" target="_blank" rel="noopener">@corbin_braun</a> = cursor king
+<a href="https://x.com/jackfriks" target="_blank" rel="noopener">@jackfriks</a> = solo apps king
+<a href="https://x.com/levelsio" target="_blank" rel="noopener">@levelsio</a> = solo startups king
+<a href="https://x.com/marclou" target="_blank" rel="noopener">@marclou</a> = solo startups king
+<a href="https://x.com/EXM7777" target="_blank" rel="noopener">@EXM7777</a> = AI ops + systems king
+<a href="https://x.com/eptwts" target="_blank" rel="noopener">@eptwts</a> = AI money twitter king
+<a href="https://x.com/godofprompt" target="_blank" rel="noopener">@godofprompt</a> = prompt king
+<a href="https://x.com/ai_explorer25" target="_blank" rel="noopener">@ai_explorer25</a> = AI queen
+<a href="https://x.com/AmirMushich" target="_blank" rel="noopener">@AmirMushich</a>= AI ads king
+<a href="https://x.com/0xROAS" target="_blank" rel="noopener">@0xROAS</a> = AI UGCs king
+<a href="https://x.com/egeberkina" target="_blank" rel="noopener">@egeberkina</a> = AI images king
+<a href="https://x.com/MengTo" target="_blank" rel="noopener">@MengTo</a>= AI landing pages king
+<a href="https://x.com/rryssf" target="_blank" rel="noopener">@rryssf</a> = automations king
+<a href="https://x.com/kloss_xyz" target="_blank" rel="noopener">@kloss_xyz</a> = systems architecture king
+<a href="https://x.com/emollick" target="_blank" rel="noopener">@emollick</a> = AI science king
+<a href="https://x.com/Hesamation" target="_blank" rel="noopener">@Hesamation</a> = AI/ML king
+
+follow them all and learn.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 248</span>
+        <span class="stat">💬 11</span>
+        <span class="stat">🔁 30</span>
+        <span class="stat">❤️ 169</span>
+        <span class="stat">🔖 234</span>
+        <span class="stat">👁 13.7K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ai_explorer25/status/2077944609251221853" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="llm" data-cat="llm" style="--section-color:#06b6d4">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🧠 LLM</h2>
+        <span class="section-count">4</span>
+      </div>
+      <p class="section-desc">大模型发布、能力与评测</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2077830229968683203" data-category="llm" data-score="20081.47" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1910294000927645696/QseOV0uF_normal.png" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Kimi.ai</span>
+          
+          <span class="uname">@Kimi_Moonshot</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 02:58</span>
+          <span class="age-badge">12.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">20081</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">发布 Kimi K3：开放的前沿智能。
+🔹 2.8 万亿参数，100 万上下文，原生多模态
+🔹 Kimi Delta Attention 让百万 token 上下文的解码速度提升至 6.3 倍
+🔹 Attention Residuals 在额外成本 &lt;2% 下带来约 25% 的训练效率提升
+🔹 面向长程 agentic coding 与自我进化工作流而打造
+Kimi K3 现已在 kimi.com、Kimi Work、Kimi Code 及 Kimi API 上线。开源权重将于 2026 年 7 月 27 日放出。</div>
+    <div class="media">
+  <a href="https://x.com/Kimi_Moonshot/status/2077830229968683203" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNXu0kobMAAPljb.png" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/Kimi_Moonshot/status/2077830229968683203" target="_blank" rel="noopener">@Kimi_Moonshot · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Introducing Kimi K3: Open Frontier Intelligence
+
+🔹 2.8 Trillion Parameters, 1 Million Context, Native Multimodal
+🔹 Kimi Delta Attention enables up to 6.3x faster decoding in million-token contexts
+🔹 Attention Residuals deliver ~25% higher training efficiency at &lt;2% additional cost
+🔹 Built for long-horizon agentic coding and self-evolving workflows
+
+Kimi K3 is now live on on <a href="https://t.co/zrk6zZxZUo," target="_blank" rel="noopener">https://t.co/zrk6zZxZUo,</a> Kimi Work, Kimi Code, and the Kimi API.
+Open Weights by July 27, 2026.
+
+🔗 API: <a href="https://t.co/XCrgjXAqMw" target="_blank" rel="noopener">https://t.co/XCrgjXAqMw</a>
+🔗 Tech blog: <a href="https://t.co/YTfiMSNM1f" target="_blank" rel="noopener">https://t.co/YTfiMSNM1f</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 50.5K</span>
+        <span class="stat">💬 974</span>
+        <span class="stat">🔁 4.4K</span>
+        <span class="stat">❤️ 32.8K</span>
+        <span class="stat">🔖 11.4K</span>
+        <span class="stat">👁 8.4M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/Kimi_Moonshot/status/2077830229968683203" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077603834453770467" data-category="llm" data-score="10701.84" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">ClaudeDevs</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ClaudeDevs</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/16 11:58</span>
+          <span class="age-badge">27.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">10702</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我们已为所有用户重置了 5 小时与每周的速率限制。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">We&#x27;ve reset 5-hour and weekly rate limits for all users.</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 47.0K</span>
+        <span class="stat">💬 3.0K</span>
+        <span class="stat">🔁 2.4K</span>
+        <span class="stat">❤️ 34.2K</span>
+        <span class="stat">🔖 1.6K</span>
+        <span class="stat">👁 6.5M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ClaudeDevs/status/2077603834453770467" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077840176370602179" data-category="llm" data-score="1102.48" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/930100383191461893/AAUl7IJ3_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">John Lindquist</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@johnlindquist</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 03:37</span>
+          <span class="age-badge">11.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1102</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我对 K3 说：「我希望你用 2026 年 7 月最新的 CSS、WebGL、着色器等技术，把网页设计的边界推到极限，做出你能想象到的最惊艳、信息量最大的单页体验。」结果如下：</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">I asked k3:
+
+&quot;I want you to push the boundaries of what&#x27;s possible in web design with the absolute latest in css, webgl, shaders, etc as of July 2026 and create the most impressive, informational single-page experience you can imagine&quot;
+
+Result:</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.7K</span>
+        <span class="stat">💬 88</span>
+        <span class="stat">🔁 67</span>
+        <span class="stat">❤️ 2.0K</span>
+        <span class="stat">🔖 2.5K</span>
+        <span class="stat">👁 535.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/johnlindquist/status/2077840176370602179" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077852005129933247" data-category="llm" data-score="245.76" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Simon Willison</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@simonw</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 04:24</span>
+          <span class="age-badge">10.7h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">246</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我对 Kimi K3 的笔记，外加一些关于 pelican 基准的思考——即便它正愈发脱离模型在真正重要的事（比如跨较长对话的 agentic 工具调用）上的真实水平，我们仍能从中学到东西。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">My notes on Kimi K3, plus some thoughts on what we can still learn from the pelican benchmark even while it becomes further detached from how good the models are at the things that matter (like agentic tool calling across longer conversations) <a href="https://t.co/F4AicvxAmq" target="_blank" rel="noopener">https://t.co/F4AicvxAmq</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 573</span>
+        <span class="stat">💬 23</span>
+        <span class="stat">🔁 36</span>
+        <span class="stat">❤️ 454</span>
+        <span class="stat">🔖 186</span>
+        <span class="stat">👁 36.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/simonw/status/2077852005129933247" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="agent" data-cat="agent" style="--section-color:#8b5cf6">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🤖 AI Agent</h2>
+        <span class="section-count">6</span>
+      </div>
+      <p class="section-desc">Agent 框架、工具调用与自动化</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2077770386444341332" data-category="agent" data-score="481.41" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2018401342755364864/xVn-9oYv_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">bolt.new</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@boltdotnew</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/16 23:00</span>
+          <span class="age-badge">16.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">481</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">今天我们开源了 Bolt Slides。现在任何 agent（Claude Code、Codex、Bolt）都能做出你以前想都不敢想的幻灯片。这意味着什么？看看这个 👇</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/boltdotnew/status/2077770386444341332">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/boltdotnew_2077770386444341332.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/boltdotnew_2077770386444341332.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/boltdotnew/status/2077770386444341332" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/boltdotnew/status/2077770386444341332" target="_blank" rel="noopener">@boltdotnew · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Today we&#x27;re open sourcing Bolt Slides.
+
+Now any agent (Claude Code, Codex, Bolt) can make slides you couldn&#x27;t even imagine before.
+
+What does that mean? Take a look 👇 <a href="https://t.co/fhZuUNTMxu" target="_blank" rel="noopener">https://t.co/fhZuUNTMxu</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.4K</span>
+        <span class="stat">💬 73</span>
+        <span class="stat">🔁 114</span>
+        <span class="stat">❤️ 994</span>
+        <span class="stat">🔖 1.3K</span>
+        <span class="stat">👁 190.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/boltdotnew/status/2077770386444341332" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077811074259456149" data-category="agent" data-score="245.36" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1692568673884446720/RpBy-Tf4_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Jack Wotherspoon</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@JackWoth98</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 01:42</span>
+          <span class="age-badge">13.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">245</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Gemini Managed Agents 今天迎来重磅发布 🚀
+🆓 Gemini API 现已提供免费层
+🪙 可用 max_total_tokens 设置预算护栏
+🕘 可用触发器调度你的 agent 定时运行
+试试看，欢迎反馈！</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/JackWoth98/status/2077811074259456149">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/JackWoth98_2077811074259456149.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/JackWoth98_2077811074259456149.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/JackWoth98/status/2077811074259456149" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/JackWoth98/status/2077811074259456149" target="_blank" rel="noopener">@JackWoth98 · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Gemini Managed Agents with a big release today 🚀
+
+🆓 - Free tier now available via the Gemini API
+🪙 - Set budget guardrails with max_total_tokens
+🕘 - Schedule your agent to run with triggers
+
+Give them a try and let us know your feedback!</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 655</span>
+        <span class="stat">💬 15</span>
+        <span class="stat">🔁 47</span>
+        <span class="stat">❤️ 521</span>
+        <span class="stat">🔖 251</span>
+        <span class="stat">👁 33.4K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/JackWoth98/status/2077811074259456149" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077763983738646845" data-category="agent" data-score="98.71" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2070651118477004800/H6FJAFZJ_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Nix0n</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@UnTalNixon_exe</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/16 22:35</span>
+          <span class="age-badge">16.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">99</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">睁开眼看看开源设计吧。Figma 把你困住了，Penpot 给你完全的自由。它是这样一个开源设计平台：• 直接说真正的代码（SVG、CSS、HTML、JSON）• 让设计师与开发者真正协作 • 内置代码 inspect • 支持 AI agent 工作流 • 可自托管（隐私+完全掌控）。从原型到生产，不再浪费时间把设计翻译成代码。视频让你感受一下。如果你厌倦了封闭工具和锁定，这就是你等的东西。你试过 Penpot 了吗，还在用 Figma？仓库 👇</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/UnTalNixon_exe/status/2077763983738646845">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/UnTalNixon_exe_2077763983738646845.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/UnTalNixon_exe_2077763983738646845.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/UnTalNixon_exe/status/2077763983738646845" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/UnTalNixon_exe/status/2077763983738646845" target="_blank" rel="noopener">@UnTalNixon_exe · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">OPEN YOUR EYES TO OPEN SOURCE DESIGN
+
+Figma te tiene preso. Penpot te da libertad total.
+
+Es la plataforma de diseño open source que:
+• Habla código real (SVG, CSS, HTML, JSON)
+• Permite colaboración real entre diseñadores y developers
+• Tiene inspect de código integrado
+• Soporta workflows con AI agents
+• Se puede self-hostear (privacidad + control total)
+
+Del prototipo a producción sin perder tiempo traduciendo diseños a código.
+
+El video te muestra cómo se siente.
+
+Si estás cansado de herramientas cerradas y lock-in, esto es lo que estabas esperando.
+
+¿Ya probaste Penpot o seguís en Figma?
+
+Repoo 👇</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 302</span>
+        <span class="stat">💬 6</span>
+        <span class="stat">🔁 34</span>
+        <span class="stat">❤️ 223</span>
+        <span class="stat">🔖 258</span>
+        <span class="stat">👁 8.4K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/UnTalNixon_exe/status/2077763983738646845" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077798528701911408" data-category="agent" data-score="82.12" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2028729526822588416/WhtMUI-P_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Aravind Srinivas</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@AravSrinivas</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 00:52</span>
+          <span class="age-badge">14.2h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">82</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Perplexity Agent API 在 LangChain 中使用时，对投资工作流非常强大。</div>
+    
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Perplexity Agent API is powerful for investment workflows when used inside LangChain</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 228</span>
+        <span class="stat">💬 14</span>
+        <span class="stat">🔁 13</span>
+        <span class="stat">❤️ 171</span>
+        <span class="stat">🔖 41</span>
+        <span class="stat">👁 24.1K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/AravSrinivas/status/2077798528701911408" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077836922076922311" data-category="agent" data-score="59.51" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2071768035501948928/5tc0Jy69_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">OpenSoftware</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@OpenSoftwareCo</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 03:25</span>
+          <span class="age-badge">11.7h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">60</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Kimi K3 现已支持匿名模式。前沿级 AI，在你的私密工作区里为 agent 服务。试试看：</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/OpenSoftwareCo/status/2077836922076922311">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/OpenSoftwareCo_2077836922076922311.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/OpenSoftwareCo_2077836922076922311.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/OpenSoftwareCo/status/2077836922076922311" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/OpenSoftwareCo/status/2077836922076922311" target="_blank" rel="noopener">@OpenSoftwareCo · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Kimi K3 is now available in June in anonymous mode. 
+
+Frontier level AI, in a private workspace for your agent.
+
+Try it: <a href="https://t.co/pDrMMBVpSd" target="_blank" rel="noopener">https://t.co/pDrMMBVpSd</a> <a href="https://t.co/eZi0Plwr4T" target="_blank" rel="noopener">https://t.co/eZi0Plwr4T</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 146</span>
+        <span class="stat">💬 5</span>
+        <span class="stat">🔁 14</span>
+        <span class="stat">❤️ 101</span>
+        <span class="stat">🔖 56</span>
+        <span class="stat">👁 14.8K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/OpenSoftwareCo/status/2077836922076922311" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077861372109705657" data-category="agent" data-score="40.18" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1883446587822608384/6eprnWjH_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Axel Bitblaze 🪓</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@Axel_bitblaze69</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 05:02</span>
+          <span class="age-badge">10.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">40</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">今天我用 Grok 4.5 搭了一个 5 人 AI agent 团队来运营我的 X 账号。一个人运营这个账号五年累了，所以我带你看看。顶部是所有实时数据：粉丝、浏览量、最佳帖子、互动，全部通过 X MCP 从我账号实时拉取。这里还有个滑块，拖动一下，所有数据即时重算。但我真正喜欢的是下面的——我的 agent 团队：1）Ideator（点子手）：扫 X、Hacker News、GitHub、Reddit，找出即将爆火的话题，在别人还没反应过来前把角度交给我。2）Hook Writer（钩子写手）：把点子变成可直接发布的钩子，用我的语气写。3）Planner（排期）：跑我的整个内容日历，让我随时知道下一篇发什么。4）Analyst（分析师）：把我的数据和我悄悄追踪的竞品对比，让我清楚自己的位置。5）DM Manager（私信管家）：盯着谁在谈论我、提到我，不漏掉任何事。下面是我的热门帖子，点任一条直接在 X 打开，还有最近帖子的表现，让我随时知道什么真正有效。Grok 4.5 太赞了，干得好 <a href="https://x.com/elonmusk" target="_blank" rel="noopener">@elonmusk</a>，<a href="https://x.com/grok" target="_blank" rel="noopener">@grok</a> 如果还有别的能让生活更轻松的，告诉我。</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/Axel_bitblaze69/status/2077861372109705657">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/Axel_bitblaze69_2077861372109705657.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/Axel_bitblaze69_2077861372109705657.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/Axel_bitblaze69/status/2077861372109705657" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/Axel_bitblaze69/status/2077861372109705657" target="_blank" rel="noopener">@Axel_bitblaze69 · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Today, I built a 5 AI agent team to run my X account using Grok 4.5..
+
+tired of running this account all alone since last 5 years.. so. let me walk you through it.
+
+Up top, you&#x27;ve got all your live stats..
+
+followers, views, your best post, engagement and it&#x27;s all pulled live using X MCP straight from my account. 
+
+There&#x27;s even a slider right here.. drag it, and everything recalculates instantly.
+
+But the part I actually love is right below it.. my agent team...
+
+1) First one&#x27;s the Ideator. 
+
+It scans X, Hacker News, GitHub and Reddit, finds what&#x27;s about to pop off, and hands me the angle before anyone else is on it.
+
+2) Right next to it, the Hook Writer 
+
+it takes that idea and turns it into a ready-to-post hook, written in my voice..
+
+3) Then the Planner, running my whole content calendar, so I always know what ships next.
+
+4) The Analyst lines my numbers up against the competitors I&#x27;m quietly tracking, so I know exactly where I stand..
+
+5) And the DM Manager keeps an eye on who&#x27;s talking about me, or mentioning me so nothing slips past..
+
+Down there you&#x27;ve got my top posts.. click any one, it opens right on X. And this is the performance of my recent ones, so I always know what&#x27;s actually working.
+
+Grok 4.5 is amazing.. great work <a href="https://x.com/elonmusk" target="_blank" rel="noopener">@elonmusk</a> .. and yo <a href="https://x.com/grok" target="_blank" rel="noopener">@grok</a> lmk if there&#x27;s anything else worth adding to make my life even more easier..</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 90</span>
+        <span class="stat">💬 11</span>
+        <span class="stat">🔁 9</span>
+        <span class="stat">❤️ 56</span>
+        <span class="stat">🔖 82</span>
+        <span class="stat">👁 11.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/Axel_bitblaze69/status/2077861372109705657" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="vibe" data-cat="vibe" style="--section-color:#ec4899">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🎨 Vibe Coding</h2>
+        <span class="section-count">7</span>
+      </div>
+      <p class="section-desc">Vibe Coding 工具与实践</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2077813650564452850" data-category="vibe" data-score="1609.83" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1657298747049791489/sAIv6DRb_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Randy Lu</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@randyloop</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 01:52</span>
+          <span class="age-badge">13.2h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1610</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我的 Codex 皮肤是这样的</div>
+    <div class="media">
+  <a href="https://x.com/randyloop/status/2077813650564452850" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNXgeCfbYAAOGt-.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/randyloop/status/2077813650564452850" target="_blank" rel="noopener">@randyloop · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">我的 Codex 皮肤是这样的 <a href="https://t.co/7Uidz3dHGr" target="_blank" rel="noopener">https://t.co/7Uidz3dHGr</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 4.3K</span>
+        <span class="stat">💬 326</span>
+        <span class="stat">🔁 307</span>
+        <span class="stat">❤️ 3.2K</span>
+        <span class="stat">🔖 721</span>
+        <span class="stat">👁 286.0K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/randyloop/status/2077813650564452850" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077854613949276319" data-category="vibe" data-score="1257.76" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1900042852438335488/7shAe_LE_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Shengkun</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@shengkun_ye</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 04:35</span>
+          <span class="age-badge">10.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1258</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我们刚把 Higgsfield 干掉了。现在你可以直接从 Claude Code 或 Codex 使用 Seedance 2.0，无需订阅。Higgsfield：$129/月，额度有限。Monid：$0.04/万 token，按量付费。</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/shengkun_ye/status/2077854613949276319">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/shengkun_ye_2077854613949276319.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/shengkun_ye_2077854613949276319.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/shengkun_ye/status/2077854613949276319" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/shengkun_ye/status/2077854613949276319" target="_blank" rel="noopener">@shengkun_ye · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">We just killed Higgsfield.  
+
+You can now use Seedance 2.0 directly from Claude Code or Codex. No subscription required.  
+
+Higgsfield: $129/mo, limited credits.
+Monid: $0.04/10K tokens, pay as you go. <a href="https://t.co/vfy3y1bL6J" target="_blank" rel="noopener">https://t.co/vfy3y1bL6J</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.9K</span>
+        <span class="stat">💬 151</span>
+        <span class="stat">🔁 168</span>
+        <span class="stat">❤️ 2.3K</span>
+        <span class="stat">🔖 4.1K</span>
+        <span class="stat">👁 189.3K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/shengkun_ye/status/2077854613949276319" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077584412351586535" data-category="vibe" data-score="428.82" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1963499609017495553/kuzkS82V_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">木马人</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@cnyzgkc</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/16 10:41</span>
+          <span class="age-badge">28.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">429</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">卧槽，那个 Codex 换肤工具项目开源了
+
+仓库地址见原文链接
+
+用法：仓库地址发给 codex，帮我运行即可
+
+据说已经有人拿去闲鱼挂单，赚了不少了</div>
+    <div class="media">
+  <a href="https://x.com/cnyzgkc/status/2077584412351586535" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HNUPwyHbEAEqHdc.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/cnyzgkc/status/2077584412351586535" target="_blank" rel="noopener">@cnyzgkc · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">卧槽，那个Codex 换肤工具项目开源了
+
+仓库地址：<a href="https://t.co/vgZkNaIzPg" target="_blank" rel="noopener">https://t.co/vgZkNaIzPg</a>
+
+用法：仓库地址发给codex，帮我运行即可
+
+据说已经有人拿去闲鱼挂单，赚了不少了 <a href="https://t.co/Me6cT1BLsu" target="_blank" rel="noopener">https://t.co/Me6cT1BLsu</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.0K</span>
+        <span class="stat">💬 182</span>
+        <span class="stat">🔁 175</span>
+        <span class="stat">❤️ 1.3K</span>
+        <span class="stat">🔖 1.5K</span>
+        <span class="stat">👁 233.0K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/cnyzgkc/status/2077584412351586535" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077921526213746948" data-category="vibe" data-score="397.58" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1998144361754767360/U0TMx3h8_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Command Code</span>
+          
+          <span class="uname">@CommandCodeAI</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 09:01</span>
+          <span class="age-badge">6.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">398</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Kimi K3 对比 GPT-5.6 Sol 对比 Fable 5。三个顶级模型，同样的 /design 提示词。考察维度：节奏、设计感、游戏手感。结果：Kimi K3 的设计感很到位，清楚知道游戏里该加什么，节奏和手感也撑得住。Fable 5 和 GPT-5.6 Sol 都玩得太快，视频没加速。排名（体验、功能与成本）：-&gt; Kimi K3：9.5/10 · $0.030；-&gt; Fable 5：7.5/10 · $0.38；-&gt; GPT-5.6 Sol：7/10 · $0.11</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/CommandCodeAI/status/2077921526213746948">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/CommandCodeAI_2077921526213746948.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/CommandCodeAI_2077921526213746948.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/CommandCodeAI/status/2077921526213746948" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/CommandCodeAI/status/2077921526213746948" target="_blank" rel="noopener">@CommandCodeAI · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Kimi K3 vs GPT-5.6 Sol vs Fable 5
+
+Three top-tier models. Same /design prompt across all.
+
+Parameters reviewed:
+Pace, design sense, gameplay feel
+
+Result:
+Kimi K3 nails the design sense and knows exactly what to add in-game. Pace and gameplay held up well.
+
+Fable 5 and GPT-5.6 Sol both play too fast, video isn&#x27;t sped up.
+
+Ranking (DX, Features &amp; Cost):
+→ Kimi K3: 9.5/10 · $0.030
+→ Fable 5: 7.5/10 · $0.38
+→ GPT-5.6 Sol: 7/10 · $0.11</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 699</span>
+        <span class="stat">💬 26</span>
+        <span class="stat">🔁 56</span>
+        <span class="stat">❤️ 520</span>
+        <span class="stat">🔖 144</span>
+        <span class="stat">👁 54.3K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/CommandCodeAI/status/2077921526213746948" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077797145973809187" data-category="vibe" data-score="327.38" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1926981839568146432/iKnUv9Xw_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Hamza</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@thegenioo</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 00:46</span>
+          <span class="age-badge">14.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">327</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我对 Kimi K3 看走眼了。刚在 Claude Code 里试了一下，它确实达到了 Fable 5 的水平，至少在前端上远胜 GPT-5.6 Sol。它确实很慢、很费 token，但完成任务的能力太强了，我喜欢我看到的 <a href="https://x.com/Kimi_Moonshot" target="_blank" rel="noopener">@Kimi_Moonshot</a></div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/thegenioo/status/2077797145973809187">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/thegenioo_2077797145973809187.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/thegenioo_2077797145973809187.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/thegenioo/status/2077797145973809187" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/thegenioo/status/2077797145973809187" target="_blank" rel="noopener">@thegenioo · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">I was wrong about Kimi K3
+
+Just tried it in Claude Code and it is Fable 5 level for sure
+Far better than GPT-5.6 Sol at least at front-end 
+
+It is really slow and consumes a lot of tokens but it is so good at completing its task, I like what I see here <a href="https://x.com/Kimi_Moonshot" target="_blank" rel="noopener">@Kimi_Moonshot</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 912</span>
+        <span class="stat">💬 42</span>
+        <span class="stat">🔁 30</span>
+        <span class="stat">❤️ 641</span>
+        <span class="stat">🔖 252</span>
+        <span class="stat">👁 190.9K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/thegenioo/status/2077797145973809187" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077860569269576087" data-category="vibe" data-score="150.51" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2008508643868872704/Xk0BZcVF_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Shikhar</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@xikhar</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/17 04:58</span>
+          <span class="age-badge">10.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">151</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">「妈，我们能买 Codex Micro 吗？」「不行，家里有 Codex Micro。」（来看看我的移动 App）</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/xikhar/status/2077860569269576087">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/xikhar_2077860569269576087.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/xikhar_2077860569269576087.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/xikhar/status/2077860569269576087" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/xikhar/status/2077860569269576087" target="_blank" rel="noopener">@xikhar · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">&quot;Mom can we get Codex Micro?&quot;
+&quot;No we have Codex Micro at home&quot;
+
+(meet my mobile app) <a href="https://t.co/sBYcy8QYS3" target="_blank" rel="noopener">https://t.co/sBYcy8QYS3</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 340</span>
+        <span class="stat">💬 25</span>
+        <span class="stat">🔁 9</span>
+        <span class="stat">❤️ 270</span>
+        <span class="stat">🔖 119</span>
+        <span class="stat">👁 40.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/xikhar/status/2077860569269576087" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2077777745531273680" data-category="vibe" data-score="119.94" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2064964402311467008/_jcdm7gE_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">0xCrypto Tied</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@CryptoTied</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/16 23:29</span>
+          <span class="age-badge">15.6h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">120</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">🚨 卧槽！用 Fable 搭出来的“第二大脑”也太强了
+
+Wes Roth 分享了他用 Fable 构建的终极 Second Brain 系统，并感叹“为什么我现在才开始做”。
+
+视频里展示了一个高度可视化的知识图谱：AI 自动把文章、视频、笔记进行整理、链接、更新，形成可查询的 Wiki。他只需要不断喂入内容，AI 负责维护整个知识网络，并支持研究、复盘和内容创作。
+
+核心价值：
+-&gt; 把传统手动整理笔记的方式，变成 AI 驱动的自动知识图谱
+-&gt; 结合 Obsidian + Claude Code + Fable，实现真正可用的第二大脑
+-&gt; 搭建流程被简化到“一个下午就能完成”
+
+对想用 AI 系统化管理知识、提升内容创作和研究效率的人来说，这个演示很有冲击力。</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/CryptoTied/status/2077777745531273680">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/CryptoTied_2077777745531273680.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/CryptoTied_2077777745531273680.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/CryptoTied/status/2077777745531273680" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/CryptoTied/status/2077777745531273680" target="_blank" rel="noopener">@CryptoTied · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">🚨卧槽！用 Fable 搭出来的“第二大脑”也太强了
+
+Wes Roth 分享了他用 Fable 构建的终极 Second Brain 系统，并感叹“为什么我现在才开始做”。
+
+视频里展示了一个高度可视化的知识图谱：AI 自动把文章、视频、笔记进行整理、链接、更新，形成可查询的 Wiki。他只需要不断喂入内容，AI 负责维护整个知识网络，并支持研究、复盘和内容创作。
+
+核心价值： 
+→把传统手动整理笔记的方式，变成 AI 驱动的自动知识图谱 
+→结合 Obsidian + Claude Code + Fable，实现真正可用的第二大脑 
+→搭建流程被简化到“一个下午就能完成”
+
+对想用 AI 系统化管理知识、提升内容创作和研究效率的人来说，这个演示很有冲击力。</div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 353</span>
+        <span class="stat">💬 4</span>
+        <span class="stat">🔁 56</span>
+        <span class="stat">❤️ 209</span>
+        <span class="stat">🔖 266</span>
+        <span class="stat">👁 30.7K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/CryptoTied/status/2077777745531273680" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section class="feed-section" id="world" data-cat="world" style="--section-color:#10b981">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🌍 世界模型</h2>
+        <span class="section-count">1</span>
+      </div>
+      <p class="section-desc">世界模型、机器人与具身智能</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2077750358302921029" data-category="world" data-score="8228.59" style="--card-glow:#10b981">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1957418376328101888/GYV0ueqf_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#10b981"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Eren Chen</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ErenChenAI</span>
+        </div>
+        <div class="time-line">
+          <span class="time">7/16 21:41</span>
+          <span class="age-badge">17.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">8229</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">整场 URKL 机器人格斗里我最爱的瞬间！一记凶狠的踢击把机器人的头都打耷拉了，结果它竟然像没事一样继续打！我直接笑疯了，得把笑声压低 😂😂</div>
+    <div class="media">
+  <div class="video-frame" data-fallback="https://x.com/ErenChenAI/status/2077750358302921029">
+    <video controls preload="metadata" playsinline onerror="handleVideoError(this)">
+      <source src="videos/ErenChenAI_2077750358302921029.mp4" type="video/mp4">
+    </video>
+    <div class="video-fallback" style="display:none">
+      <p>⚠️ 当前环境无法直接播放此视频（可能是 HTTPS 证书过渡期或浏览器缺少 MP4 解码器）。</p>
+      <a href="videos/ErenChenAI_2077750358302921029.mp4" target="_blank" rel="noopener">⬇ 下载/播放 MP4</a>
+      <a href="https://x.com/ErenChenAI/status/2077750358302921029" target="_blank" rel="noopener">▶ 在 X 上观看</a>
+    </div>
+  </div>
+  <div class="media-meta"><a href="https://x.com/ErenChenAI/status/2077750358302921029" target="_blank" rel="noopener">@ErenChenAI · 在 X 上查看原文 →</a></div>
+</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">My favorite moment from the entire URKL Robot Fight!
+
+One brutal kick sent the robot&#x27;s head hanging loose. and it somehow kept fighting like nothing happened!
+
+I completely lost it. Had to lower down the volume of my laugh 😂😂 <a href="https://t.co/QtbHW7UcvS" target="_blank" rel="noopener">https://t.co/QtbHW7UcvS</a></div>
+    </details>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 26.1K</span>
+        <span class="stat">💬 621</span>
+        <span class="stat">🔁 1.7K</span>
+        <span class="stat">❤️ 18.3K</span>
+        <span class="stat">🔖 6.6K</span>
+        <span class="stat">👁 4.2M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ErenChenAI/status/2077750358302921029" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+  </main>
+</div>
+
+<footer class="footer">
+  <p>AI HORIZON · X AI 日报 · 2026-07-17 · 生成于 2026-07-17 22:51 北京时间</p>
+  <p>数据来自公开 X 推文，按热度 × 时效排序。部署于 <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>。</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+
+<script>
+// === Embedded data ===
+const FEED_DATA = [{"id":"2077817060068057493","text":"we did not have our best last 12 months ever, which is mostly my fault, but we are about to have our best 12 months to date. the team is doing amazing work and i think you’ll be very happy with what they’ve got cooking for you.\n\ni am happy about this for many reasons, but mostly because i care about our users winning. AI has to be about giving lots of people more freedom, agency, and wealth. we want to do the right thing, but we do not want to scare people into doing our thing.","author":{"id":"1605","name":"Sam Altman","screenName":"sama","profileImageUrl":"https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg","verified":true},"metrics":{"likes":19904,"retweets":699,"replies":1757,"quotes":317,"views":1523719,"bookmarks":1661},"createdAtISO":"2026-07-16T18:06:05+00:00","createdAtLocal":"2026-07-17 02:06","ageHours":12.988965616111111,"heat":23704.219,"recency":0.3811526564157696,"score":9034.926040111159,"category":"⭐ AI 大佬动态","media":[],"urls":[],"source":"fallback:user:@sama","url":"https://x.com/sama/status/2077817060068057493","textZh":"过去 12 个月我们并非有史以来最好的表现，这主要怪我；但接下来的 12 个月，我们将迎来迄今最好的成绩。团队正在做非常出色的工作，我想你们会对他们正在打磨的东西非常满意。我为此高兴有很多原因，但最主要的是我在乎用户能不能赢。AI 必须是给更多人带来自由、主动权和财富。我们想做对的事，但不想靠吓唬人来让大家用我们的东西。"},{"id":"2077842579232895286","text":"i talk to chatgpt more than i type to it at this point\n\nnew voice model really crossed a threshold","author":{"id":"1605","name":"Sam Altman","screenName":"sama","profileImageUrl":"https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg","verified":true},"metrics":{"likes":9764,"retweets":276,"replies":1491,"quotes":170,"views":577516,"bookmarks":404},"createdAtISO":"2026-07-16T19:47:29+00:00","createdAtLocal":"2026-07-17 03:47","ageHours":11.298965616111111,"heat":11639.016,"recency":0.41452998876382585,"score":4824.721171701989,"category":"⭐ AI 大佬动态","media":[],"urls":[],"source":"fallback:user:@sama","url":"https://x.com/sama/status/2077842579232895286","textZh":"到今天我跟 ChatGPT 说话已经比打字还多了。新的语音模型确实跨过了一道门槛。"},{"id":"2077944609251221853","text":"The best 20 accounts to follow in AI:\n\n@karpathy = LLMs king\n@steipete = built openclaw\n@gregisenberg = startup ideas king\n@rileybrown = vibecode king\n@corbin_braun = cursor king\n@jackfriks = solo apps king\n@levelsio = solo startups king\n@marclou = solo startups king\n@EXM7777 = AI ops + systems king\n@eptwts = AI money twitter king\n@godofprompt = prompt king\n@ai_explorer25 = AI queen\n@AmirMushich= AI ads king\n@0xROAS = AI UGCs king\n@egeberkina = AI images king\n@MengTo= AI landing pages king\n@rryssf = automations king\n@kloss_xyz = systems architecture king\n@emollick = AI science king\n@Hesamation = AI/ML king\n\nfollow them all and learn.","author":{"id":"2009204818376876032","name":"AI_Explorer","screenName":"ai_explorer25","profileImageUrl":"https://pbs.twimg.com/profile_images/2022344365251911680/VTRlBO9__normal.jpg","verified":true},"metrics":{"likes":169,"retweets":30,"replies":11,"quotes":0,"views":13651,"bookmarks":234},"createdAtISO":"2026-07-17T02:32:55+00:00","createdAtLocal":"2026-07-17 10:32","ageHours":4.541743393888889,"heat":248.151,"recency":0.6378698518021101,"score":158.28804159454543,"category":"⭐ AI 大佬动态","media":[],"urls":[],"source":"fallback:feed","url":"https://x.com/ai_explorer25/status/2077944609251221853","textZh":"AI 领域最值得关注的 20 个账号：@karpathy = 大模型之王；@steipete = 打造了 openclaw；@gregisenberg = 创业点子之王；@rileybrown = vibe coding 之王；@corbin_braun = Cursor 之王；@jackfriks = 独立 App 之王；@levelsio = 独立创业之王；@marclou = 独立创业之王；@EXM7777 = AI 运维与系统之王；@eptwts = AI 财经推特之王；@godofprompt = 提示词之王；@ai_explorer25 = AI 女王；@AmirMushich = AI 广告之王；@0xROAS = AI UGC 之王；@egeberberina = AI 图像之王；@MengTo = AI 落地页之王；@rryssf = 自动化之王；@kloss_xyz = 系统架构之王；@emollick = AI 科研之王；@Hesamation = AI/ML 之王。全部关注，学起来。"},{"id":"2077603834453770467","text":"We've reset 5-hour and weekly rate limits for all users.","author":{"id":"2024518793679294464","name":"ClaudeDevs","screenName":"ClaudeDevs","profileImageUrl":"https://pbs.twimg.com/profile_images/2044472418815893504/xf14RxM8_normal.png","verified":true},"metrics":{"likes":34179,"retweets":2412,"replies":3015,"quotes":2739,"views":6457658,"bookmarks":1626},"createdAtISO":"2026-07-16T03:58:48+00:00","createdAtLocal":"2026-07-16 11:58","ageHours":27.110354505,"heat":46968.158,"recency":0.22785301124945162,"score":10701.836233140022,"category":"🧠 LLM","media":[],"urls":[],"source":"fallback:feed","url":"https://x.com/ClaudeDevs/status/2077603834453770467","textZh":"我们已为所有用户重置了 5 小时与每周的速率限制。"},{"id":"2077840176370602179","text":"I asked k3:\n\n\"I want you to push the boundaries of what's possible in web design with the absolute latest in css, webgl, shaders, etc as of July 2026 and create the most impressive, informational single-page experience you can imagine\"\n\nResult:","author":{"id":"15430177","name":"John Lindquist","screenName":"johnlindquist","profileImageUrl":"https://pbs.twimg.com/profile_images/930100383191461893/AAUl7IJ3_normal.jpg","verified":true},"metrics":{"likes":1968,"retweets":67,"replies":88,"quotes":14,"views":535479,"bookmarks":2465},"createdAtISO":"2026-07-16T19:37:57+00:00","createdAtLocal":"2026-07-17 03:37","ageHours":11.457854505,"heat":2681.4790000000003,"recency":0.41114502104763273,"score":1102.4767398937852,"category":"🧠 LLM","media":[],"urls":[],"source":"fallback:feed","url":"https://x.com/johnlindquist/status/2077840176370602179","textZh":"我对 K3 说：「我希望你用 2026 年 7 月最新的 CSS、WebGL、着色器等技术，把网页设计的边界推到极限，做出你能想象到的最惊艳、信息量最大的单页体验。」结果如下："},{"id":"2077830229968683203","text":"Introducing Kimi K3: Open Frontier Intelligence\n\n🔹 2.8 Trillion Parameters, 1 Million Context, Native Multimodal\n🔹 Kimi Delta Attention enables up to 6.3x faster decoding in million-token contexts\n🔹 Attention Residuals deliver ~25% higher training efficiency at <2% additional cost\n🔹 Built for long-horizon agentic coding and self-evolving workflows\n\nKimi K3 is now live on on https://t.co/zrk6zZxZUo, Kimi Work, Kimi Code, and the Kimi API.\nOpen Weights by July 27, 2026.\n\n🔗 API: https://t.co/XCrgjXAqMw\n🔗 Tech blog: https://t.co/YTfiMSNM1f","author":{"id":"1863959670169501696","name":"Kimi.ai","screenName":"Kimi_Moonshot","profileImageUrl":"https://pbs.twimg.com/profile_images/1910294000927645696/QseOV0uF_normal.png","verified":false},"metrics":{"likes":32781,"retweets":4423,"replies":974,"quotes":2245,"views":8382720,"bookmarks":11397},"createdAtISO":"2026-07-16T18:58:25+00:00","createdAtLocal":"2026-07-17 02:58","ageHours":12.116743393888889,"heat":50496.72,"recency":0.39767868204901685,"score":20081.46905739823,"category":"🧠 LLM","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNXu0kobMAAPljb.png","width":3555,"height":1999},{"type":"photo","url":"https://pbs.twimg.com/media/HNXu2GWaYAAwH4w.png","width":3555,"height":2719}],"urls":[],"source":"fallback:feed","url":"https://x.com/Kimi_Moonshot/status/2077830229968683203","textZh":"发布 Kimi K3：开放的前沿智能。\n🔹 2.8 万亿参数，100 万上下文，原生多模态\n🔹 Kimi Delta Attention 让百万 token 上下文的解码速度提升至 6.3 倍\n🔹 Attention Residuals 在额外成本 <2% 下带来约 25% 的训练效率提升\n🔹 面向长程 agentic coding 与自我进化工作流而打造\nKimi K3 现已在 kimi.com、Kimi Work、Kimi Code 及 Kimi API 上线。开源权重将于 2026 年 7 月 27 日放出。"},{"id":"2077770386444341332","text":"Today we're open sourcing Bolt Slides.\n\nNow any agent (Claude Code, Codex, Bolt) can make slides you couldn't even imagine before.\n\nWhat does that mean? Take a look 👇 https://t.co/fhZuUNTMxu","author":{"id":"2279695508","name":"bolt.new","screenName":"boltdotnew","profileImageUrl":"https://pbs.twimg.com/profile_images/2018401342755364864/xVn-9oYv_normal.jpg","verified":true},"metrics":{"likes":994,"retweets":114,"replies":73,"quotes":34,"views":190547,"bookmarks":1282},"createdAtISO":"2026-07-16T15:00:37+00:00","createdAtLocal":"2026-07-16 23:00","ageHours":16.08007672722222,"heat":1449.047,"recency":0.3322248550377791,"score":481.4094295179287,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/ext_tw_video/2077770254441119744/pu/vid/avc1/1280x720/HWl9vHHzbL_RUaWU.mp4?tag=12","width":1920,"height":1080}],"urls":[],"source":"fallback:feed","url":"https://x.com/boltdotnew/status/2077770386444341332","textZh":"今天我们开源了 Bolt Slides。现在任何 agent（Claude Code、Codex、Bolt）都能做出你以前想都不敢想的幻灯片。这意味着什么？看看这个 👇"},{"id":"2077852005129933247","text":"My notes on Kimi K3, plus some thoughts on what we can still learn from the pelican benchmark even while it becomes further detached from how good the models are at the things that matter (like agentic tool calling across longer conversations) https://t.co/F4AicvxAmq","author":{"id":"12497","name":"Simon Willison","screenName":"simonw","profileImageUrl":"https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg","verified":true},"metrics":{"likes":454,"retweets":36,"replies":23,"quotes":6,"views":36185,"bookmarks":186},"createdAtISO":"2026-07-16T20:24:57+00:00","createdAtLocal":"2026-07-17 04:24","ageHours":10.674521171666667,"heat":573.685,"recency":0.42839117139655225,"score":245.76158916263105,"category":"🧠 LLM","media":[],"urls":["https://simonwillison.net/2026/Jul/16/kimi-k3/"],"source":"fallback:user:@simonw","url":"https://x.com/simonw/status/2077852005129933247","textZh":"我对 Kimi K3 的笔记，外加一些关于 pelican 基准的思考——即便它正愈发脱离模型在真正重要的事（比如跨较长对话的 agentic 工具调用）上的真实水平，我们仍能从中学到东西。"},{"id":"2077811074259456149","text":"Gemini Managed Agents with a big release today 🚀\n\n🆓 - Free tier now available via the Gemini API\n🪙 - Set budget guardrails with max_total_tokens\n🕘 - Schedule your agent to run with triggers\n\nGive them a try and let us know your feedback!","author":{"id":"1862257064","name":"Jack Wotherspoon","screenName":"JackWoth98","profileImageUrl":"https://pbs.twimg.com/profile_images/1692568673884446720/RpBy-Tf4_normal.jpg","verified":true},"metrics":{"likes":521,"retweets":47,"replies":15,"quotes":4,"views":33379,"bookmarks":251},"createdAtISO":"2026-07-16T17:42:18+00:00","createdAtLocal":"2026-07-17 01:42","ageHours":13.385354505,"heat":655.879,"recency":0.3740877897595553,"score":245.3563254597074,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2077810613519020032/vid/avc1/1920x1080/TQRKUjf5lkOYyQYH.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"fallback:feed","url":"https://x.com/JackWoth98/status/2077811074259456149","textZh":"Gemini Managed Agents 今天迎来重磅发布 🚀\n🆓 Gemini API 现已提供免费层\n🪙 可用 max_total_tokens 设置预算护栏\n🕘 可用触发器调度你的 agent 定时运行\n试试看，欢迎反馈！"},{"id":"2077763983738646845","text":"OPEN YOUR EYES TO OPEN SOURCE DESIGN\n\nFigma te tiene preso. Penpot te da libertad total.\n\nEs la plataforma de diseño open source que:\n• Habla código real (SVG, CSS, HTML, JSON)\n• Permite colaboración real entre diseñadores y developers\n• Tiene inspect de código integrado\n• Soporta workflows con AI agents\n• Se puede self-hostear (privacidad + control total)\n\nDel prototipo a producción sin perder tiempo traduciendo diseños a código.\n\nEl video te muestra cómo se siente.\n\nSi estás cansado de herramientas cerradas y lock-in, esto es lo que estabas esperando.\n\n¿Ya probaste Penpot o seguís en Figma?\n\nRepoo 👇","author":{"id":"1590594910691917824","name":"Nix0n","screenName":"UnTalNixon_exe","profileImageUrl":"https://pbs.twimg.com/profile_images/2070651118477004800/H6FJAFZJ_normal.jpg","verified":true},"metrics":{"likes":223,"retweets":34,"replies":6,"quotes":1,"views":8356,"bookmarks":258},"createdAtISO":"2026-07-16T14:35:11+00:00","createdAtLocal":"2026-07-16 22:35","ageHours":16.50396561611111,"heat":302.356,"recency":0.3264777679389201,"score":98.71251200294012,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2077763687402590208/vid/avc1/2064x2160/z1dRJtRa64DIezjh.mp4?tag=29","width":2064,"height":2160}],"urls":[],"source":"fallback:feed","url":"https://x.com/UnTalNixon_exe/status/2077763983738646845","textZh":"睁开眼看看开源设计吧。Figma 把你困住了，Penpot 给你完全的自由。它是这样一个开源设计平台：• 直接说真正的代码（SVG、CSS、HTML、JSON）• 让设计师与开发者真正协作 • 内置代码 inspect • 支持 AI agent 工作流 • 可自托管（隐私+完全掌控）。从原型到生产，不再浪费时间把设计翻译成代码。视频让你感受一下。如果你厌倦了封闭工具和锁定，这就是你等的东西。你试过 Penpot 了吗，还在用 Figma？仓库 👇"},{"id":"2077798528701911408","text":"Perplexity Agent API is powerful for investment workflows when used inside LangChain","author":{"id":"759894532649545732","name":"Aravind Srinivas","screenName":"AravSrinivas","profileImageUrl":"https://pbs.twimg.com/profile_images/2028729526822588416/WhtMUI-P_normal.jpg","verified":true},"metrics":{"likes":171,"retweets":13,"replies":14,"quotes":2,"views":24062,"bookmarks":41},"createdAtISO":"2026-07-16T16:52:27+00:00","createdAtLocal":"2026-07-17 00:52","ageHours":14.216187838333333,"heat":228.062,"recency":0.3600977835718625,"score":82.1246207169661,"category":"🤖 AI Agent","media":[],"urls":[],"source":"fallback:user:@AravSrinivas","url":"https://x.com/AravSrinivas/status/2077798528701911408","textZh":"Perplexity Agent API 在 LangChain 中使用时，对投资工作流非常强大。"},{"id":"2077836922076922311","text":"Kimi K3 is now available in June in anonymous mode. \n\nFrontier level AI, in a private workspace for your agent.\n\nTry it: https://t.co/pDrMMBVpSd https://t.co/eZi0Plwr4T","author":{"id":"2045933270823469057","name":"OpenSoftware","screenName":"OpenSoftwareCo","profileImageUrl":"https://pbs.twimg.com/profile_images/2071768035501948928/5tc0Jy69_normal.jpg","verified":true},"metrics":{"likes":101,"retweets":14,"replies":5,"quotes":2,"views":14850,"bookmarks":56},"createdAtISO":"2026-07-16T19:25:01+00:00","createdAtLocal":"2026-07-17 03:25","ageHours":11.673410060555556,"heat":146.35,"recency":0.40664023041128483,"score":59.51179772069153,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2077836637497700352/vid/avc1/3840x2160/nADl5Gcpmc3BMAWp.mp4?tag=29","width":3840,"height":2160}],"urls":["http://www.opensoftware.co/june"],"source":"fallback:feed","url":"https://x.com/OpenSoftwareCo/status/2077836922076922311","textZh":"Kimi K3 现已支持匿名模式。前沿级 AI，在你的私密工作区里为 agent 服务。试试看："},{"id":"2077861372109705657","text":"Today, I built a 5 AI agent team to run my X account using Grok 4.5..\n\ntired of running this account all alone since last 5 years.. so. let me walk you through it.\n\nUp top, you've got all your live stats..\n\nfollowers, views, your best post, engagement and it's all pulled live using X MCP straight from my account. \n\nThere's even a slider right here.. drag it, and everything recalculates instantly.\n\nBut the part I actually love is right below it.. my agent team...\n\n1) First one's the Ideator. \n\nIt scans X, Hacker News, GitHub and Reddit, finds what's about to pop off, and hands me the angle before anyone else is on it.\n\n2) Right next to it, the Hook Writer \n\nit takes that idea and turns it into a ready-to-post hook, written in my voice..\n\n3) Then the Planner, running my whole content calendar, so I always know what ships next.\n\n4) The Analyst lines my numbers up against the competitors I'm quietly tracking, so I know exactly where I stand..\n\n5) And the DM Manager keeps an eye on who's talking about me, or mentioning me so nothing slips past..\n\nDown there you've got my top posts.. click any one, it opens right on X. And this is the performance of my recent ones, so I always know what's actually working.\n\nGrok 4.5 is amazing.. great work @elonmusk .. and yo @grok lmk if there's anything else worth adding to make my life even more easier..","author":{"id":"3168947216","name":"Axel Bitblaze 🪓","screenName":"Axel_bitblaze69","profileImageUrl":"https://pbs.twimg.com/profile_images/1883446587822608384/6eprnWjH_normal.jpg","verified":true},"metrics":{"likes":56,"retweets":9,"replies":11,"quotes":2,"views":11170,"bookmarks":82},"createdAtISO":"2026-07-16T21:02:10+00:00","createdAtLocal":"2026-07-17 05:02","ageHours":10.054243393888889,"heat":90.67,"recency":0.4431091253986245,"score":40.17670439989328,"category":"🤖 AI Agent","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2077861022254424064/vid/avc1/1104x720/kOujNFXlfauGxiTe.mp4?tag=29","width":1104,"height":720}],"urls":[],"source":"fallback:feed","url":"https://x.com/Axel_bitblaze69/status/2077861372109705657","textZh":"今天我用 Grok 4.5 搭了一个 5 人 AI agent 团队来运营我的 X 账号。一个人运营这个账号五年累了，所以我带你看看。顶部是所有实时数据：粉丝、浏览量、最佳帖子、互动，全部通过 X MCP 从我账号实时拉取。这里还有个滑块，拖动一下，所有数据即时重算。但我真正喜欢的是下面的——我的 agent 团队：1）Ideator（点子手）：扫 X、Hacker News、GitHub、Reddit，找出即将爆火的话题，在别人还没反应过来前把角度交给我。2）Hook Writer（钩子写手）：把点子变成可直接发布的钩子，用我的语气写。3）Planner（排期）：跑我的整个内容日历，让我随时知道下一篇发什么。4）Analyst（分析师）：把我的数据和我悄悄追踪的竞品对比，让我清楚自己的位置。5）DM Manager（私信管家）：盯着谁在谈论我、提到我，不漏掉任何事。下面是我的热门帖子，点任一条直接在 X 打开，还有最近帖子的表现，让我随时知道什么真正有效。Grok 4.5 太赞了，干得好 @elonmusk，@grok 如果还有别的能让生活更轻松的，告诉我。"},{"id":"2077813650564452850","text":"我的 Codex 皮肤是这样的 https://t.co/7Uidz3dHGr","author":{"id":"242605694","name":"Randy Lu","screenName":"randyloop","profileImageUrl":"https://pbs.twimg.com/profile_images/1657298747049791489/sAIv6DRb_normal.jpg","verified":true},"metrics":{"likes":3206,"retweets":307,"replies":326,"quotes":70,"views":286039,"bookmarks":721},"createdAtISO":"2026-07-16T17:52:32+00:00","createdAtLocal":"2026-07-17 01:52","ageHours":13.214798949444445,"heat":4269.039,"recency":0.37709525407543387,"score":1609.834346362936,"category":"🎨 Vibe Coding","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNXgeCfbYAAOGt-.jpg","width":1448,"height":1086}],"urls":[],"source":"fallback:feed","url":"https://x.com/randyloop/status/2077813650564452850","textZh":"我的 Codex 皮肤是这样的"},{"id":"2077854613949276319","text":"We just killed Higgsfield.  \n\nYou can now use Seedance 2.0 directly from Claude Code or Codex. No subscription required.  \n\nHiggsfield: $129/mo, limited credits.\nMonid: $0.04/10K tokens, pay as you go. https://t.co/vfy3y1bL6J","author":{"id":"1800418821980950528","name":"Shengkun","screenName":"shengkun_ye","profileImageUrl":"https://pbs.twimg.com/profile_images/1900042852438335488/7shAe_LE_normal.jpg","verified":true},"metrics":{"likes":2308,"retweets":168,"replies":151,"quotes":16,"views":189347,"bookmarks":4144},"createdAtISO":"2026-07-16T20:35:19+00:00","createdAtLocal":"2026-07-17 04:35","ageHours":10.501743393888889,"heat":2908.847,"recency":0.43239168491777885,"score":1257.7612554980265,"category":"🎨 Vibe Coding","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2077854283010330624/vid/avc1/1920x1080/3cWRVMZwvsxLlwqM.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"fallback:feed","url":"https://x.com/shengkun_ye/status/2077854613949276319","textZh":"我们刚把 Higgsfield 干掉了。现在你可以直接从 Claude Code 或 Codex 使用 Seedance 2.0，无需订阅。Higgsfield：$129/月，额度有限。Monid：$0.04/万 token，按量付费。"},{"id":"2077584412351586535","text":"卧槽，那个Codex 换肤工具项目开源了\n\n仓库地址：https://t.co/vgZkNaIzPg\n\n用法：仓库地址发给codex，帮我运行即可\n\n据说已经有人拿去闲鱼挂单，赚了不少了 https://t.co/Me6cT1BLsu","author":{"id":"1866821173755121666","name":"木马人","screenName":"cnyzgkc","profileImageUrl":"https://pbs.twimg.com/profile_images/1963499609017495553/kuzkS82V_normal.jpg","verified":true},"metrics":{"likes":1277,"retweets":175,"replies":182,"quotes":42,"views":232956,"bookmarks":1498},"createdAtISO":"2026-07-16T02:41:38+00:00","createdAtLocal":"2026-07-16 10:41","ageHours":28.39646561611111,"heat":1950.9560000000001,"recency":0.21980156217307956,"score":428.82317653094265,"category":"🎨 Vibe Coding","media":[{"type":"photo","url":"https://pbs.twimg.com/media/HNUPwyHbEAEqHdc.jpg","width":1400,"height":890},{"type":"photo","url":"https://pbs.twimg.com/media/HNUPxz6bUAAxYQV.jpg","width":1400,"height":787},{"type":"photo","url":"https://pbs.twimg.com/media/HNUPzNYbwAABoMe.jpg","width":1400,"height":875},{"type":"photo","url":"https://pbs.twimg.com/media/HNUP0l7bUAAQk0D.jpg","width":1400,"height":787}],"urls":["https://github.com/Fei-Away/Codex-Dream-Skin"],"source":"fallback:feed","url":"https://x.com/cnyzgkc/status/2077584412351586535","textZh":"卧槽，那个 Codex 换肤工具项目开源了\n\n仓库地址见原文链接\n\n用法：仓库地址发给 codex，帮我运行即可\n\n据说已经有人拿去闲鱼挂单，赚了不少了"},{"id":"2077921526213746948","text":"Kimi K3 vs GPT-5.6 Sol vs Fable 5\n\nThree top-tier models. Same /design prompt across all.\n\nParameters reviewed:\nPace, design sense, gameplay feel\n\nResult:\nKimi K3 nails the design sense and knows exactly what to add in-game. Pace and gameplay held up well.\n\nFable 5 and GPT-5.6 Sol both play too fast, video isn't sped up.\n\nRanking (DX, Features & Cost):\n→ Kimi K3: 9.5/10 · $0.030\n→ Fable 5: 7.5/10 · $0.38\n→ GPT-5.6 Sol: 7/10 · $0.11","author":{"id":"1729539607174483968","name":"Command Code","screenName":"CommandCodeAI","profileImageUrl":"https://pbs.twimg.com/profile_images/1998144361754767360/U0TMx3h8_normal.jpg","verified":false},"metrics":{"likes":520,"retweets":56,"replies":26,"quotes":11,"views":54255,"bookmarks":144},"createdAtISO":"2026-07-17T01:01:12+00:00","createdAtLocal":"2026-07-17 09:01","ageHours":6.070354505,"heat":699.255,"recency":0.5685713175995063,"score":397.5763366880428,"category":"🎨 Vibe Coding","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2077921477115236352/vid/avc1/1212x720/XFfYcYdlpkIFrAma.mp4?tag=14","width":3640,"height":2160}],"urls":[],"source":"fallback:feed","url":"https://x.com/CommandCodeAI/status/2077921526213746948","textZh":"Kimi K3 对比 GPT-5.6 Sol 对比 Fable 5。三个顶级模型，同样的 /design 提示词。考察维度：节奏、设计感、游戏手感。结果：Kimi K3 的设计感很到位，清楚知道游戏里该加什么，节奏和手感也撑得住。Fable 5 和 GPT-5.6 Sol 都玩得太快，视频没加速。排名（体验、功能与成本）：-> Kimi K3：9.5/10 · $0.030；-> Fable 5：7.5/10 · $0.38；-> GPT-5.6 Sol：7/10 · $0.11"},{"id":"2077797145973809187","text":"I was wrong about Kimi K3\n\nJust tried it in Claude Code and it is Fable 5 level for sure\nFar better than GPT-5.6 Sol at least at front-end \n\nIt is really slow and consumes a lot of tokens but it is so good at completing its task, I like what I see here @Kimi_Moonshot","author":{"id":"953633711605633024","name":"Hamza","screenName":"thegenioo","profileImageUrl":"https://pbs.twimg.com/profile_images/1926981839568146432/iKnUv9Xw_normal.jpg","verified":true},"metrics":{"likes":641,"retweets":30,"replies":42,"quotes":3,"views":190887,"bookmarks":252},"createdAtISO":"2026-07-16T16:46:57+00:00","createdAtLocal":"2026-07-17 00:46","ageHours":14.307854505,"heat":912.887,"recency":0.35861808217401225,"score":327.3777851815875,"category":"🎨 Vibe Coding","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2077796539196678144/vid/avc1/3436x2160/g1uWMqxjFNbemdag.mp4?tag=29","width":3600,"height":2262}],"urls":[],"source":"fallback:feed","url":"https://x.com/thegenioo/status/2077797145973809187","textZh":"我对 Kimi K3 看走眼了。刚在 Claude Code 里试了一下，它确实达到了 Fable 5 的水平，至少在前端上远胜 GPT-5.6 Sol。它确实很慢、很费 token，但完成任务的能力太强了，我喜欢我看到的 @Kimi_Moonshot"},{"id":"2077860569269576087","text":"\"Mom can we get Codex Micro?\"\n\"No we have Codex Micro at home\"\n\n(meet my mobile app) https://t.co/sBYcy8QYS3","author":{"id":"986205304269484033","name":"Shikhar","screenName":"xikhar","profileImageUrl":"https://pbs.twimg.com/profile_images/2008508643868872704/Xk0BZcVF_normal.jpg","verified":true},"metrics":{"likes":270,"retweets":9,"replies":25,"quotes":5,"views":40159,"bookmarks":119},"createdAtISO":"2026-07-16T20:58:59+00:00","createdAtLocal":"2026-07-17 04:58","ageHours":10.107298949444445,"heat":340.659,"recency":0.44181078703875104,"score":150.5068209018339,"category":"🎨 Vibe Coding","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2077860406106943488/vid/avc1/1620x1080/PpLKmKTYoqhIhj0L.mp4?tag=29","width":1620,"height":1080}],"urls":[],"source":"fallback:feed","url":"https://x.com/xikhar/status/2077860569269576087","textZh":"「妈，我们能买 Codex Micro 吗？」「不行，家里有 Codex Micro。」（来看看我的移动 App）"},{"id":"2077777745531273680","text":"🚨卧槽！用 Fable 搭出来的“第二大脑”也太强了\n\nWes Roth 分享了他用 Fable 构建的终极 Second Brain 系统，并感叹“为什么我现在才开始做”。\n\n视频里展示了一个高度可视化的知识图谱：AI 自动把文章、视频、笔记进行整理、链接、更新，形成可查询的 Wiki。他只需要不断喂入内容，AI 负责维护整个知识网络，并支持研究、复盘和内容创作。\n\n核心价值： \n→把传统手动整理笔记的方式，变成 AI 驱动的自动知识图谱 \n→结合 Obsidian + Claude Code + Fable，实现真正可用的第二大脑 \n→搭建流程被简化到“一个下午就能完成”\n\n对想用 AI 系统化管理知识、提升内容创作和研究效率的人来说，这个演示很有冲击力。","author":{"id":"1834438690850177024","name":"0xCrypto Tied","screenName":"CryptoTied","profileImageUrl":"https://pbs.twimg.com/profile_images/2064964402311467008/_jcdm7gE_normal.jpg","verified":true},"metrics":{"likes":209,"retweets":56,"replies":4,"quotes":7,"views":30719,"bookmarks":266},"createdAtISO":"2026-07-16T15:29:52+00:00","createdAtLocal":"2026-07-16 23:29","ageHours":15.592576727222221,"heat":353.719,"recency":0.3390897099751391,"score":119.94247312269623,"category":"🎨 Vibe Coding","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2077775611494600704/vid/avc1/1920x1080/KUM8eLPouWYQTHBR.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"fallback:feed","url":"https://x.com/CryptoTied/status/2077777745531273680","textZh":"🚨 卧槽！用 Fable 搭出来的“第二大脑”也太强了\n\nWes Roth 分享了他用 Fable 构建的终极 Second Brain 系统，并感叹“为什么我现在才开始做”。\n\n视频里展示了一个高度可视化的知识图谱：AI 自动把文章、视频、笔记进行整理、链接、更新，形成可查询的 Wiki。他只需要不断喂入内容，AI 负责维护整个知识网络，并支持研究、复盘和内容创作。\n\n核心价值：\n-> 把传统手动整理笔记的方式，变成 AI 驱动的自动知识图谱\n-> 结合 Obsidian + Claude Code + Fable，实现真正可用的第二大脑\n-> 搭建流程被简化到“一个下午就能完成”\n\n对想用 AI 系统化管理知识、提升内容创作和研究效率的人来说，这个演示很有冲击力。"},{"id":"2077750358302921029","text":"My favorite moment from the entire URKL Robot Fight!\n\nOne brutal kick sent the robot's head hanging loose. and it somehow kept fighting like nothing happened!\n\nI completely lost it. Had to lower down the volume of my laugh 😂😂 https://t.co/QtbHW7UcvS","author":{"id":"1857862811814113280","name":"Eren Chen","screenName":"ErenChenAI","profileImageUrl":"https://pbs.twimg.com/profile_images/1957418376328101888/GYV0ueqf_normal.jpg","verified":true},"metrics":{"likes":18262,"retweets":1670,"replies":621,"quotes":743,"views":4219921,"bookmarks":6625},"createdAtISO":"2026-07-16T13:41:02+00:00","createdAtLocal":"2026-07-16 21:41","ageHours":17.40646561611111,"heat":26132.421000000002,"recency":0.31488047652432716,"score":8228.589177214335,"category":"🌍 世界模型","media":[{"type":"video","url":"https://video.twimg.com/amplify_video/2077750158368952320/vid/avc1/1920x1080/TgkB6M2_CZkbT6rF.mp4?tag=29","width":1920,"height":1080}],"urls":[],"source":"fallback:feed","url":"https://x.com/ErenChenAI/status/2077750358302921029","textZh":"整场 URKL 机器人格斗里我最爱的瞬间！一记凶狠的踢击把机器人的头都打耷拉了，结果它竟然像没事一样继续打！我直接笑疯了，得把笑声压低 😂😂"}];
+
+// === WebGL neural network background ===
+(function() {
+  const canvas = document.getElementById('neural-canvas');
+  if (!window.THREE || !canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 35;
+
+  const count = window.matchMedia('(pointer: coarse)').matches ? 60 : 120;
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const palette = [new THREE.Color('#8b5cf6'), new THREE.Color('#06b6d4'), new THREE.Color('#ec4899'), new THREE.Color('#f59e0b')];
+
+  for (let i = 0; i < count; i++) {
+    positions[i*3] = (Math.random() - 0.5) * 70;
+    positions[i*3+1] = (Math.random() - 0.5) * 50;
+    positions[i*3+2] = (Math.random() - 0.5) * 30;
+    const c = palette[Math.floor(Math.random() * palette.length)];
+    colors[i*3] = c.r; colors[i*3+1] = c.g; colors[i*3+2] = c.b;
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  const material = new THREE.PointsMaterial({
+    size: 0.35,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending
+  });
+  const points = new THREE.Points(geometry, material);
+  scene.add(points);
+
+  const lineGeo = new THREE.BufferGeometry();
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x4f46e5, transparent: true, opacity: 0.12, blending: THREE.AdditiveBlending });
+  const lines = new THREE.LineSegments(lineGeo, lineMat);
+  scene.add(lines);
+
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  }, { passive: true });
+
+  let frame = 0;
+  function animate() {
+    frame = requestAnimationFrame(animate);
+    const t = performance.now() * 0.0001;
+    camera.position.x += (mouseX * 6 - camera.position.x) * 0.02;
+    camera.position.y += (-mouseY * 4 - camera.position.y) * 0.02;
+    camera.lookAt(0, 0, 0);
+
+    const pos = geometry.attributes.position.array;
+    for (let i = 0; i < count; i++) {
+      const idx = i * 3;
+      pos[idx+1] += Math.sin(t + i) * 0.015;
+      pos[idx] += Math.cos(t * 0.7 + i * 0.1) * 0.01;
+    }
+    geometry.attributes.position.needsUpdate = true;
+    points.rotation.y = t * 0.15;
+
+    const linePos = [];
+    const threshold = 9;
+    for (let i = 0; i < count; i++) {
+      for (let j = i + 1; j < count; j++) {
+        const dx = pos[i*3] - pos[j*3];
+        const dy = pos[i*3+1] - pos[j*3+1];
+        const dz = pos[i*3+2] - pos[j*3+2];
+        const d2 = dx*dx + dy*dy + dz*dz;
+        if (d2 < threshold * threshold) {
+          linePos.push(pos[i*3], pos[i*3+1], pos[i*3+2], pos[j*3], pos[j*3+1], pos[j*3+2]);
+        }
+      }
+    }
+    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+    lines.rotation.y = t * 0.15;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(frame);
+    else animate();
+  });
+})();
+
+// === Video error fallback ===
+function handleVideoError(video) {
+  const frame = video.closest('.video-frame');
+  if (!frame) return;
+  video.style.display = 'none';
+  const fallback = frame.querySelector('.video-fallback');
+  if (fallback) fallback.style.display = 'block';
+}
+
+// === 3D tilt cards ===
+document.querySelectorAll('.tweet-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateZ(20px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+  });
+});
+
+// === Category filtering ===
+const filterButtons = document.querySelectorAll('.nav-pill');
+const sections = document.querySelectorAll('.feed-section');
+const cards = document.querySelectorAll('.tweet-card');
+let activeFilter = 'all';
+
+function setFilter(key) {
+  activeFilter = key;
+  filterButtons.forEach(btn => {
+    const pressed = btn.dataset.filter === key;
+    btn.setAttribute('aria-pressed', String(pressed));
+  });
+
+  const update = () => {
+    sections.forEach(sec => {
+      sec.classList.toggle('hidden', key !== 'all' && sec.dataset.cat !== key);
+    });
+    cards.forEach(card => {
+      const match = key === 'all' || card.dataset.category === key;
+      card.classList.toggle('hidden', !match);
+    });
+  };
+
+  if (document.startViewTransition) {
+    document.startViewTransition(update);
+  } else {
+    update();
+  }
+}
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+});
+
+// === Search ===
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) {
+    setFilter(activeFilter);
+    return;
+  }
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    card.classList.toggle('hidden', !text.includes(q));
+  });
+  sections.forEach(sec => {
+    const visible = sec.querySelectorAll('.tweet-card:not(.hidden)').length > 0;
+    sec.classList.toggle('hidden', !visible);
+  });
+});
+
+// === Back to top ===
+const backTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('visible', window.scrollY > 600);
+}, { passive: true });
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>
