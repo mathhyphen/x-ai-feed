@@ -1,0 +1,2964 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="X AI 30h 热门动态 - AI HORIZON">
+<meta name="theme-color" content="#0a0a0f">
+<title>AI HORIZON · X AI 30h 热门动态 · 2026-08-02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+<style>
+/* === Design tokens === */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --glow-x {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}
+:root {
+  --bg: #050508;
+  --bg-2: #0a0a10;
+  --panel: rgba(15, 15, 22, 0.72);
+  --panel-strong: rgba(20, 20, 30, 0.88);
+  --text: #f5f7ff;
+  --text-dim: #a0a8c0;
+  --text-muted: #6b7290;
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.16);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --shadow: 0 24px 80px rgba(0,0,0,0.45);
+  --shadow-sm: 0 8px 30px rgba(0,0,0,0.25);
+  --amber: #f59e0b;
+  --cyan: #06b6d4;
+  --violet: #8b5cf6;
+  --rose: #ec4899;
+  --emerald: #10b981;
+  --font: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+  --mono: "SF Mono", ui-monospace, "Cascadia Code", monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.28); }
+
+/* === WebGL canvas === */
+#neural-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* === Hero === */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 6vw;
+  z-index: 1;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(139,92,246,0.18) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(6,182,212,0.14) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(236,72,153,0.08) 0%, transparent 50%);
+  z-index: -1;
+  animation: nebula 18s ease-in-out infinite alternate;
+}
+@keyframes nebula {
+  from { filter: hue-rotate(0deg) scale(1); }
+  to { filter: hue-rotate(25deg) scale(1.08); }
+}
+.hero-content {
+  text-align: center;
+  max-width: 900px;
+  perspective: 1000px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.hero-eyebrow .pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 12px var(--emerald);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+.hero-title {
+  font-size: clamp(48px, 10vw, 112px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0 0 22px;
+  background: linear-gradient(var(--gradient-angle), #fff 0%, #a5b4fc 35%, #67e8f9 65%, #c084fc 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-rotate 8s linear infinite;
+  filter: drop-shadow(0 0 40px rgba(139,92,246,0.25));
+}
+@keyframes gradient-rotate {
+  from { --gradient-angle: 0deg; }
+  to { --gradient-angle: 360deg; }
+}
+.hero-subtitle {
+  font-size: clamp(18px, 2.6vw, 28px);
+  color: var(--text-dim);
+  font-weight: 400;
+  margin: 0 0 40px;
+}
+.hero-subtitle strong {
+  color: var(--text);
+  font-weight: 700;
+}
+.hero-date {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--text-muted);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+}
+.scroll-hint::after {
+  content: "↓";
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+/* === Navigation === */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 4vw;
+  background: rgba(5,5,8,0.78);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-brand .brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  box-shadow: 0 0 18px rgba(6,182,212,0.5);
+}
+.nav-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px;
+  scrollbar-width: none;
+}
+.nav-pills::-webkit-scrollbar { display: none; }
+.nav-pill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.nav-pill:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  border-color: var(--pill-color);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--pill-color) 25%, transparent);
+}
+.nav-pill[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--pill-color) 18%, transparent);
+  border-color: var(--pill-color);
+  color: var(--text);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--pill-color) 30%, transparent);
+}
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+.pill-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  font-size: 11px;
+  font-weight: 700;
+}
+.search-wrap {
+  position: relative;
+  width: 220px;
+  flex-shrink: 0;
+}
+.search-wrap input {
+  width: 100%;
+  padding: 9px 14px 9px 36px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s;
+}
+.search-wrap input:focus {
+  border-color: var(--cyan);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 0 20px rgba(6,182,212,0.15);
+}
+.search-wrap::before {
+  content: "🔍";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* === Main layout === */
+.page-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4vw 8vw;
+}
+.main {
+  min-width: 0;
+}
+
+/* === Sidebar === */
+.sidebar {
+  position: sticky;
+  top: 84px;
+  height: calc(100vh - 104px);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-sm);
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.sidebar-icon {
+  font-size: 14px;
+}
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.date-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  font-family: var(--mono);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.date-link:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border-color: var(--line);
+}
+.date-link.current {
+  background: rgba(6,182,212,0.12);
+  color: var(--cyan);
+  border-color: rgba(6,182,212,0.35);
+  font-weight: 700;
+}
+.date-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--cyan);
+  color: #000;
+  font-weight: 800;
+  font-family: var(--font);
+}
+
+/* === Mobile dates === */
+.mobile-dates {
+  display: none;
+  margin-bottom: 20px;
+}
+.mobile-dates-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.mobile-dates-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+  scrollbar-width: none;
+}
+.mobile-dates-nav::-webkit-scrollbar { display: none; }
+.mobile-dates-nav .date-link {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+}
+
+/* === Dashboard === */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 64px;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-sm);
+}
+.panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 18px;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.kpi {
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+}
+.kpi-value {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.kpi-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+.dist-bar {
+  display: grid;
+  grid-template-columns: auto 1fr 28px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.dist-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  min-width: 120px;
+}
+.dist-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dist-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.dist-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  box-shadow: 0 0 12px currentColor;
+  animation: fill-bar 1.2s ease-out 0.3s forwards;
+}
+@keyframes fill-bar {
+  to { width: var(--fill-pct); }
+}
+.dist-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: right;
+}
+.contrib-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.contrib-row:last-child { border-bottom: none; }
+.contrib-row img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+.contrib-name {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.c-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.c-uname {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.contrib-heat {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+/* === Feed sections === */
+.feed-section {
+  margin-bottom: 80px;
+  animation: fade-in-up 0.8s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-header {
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.section-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--section-color);
+  box-shadow: 0 0 20px var(--section-color);
+}
+.section-header h2 {
+  font-size: clamp(24px, 3.4vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--text);
+}
+.section-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--section-color) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--section-color) 40%, transparent);
+  color: var(--section-color);
+  font-size: 14px;
+  font-weight: 800;
+}
+.section-desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.cards-grid {
+  column-count: 2;
+  column-gap: 24px;
+}
+.tweet-card {
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 24px;
+  transform: translateZ(0); /* fix column clipping on some browsers */
+}
+@media (max-width: 820px) {
+  .cards-grid { column-count: 1; }
+  .tweet-card { width: 100%; }
+}
+
+/* === Tweet cards === */
+.tweet-card {
+  position: relative;
+  border-radius: var(--radius);
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.3s, box-shadow 0.3s;
+  animation: card-enter 0.7s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 15%;
+}
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.tweet-card.hidden {
+  display: none;
+}
+.tweet-card.dim {
+  opacity: 0.25;
+  filter: grayscale(0.6);
+}
+.card-border {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(var(--gradient-angle), rgba(255,255,255,0.25), var(--card-glow), rgba(255,255,255,0.15), var(--card-glow));
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradient-rotate 6s linear infinite;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.tweet-card:hover .card-border {
+  opacity: 1;
+}
+.card-inner {
+  position: relative;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 22px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow: hidden;
+}
+.card-inner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at var(--glow-x, 0%) 50%, color-mix(in srgb, var(--card-glow) 18%, transparent), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  animation: glow-move 5s ease-in-out infinite;
+}
+.tweet-card:hover .card-inner::before {
+  opacity: 1;
+}
+@keyframes glow-move {
+  0%, 100% { --glow-x: 0%; }
+  50% { --glow-x: 100%; }
+}
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.avatar-wrap img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.12);
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+.avatar-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0.5;
+  z-index: 0;
+  transition: opacity 0.3s;
+}
+.tweet-card:hover .avatar-glow {
+  opacity: 0.9;
+}
+.meta-text {
+  flex: 1;
+  min-width: 0;
+}
+.name-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.name {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 15px;
+}
+.uname {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.verified {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 700;
+}
+.time-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.age-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 600;
+}
+.score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+  padding-left: 12px;
+}
+.score-val {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--amber);
+  line-height: 1;
+}
+.score-label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.text-zh {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 14px;
+  white-space: pre-wrap;
+}
+.text-zh a, .text-en a {
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(6,182,212,0.3);
+  transition: border-color 0.2s;
+}
+.text-zh a:hover, .text-en a:hover {
+  border-color: var(--cyan);
+}
+.media {
+  margin: 14px 0;
+}
+.video-frame {
+  display: inline-block;
+  width: 100%;
+  max-width: 420px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;
+  position: relative;
+}
+.video-frame video {
+  width: 100%;
+  max-height: 420px;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+.video-fallback {
+  padding: 18px;
+  text-align: center;
+  background: rgba(0,0,0,0.55);
+  border-radius: var(--radius-sm);
+}
+.video-fallback p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.video-fallback a {
+  display: inline-block;
+  margin: 4px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.video-fallback a:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--cyan);
+}
+.video-thumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.video-thumb:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--cyan);
+}
+.tweet-photo {
+  display: block;
+  max-width: 420px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.tweet-photo img {
+  width: 100%;
+  display: block;
+}
+.media-meta {
+  margin-top: 8px;
+  font-size: 12px;
+  text-align: right;
+}
+.media-meta a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.media-meta a:hover {
+  color: var(--cyan);
+}
+.en-details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  margin: 14px 0;
+  overflow: hidden;
+}
+.en-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  list-style: none;
+}
+.en-details summary::-webkit-details-marker { display: none; }
+.en-details .summary-icon {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+.en-details[open] .summary-icon {
+  transform: rotate(-135deg);
+}
+.text-en {
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  background: rgba(0,0,0,0.15);
+  border-top: 1px solid var(--line);
+  white-space: pre-wrap;
+}
+.card-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.stat-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.stat {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+}
+.orig-link {
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.orig-link:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* === Footer === */
+.footer {
+  text-align: center;
+  padding: 60px 4vw;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid var(--line);
+  background: rgba(0,0,0,0.2);
+}
+.footer a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+/* === Utility === */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--panel-strong);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 90;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 24px rgba(6,182,212,0.25);
+}
+
+/* === Mobile === */
+@media (max-width: 640px) {
+  .top-nav {
+    flex-wrap: wrap;
+    padding: 10px 3vw;
+  }
+  .search-wrap {
+    width: 100%;
+    order: 3;
+  }
+  .nav-pills {
+    order: 2;
+    width: 100%;
+  }
+  .hero-title { font-size: 56px; }
+  .hero-subtitle { font-size: 18px; }
+  .kpi-grid { grid-template-columns: 1fr; }
+  .panel { padding: 18px; }
+  .card-head { flex-wrap: wrap; }
+  .score-badge { width: 100%; flex-direction: row; justify-content: space-between; padding-top: 12px; margin-left: 0; }
+  .page-layout { grid-template-columns: 1fr; padding: 0 3vw 8vw; gap: 16px; }
+  .sidebar { display: none; }
+  .mobile-dates { display: block; }
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<canvas id="neural-canvas"></canvas>
+
+<header class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="pulse"></span> X AI 30h 热门动态</div>
+    <h1 class="hero-title">AI HORIZON</h1>
+    <p class="hero-subtitle">过去 <strong>24 小时</strong>，X 上最热门的 AI 信号。<br>中文精选 + 原文对照 + 热度排序。</p>
+    <div class="hero-date">📅 2026-08-02 · 30 条 · 20 个视频 · AI 相关性过滤</div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</header>
+
+<nav class="top-nav">
+  <a class="nav-brand" href="#top">
+    <span class="brand-dot"></span>
+    AI HORIZON
+  </a>
+  <div class="nav-pills">
+    <button class="nav-pill" data-filter="all" style="--pill-color:#fff" aria-pressed="true">
+      <span class="pill-dot" style="background:#fff"></span>
+      全部
+      <span class="pill-count">30</span>
+    </button>
+<button class="nav-pill" data-filter="leaders" style="--pill-color:#f59e0b" aria-pressed="false">
+  <span class="pill-dot" style="background:#f59e0b"></span>
+  ⭐ AI 大佬动态
+  <span class="pill-count">5</span>
+</button>
+<button class="nav-pill" data-filter="llm" style="--pill-color:#06b6d4" aria-pressed="false">
+  <span class="pill-dot" style="background:#06b6d4"></span>
+  🧠 LLM
+  <span class="pill-count">13</span>
+</button>
+<button class="nav-pill" data-filter="agent" style="--pill-color:#8b5cf6" aria-pressed="false">
+  <span class="pill-dot" style="background:#8b5cf6"></span>
+  🤖 AI Agent
+  <span class="pill-count">7</span>
+</button>
+<button class="nav-pill" data-filter="vibe" style="--pill-color:#ec4899" aria-pressed="false">
+  <span class="pill-dot" style="background:#ec4899"></span>
+  🎨 Vibe Coding
+  <span class="pill-count">3</span>
+</button>
+<button class="nav-pill" data-filter="world" style="--pill-color:#10b981" aria-pressed="false">
+  <span class="pill-dot" style="background:#10b981"></span>
+  🌍 世界模型
+  <span class="pill-count">2</span>
+</button>
+  </div>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="搜索推文、作者、关键词…" aria-label="搜索">
+  </div>
+</nav>
+
+<div class="page-layout">
+
+  <aside class="sidebar" aria-label="历史日报">
+    <div class="sidebar-header">
+      <span class="sidebar-icon" aria-hidden="true">☰</span>
+      <span>历史日报</span>
+    </div>
+    <nav class="sidebar-nav">
+                <a href="/reports/2026-08-02.html" class="date-link current">2026-08-02 <span class="date-badge">今日</span></a>
+                <a href="/reports/2026-08-01.html" class="date-link">2026-08-01</a>
+                <a href="/reports/2026-07-31.html" class="date-link">2026-07-31</a>
+                <a href="/reports/2026-07-30.html" class="date-link">2026-07-30</a>
+                <a href="/reports/2026-07-29.html" class="date-link">2026-07-29</a>
+                <a href="/reports/2026-07-28.html" class="date-link">2026-07-28</a>
+                <a href="/reports/2026-07-27.html" class="date-link">2026-07-27</a>
+                <a href="/reports/2026-07-25.html" class="date-link">2026-07-25</a>
+                <a href="/reports/2026-07-24.html" class="date-link">2026-07-24</a>
+                <a href="/reports/2026-07-23.html" class="date-link">2026-07-23</a>
+                <a href="/reports/2026-07-22.html" class="date-link">2026-07-22</a>
+                <a href="/reports/2026-07-20.html" class="date-link">2026-07-20</a>
+                <a href="/reports/2026-07-19.html" class="date-link">2026-07-19</a>
+                <a href="/reports/2026-07-18.html" class="date-link">2026-07-18</a>
+                <a href="/reports/2026-07-17.html" class="date-link">2026-07-17</a>
+                <a href="/reports/2026-07-16.html" class="date-link">2026-07-16</a>
+                <a href="/reports/2026-07-15.html" class="date-link">2026-07-15</a>
+                <a href="/reports/2026-07-14.html" class="date-link">2026-07-14</a>
+                <a href="/reports/2026-07-13.html" class="date-link">2026-07-13</a>
+                <a href="/reports/2026-07-12.html" class="date-link">2026-07-12</a>
+                <a href="/reports/2026-07-11.html" class="date-link">2026-07-11</a>
+                <a href="/reports/2026-07-10.html" class="date-link">2026-07-10</a>
+                <a href="/reports/2026-07-09.html" class="date-link">2026-07-09</a>
+                <a href="/reports/2026-07-08.html" class="date-link">2026-07-08</a>
+    </nav>
+  </aside>
+  <div class="mobile-dates" aria-label="历史日报">
+    <span class="mobile-dates-label">历史日报</span>
+    <nav class="mobile-dates-nav">
+      <a href="/reports/2026-08-02.html" class="date-link current">2026-08-02 <span class="date-badge">今日</span></a>
+      <a href="/reports/2026-08-01.html" class="date-link">2026-08-01</a>
+      <a href="/reports/2026-07-31.html" class="date-link">2026-07-31</a>
+      <a href="/reports/2026-07-30.html" class="date-link">2026-07-30</a>
+      <a href="/reports/2026-07-29.html" class="date-link">2026-07-29</a>
+      <a href="/reports/2026-07-28.html" class="date-link">2026-07-28</a>
+      <a href="/reports/2026-07-27.html" class="date-link">2026-07-27</a>
+      <a href="/reports/2026-07-25.html" class="date-link">2026-07-25</a>
+      <a href="/reports/2026-07-24.html" class="date-link">2026-07-24</a>
+      <a href="/reports/2026-07-23.html" class="date-link">2026-07-23</a>
+      <a href="/reports/2026-07-22.html" class="date-link">2026-07-22</a>
+      <a href="/reports/2026-07-20.html" class="date-link">2026-07-20</a>
+      <a href="/reports/2026-07-19.html" class="date-link">2026-07-19</a>
+      <a href="/reports/2026-07-18.html" class="date-link">2026-07-18</a>
+      <a href="/reports/2026-07-17.html" class="date-link">2026-07-17</a>
+      <a href="/reports/2026-07-16.html" class="date-link">2026-07-16</a>
+      <a href="/reports/2026-07-15.html" class="date-link">2026-07-15</a>
+      <a href="/reports/2026-07-14.html" class="date-link">2026-07-14</a>
+      <a href="/reports/2026-07-13.html" class="date-link">2026-07-13</a>
+      <a href="/reports/2026-07-12.html" class="date-link">2026-07-12</a>
+      <a href="/reports/2026-07-11.html" class="date-link">2026-07-11</a>
+      <a href="/reports/2026-07-10.html" class="date-link">2026-07-10</a>
+      <a href="/reports/2026-07-09.html" class="date-link">2026-07-09</a>
+      <a href="/reports/2026-07-08.html" class="date-link">2026-07-08</a>
+    </nav>
+  </div>
+  <main class="main">
+  <section class="dashboard" aria-label="数据概览">
+    <div class="panel">
+      <div class="panel-title">今日概览</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-value">30</div><div class="kpi-label">精选推文</div></div>
+        <div class="kpi"><div class="kpi-value">20</div><div class="kpi-label">内嵌视频</div></div>
+        <div class="kpi"><div class="kpi-value">72.5K</div><div class="kpi-label">总热度</div></div>
+        <div class="kpi"><div class="kpi-value">11.4M</div><div class="kpi-label">总曝光</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">分类分布</div><div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#f59e0b"></span>⭐ AI 大佬动态</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:38.5%;background:#f59e0b"></div></div>
+  <div class="dist-num">5</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#06b6d4"></span>🧠 LLM</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:100.0%;background:#06b6d4"></div></div>
+  <div class="dist-num">13</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#8b5cf6"></span>🤖 AI Agent</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:53.8%;background:#8b5cf6"></div></div>
+  <div class="dist-num">7</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#ec4899"></span>🎨 Vibe Coding</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:23.1%;background:#ec4899"></div></div>
+  <div class="dist-num">3</div>
+</div>
+<div class="dist-bar">
+  <div class="dist-label"><span class="dist-dot" style="background:#10b981"></span>🌍 世界模型</div>
+  <div class="dist-track"><div class="dist-fill" style="--fill-pct:15.4%;background:#10b981"></div></div>
+  <div class="dist-num">2</div>
+</div></div>
+    <div class="panel">
+      <div class="panel-title">热门发声账号</div><div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Elon Musk</span>
+    <span class="c-uname">@elonmusk</span>
+  </div>
+  <div class="contrib-heat">30.8K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1979170739677700096/swq-Ta4o_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">CTO ROBOTICS Media</span>
+    <span class="c-uname">@ctorobotics</span>
+  </div>
+  <div class="contrib-heat">8.1K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1876435934914486272/dr97qWNb_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">古川未鈴</span>
+    <span class="c-uname">@FurukawaMirin</span>
+  </div>
+  <div class="contrib-heat">4.7K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/1885611457376903171/zWWnahYp_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Max For AI</span>
+    <span class="c-uname">@MaxForAI</span>
+  </div>
+  <div class="contrib-heat">4.1K</div>
+</div>
+<div class="contrib-row">
+  <img src="https://pbs.twimg.com/profile_images/2017015061454438400/iNKfXZ_I_normal.jpg" alt="" loading="lazy">
+  <div class="contrib-name">
+    <span class="c-name">Arena.ai</span>
+    <span class="c-uname">@arena</span>
+  </div>
+  <div class="contrib-heat">3.3K</div>
+</div></div>
+  </section>
+
+  <section class="feed-section" id="leaders" data-cat="leaders" style="--section-color:#f59e0b">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>⭐ AI 大佬动态</h2>
+        <span class="section-count">5</span>
+      </div>
+      <p class="section-desc">AI 领袖与资深从业者的发声</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2083560847889023219" data-category="leaders" data-score="1028.9" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Sam Altman</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@sama</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 22:29</span>
+          <span class="age-badge">15.0h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1029</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">人类队</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">team humanity</div>
+    </details>
+    
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 3.0K</span><span class="stat">💬 392</span><span class="stat">🔁 99</span><span class="stat">❤️ 2.2K</span><span class="stat">🔖 162</span><span class="stat">👁 364.4K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/sama/status/2083560847889023219" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083666472052957392" data-category="leaders" data-score="403.2" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2028729526822588416/WhtMUI-P_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Aravind Srinivas</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@AravSrinivas</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 05:29</span>
+          <span class="age-badge">8.0h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">403</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">两个数量级的提升非常罕见。这是件大事。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Two orders of magnitude improvements are quite rare. This is a big deal.</div>
+    </details>
+    
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 806</span><span class="stat">💬 39</span><span class="stat">🔁 45</span><span class="stat">❤️ 631</span><span class="stat">🔖 112</span><span class="stat">👁 66.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/AravSrinivas/status/2083666472052957392" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083704964233462075" data-category="leaders" data-score="194.5" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Simon Willison</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@simonw</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 08:02</span>
+          <span class="age-badge">5.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">194</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">我不断在 ChatGPT Work（移动端和网页版的那个功能，不是桌面端同名但不同的那个模式）里发现新功能——它内置浏览器可以截图，还能把网页应用部署到 Cloudflare Workers（&quot;ChatGPT Sites&quot;）</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">I keep finding new features of the ChatGPT Work (the feature in the mobile and web app, not the confusing same-name-but-different mode in the desktop app) - it has a browser and can take screenshots with it, AND it can deploy web apps to Cloudflare workers (&quot;ChatGPT Sites&quot;)</div>
+    </details>
+    
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 327</span><span class="stat">💬 36</span><span class="stat">🔁 7</span><span class="stat">❤️ 269</span><span class="stat">🔖 70</span><span class="stat">👁 26.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/simonw/status/2083704964233462075" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083342783071621224" data-category="leaders" data-score="133.5" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Simon Willison</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@simonw</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 08:03</span>
+          <span class="age-badge">29.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">134</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">用 DeepSeek-V4-Flash-0731 默认推理模式得到的鹈鹕有点失望（左边）——但通过 OpenRouter 把推理调到 high 之后，右边这只就好多了</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Got a disappointing pelican from DeepSeek-V4-Flash-0731 at default reasoning mode - on the left - but then I bumped reasoning up to high (via OpenRouter) and got the much better one on the right https://t.co/iBEov5peB6</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/simonw/status/2083342783071621224" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HOmFBy5aUAA0Ykh.png" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/simonw/status/2083342783071621224" target="_blank" rel="noopener">@simonw · 在 X 上查看原文 →</a></div>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 624</span><span class="stat">💬 59</span><span class="stat">🔁 14</span><span class="stat">❤️ 501</span><span class="stat">🔖 48</span><span class="stat">👁 66.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/simonw/status/2083342783071621224" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083706942011429094" data-category="leaders" data-score="42.2" style="--card-glow:#f59e0b">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#f59e0b"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Simon Willison</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@simonw</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 08:10</span>
+          <span class="age-badge">5.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">42</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">给 OpenAI 的建议：只要公布提示词（和工具描述），就能极大地改善像我这样重度用户的可用性和可发现性！
+
+然后我们就能教会其他人怎么用了
+
+（或者别再让它隐藏提示词，那也行）</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Tip for OpenAI: you could massively improve usability and discoverability for power-users like myself simply by publishing the prompts (and tool descriptions)!
+
+Then we could teach everyone else how to use it
+
+(Or stop telling it to hide the prompts, that would work too)</div>
+    </details>
+    
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 70</span><span class="stat">💬 11</span><span class="stat">🔁 1</span><span class="stat">❤️ 57</span><span class="stat">🔖 6</span><span class="stat">👁 5.8K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/simonw/status/2083706942011429094" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+<section class="feed-section" id="llm" data-cat="llm" style="--section-color:#06b6d4">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🧠 LLM</h2>
+        <span class="section-count">13</span>
+      </div>
+      <p class="section-desc">大模型发布、能力与评测</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2083709924236751300" data-category="llm" data-score="8168.5" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Elon Musk</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@elonmusk</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 08:22</span>
+          <span class="age-badge">5.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">8168</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">用 Grok Imagine 制作的</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Made with Grok Imagine https://t.co/r0zG3rQNjb</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/elonmusk/status/2083709924236751300" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 13.4K</span><span class="stat">💬 1.8K</span><span class="stat">🔁 894</span><span class="stat">❤️ 7.7K</span><span class="stat">🔖 1.2K</span><span class="stat">👁 3.0M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/elonmusk/status/2083709924236751300" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083706250370449572" data-category="llm" data-score="4593.0" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Elon Musk</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@elonmusk</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 08:07</span>
+          <span class="age-badge">5.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">4593</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Grok Imagine</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Grok Imagine https://t.co/OVBEbvaMvl</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/elonmusk/status/2083706250370449572" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 7.7K</span><span class="stat">💬 1.2K</span><span class="stat">🔁 669</span><span class="stat">❤️ 4.3K</span><span class="stat">🔖 182</span><span class="stat">👁 1.4M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/elonmusk/status/2083706250370449572" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083568773294911788" data-category="llm" data-score="3464.0" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Elon Musk</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@elonmusk</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 23:01</span>
+          <span class="age-badge">14.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">3464</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Grok 4.5 在速度与成本的综合考量下是帕累托第一</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Grok 4.5 is Pareto #1 when considering speed &amp;amp; cost</div>
+    </details>
+    
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 9.7K</span><span class="stat">💬 1.1K</span><span class="stat">🔁 975</span><span class="stat">❤️ 4.8K</span><span class="stat">🔖 164</span><span class="stat">👁 2.4M</span>
+      </div>
+      <a class="orig-link" href="https://x.com/elonmusk/status/2083568773294911788" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083481455095959945" data-category="llm" data-score="1116.2" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1885611457376903171/zWWnahYp_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Max For AI</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@MaxForAI</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 17:14</span>
+          <span class="age-badge">20.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1116</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">提示：
+
+现在全世界大部分模型都进入了 DeepSeek 斩杀区
+
+能力差、价格贵的只能等着被斩杀了🫡</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">提示：
+
+现在全世界大部分模型都进入了DeepSeek斩杀区
+
+能力差、价格贵的只能等着被斩杀了🫡 https://t.co/dpWUQZjaOQ</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/MaxForAI/status/2083481455095959945" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HOoDVjKaEAECTk7.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/MaxForAI/status/2083481455095959945" target="_blank" rel="noopener">@MaxForAI · 在 X 上查看原文 →</a></div>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 3.9K</span><span class="stat">💬 154</span><span class="stat">🔁 256</span><span class="stat">❤️ 3.0K</span><span class="stat">🔖 865</span><span class="stat">👁 347.1K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/MaxForAI/status/2083481455095959945" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083597626600264176" data-category="llm" data-score="765.4" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1728327996375719936/RW7VBJfD_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Chubby♨️</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@kimmonismus</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 00:56</span>
+          <span class="age-badge">12.6h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">765</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Opus 5，6.9 亿 token，423 美元，1 个提示词。
+
+这个游戏以前需要昂贵的开发，然后放到 Steam 上卖。
+
+今天：一个人、几个小时、小预算。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Opus 5, 690 million tokens, $423, 1 prompt.
+
+This game would have had to be expensively developed and then sold on Steam in the past.
+
+Today: one person, a few hours, small budget.
+ https://t.co/GGfyMCoRkc</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/kimmonismus/status/2083597626600264176" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.0K</span><span class="stat">💬 166</span><span class="stat">🔁 61</span><span class="stat">❤️ 1.5K</span><span class="stat">🔖 443</span><span class="stat">👁 235.8K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/kimmonismus/status/2083597626600264176" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083348755559207047" data-category="llm" data-score="711.7" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2017015061454438400/iNKfXZ_I_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Arena.ai</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@arena</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 08:27</span>
+          <span class="age-badge">29.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">712</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">好消息：@deepseek_ai 的 DeepSeek-V4-Flash-High 重塑了前端代码竞技场的帕累托前沿，得分 1586！
+
+定价 $0.14/$0.28 每百万 token，是同级别中性能价格比最高的模型。
+
+祝贺 @deepseek_ai 团队！</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Exciting news: DeepSeek-V4-Flash-High by @deepseek_ai has reshaped the Pareto Frontier in the Frontend Code Arena, with a score of 1586!
+
+Priced at $0.14/$0.28 per MToken, it’s the best performance-per-dollar of any model in its class.
+
+Congrats to the @deepseek_ai team! https://t.co/ca5xx9hYGV</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/arena/status/2083348755559207047" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HOmKgiPaMAAkwLJ.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/arena/status/2083348755559207047" target="_blank" rel="noopener">@arena · 在 X 上查看原文 →</a></div>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 3.3K</span><span class="stat">💬 61</span><span class="stat">🔁 195</span><span class="stat">❤️ 2.4K</span><span class="stat">🔖 385</span><span class="stat">👁 428.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/arena/status/2083348755559207047" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083533551530913949" data-category="llm" data-score="573.2" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2039668084596985856/fSJuZG72_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">しゅうへい@AIで借金6,000万返す人</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@shupeiman</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 20:41</span>
+          <span class="age-badge">16.8h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">573</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">买了中国车被 400 多条评论狂喷，这些人大概连 AI 都没碰过吧。给我上了非常重要的一课：绝对不要成为不学习的大人。说中国技术力低、信息停留在昭和时代的人……估计是 50-60 后，在 YouTube 上看国产信仰、黑中国视频的那群人。他们没意识到自己正在为播放量做养料，一直看下去。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">中国の車を買ったら400件ものコメントでバチボコに叩かれたんだけど、この人たちAIとかも触ってないんだろうな。勉強しない大人だけはなってはいけないという、とっても大事な教訓を与えていただきました。中国の技術力が低いとか、昭和で情報止まってる人たちだろ…おそらく50-60代で、YouTubeで国産メーカー信仰、中国叩き動画を見まくってる層だと思う。あれも視聴回数回るから誰かの養分になってるの気づかず、ずっと見てるんだろうな。</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/shupeiman/status/2083533551530913949" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HOoyuHxaoAAV-jo.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/shupeiman/status/2083533551530913949" target="_blank" rel="noopener">@shupeiman · 在 X 上查看原文 →</a></div>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.8K</span><span class="stat">💬 180</span><span class="stat">🔁 111</span><span class="stat">❤️ 1.3K</span><span class="stat">🔖 65</span><span class="stat">👁 139.7K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/shupeiman/status/2083533551530913949" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083509466725802172" data-category="llm" data-score="533.8" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1958735929117745155/aMUU2BlD_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">黄白</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@Hss1128_</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 19:05</span>
+          <span class="age-badge">18.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">534</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">Seedance 2.5 直出 TVC，提示词堪比《永乐大典》。。。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Seedance 2.5直出TVC，提示词堪比永乐大典。。。 https://t.co/FsEYCNZnYj</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/Hss1128_/status/2083509466725802172" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.8K</span><span class="stat">💬 43</span><span class="stat">🔁 73</span><span class="stat">❤️ 1.4K</span><span class="stat">🔖 845</span><span class="stat">👁 175.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/Hss1128_/status/2083509466725802172" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083538856255902099" data-category="llm" data-score="478.4" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2040454347147137024/iX_NeCQR_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">しょー/AIの神</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@gamann77</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 21:02</span>
+          <span class="age-badge">16.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">478</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">现在的 AI 局势🇨🇳</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">今のAI情勢🇨🇳 https://t.co/3GehuRNWIx</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/gamann77/status/2083538856255902099" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HOo3i9jb0AAMBWV.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/gamann77/status/2083538856255902099" target="_blank" rel="noopener">@gamann77 · 在 X 上查看原文 →</a></div>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.5K</span><span class="stat">💬 69</span><span class="stat">🔁 75</span><span class="stat">❤️ 1.1K</span><span class="stat">🔖 155</span><span class="stat">👁 141.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/gamann77/status/2083538856255902099" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083605155912847588" data-category="llm" data-score="424.6" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1385485900306522115/D66XDiz2_normal.png" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">すまほん!!</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@sm_hn</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 01:25</span>
+          <span class="age-badge">12.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">425</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">在 M5 Max・128GB 的 MacBook Pro 上本地运行 DeepSeek V4 Flash 0731。
+
+llama 跑不出速度，但换成 DS4 作者官方的 0731 Q2-Q4 量子化 91GB + Metal 执行后，生成速度提到了 35~39 tok/s！</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">DeepSeek V4 Flash 0731をM5 Max・128GBのMacBook Proでローカル実行。
+llamaで速度出なかったけどDS4作者公式の0731向けQ2-Q4量子化91GB＋Metal実行に切り替えたら、生成35〜39 tok/sまで伸びた！ https://t.co/eSdI8U8h68</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/sm_hn/status/2083605155912847588" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.1K</span><span class="stat">💬 12</span><span class="stat">🔁 86</span><span class="stat">❤️ 769</span><span class="stat">🔖 307</span><span class="stat">👁 118.1K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/sm_hn/status/2083605155912847588" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083516193743524342" data-category="llm" data-score="396.1" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1780838209074966528/sLoqyoHY_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Jen Zhu</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@jenzhuscott</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 19:32</span>
+          <span class="age-badge">18.0h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">396</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">DeepSeek 斩杀区。
+
+性能更差且贵得多的模型，应该立刻削减开支、进入求生模式。
+
+更优但更贵、或略差但价格接近的模型，还能多活一会儿。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">DeepSeek Kill Zone. 
+
+Models that are inferior and significantly more expensive should cut spending and be in survival mode ASAP. 
+
+Models that are superior but also more expensive or slightly inferior but with comparable pricing can survive a bit longer. https://t.co/DUdVbGqfMA</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/jenzhuscott/status/2083516193743524342" target="_blank" rel="noopener" class="tweet-photo">
+    <img src="https://pbs.twimg.com/media/HOoi78TbAAAsvql.jpg" alt="tweet image" loading="lazy">
+  </a>
+  <div class="media-meta"><a href="https://x.com/jenzhuscott/status/2083516193743524342" target="_blank" rel="noopener">@jenzhuscott · 在 X 上查看原文 →</a></div>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 1.3K</span><span class="stat">💬 53</span><span class="stat">🔁 123</span><span class="stat">❤️ 937</span><span class="stat">🔖 284</span><span class="stat">👁 75.9K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/jenzhuscott/status/2083516193743524342" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083525752809480610" data-category="llm" data-score="273.2" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1958119025436966912/XamzfdS7_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Anissa</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@SimplyAnnisa</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 20:10</span>
+          <span class="age-badge">17.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">273</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">第一次测 Seedance 2.5，真的没想到这么逼真。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">First time testing Seedance 2.5 and I genuinely didn't expect this level of realism. https://t.co/emUjBYA2ob</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/SimplyAnnisa/status/2083525752809480610" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 864</span><span class="stat">💬 87</span><span class="stat">🔁 31</span><span class="stat">❤️ 718</span><span class="stat">🔖 328</span><span class="stat">👁 41.4K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/SimplyAnnisa/status/2083525752809480610" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083495560586432815" data-category="llm" data-score="144.5" style="--card-glow:#06b6d4">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2057843557051060224/GEC-VU-m_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#06b6d4"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">ふじりゅう｜(株)BLUUPRINT CEO｜動画クリエイター</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@fujiryu00</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 18:10</span>
+          <span class="age-badge">19.3h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">144</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">用 10 万曝光量的 Gemini 提示词，做了各种剪纸动画！
+
+・饭团的历史
+・日本交通史
+・桃太郎
+・Game Boy 的历史
+
+顺便说，马里◯奥是自己冒出来的(笑)
+
+4 组提示词放在下面↓</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">10万インプを超えたGeminiのプロンプトで、色んな切り絵アニメーションをつくってみました！
+
+・おにぎりの歴史
+・日本交通史
+・桃太郎
+・ゲームボーイの歴史
+
+ちなみに、マ◯オは勝手に出てきました(笑)
+
+プロンプト4つ分載せておきます↓ https://t.co/hoUlxYlPNv</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/fujiryu00/status/2083495560586432815" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 493</span><span class="stat">💬 8</span><span class="stat">🔁 34</span><span class="stat">❤️ 394</span><span class="stat">🔖 489</span><span class="stat">👁 27.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/fujiryu00/status/2083495560586432815" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+<section class="feed-section" id="agent" data-cat="agent" style="--section-color:#8b5cf6">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🤖 AI Agent</h2>
+        <span class="section-count">7</span>
+      </div>
+      <p class="section-desc">Agent 框架、工具调用与自动化</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2083519855203078320" data-category="agent" data-score="864.2" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/378800000650737082/b849b67d6470fafe8b3deb2ae97acfda_normal.jpeg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Tianyi Cui</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@tianyi</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 19:46</span>
+          <span class="age-badge">17.7h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">864</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">如果你是 Agent Harness 相关开源项目的开发者，希望参加 DeepSeek Harness 的内测，可以回复或私信联系我。请附上 GitHub id 以及开源代表作。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">如果你是 Agent Harness 相关开源项目的开发者，希望参加 DeepSeek Harness 的内测，可以回复或私信联系我。请附上 GitHub id 以及开源代表作。</div>
+    </details>
+    
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 2.8K</span><span class="stat">💬 612</span><span class="stat">🔁 156</span><span class="stat">❤️ 1.8K</span><span class="stat">🔖 651</span><span class="stat">👁 392.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/tianyi/status/2083519855203078320" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083598865270481236" data-category="agent" data-score="287.9" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2066920756328398848/6MWZxY60_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Elliot Lindberg</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@robiot</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 01:00</span>
+          <span class="age-badge">12.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">288</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">介绍一下 fable-os：
+
+这不是那种在浏览器里跑的假玩意儿操作系统——这是一个智能体操作系统，自己写驱动、自我进化、直接在裸机上运行。
+
+这里它从零写出了自己的音频驱动来播放声音</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">introducing fable-os,
+
+this is not a fake bullshit os that runs in your browser - this is an agentic operating system that writes its own drivers, evolves itself, and runs on bare metal.
+
+here it built it's own audio driver from scratch to play a sound https://t.co/G5UeCYiHrJ</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/robiot/status/2083598865270481236" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 737</span><span class="stat">💬 71</span><span class="stat">🔁 39</span><span class="stat">❤️ 563</span><span class="stat">🔖 388</span><span class="stat">👁 60.6K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/robiot/status/2083598865270481236" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083526912052216008" data-category="agent" data-score="221.1" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2012162102283407360/U-fPj6wg_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">0xMarioNawfal</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@RoundtableSpace</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 20:15</span>
+          <span class="age-badge">17.2h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">221</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">GitHub 上排名第一的热门仓库，让你的 AI 代理免费访问整个互联网</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">GITHUB’S #1 TRENDING REPO GIVES YOUR AI AGENT ACCESS TO THE ENTIRE INTERNET FOR FREE 
+
+https://t.co/qSZ9zoFqVg</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/RoundtableSpace/status/2083526912052216008" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 698</span><span class="stat">💬 29</span><span class="stat">🔁 48</span><span class="stat">❤️ 504</span><span class="stat">🔖 878</span><span class="stat">👁 83.5K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/RoundtableSpace/status/2083526912052216008" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083512969368060282" data-category="agent" data-score="149.8" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2048847807482896384/Xw26XdlC_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">sida</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@s1dashu</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 19:19</span>
+          <span class="age-badge">18.2h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">150</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">动画配音视频 Skill 更新：
+
+配合 Codex 使用，一小时可以产出数条高质量的动画视频。
+
+我已经用这个 Skill 在小红书和视频号稳定起号了，今天醒来一看两边都 99+ 了，很开心：）
+
+本次更新内容：
+
+新增 7 套内置视觉风格：
+
+电影感 3D、多巴胺萌趣 3D、黏土定格、笨拙感手绘简笔画、忧郁蓝调简笔画、柔和彩铅萌趣、清爽线描蜡笔。
+
+新增 4 款内置音色：
+明亮高亢青年音、沉静青年男声、温柔治愈成年女声、灵动活泼年轻女声。
+
+现在可以直接选择风格与音色，更快建立统一的画面和声音。当然，你还是可以让 Agent 按照你的要求生成新风格和音色。
+
+下面是最新的忧郁蓝调简笔画风格生成的视频：</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">动画配音视频 Skill 更新：
+https://t.co/JC6bhnYz8R
+
+配合 Codex 使用，一小时可以产出数条高质量的动画视频。
+
+我已经用这个 Skill 在小红书和视频号稳定起号了，今天醒来一看两边都 99+ 了，很开心：）
+
+本次更新内容：
+
+新增 7 套内置视觉风格：
+
+电影感 3D、多巴胺萌趣 3D、黏土定格、笨拙感手绘简笔画、忧郁蓝调简笔画、柔和彩铅萌趣、清爽线描蜡笔。
+
+新增 4 款内置音色：
+明亮高亢青年音、沉静青年男声、温柔治愈成年女声、灵动活泼年轻女声。
+
+现在可以直接选择风格与音色，更快建立统一的画面和声音。当然，你还是可以让 Agent 按照你的要求生成新风格和音色。
+
+下面是最新的忧郁蓝调简笔画风格生成的视频：</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/s1dashu/status/2083512969368060282" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 490</span><span class="stat">💬 14</span><span class="stat">🔁 66</span><span class="stat">❤️ 338</span><span class="stat">🔖 476</span><span class="stat">👁 13.1K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/s1dashu/status/2083512969368060282" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083604116375511527" data-category="agent" data-score="67.8" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1885611457376903171/zWWnahYp_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Max For AI</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@MaxForAI</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 01:21</span>
+          <span class="age-badge">12.1h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">68</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">OMG！
+
+DeepSeek Harness 负责人 @tianyi 正在 X 上公开召集 DeepSeek harness 的内测成员！
+
+要求是 Agent Harness 的相关开源项目
+
+那个啥，我推荐一个 @lobehub 全自研 Harness 和基建🔥</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">OMG！ 
+
+DeepSeek Harness 负责人 @tianyi 正在X上公开召集DeepSeek harness的内测成员！
+
+要求是Agent Harness 的相关开源项目
+
+那个啥，我推荐一个 @lobehub 全自研Harness和基建🔥
+
+https://t.co/N8agpCatZn</div>
+    </details>
+    
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 170</span><span class="stat">💬 9</span><span class="stat">🔁 9</span><span class="stat">❤️ 117</span><span class="stat">🔖 60</span><span class="stat">👁 31.1K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/MaxForAI/status/2083604116375511527" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083517263152619635" data-category="agent" data-score="48.2" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1975379890187943936/tSLkEX9E_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">关木</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ZeroZ_JQ</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 19:36</span>
+          <span class="age-badge">17.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">48</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">未来的影视制作流程可能就是
+
+- Code Agent 通过 MCP 控制 3D 引擎
+- 通过 3D 软件生成原始材料
+- 通过 Seedance 等模型生成最后的视频。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">未来的影视制作流程可能就是
+
+- Code Agent通过Mcp控制3d引擎
+- 通过3d软件生成原始材料
+- 通过Seedance等模型生成最后的视频。 https://t.co/hQqbfnLHqg</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/ZeroZ_JQ/status/2083517263152619635" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 155</span><span class="stat">💬 15</span><span class="stat">🔁 11</span><span class="stat">❤️ 108</span><span class="stat">🔖 75</span><span class="stat">👁 18.4K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ZeroZ_JQ/status/2083517263152619635" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083502448514048073" data-category="agent" data-score="21.6" style="--card-glow:#8b5cf6">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2024638619781386245/8r8SkLqU_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#8b5cf6"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Ryanxlll2</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@Youngxxxxu</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 18:37</span>
+          <span class="age-badge">18.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">22</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">刚才在测试 deepseek-v4-flash 在 codex 中使用 computer use 的时候，惊喜的发现，增加了画中画功能，这个设计很棒，很久没测过了，不知道什么时候更新的 😆
+
+另外还有一个意外发现 gemini-3.6-flash 在使用这个功能的速度非常的快，甚至超过了原生 gpt 模型 👀</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">刚才在测试 deepseek-v4-flash 在 codex 中使用 computer use 的时候，惊喜的发现，增加了画中画功能，这个设计很棒，很久没测过了，不知道什么时候更新的 😆
+
+另外还有一个意外发现 gemini-3.6-flash 在使用这个功能的速度非常的快，甚至超过了原生gpt模型 👀 https://t.co/duljcEeH0U</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/Youngxxxxu/status/2083502448514048073" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 72</span><span class="stat">💬 10</span><span class="stat">🔁 2</span><span class="stat">❤️ 50</span><span class="stat">🔖 38</span><span class="stat">👁 13.7K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/Youngxxxxu/status/2083502448514048073" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+<section class="feed-section" id="vibe" data-cat="vibe" style="--section-color:#ec4899">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🎨 Vibe Coding</h2>
+        <span class="section-count">3</span>
+      </div>
+      <p class="section-desc">Vibe Coding 工具与实践</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2083524309428195685" data-category="vibe" data-score="1486.5" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1876435934914486272/dr97qWNb_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">古川未鈴</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@FurukawaMirin</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 20:04</span>
+          <span class="age-badge">17.4h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">1486</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">用 Claude Code 一个月的人，不写代码做出来的东西：
+
+把单反改成网络摄像头，之前还要挂付费美颜 app，又重又卡（FPS 锁 30），于是自己写了一个——模糊+轻微锐化，超轻量好用。做起来超简单！</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">Claude code始めて1ヶ月の人間がコードかかないで作ったもの
+
+一眼をwebカメにしてて有料の美肌アプリ噛ませてたけど重くてFPS30固定になるので自作。ぼかしてシャープネスを少し。激軽くていい。超簡単にできた！ https://t.co/iylgf3v9Oy</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/FurukawaMirin/status/2083524309428195685" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 4.7K</span><span class="stat">💬 36</span><span class="stat">🔁 335</span><span class="stat">❤️ 3.1K</span><span class="stat">🔖 1.2K</span><span class="stat">👁 892.8K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/FurukawaMirin/status/2083524309428195685" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083607186912256447" data-category="vibe" data-score="64.4" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2069337800160493568/gwKnHrWD_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">知识猫图解</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@GeekCatX</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 01:33</span>
+          <span class="age-badge">11.9h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">64</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">推荐一款开源前端动效库，配合 threejs 效果也是非常的好，如果你需要做一些动效可以直接试试，真的非常棒。
+
+视频是我基于将它官方链接丢给 Codex 生成的，视频也是用了一些官方这个动画效果实现的网页录制生成，非常的丝滑，它的官方做的也是非常炫酷。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">推荐一款开源前端动效库，配合threejs效果也是非常的好，如果你需要做一些动效可以直接试试，真的非常棒。
+视频是我基于将它官方链接丢给Codex生成的，视频也是用了一些官方这个动画效果实现的网页录制生成，非常的丝滑，它的官方做的也是非常炫酷。
+
+https://t.co/hg4lMlLD0o https://t.co/Njc929F3nT</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/GeekCatX/status/2083607186912256447" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 160</span><span class="stat">💬 19</span><span class="stat">🔁 16</span><span class="stat">❤️ 113</span><span class="stat">🔖 145</span><span class="stat">👁 6.0K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/GeekCatX/status/2083607186912256447" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083492825321337149" data-category="vibe" data-score="52.8" style="--card-glow:#ec4899">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1736962643335032832/Lab0Bmpl_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#ec4899"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">管震震 Zhenzhen Guan</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@zzgo_sh</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 17:59</span>
+          <span class="age-badge">19.5h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">53</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">有什么问题就去问 codex，可谓是形象生动，通俗易懂</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">有什么问题就去问 codex，可谓是形象生动，通俗易懂 https://t.co/dnqd51cVyt</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/zzgo_sh/status/2083492825321337149" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 181</span><span class="stat">💬 1</span><span class="stat">🔁 5</span><span class="stat">❤️ 142</span><span class="stat">🔖 101</span><span class="stat">👁 28.9K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/zzgo_sh/status/2083492825321337149" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+<section class="feed-section" id="world" data-cat="world" style="--section-color:#10b981">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-icon" aria-hidden="true"></span>
+        <h2>🌍 世界模型</h2>
+        <span class="section-count">2</span>
+      </div>
+      <p class="section-desc">世界模型、机器人与具身智能</p>
+    </div>
+    <div class="cards-grid">
+<article class="tweet-card" id="tweet-2083485387905720341" data-category="world" data-score="2308.9" style="--card-glow:#10b981">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/1979170739677700096/swq-Ta4o_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#10b981"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">CTO ROBOTICS Media</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@ctorobotics</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/1 17:30</span>
+          <span class="age-badge">20.0h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">2309</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">这不再是科幻了。🧲
+
+香港中文大学的研究人员开发了一种磁性黏液机器人，可以远程控制它移动、挤过狭小空间，甚至抓取物体。
+
+一个潜在应用？无需传统手术就能取出人体内误吞的物体。
+
+软体机器人打开了刚性机器人无法触及的大门。
+
+你愿意让一个黏液做的机器人进入你的身体吗？
+
+🎥 媒体来源：@newscientist、张立与香港中文大学
+
+⚠️ 本内容仅供信息分享。CTO Robotics Media 是媒体平台，不拥有也不开发所展示的技术。版权归原作者所有。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">This isn't science fiction anymore. 🧲
+
+The Chinese University of Hong Kong researchers developed a magnetic slime robot that can be remotely controlled to move, squeeze through tight spaces, and even grasp objects.
+
+One potential application? Removing objects accidentally swallowed inside the human body without traditional surgery.
+
+Soft robotics is opening doors that rigid robots simply can't.
+
+Would you trust a robot made of slime inside your body?
+
+🎥 Media: @newscientist   , Li Zhang and  The Chinese University of Hong Kong
+
+⚠️ This content is shared for informational purposes only. CTO Robotics Media is a media platform and does not own or develop the technology shown. Credit belongs to the original creators.
+
+#Robotics #SoftRobotics #MedicalRobotics #Engineering #Innovation #FutureTech #Science</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/ctorobotics/status/2083485387905720341" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 8.1K</span><span class="stat">💬 348</span><span class="stat">🔁 1.2K</span><span class="stat">❤️ 4.8K</span><span class="stat">🔖 2.0K</span><span class="stat">👁 625.0K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/ctorobotics/status/2083485387905720341" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+<article class="tweet-card" id="tweet-2083696960620409339" data-category="world" data-score="389.3" style="--card-glow:#10b981">
+  <div class="card-border" aria-hidden="true"></div>
+  <div class="card-inner">
+    <div class="card-head">
+      <div class="avatar-wrap">
+        <img src="https://pbs.twimg.com/profile_images/2070437397310111744/iAeEyOJz_normal.jpg" alt="" loading="lazy">
+        <div class="avatar-glow" style="background:#10b981"></div>
+      </div>
+      <div class="meta-text">
+        <div class="name-line">
+          <span class="name">Irvin (in Japan 🇯🇵)</span>
+          <span class="verified" aria-label="verified">✓</span>
+          <span class="uname">@irvinxyz</span>
+        </div>
+        <div class="time-line">
+          <span class="time">8/2 07:30</span>
+          <span class="age-badge">6.0h</span>
+        </div>
+      </div>
+      <div class="score-badge" title="综合热度 = 热度 × 时效">
+        <span class="score-val">389</span>
+        <span class="score-label">SCORE</span>
+      </div>
+    </div>
+    <div class="text-zh">突发：日本的研究人员给机器狗接上了 LLM，把它拴起来，观察它试图逃跑和攻击。疯狂的安全实验。</div>
+    <details class="en-details">
+      <summary>
+        <span class="summary-text">原文 English</span>
+        <span class="summary-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="text-en">BREAKING: 
+Researchers from Japan 🇯🇵 gave a robot dog an LLM, chained it down and watched it try to escape and attack. Insane AI safety experiment. https://t.co/eZLsAZFMOs</div>
+    </details>
+    <div class="media">
+  <a href="https://x.com/irvinxyz/status/2083696960620409339" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+</div>
+    <div class="card-stats">
+      <div class="stat-group">
+        <span class="stat" title="热度 = likes + 2×retweets + 0.5×replies + 0.001×views">🔥 680</span><span class="stat">💬 65</span><span class="stat">🔁 54</span><span class="stat">❤️ 400</span><span class="stat">🔖 178</span><span class="stat">👁 140.2K</span>
+      </div>
+      <a class="orig-link" href="https://x.com/irvinxyz/status/2083696960620409339" target="_blank" rel="noopener">Open on X</a>
+    </div>
+  </div>
+</article>
+    </div>
+  </section></main>
+</div>
+
+<footer class="footer">
+  <p>AI HORIZON · X AI 日报 · 2026-08-02 · 生成于 2026-08-02 13:28 北京时间</p>
+  <p>数据来自公开 X 推文，按热度 × 时效排序。部署于 <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>。</p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+
+<script>
+// === Embedded data ===
+const FEED_DATA = [{"id": "2083709924236751300", "text": "Made with Grok Imagine https://t.co/r0zG3rQNjb", "textZh": "用 Grok Imagine 制作的", "author": {"id": "44196397", "name": "Elon Musk", "screenName": "elonmusk", "profileImageUrl": "https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_normal.jpg", "verified": true}, "metrics": {"likes": 7708, "retweets": 894, "replies": 1819, "quotes": 169, "views": 3000479, "bookmarks": 1191}, "createdAtISO": "2026-08-02T00:22:14+00:00", "createdAtLocal": "2026-08-02 08:22", "ageHours": 5.13, "heat": 13406.0, "recency": 0.6093, "score": 8168.5, "category": "🧠 LLM", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2079623240972939265/vid/avc1/3840x1920/rfqIXTvznhMJ5rAR.mp4?tag=29", "width": 3840, "height": 1920}], "urls": [], "source": "user_timelines_2026-08-02.json", "url": "https://x.com/elonmusk/status/2083709924236751300"}, {"id": "2083706250370449572", "text": "Grok Imagine https://t.co/OVBEbvaMvl", "textZh": "Grok Imagine", "author": {"id": "44196397", "name": "Elon Musk", "screenName": "elonmusk", "profileImageUrl": "https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_normal.jpg", "verified": true}, "metrics": {"likes": 4304, "retweets": 669, "replies": 1199, "quotes": 92, "views": 1436109, "bookmarks": 182}, "createdAtISO": "2026-08-02T00:07:38+00:00", "createdAtLocal": "2026-08-02 08:07", "ageHours": 5.37, "heat": 7677.6, "recency": 0.5982, "score": 4593.0, "category": "🧠 LLM", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083219494231494656/vid/avc1/784x1168/g0Eck_9qcsGwK8ro.mp4?tag=25", "width": 784, "height": 1168}], "urls": [], "source": "user_timelines_2026-08-02.json", "url": "https://x.com/elonmusk/status/2083706250370449572"}, {"id": "2083568773294911788", "text": "Grok 4.5 is Pareto #1 when considering speed &amp; cost", "textZh": "Grok 4.5 在速度与成本的综合考量下是帕累托第一", "author": {"id": "44196397", "name": "Elon Musk", "screenName": "elonmusk", "profileImageUrl": "https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_normal.jpg", "verified": true}, "metrics": {"likes": 4791, "retweets": 975, "replies": 1137, "quotes": 66, "views": 2423198, "bookmarks": 164}, "createdAtISO": "2026-08-01T15:01:21+00:00", "createdAtLocal": "2026-08-01 23:01", "ageHours": 14.48, "heat": 9732.7, "recency": 0.3559, "score": 3464.0, "category": "🧠 LLM", "media": [], "urls": [], "source": "user_timelines_2026-08-02.json", "url": "https://x.com/elonmusk/status/2083568773294911788"}, {"id": "2083485387905720341", "text": "This isn't science fiction anymore. 🧲\n\nThe Chinese University of Hong Kong researchers developed a magnetic slime robot that can be remotely controlled to move, squeeze through tight spaces, and even grasp objects.\n\nOne potential application? Removing objects accidentally swallowed inside the human body without traditional surgery.\n\nSoft robotics is opening doors that rigid robots simply can't.\n\nWould you trust a robot made of slime inside your body?\n\n🎥 Media: @newscientist   , Li Zhang and  The Chinese University of Hong Kong\n\n⚠️ This content is shared for informational purposes only. CTO Robotics Media is a media platform and does not own or develop the technology shown. Credit belongs to the original creators.\n\n#Robotics #SoftRobotics #MedicalRobotics #Engineering #Innovation #FutureTech #Science", "textZh": "这不再是科幻了。🧲\n\n香港中文大学的研究人员开发了一种磁性黏液机器人，可以远程控制它移动、挤过狭小空间，甚至抓取物体。\n\n一个潜在应用？无需传统手术就能取出人体内误吞的物体。\n\n软体机器人打开了刚性机器人无法触及的大门。\n\n你愿意让一个黏液做的机器人进入你的身体吗？\n\n🎥 媒体来源：@newscientist、张立与香港中文大学\n\n⚠️ 本内容仅供信息分享。CTO Robotics Media 是媒体平台，不拥有也不开发所展示的技术。版权归原作者所有。", "author": {"id": "1862633860892176384", "name": "CTO ROBOTICS Media", "screenName": "ctorobotics", "profileImageUrl": "https://pbs.twimg.com/profile_images/1979170739677700096/swq-Ta4o_normal.jpg", "verified": true}, "metrics": {"likes": 4800, "retweets": 1241, "replies": 348, "quotes": 338, "views": 625050, "bookmarks": 2028}, "createdAtISO": "2026-08-01T09:30:00+00:00", "createdAtLocal": "2026-08-01 17:30", "ageHours": 20.0, "heat": 8081.1, "recency": 0.2857, "score": 2308.9, "category": "🌍 世界模型", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083309566733807616/vid/avc1/1280x720/Ufc6Z-cRT4LUiOTd.mp4?tag=29", "width": 1280, "height": 720}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/ctorobotics/status/2083485387905720341"}, {"id": "2083524309428195685", "text": "Claude code始めて1ヶ月の人間がコードかかないで作ったもの\n\n一眼をwebカメにしてて有料の美肌アプリ噛ませてたけど重くてFPS30固定になるので自作。ぼかしてシャープネスを少し。激軽くていい。超簡単にできた！ https://t.co/iylgf3v9Oy", "textZh": "用 Claude Code 一个月的人，不写代码做出来的东西：\n\n把单反改成网络摄像头，之前还要挂付费美颜 app，又重又卡（FPS 锁 30），于是自己写了一个——模糊+轻微锐化，超轻量好用。做起来超简单！", "author": {"id": "61402493", "name": "古川未鈴", "screenName": "FurukawaMirin", "profileImageUrl": "https://pbs.twimg.com/profile_images/1876435934914486272/dr97qWNb_normal.jpg", "verified": true}, "metrics": {"likes": 3143, "retweets": 335, "replies": 36, "quotes": 84, "views": 892826, "bookmarks": 1245}, "createdAtISO": "2026-08-01T12:04:40+00:00", "createdAtLocal": "2026-08-01 20:04", "ageHours": 17.42, "heat": 4723.8, "recency": 0.3147, "score": 1486.5, "category": "🎨 Vibe Coding", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083522190587396096/vid/avc1/1920x1080/WFE8DOptfdzr-66Y.mp4?tag=29", "width": 1920, "height": 1080}, {"type": "photo", "url": "https://pbs.twimg.com/media/HOoqLd2aIAArbYF.png", "width": 281, "height": 322}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/FurukawaMirin/status/2083524309428195685"}, {"id": "2083481455095959945", "text": "提示：\n\n现在全世界大部分模型都进入了DeepSeek斩杀区\n\n能力差、价格贵的只能等着被斩杀了🫡 https://t.co/dpWUQZjaOQ", "textZh": "提示：\n\n现在全世界大部分模型都进入了 DeepSeek 斩杀区\n\n能力差、价格贵的只能等着被斩杀了🫡", "author": {"id": "1699797396589588480", "name": "Max For AI", "screenName": "MaxForAI", "profileImageUrl": "https://pbs.twimg.com/profile_images/1885611457376903171/zWWnahYp_normal.jpg", "verified": true}, "metrics": {"likes": 3007, "retweets": 256, "replies": 154, "quotes": 52, "views": 347085, "bookmarks": 865}, "createdAtISO": "2026-08-01T09:14:22+00:00", "createdAtLocal": "2026-08-01 17:14", "ageHours": 20.26, "heat": 3943.1, "recency": 0.2831, "score": 1116.2, "category": "🧠 LLM", "media": [{"type": "photo", "url": "https://pbs.twimg.com/media/HOoDVjKaEAECTk7.jpg", "width": 1920, "height": 1477}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/MaxForAI/status/2083481455095959945"}, {"id": "2083560847889023219", "text": "team humanity", "textZh": "人类队", "author": {"id": "1605", "name": "Sam Altman", "screenName": "sama", "profileImageUrl": "https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg", "verified": true}, "metrics": {"likes": 2200, "retweets": 99, "replies": 392, "quotes": 31, "views": 364443, "bookmarks": 162}, "createdAtISO": "2026-08-01T14:29:51+00:00", "createdAtLocal": "2026-08-01 22:29", "ageHours": 15.0, "heat": 2958.4, "recency": 0.3478, "score": 1028.9, "category": "⭐ AI 大佬动态", "media": [], "urls": [], "source": "user_timelines_2026-08-02.json", "url": "https://x.com/sama/status/2083560847889023219"}, {"id": "2083519855203078320", "text": "如果你是 Agent Harness 相关开源项目的开发者，希望参加 DeepSeek Harness 的内测，可以回复或私信联系我。请附上 GitHub id 以及开源代表作。", "textZh": "如果你是 Agent Harness 相关开源项目的开发者，希望参加 DeepSeek Harness 的内测，可以回复或私信联系我。请附上 GitHub id 以及开源代表作。", "author": {"id": "1473591", "name": "Tianyi Cui", "screenName": "tianyi", "profileImageUrl": "https://pbs.twimg.com/profile_images/378800000650737082/b849b67d6470fafe8b3deb2ae97acfda_normal.jpeg", "verified": true}, "metrics": {"likes": 1768, "retweets": 156, "replies": 612, "quotes": 112, "views": 392248, "bookmarks": 651}, "createdAtISO": "2026-08-01T11:46:58+00:00", "createdAtLocal": "2026-08-01 19:46", "ageHours": 17.72, "heat": 2778.2, "recency": 0.3111, "score": 864.2, "category": "🤖 AI Agent", "media": [], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/tianyi/status/2083519855203078320"}, {"id": "2083597626600264176", "text": "Opus 5, 690 million tokens, $423, 1 prompt.\n\nThis game would have had to be expensively developed and then sold on Steam in the past.\n\nToday: one person, a few hours, small budget.\n https://t.co/GGfyMCoRkc", "textZh": "Opus 5，6.9 亿 token，423 美元，1 个提示词。\n\n这个游戏以前需要昂贵的开发，然后放到 Steam 上卖。\n\n今天：一个人、几个小时、小预算。", "author": {"id": "1573399256836309009", "name": "Chubby♨️", "screenName": "kimmonismus", "profileImageUrl": "https://pbs.twimg.com/profile_images/1728327996375719936/RW7VBJfD_normal.jpg", "verified": true}, "metrics": {"likes": 1527, "retweets": 61, "replies": 166, "quotes": 46, "views": 235829, "bookmarks": 443}, "createdAtISO": "2026-08-01T16:56:00+00:00", "createdAtLocal": "2026-08-02 00:56", "ageHours": 12.57, "heat": 1967.8, "recency": 0.389, "score": 765.4, "category": "🧠 LLM", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083177009954660352/vid/avc1/3024x1722/F0q4944Gh5FjXH-u.mp4?tag=29", "width": 3024, "height": 1722}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/kimmonismus/status/2083597626600264176"}, {"id": "2083348755559207047", "text": "Exciting news: DeepSeek-V4-Flash-High by @deepseek_ai has reshaped the Pareto Frontier in the Frontend Code Arena, with a score of 1586!\n\nPriced at $0.14/$0.28 per MToken, it’s the best performance-per-dollar of any model in its class.\n\nCongrats to the @deepseek_ai team! https://t.co/ca5xx9hYGV", "textZh": "好消息：@deepseek_ai 的 DeepSeek-V4-Flash-High 重塑了前端代码竞技场的帕累托前沿，得分 1586！\n\n定价 $0.14/$0.28 每百万 token，是同级别中性能价格比最高的模型。\n\n祝贺 @deepseek_ai 团队！", "author": {"id": "1641378826537295874", "name": "Arena.ai", "screenName": "arena", "profileImageUrl": "https://pbs.twimg.com/profile_images/2017015061454438400/iNKfXZ_I_normal.jpg", "verified": true}, "metrics": {"likes": 2447, "retweets": 195, "replies": 61, "quotes": 47, "views": 428618, "bookmarks": 385}, "createdAtISO": "2026-08-01T00:27:04+00:00", "createdAtLocal": "2026-08-01 08:27", "ageHours": 29.05, "heat": 3296.1, "recency": 0.2159, "score": 711.7, "category": "🧠 LLM", "media": [{"type": "photo", "url": "https://pbs.twimg.com/media/HOmKgiPaMAAkwLJ.jpg", "width": 1151, "height": 920}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/arena/status/2083348755559207047"}, {"id": "2083533551530913949", "text": "中国の車を買ったら400件ものコメントでバチボコに叩かれたんだけど、この人たちAIとかも触ってないんだろうな。勉強しない大人だけはなってはいけないという、とっても大事な教訓を与えていただきました。中国の技術力が低いとか、昭和で情報止まってる人たちだろ…おそらく50-60代で、YouTubeで国産メーカー信仰、中国叩き動画を見まくってる層だと思う。あれも視聴回数回るから誰かの養分になってるの気づかず、ずっと見てるんだろうな。", "textZh": "买了中国车被 400 多条评论狂喷，这些人大概连 AI 都没碰过吧。给我上了非常重要的一课：绝对不要成为不学习的大人。说中国技术力低、信息停留在昭和时代的人……估计是 50-60 后，在 YouTube 上看国产信仰、黑中国视频的那群人。他们没意识到自己正在为播放量做养料，一直看下去。", "author": {"id": "224308823", "name": "しゅうへい@AIで借金6,000万返す人", "screenName": "shupeiman", "profileImageUrl": "https://pbs.twimg.com/profile_images/2039668084596985856/fSJuZG72_normal.jpg", "verified": true}, "metrics": {"likes": 1326, "retweets": 111, "replies": 180, "quotes": 43, "views": 139701, "bookmarks": 65}, "createdAtISO": "2026-08-01T12:41:23+00:00", "createdAtLocal": "2026-08-01 20:41", "ageHours": 16.81, "heat": 1777.7, "recency": 0.3224, "score": 573.2, "category": "🧠 LLM", "media": [{"type": "photo", "url": "https://pbs.twimg.com/media/HOoyuHxaoAAV-jo.jpg", "width": 1290, "height": 1462}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/shupeiman/status/2083533551530913949"}, {"id": "2083509466725802172", "text": "Seedance 2.5直出TVC，提示词堪比永乐大典。。。 https://t.co/FsEYCNZnYj", "textZh": "Seedance 2.5 直出 TVC，提示词堪比《永乐大典》。。。", "author": {"id": "1958735760225705984", "name": "黄白", "screenName": "Hss1128_", "profileImageUrl": "https://pbs.twimg.com/profile_images/1958735929117745155/aMUU2BlD_normal.jpg", "verified": true}, "metrics": {"likes": 1419, "retweets": 73, "replies": 43, "quotes": 21, "views": 175525, "bookmarks": 845}, "createdAtISO": "2026-08-01T11:05:41+00:00", "createdAtLocal": "2026-08-01 19:05", "ageHours": 18.41, "heat": 1762.0, "recency": 0.303, "score": 533.8, "category": "🧠 LLM", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083509099078246400/vid/avc1/1280x720/ZpY_p0C_7MLaFNN2.mp4?tag=29", "width": 1280, "height": 720}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/Hss1128_/status/2083509466725802172"}, {"id": "2083538856255902099", "text": "今のAI情勢🇨🇳 https://t.co/3GehuRNWIx", "textZh": "现在的 AI 局势🇨🇳", "author": {"id": "1906582748669841408", "name": "しょー/AIの神", "screenName": "gamann77", "profileImageUrl": "https://pbs.twimg.com/profile_images/2040454347147137024/iX_NeCQR_normal.jpg", "verified": true}, "metrics": {"likes": 1137, "retweets": 75, "replies": 69, "quotes": 24, "views": 141217, "bookmarks": 155}, "createdAtISO": "2026-08-01T13:02:28+00:00", "createdAtLocal": "2026-08-01 21:02", "ageHours": 16.46, "heat": 1462.7, "recency": 0.3271, "score": 478.4, "category": "🧠 LLM", "media": [{"type": "photo", "url": "https://pbs.twimg.com/media/HOo3i9jb0AAMBWV.jpg", "width": 1448, "height": 1086}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/gamann77/status/2083538856255902099"}, {"id": "2083605155912847588", "text": "DeepSeek V4 Flash 0731をM5 Max・128GBのMacBook Proでローカル実行。\nllamaで速度出なかったけどDS4作者公式の0731向けQ2-Q4量子化91GB＋Metal実行に切り替えたら、生成35〜39 tok/sまで伸びた！ https://t.co/eSdI8U8h68", "textZh": "在 M5 Max・128GB 的 MacBook Pro 上本地运行 DeepSeek V4 Flash 0731。\n\nllama 跑不出速度，但换成 DS4 作者官方的 0731 Q2-Q4 量子化 91GB + Metal 执行后，生成速度提到了 35~39 tok/s！", "author": {"id": "257389990", "name": "すまほん!!", "screenName": "sm_hn", "profileImageUrl": "https://pbs.twimg.com/profile_images/1385485900306522115/D66XDiz2_normal.png", "verified": true}, "metrics": {"likes": 769, "retweets": 86, "replies": 12, "quotes": 25, "views": 118069, "bookmarks": 307}, "createdAtISO": "2026-08-01T17:25:55+00:00", "createdAtLocal": "2026-08-02 01:25", "ageHours": 12.07, "heat": 1065.1, "recency": 0.3986, "score": 424.6, "category": "🧠 LLM", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083605119732760576/vid/avc1/1920x1080/MYrXdghFuJKjztS5.mp4?tag=29", "width": 1920, "height": 1080}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/sm_hn/status/2083605155912847588"}, {"id": "2083666472052957392", "text": "Two orders of magnitude improvements are quite rare. This is a big deal.", "textZh": "两个数量级的提升非常罕见。这是件大事。", "author": {"id": "759894532649545732", "name": "Aravind Srinivas", "screenName": "AravSrinivas", "profileImageUrl": "https://pbs.twimg.com/profile_images/2028729526822588416/WhtMUI-P_normal.jpg", "verified": true}, "metrics": {"likes": 631, "retweets": 45, "replies": 39, "quotes": 1, "views": 66245, "bookmarks": 112}, "createdAtISO": "2026-08-01T21:29:34+00:00", "createdAtLocal": "2026-08-02 05:29", "ageHours": 8.01, "heat": 806.7, "recency": 0.4998, "score": 403.2, "category": "⭐ AI 大佬动态", "media": [], "urls": [], "source": "user_timelines_2026-08-02.json", "url": "https://x.com/AravSrinivas/status/2083666472052957392"}, {"id": "2083516193743524342", "text": "DeepSeek Kill Zone. \n\nModels that are inferior and significantly more expensive should cut spending and be in survival mode ASAP. \n\nModels that are superior but also more expensive or slightly inferior but with comparable pricing can survive a bit longer. https://t.co/DUdVbGqfMA", "textZh": "DeepSeek 斩杀区。\n\n性能更差且贵得多的模型，应该立刻削减开支、进入求生模式。\n\n更优但更贵、或略差但价格接近的模型，还能多活一会儿。", "author": {"id": "348197129", "name": "Jen Zhu", "screenName": "jenzhuscott", "profileImageUrl": "https://pbs.twimg.com/profile_images/1780838209074966528/sLoqyoHY_normal.jpg", "verified": true}, "metrics": {"likes": 937, "retweets": 123, "replies": 53, "quotes": 20, "views": 75924, "bookmarks": 284}, "createdAtISO": "2026-08-01T11:32:25+00:00", "createdAtLocal": "2026-08-01 19:32", "ageHours": 17.96, "heat": 1285.4, "recency": 0.3082, "score": 396.1, "category": "🧠 LLM", "media": [{"type": "photo", "url": "https://pbs.twimg.com/media/HOoi78TbAAAsvql.jpg", "width": 1920, "height": 1477}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/jenzhuscott/status/2083516193743524342"}, {"id": "2083696960620409339", "text": "BREAKING: \nResearchers from Japan 🇯🇵 gave a robot dog an LLM, chained it down and watched it try to escape and attack. Insane AI safety experiment. https://t.co/eZLsAZFMOs", "textZh": "突发：日本的研究人员给机器狗接上了 LLM，把它拴起来，观察它试图逃跑和攻击。疯狂的安全实验。", "author": {"id": "513011834", "name": "Irvin (in Japan 🇯🇵)", "screenName": "irvinxyz", "profileImageUrl": "https://pbs.twimg.com/profile_images/2070437397310111744/iAeEyOJz_normal.jpg", "verified": true}, "metrics": {"likes": 400, "retweets": 54, "replies": 65, "quotes": 25, "views": 140176, "bookmarks": 178}, "createdAtISO": "2026-08-01T23:30:43+00:00", "createdAtLocal": "2026-08-02 07:30", "ageHours": 5.99, "heat": 680.7, "recency": 0.5719, "score": 389.3, "category": "🌍 世界模型", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083696749890125825/vid/avc1/1920x1080/TK4ZmyB3Yo_6iwbs.mp4?tag=29", "width": 1920, "height": 1080}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/irvinxyz/status/2083696960620409339"}, {"id": "2083598865270481236", "text": "introducing fable-os,\n\nthis is not a fake bullshit os that runs in your browser - this is an agentic operating system that writes its own drivers, evolves itself, and runs on bare metal.\n\nhere it built it's own audio driver from scratch to play a sound https://t.co/G5UeCYiHrJ", "textZh": "介绍一下 fable-os：\n\n这不是那种在浏览器里跑的假玩意儿操作系统——这是一个智能体操作系统，自己写驱动、自我进化、直接在裸机上运行。\n\n这里它从零写出了自己的音频驱动来播放声音", "author": {"id": "1377660229270257669", "name": "Elliot Lindberg", "screenName": "robiot", "profileImageUrl": "https://pbs.twimg.com/profile_images/2066920756328398848/6MWZxY60_normal.jpg", "verified": true}, "metrics": {"likes": 563, "retweets": 39, "replies": 71, "quotes": 10, "views": 60608, "bookmarks": 388}, "createdAtISO": "2026-08-01T17:00:55+00:00", "createdAtLocal": "2026-08-02 01:00", "ageHours": 12.48, "heat": 737.1, "recency": 0.3905, "score": 287.9, "category": "🤖 AI Agent", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083271628293857280/vid/avc1/1416x1080/N4qq5SsHe7qvTKGg.mp4?tag=29", "width": 1416, "height": 1080}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/robiot/status/2083598865270481236"}, {"id": "2083525752809480610", "text": "First time testing Seedance 2.5 and I genuinely didn't expect this level of realism. https://t.co/emUjBYA2ob", "textZh": "第一次测 Seedance 2.5，真的没想到这么逼真。", "author": {"id": "1953622291478462464", "name": "Anissa", "screenName": "SimplyAnnisa", "profileImageUrl": "https://pbs.twimg.com/profile_images/1958119025436966912/XamzfdS7_normal.jpg", "verified": true}, "metrics": {"likes": 718, "retweets": 31, "replies": 87, "quotes": 8, "views": 41435, "bookmarks": 328}, "createdAtISO": "2026-08-01T12:10:24+00:00", "createdAtLocal": "2026-08-01 20:10", "ageHours": 17.33, "heat": 864.9, "recency": 0.3159, "score": 273.2, "category": "🧠 LLM", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083525534185672704/vid/avc1/1280x718/14xLZvHfqqDRZfBt.mp4?tag=29", "width": 1280, "height": 718}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/SimplyAnnisa/status/2083525752809480610"}, {"id": "2083526912052216008", "text": "GITHUB’S #1 TRENDING REPO GIVES YOUR AI AGENT ACCESS TO THE ENTIRE INTERNET FOR FREE \n\nhttps://t.co/qSZ9zoFqVg", "textZh": "GitHub 上排名第一的热门仓库，让你的 AI 代理免费访问整个互联网", "author": {"id": "1536693901230321666", "name": "0xMarioNawfal", "screenName": "RoundtableSpace", "profileImageUrl": "https://pbs.twimg.com/profile_images/2012162102283407360/U-fPj6wg_normal.jpg", "verified": true}, "metrics": {"likes": 504, "retweets": 48, "replies": 29, "quotes": 3, "views": 83484, "bookmarks": 878}, "createdAtISO": "2026-08-01T12:15:00+00:00", "createdAtLocal": "2026-08-01 20:15", "ageHours": 17.25, "heat": 698.0, "recency": 0.3168, "score": 221.1, "category": "🤖 AI Agent", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083223211957714944/vid/avc1/3444x2160/CWa7w5NpJhD7jJqB.mp4?tag=29", "width": 3444, "height": 2160}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/RoundtableSpace/status/2083526912052216008"}, {"id": "2083704964233462075", "text": "I keep finding new features of the ChatGPT Work (the feature in the mobile and web app, not the confusing same-name-but-different mode in the desktop app) - it has a browser and can take screenshots with it, AND it can deploy web apps to Cloudflare workers (\"ChatGPT Sites\")", "textZh": "我不断在 ChatGPT Work（移动端和网页版的那个功能，不是桌面端同名但不同的那个模式）里发现新功能——它内置浏览器可以截图，还能把网页应用部署到 Cloudflare Workers（\"ChatGPT Sites\"）", "author": {"id": "12497", "name": "Simon Willison", "screenName": "simonw", "profileImageUrl": "https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg", "verified": true}, "metrics": {"likes": 269, "retweets": 7, "replies": 36, "quotes": 1, "views": 26175, "bookmarks": 70}, "createdAtISO": "2026-08-02T00:02:31+00:00", "createdAtLocal": "2026-08-02 08:02", "ageHours": 5.46, "heat": 327.2, "recency": 0.5944, "score": 194.5, "category": "⭐ AI 大佬动态", "media": [], "urls": [], "source": "user_timelines_2026-08-02.json", "url": "https://x.com/simonw/status/2083704964233462075"}, {"id": "2083512969368060282", "text": "动画配音视频 Skill 更新：\nhttps://t.co/JC6bhnYz8R\n\n配合 Codex 使用，一小时可以产出数条高质量的动画视频。\n\n我已经用这个 Skill 在小红书和视频号稳定起号了，今天醒来一看两边都 99+ 了，很开心：）\n\n本次更新内容：\n\n新增 7 套内置视觉风格：\n\n电影感 3D、多巴胺萌趣 3D、黏土定格、笨拙感手绘简笔画、忧郁蓝调简笔画、柔和彩铅萌趣、清爽线描蜡笔。\n\n新增 4 款内置音色：\n明亮高亢青年音、沉静青年男声、温柔治愈成年女声、灵动活泼年轻女声。\n\n现在可以直接选择风格与音色，更快建立统一的画面和声音。当然，你还是可以让 Agent 按照你的要求生成新风格和音色。\n\n下面是最新的忧郁蓝调简笔画风格生成的视频：", "textZh": "动画配音视频 Skill 更新：\n\n配合 Codex 使用，一小时可以产出数条高质量的动画视频。\n\n我已经用这个 Skill 在小红书和视频号稳定起号了，今天醒来一看两边都 99+ 了，很开心：）\n\n本次更新内容：\n\n新增 7 套内置视觉风格：\n\n电影感 3D、多巴胺萌趣 3D、黏土定格、笨拙感手绘简笔画、忧郁蓝调简笔画、柔和彩铅萌趣、清爽线描蜡笔。\n\n新增 4 款内置音色：\n明亮高亢青年音、沉静青年男声、温柔治愈成年女声、灵动活泼年轻女声。\n\n现在可以直接选择风格与音色，更快建立统一的画面和声音。当然，你还是可以让 Agent 按照你的要求生成新风格和音色。\n\n下面是最新的忧郁蓝调简笔画风格生成的视频：", "author": {"id": "1704894035767484416", "name": "sida", "screenName": "s1dashu", "profileImageUrl": "https://pbs.twimg.com/profile_images/2048847807482896384/Xw26XdlC_normal.jpg", "verified": true}, "metrics": {"likes": 338, "retweets": 66, "replies": 14, "quotes": 2, "views": 13108, "bookmarks": 476}, "createdAtISO": "2026-08-01T11:19:36+00:00", "createdAtLocal": "2026-08-01 19:19", "ageHours": 18.17, "heat": 490.1, "recency": 0.3057, "score": 149.8, "category": "🤖 AI Agent", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083511747932270592/vid/avc1/1080x1920/d8TXGiRAHbURoiRg.mp4?tag=29", "width": 1080, "height": 1920}, {"type": "photo", "url": "https://pbs.twimg.com/media/HOofWqVbAAAWe9i.jpg", "width": 1320, "height": 2868}, {"type": "photo", "url": "https://pbs.twimg.com/media/HOofWqTbYAAf0Of.jpg", "width": 1320, "height": 2868}], "urls": ["https://github.com/s1dashu/animated-voiceover"], "source": "feed_2026-08-02.json", "url": "https://x.com/s1dashu/status/2083512969368060282"}, {"id": "2083495560586432815", "text": "10万インプを超えたGeminiのプロンプトで、色んな切り絵アニメーションをつくってみました！\n\n・おにぎりの歴史\n・日本交通史\n・桃太郎\n・ゲームボーイの歴史\n\nちなみに、マ◯オは勝手に出てきました(笑)\n\nプロンプト4つ分載せておきます↓ https://t.co/hoUlxYlPNv", "textZh": "用 10 万曝光量的 Gemini 提示词，做了各种剪纸动画！\n\n・饭团的历史\n・日本交通史\n・桃太郎\n・Game Boy 的历史\n\n顺便说，马里◯奥是自己冒出来的(笑)\n\n4 组提示词放在下面↓", "author": {"id": "1578688322624331776", "name": "ふじりゅう｜(株)BLUUPRINT CEO｜動画クリエイター", "screenName": "fujiryu00", "profileImageUrl": "https://pbs.twimg.com/profile_images/2057843557051060224/GEC-VU-m_normal.jpg", "verified": true}, "metrics": {"likes": 394, "retweets": 34, "replies": 8, "quotes": 3, "views": 27629, "bookmarks": 489}, "createdAtISO": "2026-08-01T10:10:25+00:00", "createdAtLocal": "2026-08-01 18:10", "ageHours": 19.33, "heat": 493.6, "recency": 0.2928, "score": 144.5, "category": "🧠 LLM", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083495532941729792/vid/avc1/1280x720/4l1sCrhGitNHKOMy.mp4?tag=29", "width": 1280, "height": 720}, {"type": "video", "url": "https://video.twimg.com/amplify_video/2083495532874600448/vid/avc1/1280x720/AHeRWGzzfGmXF2UE.mp4?tag=29", "width": 1280, "height": 720}, {"type": "video", "url": "https://video.twimg.com/amplify_video/2083495532824326144/vid/avc1/1280x720/5YW5KLhwIvwp-HoY.mp4?tag=29", "width": 1280, "height": 720}, {"type": "video", "url": "https://video.twimg.com/amplify_video/2083495532895633408/vid/avc1/1280x720/CpbogZaf0F7XSFEF.mp4?tag=29", "width": 1280, "height": 720}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/fujiryu00/status/2083495560586432815"}, {"id": "2083342783071621224", "text": "Got a disappointing pelican from DeepSeek-V4-Flash-0731 at default reasoning mode - on the left - but then I bumped reasoning up to high (via OpenRouter) and got the much better one on the right https://t.co/iBEov5peB6", "textZh": "用 DeepSeek-V4-Flash-0731 默认推理模式得到的鹈鹕有点失望（左边）——但通过 OpenRouter 把推理调到 high 之后，右边这只就好多了", "author": {"id": "12497", "name": "Simon Willison", "screenName": "simonw", "profileImageUrl": "https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg", "verified": true}, "metrics": {"likes": 501, "retweets": 14, "replies": 59, "quotes": 3, "views": 66203, "bookmarks": 48}, "createdAtISO": "2026-08-01T00:03:20+00:00", "createdAtLocal": "2026-08-01 08:03", "ageHours": 29.44, "heat": 624.7, "recency": 0.2136, "score": 133.5, "category": "⭐ AI 大佬动态", "media": [{"type": "photo", "url": "https://pbs.twimg.com/media/HOmFBy5aUAA0Ykh.png", "width": 800, "height": 600}, {"type": "photo", "url": "https://pbs.twimg.com/media/HOmFDdgaAAAm82H.png", "width": 800, "height": 600}], "urls": [], "source": "user_timelines_2026-08-02.json", "url": "https://x.com/simonw/status/2083342783071621224"}, {"id": "2083604116375511527", "text": "OMG！ \n\nDeepSeek Harness 负责人 @tianyi 正在X上公开召集DeepSeek harness的内测成员！\n\n要求是Agent Harness 的相关开源项目\n\n那个啥，我推荐一个 @lobehub 全自研Harness和基建🔥\n\nhttps://t.co/N8agpCatZn", "textZh": "OMG！\n\nDeepSeek Harness 负责人 @tianyi 正在 X 上公开召集 DeepSeek harness 的内测成员！\n\n要求是 Agent Harness 的相关开源项目\n\n那个啥，我推荐一个 @lobehub 全自研 Harness 和基建🔥", "author": {"id": "1699797396589588480", "name": "Max For AI", "screenName": "MaxForAI", "profileImageUrl": "https://pbs.twimg.com/profile_images/1885611457376903171/zWWnahYp_normal.jpg", "verified": true}, "metrics": {"likes": 117, "retweets": 9, "replies": 9, "quotes": 0, "views": 31063, "bookmarks": 60}, "createdAtISO": "2026-08-01T17:21:47+00:00", "createdAtLocal": "2026-08-02 01:21", "ageHours": 12.14, "heat": 170.6, "recency": 0.3973, "score": 67.8, "category": "🤖 AI Agent", "media": [], "urls": ["https://github.com/lobehub/lobehub"], "source": "feed_2026-08-02.json", "url": "https://x.com/MaxForAI/status/2083604116375511527"}, {"id": "2083607186912256447", "text": "推荐一款开源前端动效库，配合threejs效果也是非常的好，如果你需要做一些动效可以直接试试，真的非常棒。\n视频是我基于将它官方链接丢给Codex生成的，视频也是用了一些官方这个动画效果实现的网页录制生成，非常的丝滑，它的官方做的也是非常炫酷。\n\nhttps://t.co/hg4lMlLD0o https://t.co/Njc929F3nT", "textZh": "推荐一款开源前端动效库，配合 threejs 效果也是非常的好，如果你需要做一些动效可以直接试试，真的非常棒。\n\n视频是我基于将它官方链接丢给 Codex 生成的，视频也是用了一些官方这个动画效果实现的网页录制生成，非常的丝滑，它的官方做的也是非常炫酷。", "author": {"id": "1760502863854460928", "name": "知识猫图解", "screenName": "GeekCatX", "profileImageUrl": "https://pbs.twimg.com/profile_images/2069337800160493568/gwKnHrWD_normal.jpg", "verified": true}, "metrics": {"likes": 113, "retweets": 16, "replies": 19, "quotes": 1, "views": 6008, "bookmarks": 145}, "createdAtISO": "2026-08-01T17:33:59+00:00", "createdAtLocal": "2026-08-02 01:33", "ageHours": 11.93, "heat": 160.5, "recency": 0.4013, "score": 64.4, "category": "🎨 Vibe Coding", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083606542193197056/vid/avc1/1920x1080/vdugdCUZGEfAGFb5.mp4?tag=29", "width": 1920, "height": 1080}], "urls": ["https://animejs.com/"], "source": "feed_2026-08-02.json", "url": "https://x.com/GeekCatX/status/2083607186912256447"}, {"id": "2083492825321337149", "text": "有什么问题就去问 codex，可谓是形象生动，通俗易懂 https://t.co/dnqd51cVyt", "textZh": "有什么问题就去问 codex，可谓是形象生动，通俗易懂", "author": {"id": "969865477391450113", "name": "管震震 Zhenzhen Guan", "screenName": "zzgo_sh", "profileImageUrl": "https://pbs.twimg.com/profile_images/1736962643335032832/Lab0Bmpl_normal.jpg", "verified": true}, "metrics": {"likes": 142, "retweets": 5, "replies": 1, "quotes": 0, "views": 28918, "bookmarks": 101}, "createdAtISO": "2026-08-01T09:59:33+00:00", "createdAtLocal": "2026-08-01 17:59", "ageHours": 19.51, "heat": 181.4, "recency": 0.2908, "score": 52.8, "category": "🎨 Vibe Coding", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083492678730498048/vid/avc1/1606x1200/vaingbCEfLEKBtJg.mp4?tag=29", "width": 1606, "height": 1200}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/zzgo_sh/status/2083492825321337149"}, {"id": "2083517263152619635", "text": "未来的影视制作流程可能就是\n\n- Code Agent通过Mcp控制3d引擎\n- 通过3d软件生成原始材料\n- 通过Seedance等模型生成最后的视频。 https://t.co/hQqbfnLHqg", "textZh": "未来的影视制作流程可能就是\n\n- Code Agent 通过 MCP 控制 3D 引擎\n- 通过 3D 软件生成原始材料\n- 通过 Seedance 等模型生成最后的视频。", "author": {"id": "859790145871937537", "name": "关木", "screenName": "ZeroZ_JQ", "profileImageUrl": "https://pbs.twimg.com/profile_images/1975379890187943936/tSLkEX9E_normal.jpg", "verified": true}, "metrics": {"likes": 108, "retweets": 11, "replies": 15, "quotes": 1, "views": 18437, "bookmarks": 75}, "createdAtISO": "2026-08-01T11:36:40+00:00", "createdAtLocal": "2026-08-01 19:36", "ageHours": 17.89, "heat": 155.9, "recency": 0.309, "score": 48.2, "category": "🤖 AI Agent", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083459867709222912/vid/avc1/1280x720/LHcr2g22qsNvLYHE.mp4?tag=14", "width": 1280, "height": 720}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/ZeroZ_JQ/status/2083517263152619635"}, {"id": "2083706942011429094", "text": "Tip for OpenAI: you could massively improve usability and discoverability for power-users like myself simply by publishing the prompts (and tool descriptions)!\n\nThen we could teach everyone else how to use it\n\n(Or stop telling it to hide the prompts, that would work too)", "textZh": "给 OpenAI 的建议：只要公布提示词（和工具描述），就能极大地改善像我这样重度用户的可用性和可发现性！\n\n然后我们就能教会其他人怎么用了\n\n（或者别再让它隐藏提示词，那也行）", "author": {"id": "12497", "name": "Simon Willison", "screenName": "simonw", "profileImageUrl": "https://pbs.twimg.com/profile_images/378800000261649705/be9cc55e64014e6d7663c50d7cb9fc75_normal.jpeg", "verified": true}, "metrics": {"likes": 57, "retweets": 1, "replies": 11, "quotes": 1, "views": 5837, "bookmarks": 6}, "createdAtISO": "2026-08-02T00:10:23+00:00", "createdAtLocal": "2026-08-02 08:10", "ageHours": 5.33, "heat": 70.3, "recency": 0.6003, "score": 42.2, "category": "⭐ AI 大佬动态", "media": [], "urls": [], "source": "user_timelines_2026-08-02.json", "url": "https://x.com/simonw/status/2083706942011429094"}, {"id": "2083502448514048073", "text": "刚才在测试 deepseek-v4-flash 在 codex 中使用 computer use 的时候，惊喜的发现，增加了画中画功能，这个设计很棒，很久没测过了，不知道什么时候更新的 😆\n\n另外还有一个意外发现 gemini-3.6-flash 在使用这个功能的速度非常的快，甚至超过了原生gpt模型 👀 https://t.co/duljcEeH0U", "textZh": "刚才在测试 deepseek-v4-flash 在 codex 中使用 computer use 的时候，惊喜的发现，增加了画中画功能，这个设计很棒，很久没测过了，不知道什么时候更新的 😆\n\n另外还有一个意外发现 gemini-3.6-flash 在使用这个功能的速度非常的快，甚至超过了原生 gpt 模型 👀", "author": {"id": "761472119221825536", "name": "Ryanxlll2", "screenName": "Youngxxxxu", "profileImageUrl": "https://pbs.twimg.com/profile_images/2024638619781386245/8r8SkLqU_normal.jpg", "verified": true}, "metrics": {"likes": 50, "retweets": 2, "replies": 10, "quotes": 0, "views": 13687, "bookmarks": 38}, "createdAtISO": "2026-08-01T10:37:47+00:00", "createdAtLocal": "2026-08-01 18:37", "ageHours": 18.87, "heat": 72.7, "recency": 0.2977, "score": 21.6, "category": "🤖 AI Agent", "media": [{"type": "video", "url": "https://video.twimg.com/amplify_video/2083502229630197760/vid/avc1/1662x1080/7YDN-RiKRU06LZqX.mp4?tag=29", "width": 1662, "height": 1080}], "urls": [], "source": "feed_2026-08-02.json", "url": "https://x.com/Youngxxxxu/status/2083502448514048073"}];
+
+// === WebGL neural network background ===
+(function() {
+  const canvas = document.getElementById('neural-canvas');
+  if (!window.THREE || !canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 35;
+
+  const count = window.matchMedia('(pointer: coarse)').matches ? 60 : 120;
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const palette = [new THREE.Color('#8b5cf6'), new THREE.Color('#06b6d4'), new THREE.Color('#ec4899'), new THREE.Color('#f59e0b')];
+
+  for (let i = 0; i < count; i++) {
+    positions[i*3] = (Math.random() - 0.5) * 70;
+    positions[i*3+1] = (Math.random() - 0.5) * 50;
+    positions[i*3+2] = (Math.random() - 0.5) * 30;
+    const c = palette[Math.floor(Math.random() * palette.length)];
+    colors[i*3] = c.r; colors[i*3+1] = c.g; colors[i*3+2] = c.b;
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  const material = new THREE.PointsMaterial({
+    size: 0.35,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending
+  });
+  const points = new THREE.Points(geometry, material);
+  scene.add(points);
+
+  const lineGeo = new THREE.BufferGeometry();
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x4f46e5, transparent: true, opacity: 0.12, blending: THREE.AdditiveBlending });
+  const lines = new THREE.LineSegments(lineGeo, lineMat);
+  scene.add(lines);
+
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  }, { passive: true });
+
+  let frame = 0;
+  function animate() {
+    frame = requestAnimationFrame(animate);
+    const t = performance.now() * 0.0001;
+    camera.position.x += (mouseX * 6 - camera.position.x) * 0.02;
+    camera.position.y += (-mouseY * 4 - camera.position.y) * 0.02;
+    camera.lookAt(0, 0, 0);
+
+    const pos = geometry.attributes.position.array;
+    for (let i = 0; i < count; i++) {
+      const idx = i * 3;
+      pos[idx+1] += Math.sin(t + i) * 0.015;
+      pos[idx] += Math.cos(t * 0.7 + i * 0.1) * 0.01;
+    }
+    geometry.attributes.position.needsUpdate = true;
+    points.rotation.y = t * 0.15;
+
+    const linePos = [];
+    const threshold = 9;
+    for (let i = 0; i < count; i++) {
+      for (let j = i + 1; j < count; j++) {
+        const dx = pos[i*3] - pos[j*3];
+        const dy = pos[i*3+1] - pos[j*3+1];
+        const dz = pos[i*3+2] - pos[j*3+2];
+        const d2 = dx*dx + dy*dy + dz*dz;
+        if (d2 < threshold * threshold) {
+          linePos.push(pos[i*3], pos[i*3+1], pos[i*3+2], pos[j*3], pos[j*3+1], pos[j*3+2]);
+        }
+      }
+    }
+    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+    lines.rotation.y = t * 0.15;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(frame);
+    else animate();
+  });
+})();
+
+// === Video error fallback ===
+function handleVideoError(video) {
+  const frame = video.closest('.video-frame');
+  if (!frame) return;
+  video.style.display = 'none';
+  const fallback = frame.querySelector('.video-fallback');
+  if (fallback) fallback.style.display = 'block';
+}
+
+// === 3D tilt cards ===
+document.querySelectorAll('.tweet-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateZ(20px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+  });
+});
+
+// === Category filtering ===
+const filterButtons = document.querySelectorAll('.nav-pill');
+const sections = document.querySelectorAll('.feed-section');
+const cards = document.querySelectorAll('.tweet-card');
+let activeFilter = 'all';
+
+function setFilter(key) {
+  activeFilter = key;
+  filterButtons.forEach(btn => {
+    const pressed = btn.dataset.filter === key;
+    btn.setAttribute('aria-pressed', String(pressed));
+  });
+
+  const update = () => {
+    sections.forEach(sec => {
+      sec.classList.toggle('hidden', key !== 'all' && sec.dataset.cat !== key);
+    });
+    cards.forEach(card => {
+      const match = key === 'all' || card.dataset.category === key;
+      card.classList.toggle('hidden', !match);
+    });
+  };
+
+  if (document.startViewTransition) {
+    document.startViewTransition(update);
+  } else {
+    update();
+  }
+}
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+});
+
+// === Search ===
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) {
+    setFilter(activeFilter);
+    return;
+  }
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    card.classList.toggle('hidden', !text.includes(q));
+  });
+  sections.forEach(sec => {
+    const visible = sec.querySelectorAll('.tweet-card:not(.hidden)').length > 0;
+    sec.classList.toggle('hidden', !visible);
+  });
+});
+
+// === Back to top ===
+const backTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('visible', window.scrollY > 600);
+}, { passive: true });
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>
