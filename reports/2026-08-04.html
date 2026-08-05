@@ -849,6 +849,53 @@ body {
   background: rgba(255,255,255,0.15);
   border-color: var(--cyan);
 }
+.video-cover {
+  position: relative;
+  display: block;
+  max-width: 420px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;
+  line-height: 0;
+}
+.video-cover img {
+  width: 100%;
+  display: block;
+}
+.video-cover .play-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.62);
+  border: 2px solid rgba(255,255,255,0.92);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding-left: 5px;
+  pointer-events: none;
+  transition: transform 0.15s ease, background 0.15s ease;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+}
+.video-cover:hover .play-btn {
+  transform: translate(-50%,-50%) scale(1.12);
+  background: rgba(0,0,0,0.85);
+}
+.video-cover .cover-hint {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 26px 12px 9px;
+  text-align: left;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.78) 100%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  pointer-events: none;
+}
 .video-thumb {
   display: inline-flex;
   align-items: center;
@@ -1065,32 +1112,32 @@ body {
     <button class="nav-pill" data-filter="all" style="--pill-color:#fff" aria-pressed="true">
       <span class="pill-dot" style="background:#fff"></span>
       全部
-      <span class="pill-count">86</span>
+      <span class="pill-count">80</span>
     </button>
 <button class="nav-pill" data-filter="leaders" style="--pill-color:#f59e0b" aria-pressed="false">
   <span class="pill-dot" style="background:#f59e0b"></span>
   ⭐ AI 大佬动态
-  <span class="pill-count">5</span>
+  <span class="pill-count">0</span>
 </button>
 <button class="nav-pill" data-filter="llm" style="--pill-color:#06b6d4" aria-pressed="false">
   <span class="pill-dot" style="background:#06b6d4"></span>
   🧠 LLM
-  <span class="pill-count">58</span>
+  <span class="pill-count">49</span>
 </button>
 <button class="nav-pill" data-filter="agent" style="--pill-color:#8b5cf6" aria-pressed="false">
   <span class="pill-dot" style="background:#8b5cf6"></span>
   🤖 AI Agent
-  <span class="pill-count">12</span>
+  <span class="pill-count">14</span>
 </button>
 <button class="nav-pill" data-filter="vibe" style="--pill-color:#ec4899" aria-pressed="false">
   <span class="pill-dot" style="background:#ec4899"></span>
   🎨 Vibe Coding
-  <span class="pill-count">7</span>
+  <span class="pill-count">12</span>
 </button>
 <button class="nav-pill" data-filter="world" style="--pill-color:#10b981" aria-pressed="false">
   <span class="pill-dot" style="background:#10b981"></span>
   🌍 世界模型
-  <span class="pill-count">4</span>
+  <span class="pill-count">5</span>
 </button>
   </div>
   <div class="search-wrap">
@@ -1333,7 +1380,11 @@ The next step is getting rid of “source code” entirely and just making an ef
       <div class="text-en">An internal version of our next major model produced 10 new results on long-standing open problems in mathematics and theoretical computer science, using roughly $2,000 worth of tokens at GPT-5.6 Sol API rates. https://t.co/4cgowmPOpY</div>
     </details>
     <div class="media">
-  <a href="https://x.com/OpenAI/status/2084352161404920316" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/OpenAI/status/2084352161404920316" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/OpenAI_2084352161404920316.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -1419,7 +1470,11 @@ https://t.co/lOJK57wDP5</div>
       <div class="text-en">Daily Routine with claude https://t.co/ePFJfRM7wy</div>
     </details>
     <div class="media">
-  <a href="https://x.com/SamTechien/status/2084221858640257475" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/SamTechien/status/2084221858640257475" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/SamTechien_2084221858640257475.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -1613,7 +1668,11 @@ Celeris-1 proves it’s possible to deliver useful intelligence 10x faster than 
 Exploration in design tools is obviously needed too, but by being able to touch the UI you can experience it instead of just imagining how it would actually feel. https://t.co/rUQ62W2oNg</div>
     </details>
     <div class="media">
-  <a href="https://x.com/emilkowalski/status/2084228500114768245" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/emilkowalski/status/2084228500114768245" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/emilkowalski_2084228500114768245.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -1774,7 +1833,11 @@ Congrats to @Alibaba_Qwen on another major milestone!</div>
 目前她的运营方对外广告报价，20 秒视频 16.8 万元人民币，60 秒则是 25.8 万元，远超同粉丝量的真人网红。 https://t.co/YOYmdTAzyn</div>
     </details>
     <div class="media">
-  <a href="https://x.com/_FORAB/status/2084198199372452105" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/_FORAB/status/2084198199372452105" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/_FORAB_2084198199372452105.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -1834,7 +1897,11 @@ Qwen worked much harder on the details. Its textures and shadows look real. Fabl
 Atomic Chat will have day zero support to run Qwen 3.8 Max locally!</div>
     </details>
     <div class="media">
-  <a href="https://x.com/atomic_chat_hq/status/2084231644597162201" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/atomic_chat_hq/status/2084231644597162201" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/atomic_chat_hq_2084231644597162201.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -1881,7 +1948,11 @@ Atomic Chat will have day zero support to run Qwen 3.8 Max locally!</div>
 This video is cool. Ancient China Through AI. https://t.co/oI7O71TAn9</div>
     </details>
     <div class="media">
-  <a href="https://x.com/EiiKwesiKay/status/2084226009738428461" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/EiiKwesiKay/status/2084226009738428461" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/EiiKwesiKay_2084226009738428461.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -2232,7 +2303,11 @@ MiniMax H3 is not just generating videos — it’s starting to understand visua
  Prompt below⬇️ https://t.co/ajfs9BOWHY</div>
     </details>
     <div class="media">
-  <a href="https://x.com/lepadphone/status/2084217085308326385" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/lepadphone/status/2084217085308326385" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/lepadphone_2084217085308326385.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -2283,7 +2358,11 @@ Perfect for vibe coders, developers, designers, or anyone building websites manu
 Follow me for more amazing AI, Coding &amp; Web Dev insights 💎</div>
     </details>
     <div class="media">
-  <a href="https://x.com/rammcodes/status/2084256275047805384" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/rammcodes/status/2084256275047805384" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/rammcodes_2084256275047805384.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -2454,7 +2533,11 @@ Ya supera las 25k stars en GitHub, es completamente open-source y cuenta con lic
 Te dejo el repo abajo 👇</div>
     </details>
     <div class="media">
-  <a href="https://x.com/_guillecasaus/status/2084239380558787066" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/_guillecasaus/status/2084239380558787066" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/_guillecasaus_2084239380558787066.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -2591,7 +2674,11 @@ AEのシェイプでざっくりかこって動かす
 H3は他にも多様な使い方ができるので、テキスト＋動画＋音声、様々な参照方法をぜひ試してみてください。</div>
     </details>
     <div class="media">
-  <a href="https://x.com/seiiiiiiiiiiru/status/2084385419748430314" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/seiiiiiiiiiiru/status/2084385419748430314" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/seiiiiiiiiiiru_2084385419748430314.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -2636,7 +2723,11 @@ H3は他にも多様な使い方ができるので、テキスト＋動画＋音
 I've color-coded the tokens that have been accepted at once so you can see DSpark's acceptance rate at a glance. Pretty good idea, right?</div>
     </details>
     <div class="media">
-  <a href="https://x.com/Hikari_07_jp/status/2084416647767748894" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/Hikari_07_jp/status/2084416647767748894" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/Hikari_07_jp_2084416647767748894.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -2691,7 +2782,11 @@ Qwen 3.8 Max vs Claude Opus 5. Both rendered. One costs 8x more.
 Worth it? Watch and decide. https://t.co/Ot7wAY1uBV</div>
     </details>
     <div class="media">
-  <a href="https://x.com/stevibe/status/2084292174263574862" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/stevibe/status/2084292174263574862" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/stevibe_2084292174263574862.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -2794,7 +2889,11 @@ Skill会自动为你匹配换装方式，然后输出首帧提示词和视频脚
 Coming soon to Lumina. 🔥 https://t.co/EdN8fTzy1h</div>
     </details>
     <div class="media">
-  <a href="https://x.com/lumina_ai_aiart/status/2084277636982075547" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/lumina_ai_aiart/status/2084277636982075547" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/lumina_ai_aiart_2084277636982075547.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -2840,7 +2939,11 @@ Coming soon to Lumina. 🔥 https://t.co/EdN8fTzy1h</div>
 建议先收藏，用的时候别找不到 https://t.co/cefyDa8xhF</div>
     </details>
     <div class="media">
-  <a href="https://x.com/cheerselflin/status/2084246768452239565" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/cheerselflin/status/2084246768452239565" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/cheerselflin_2084246768452239565.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -2905,7 +3008,11 @@ pi-vlm-proxy ：支持自动配置其他多模态模型，自动识别当前mode
 评论区看 Github 链接：</div>
     </details>
     <div class="media">
-  <a href="https://x.com/LawrenceW_Zen/status/2084201876531331427" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/LawrenceW_Zen/status/2084201876531331427" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/LawrenceW_Zen_2084201876531331427.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -2997,7 +3104,11 @@ Same prompt.
 Which one wins overall? https://t.co/081NZra33d</div>
     </details>
     <div class="media">
-  <a href="https://x.com/YouArtStudio/status/2084335266131513635" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/YouArtStudio/status/2084335266131513635" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/YouArtStudio_2084335266131513635.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -3146,7 +3257,11 @@ They are not copying a painting, they are repeating a dead man's process.
 Save this one -- the prompt is right there, go paint your own ↓</div>
     </details>
     <div class="media">
-  <a href="https://x.com/slash1sol/status/2084226774985003134" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/slash1sol/status/2084226774985003134" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/slash1sol_2084226774985003134.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -3206,7 +3321,11 @@ Save this one -- the prompt is right there, go paint your own ↓</div>
 视频是这次的实录效果👇：</div>
     </details>
     <div class="media">
-  <a href="https://x.com/gkxspace/status/2084226438367203724" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/gkxspace/status/2084226438367203724" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/gkxspace_2084226438367203724.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -3261,7 +3380,11 @@ All models completed it in one shot, except GPT-5.6 Luna, which needed one addit
 Here are the results 👇</div>
     </details>
     <div class="media">
-  <a href="https://x.com/TypingMindApp/status/2084179027674141150" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/TypingMindApp/status/2084179027674141150" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/TypingMindApp_2084179027674141150.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -3318,7 +3441,11 @@ They are not painting a picture -&gt; they are running a 500 year old process.
 Save this one -- the prompt is right there, go paint your own ceiling ↓</div>
     </details>
     <div class="media">
-  <a href="https://x.com/slash1sol/status/2084285132437852393" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/slash1sol/status/2084285132437852393" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/slash1sol_2084285132437852393.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -3383,7 +3510,11 @@ AI 다루는 방법 어렵지 않고 AI영상도 어렵지 않으니
 20대 성인 여대생이 캠퍼스 야외 광장에서 신나는 댄스를 추는 15초 세로형 릴스 영상. 9:16, 30fps, 고해상도, 밝고 상큼한 K-pop 일렉트로팝 분위기. 빠르고 통통 튀는 128BPM 리듬, 경쾌한 신스 멜로디, 밝은 베이스, 손뼉 소리와 귀여운 효과음이 들어간 신나는 음악. 음악의 박자와 춤 동작이 정확하게 일치한다. 주인공은 귀엽고 사랑스러운 20대 여성이다. 맑고 깨끗한 피부, 큰 갈색 눈, 자연스럽게 올라간 눈꼬리, 작고 갸름한 얼굴, 부드러운 앞머리, 긴 웨이브 갈색 머리, 밝고 순수한 미소, 생기 있는 표정. 머리에는 작은 하늘색 리본을 하고 있다. 레몬색 반팔 티셔츠 위에 흰색과 민트색의 짧은 니트 가디건, 하이웨이스트 연청 플리츠 스커트, 흰색 발목 양말과 깨끗한 흰색 스니커즈를 착용한다. 상큼하고 단정하며 발랄한 대학생 스타일, 과도한 노출 없음. 배경은 맑은 오후의 예쁜 캠퍼스 광장이다. 연한 하늘색 하늘, 초록색 나무, 분홍색과 노란색 꽃이 핀 화단, 파스텔색 풍선, 작은 벤치, 햇빛에 반짝이는 분수, 부드러운 나뭇잎 그림자가 보인다. 배경은 선명하지만 주인공에게 초점이 맞고, 따뜻한 햇살과 은은한 렌즈 플레어, 밝은 보케 효과를 사용한다. 0–3초: 주인공이 화면 왼쪽에서 가볍게 뛰어 들어온다. 음악의 첫 박자에 맞춰 양손으로 작은 하트를 만들고 카메라를 보며 활짝 웃는다. 오른쪽 어깨와 왼쪽 어깨를 번갈아 튕기며 귀엽게 고개를 기울인다. 카메라는 정면에서 부드럽게 전진한다. 3–6초: 오른쪽과 왼쪽으로 빠르게 스텝터치하며 양팔을 좌우로 크게 흔든다. 두 박자마다 손가락 하트를 만들고, 머리카락이 자연스럽게 흔들린다. 카메라는 허리 위 중심으로 좌우 트래킹한다. 6–9초: 양손으로 물결 모양 동작을 하며 몸을 좌우로 흔든다. 한 바퀴 가볍게 회전한 뒤 카메라를 향해 윙크하고 브이 포즈를 한다. 꽃잎과 작은 반짝임이 주변에 흩날린다. 9–12초: 하이라이트 안무. 발을 두 번 빠르게 구르고 양팔을 머리 위로 올린 뒤 큰 하트를 만든다. 이어서 한 손으로 볼을 살짝 누르는 귀여운 포즈를 취한다. 카메라는 음악에 맞춰 살짝 줌인한다. 12–15초: 주인공이 앞으로 두 걸음 다가오며 양팔을 활짝 펼친다. 마지막 박자에 가볍게 점프하고 한 바퀴 반 회전한 뒤 카메라 앞에서 큰 하트 포즈를 만든다. 환하게 웃는 표정으로 영상이 밝게 끝난다. 자연스러운 춤 동작, 안정적인 얼굴과 손, 정확한 박자 싱크, 부드러운 카메라 움직임, 밝고 청량한 색감. 네거티브 프롬프트: 미성년자, 과도한 노출, 선정적인 안무, 흐릿한 얼굴, 손가락 오류, 팔다리 중복, 부자연스러운 관절, 어두운 분위기, 불안정한 카메라, 다른 인물 등장, 자막, 로고, 워터마크</div>
     </details>
     <div class="media">
-  <a href="https://x.com/nowlovepan/status/2084178540065657251" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/nowlovepan/status/2084178540065657251" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/nowlovepan_2084178540065657251.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -3485,7 +3616,11 @@ https://t.co/3dx5z</div>
 https://t.co/3dx5zHYgTK https://t.co/b6pBoDwLL4</div>
     </details>
     <div class="media">
-  <a href="https://x.com/geekbb/status/2084471887447658563" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/geekbb/status/2084471887447658563" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/geekbb_2084471887447658563.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -3546,7 +3681,11 @@ Link below.
 Claude Code → Endpoint swap → Free models → No bill → Money</div>
     </details>
     <div class="media">
-  <a href="https://x.com/ParamSiddh/status/2084302918107430951" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/ParamSiddh/status/2084302918107430951" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/ParamSiddh_2084302918107430951.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -3613,7 +3752,11 @@ SpaceX起步时不到10人，连家具都没有。后来接手推特，又把700
 马斯克真干得出来。😂 https://t.co/zBJ1zanLJh</div>
     </details>
     <div class="media">
-  <a href="https://x.com/Eva200699/status/2084207828085182715" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/Eva200699/status/2084207828085182715" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/Eva200699_2084207828085182715.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -3723,7 +3866,11 @@ Register for the event: https://t.co/XkIAqZfVww
 Submit to the Open Call: https://t.co/2PMfN2fT3e</div>
     </details>
     <div class="media">
-  <a href="https://x.com/HagiaProject/status/2084328392157962717" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/HagiaProject/status/2084328392157962717" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/HagiaProject_2084328392157962717.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -3769,7 +3916,11 @@ Submit to the Open Call: https://t.co/2PMfN2fT3e</div>
 没了，就这样，然后视频就出来的时候我是有点点吃惊的，分镜画面是帮我做到了，虽然视频看起来粗糙，但我发给他看时，它非常开心，这就是所谓的 AI Native教育吧😆 https://t.co/zVlTMb1qIy</div>
     </details>
     <div class="media">
-  <a href="https://x.com/ama_huangama/status/2084209157113094286" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/ama_huangama/status/2084209157113094286" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/ama_huangama_2084209157113094286.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -4065,7 +4216,11 @@ GitHub 👉 https://t.co/CZS2Lbpnae
 Download it now 👉 https://t.co/HmCSwH65Fn</div>
     </details>
     <div class="media">
-  <a href="https://x.com/genspark_ai/status/2084221525327319363" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/genspark_ai/status/2084221525327319363" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/genspark_ai_2084221525327319363.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -4176,7 +4331,11 @@ the claude skill that handles scene breakdown and storyboard prompts the seedanc
 RT + reply &quot;PROMPTS&quot; and i'll send it over (must follow so i can dm)</div>
     </details>
     <div class="media">
-  <a href="https://x.com/sulfurscales/status/2084256472322781622" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/sulfurscales/status/2084256472322781622" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/sulfurscales_2084256472322781622.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -4244,7 +4403,11 @@ Bookmark and watch it before everyone catches up.
 Then read how to turn LLMs into self-improving agent loops below</div>
     </details>
     <div class="media">
-  <a href="https://x.com/LunarResearcher/status/2084407746330296679" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/LunarResearcher/status/2084407746330296679" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/LunarResearcher_2084407746330296679.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -4511,7 +4674,11 @@ What does your current local AI rig look like, and what's the craziest model you
 Official huggingface GGUF links from Unsloth and performance graphs are dropped in the replies below!</div>
     </details>
     <div class="media">
-  <a href="https://x.com/analogalok/status/2084274615829102618" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/analogalok/status/2084274615829102618" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/analogalok_2084274615829102618.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -4729,7 +4896,11 @@ The plain prompt forgot the scene even had hands in it. The JSON version didn't 
 Even more breakdowns and AI workflow guides here - @voyzlab</div>
     </details>
     <div class="media">
-  <a href="https://x.com/voyzlab/status/2084332023544455378" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/voyzlab/status/2084332023544455378" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/voyzlab_2084332023544455378.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -4848,7 +5019,11 @@ Europe has?</div>
 none of this was necessary... https://t.co/NlzpY2k2nM</div>
     </details>
     <div class="media">
-  <a href="https://x.com/dahbiahmed/status/2084346264326451289" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/dahbiahmed/status/2084346264326451289" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/dahbiahmed_2084346264326451289.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -4911,7 +5086,11 @@ none of this was necessary... https://t.co/NlzpY2k2nM</div>
 等方向确定后，再让它开始写代码。</div>
     </details>
     <div class="media">
-  <a href="https://x.com/BTCqzy1/status/2084268294115316141" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/BTCqzy1/status/2084268294115316141" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/BTCqzy1_2084268294115316141.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -5030,7 +5209,11 @@ El JSON es para que otro agente lo entienda.
 Te dejo el prompt que usé abajo 👇 https://t.co/3hSAB4Lnbp</div>
     </details>
     <div class="media">
-  <a href="https://x.com/franpradasAI/status/2084349349027557701" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/franpradasAI/status/2084349349027557701" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/franpradasAI_2084349349027557701.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -5082,7 +5265,11 @@ Te dejo el prompt que usé abajo 👇 https://t.co/3hSAB4Lnbp</div>
 https://t.co/hirpXa0ynC https://t.co/3WRQwFHYBQ</div>
     </details>
     <div class="media">
-  <a href="https://x.com/dashiAIxz/status/2084192158685519921" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/dashiAIxz/status/2084192158685519921" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/dashiAIxz_2084192158685519921.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -5125,7 +5312,11 @@ https://t.co/hirpXa0ynC https://t.co/3WRQwFHYBQ</div>
       <div class="text-en">Someone spent 22 hours and 86 agents building a rough GTA 6 with Claude Code https://t.co/yND8yW7GUb</div>
     </details>
     <div class="media">
-  <a href="https://x.com/hey_madni/status/2084308110211154271" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/hey_madni/status/2084308110211154271" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/hey_madni_2084308110211154271.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -5292,7 +5483,11 @@ https://t.co/hirpXa0ynC https://t.co/3WRQwFHYBQ</div>
 看吧，如果有空我可以把 manualtracking 和 AM 矢量的高阶的玩法效果发出来让大家品鉴下。</div>
     </details>
     <div class="media">
-  <a href="https://x.com/yelowtutu/status/2084195559406211217" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/yelowtutu/status/2084195559406211217" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/yelowtutu_2084195559406211217.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -5406,7 +5601,11 @@ deepseek-v4-pro 预计 2026 年 8 月初支持，也就是正式版喽。👀
 可以发个codex让模型参考改画任意图形的，下一版试试让qwen来描述看看 https://t.co/OE5WrUMMU6</div>
     </details>
     <div class="media">
-  <a href="https://x.com/LufzzLiz/status/2084282078636753234" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/LufzzLiz/status/2084282078636753234" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/LufzzLiz_2084282078636753234.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -5480,7 +5679,11 @@ your kids won't know how a sledgehammer feels in their hands. and they won't mis
 would you let this thing gut your apartment while you're at work?</div>
     </details>
     <div class="media">
-  <a href="https://x.com/0xCybronix/status/2084227360493068459" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/0xCybronix/status/2084227360493068459" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/0xCybronix_2084227360493068459.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -5612,7 +5815,11 @@ We used to think “robot pets” meant clunky toys with blinking lights. Sony q
 The future of companionship isn’t fully human anymore. And it’s already sitting on someone’s couch right now.</div>
     </details>
     <div class="media">
-  <a href="https://x.com/DN_degen/status/2084299301178507437" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/DN_degen/status/2084299301178507437" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/DN_degen_2084299301178507437.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -5660,7 +5867,11 @@ This abandoned Czech textile factory is a 3D Gaussian splat running on the @play
 [1/2] https://t.co/gepXVi3Qen</div>
     </details>
     <div class="media">
-  <a href="https://x.com/willeastcott/status/2084337442157478191" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/willeastcott/status/2084337442157478191" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/willeastcott_2084337442157478191.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -5708,7 +5919,11 @@ This abandoned Czech textile factory is a 3D Gaussian splat running on the @play
 https://t.co/5ijjT6Va4T</div>
     </details>
     <div class="media">
-  <a href="https://x.com/cellinlab/status/2084226291063197913" target="_blank" rel="noopener" class="video-thumb">▶ 在 X 上观看视频</a>
+  <a href="https://x.com/cellinlab/status/2084226291063197913" target="_blank" rel="noopener" class="video-cover" aria-label="在 X 上观看完整视频">
+    <img src="/covers/cellinlab_2084226291063197913.jpg" alt="视频封面" loading="lazy">
+    <span class="play-btn">▶</span>
+    <span class="cover-hint">在 X 上观看完整视频 →</span>
+  </a>
 </div>
     <div class="card-stats">
       <div class="stat-group">
@@ -5723,7 +5938,7 @@ https://t.co/5ijjT6Va4T</div>
 </div>
 
 <footer class="footer">
-  <p>AI HORIZON · X AI 日报 · 2026-08-04 · 生成于 2026-08-04 14:23 北京时间</p>
+  <p>AI HORIZON · X AI 日报 · 2026-08-04 · 生成于 2026-08-05 15:11 北京时间</p>
   <p>数据来自公开 X 推文，按热度 × 时效排序。部署于 <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>。</p>
 </footer>
 
